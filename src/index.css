@@ -1,33 +1,58 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
-@import "tailwindcss";
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Queer Pathways | Affirming Telehealth Therapy</title>  
+    <style>  
+        :root {  
+            --deep-green: #104714;  
+            --parchment: #fcfaf7;  
+            --text-dark: #1a1a1a;  
+        }  
+        body { font-family: sans-serif; background: var(--parchment); color: var(--text-dark); margin: 0; }  
+        .hero { padding: 80px 20px; text-align: center; background: #fff; }  
+        .btn-booking {   
+            background-color: var(--deep-green);   
+            color: white;   
+            padding: 15px 30px;   
+            text-decoration: none;   
+            border-radius: 5px;   
+            display: inline-block;  
+            font-weight: bold;  
+            margin-top: 20px;  
+        }  
+        .section { padding: 60px 20px; max-width: 1000px; margin: auto; }  
+        .thrizer-box { border: 1px solid #ccc; padding: 20px; border-radius: 8px; margin-top: 20px; }  
+    </style>  
+</head>  
+<body>
 
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  
-  --color-brand-green: #153009;
-  --color-brand-gold: #cbb26a;
-  --color-brand-gold-dark: #b39a55;
-}
+    <section class="hero">  
+        <h1>From Defending to Thriving.</h1>  
+        <p>Affirming telehealth therapy for the LGBTQ+ community in Pennsylvania.</p>  
+        <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn-booking">Book Your Consultation</a>  
+    </section>
 
-@layer base {
-  body {
-    @apply bg-brand-green text-stone-100 font-sans selection:bg-brand-gold selection:text-brand-green;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif text-brand-gold;
-  }
-}
+    <section class="section">  
+        <h2>Specialist Rates: The Dignity Investment Protocol</h2>  
+        <p>Bespoke care, ensuring your therapy is never dictated by the 'Internal Auditor' of an insurance company.</p>  
+        <ul>  
+            <li>Intake Assessment: $225</li>  
+            <li>Individual Therapy: $150</li>  
+            <li>Relationship Therapy: $200</li>  
+        </ul>
 
-.gold-link {
-  @apply text-brand-gold hover:text-white transition-colors duration-300;
-}
+        <div class="thrizer-box">  
+            <h3>Insurance & Out-of-Network</h3>  
+            <p>We are In-Network with <strong>Aetna</strong> (PA). For all other providers, we use <strong>Thrizer</strong> to handle your out-of-network benefits so you only pay your co-insurance upfront.</p>  
+            <a href="https://eligibility.thrizer.com/queerpathways" target="_blank" style="color: var(--deep-green); font-weight: bold;">Check your Thrizer Eligibility →</a>  
+        </div>  
+    </section>
 
-.gold-button {
-  @apply bg-brand-gold text-brand-green px-6 py-3 rounded-sm font-medium hover:bg-white transition-all duration-300 inline-block;
-}
+    <section class="section" style="text-align: center;">  
+        <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn-booking">Secure Your Slot</a>  
+    </section>
 
-.glass-card {
-  @apply bg-white/5 border border-white/10 backdrop-blur-sm p-8 rounded-sm;
-}
+</body>  
+</html>  
