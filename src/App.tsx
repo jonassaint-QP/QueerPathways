@@ -1,511 +1,770 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';  
+import { motion, AnimatePresence } from 'framer-motion';  
+import {   
+  Shield, Sparkles, Brain, Scale, Compass, ArrowRight, Menu, X,   
+  Heart, Gem, CheckCircle2, Zap, Quote, ExternalLink, Mail, BookOpen, Users, Lightbulb,
+  ChevronDown
+} from 'lucide-react';
 
-/**  
- * QUEER PATHWAYS - FULL PRODUCTION ARCHITECTURE  
- * Palette:   
- * - Deep Green: #153009 (Primary Background)  
- * - Academic Gold: #cbb26a (Primary Accent)  
- * - Deep Sanctuary: #0a1804 (Section Backgrounds)  
- * - Off-White: #f4f4f4 (Readability)  
- */
+const NavLink = ({ href, children, external = false }: any) => (  
+  <a   
+    href={href}   
+    target={external ? "_blank" : "_self"}  
+    className="text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"  
+  >  
+    {children}  
+  </a>  
+);
 
-const QueerPathwaysApp = () => {  
+const carepatronButtonStyle: React.CSSProperties = {
+  WebkitTextSizeAdjust: '100%',
+  WebkitFontSmoothing: 'antialiased',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  position: 'relative',
+  WebkitTapHighlightColor: 'transparent',
+  outline: 0,
+  border: 0,
+  margin: 0,
+  cursor: 'pointer',
+  userSelect: 'none',
+  verticalAlign: 'middle',
+  WebkitAppearance: 'none',
+  textDecoration: 'none',
+  fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
+  fontWeight: 500,
+  letterSpacing: '0.02857em',
+  transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  color: '#fff',
+  backgroundColor: '#104714',
+  textTransform: 'none',
+  boxSizing: 'border-box',
+  borderRadius: '4px',
+  boxShadow: 'none',
+  minWidth: 0,
+  overflow: 'hidden',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis',
+  height: '36px',
+  padding: '6px 16px',
+  fontSize: '14px',
+  lineHeight: '26px',
+};
+
+const PROGRAMS = [
+  { href: '/ica', label: 'Ideal Client (Alex)', external: false },
+  { href: '/acoustic-ecology', label: 'Acoustic Ecology', external: false },
+  { href: '/kink-affirming', label: 'Kink-Affirming Care', external: false },
+  { href: '/presence', label: 'Pathways to Presence', external: false },
+  { href: '/somatic-signals', label: 'Somatic Signals Podcast', external: false },
+];
+
+export default function App() {  
+  const [scrolled, setScrolled] = useState(false);  
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isProgramsOpen, setIsProgramsOpen] = useState(false);
+  const programsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {  
+    const handleScroll = () => setScrolled(window.scrollY > 50);  
+    window.addEventListener('scroll', handleScroll);  
+    return () => window.removeEventListener('scroll', handleScroll);  
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (programsRef.current && !programsRef.current.contains(e.target as Node)) {
+        setIsProgramsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (  
-    <div className="min-h-screen bg-[#153009] text-[#f4f4f4] font-sans selection:bg-[#cbb26a] selection:text-[#153009] overflow-x-hidden">  
-        
-      {/* --- 00: GLOBAL NAVIGATION --- */}  
-      <nav className="fixed top-0 w-full z-[100] bg-[#153009]/95 backdrop-blur-md border-b border-[#cbb26a]/10 px-8 py-6 flex justify-between items-center">  
-        <div className="flex flex-col group cursor-pointer">  
-            <h1 className="text-[#cbb26a] font-serif text-2xl tracking-tighter uppercase italic leading-none group-hover:text-white transition-colors">Queer Pathways</h1>  
-            <span className="text-[9px] tracking-[0.5em] text-gray-500 uppercase mt-1">PA & Telehealth Sanctuary</span>  
-        </div>  
-          
-        <div className="hidden lg:flex items-center space-x-12 text-[10px] uppercase tracking-[0.25em] text-[#cbb26a]">  
-          <a href="#moat" className="hover:text-white transition-colors">The Moat</a>  
-          <a href="#sanctuary" className="hover:text-white transition-colors">Digital Sanctuary</a>  
-          <a href="#referrals" className="hover:text-white transition-colors">PA Referrals</a>  
-          <a href="#investment" className="hover:text-white transition-colors">Dignity Investment</a>  
-          <a href="#clinician" className="hover:text-white transition-colors">Joshua</a>  
-          <button className="bg-transparent border border-[#cbb26a] px-6 py-2.5 hover:bg-[#cbb26a] hover:text-[#153009] transition-all duration-500 font-bold">  
-            Book a Consultation  
+    <div className="relative bg-emerald-950 text-amber-50">  
+      {/* Navigation */}  
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-emerald-950/80 backdrop-blur-md border-b border-emerald-900/50' : 'py-8 bg-emerald-950/40'}`}>  
+        <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">  
+          <div className="flex items-center">
+            <img
+              src="/Images/Color logo with background.webp"
+              alt="Queer Pathways"
+              className="h-12 w-auto object-contain"
+            />
+          </div>  
+            
+          <div className="hidden lg:flex gap-8 items-center">  
+            <NavLink href="#philosophy">Philosophy</NavLink>  
+            <NavLink href="#specialists">Specialists</NavLink>  
+            <NavLink href="#referrals">Referrals</NavLink>  
+            <NavLink href="#sanctuary">Sanctuary</NavLink>
+
+            {/* Programs Dropdown */}
+            <div className="relative" ref={programsRef}>
+              <button
+                onClick={() => setIsProgramsOpen((v) => !v)}
+                className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"
+              >
+                Programs
+                <ChevronDown
+                  size={12}
+                  className={`transition-transform duration-200 ${isProgramsOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              <AnimatePresence>
+                {isProgramsOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.18 }}
+                    className="absolute top-full left-0 mt-3 w-52 bg-emerald-950/95 border border-emerald-800/70 rounded-xl shadow-xl backdrop-blur-md py-2 z-50"
+                  >
+                    {PROGRAMS.map((p) => (
+                      <a
+                        key={p.href}
+                        href={p.href}
+                        onClick={() => setIsProgramsOpen(false)}
+                        className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
+                      >
+                        {p.label}
+                      </a>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            <a
+              href="/resources/internal-auditor-guide"
+              className="text-xs text-amber-100/80 hover:text-amber-50 transition-colors px-3 py-2 rounded-md border border-amber-300/30 hover:border-amber-200/50"
+              style={{ fontFamily: 'Roboto, Helvetica, Arial, sans-serif', letterSpacing: '0.02857em' }}
+            >
+              Dignity Investment
+            </a>
+            <NavLink href="https://blog.queerpathways.org" external>Newsletter</NavLink>  
+            <a   
+              href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"   
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-amber-50 text-emerald-950 px-8 py-2 rounded-full text-xs font-bold hover:bg-amber-100 transition-all duration-300"  
+            >  
+              BOOK NOW  
+            </a>  
+          </div>
+
+          <button className="lg:hidden text-amber-50" onClick={() => setIsMenuOpen(!isMenuOpen)}>  
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}  
           </button>  
         </div>
 
-        {/* Mobile Menu Icon (Visual Only) */}  
-        <div className="lg:hidden text-[#cbb26a]">  
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">  
-            <path d="M4 8h16M4 16h16" />  
-          </svg>  
-        </div>  
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3 }}
+              className="lg:hidden overflow-hidden"
+            >
+              <div className="px-6 py-6 space-y-4 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-900/50">
+                <div className="flex flex-col gap-4">
+                  <a
+                    href="#philosophy"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
+                  >
+                    Philosophy
+                  </a>
+                  <a
+                    href="#specialists"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
+                  >
+                    Specialists
+                  </a>
+                  <a
+                    href="#referrals"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
+                  >
+                    Referrals
+                  </a>
+                  <a
+                    href="#sanctuary"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
+                  >
+                    Sanctuary
+                  </a>
+                  <a
+                    href="https://blog.queerpathways.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
+                  >
+                    Newsletter
+                  </a>
+                  <a
+                    href="/resources/internal-auditor-guide"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="text-sm text-amber-100 hover:text-amber-50 transition-colors py-2 px-3 rounded border border-amber-300/30"
+                    style={{ fontFamily: 'Roboto, Helvetica, Arial, sans-serif' }}
+                  >
+                    Dignity Investment
+                  </a>
+                  <div className="pt-2 pb-1">
+                    <p className="text-xs uppercase tracking-widest text-amber-400/60 font-semibold px-1 pb-2">Programs</p>
+                    {PROGRAMS.map((p) => (
+                      <a
+                        key={p.href}
+                        href={p.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
+                      >
+                        {p.label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div className="pt-4 border-t border-emerald-900/50">
+                  <a
+                    href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={() => setIsMenuOpen(false)}
+                    className="block w-full bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-xs font-bold hover:bg-amber-100 transition-all duration-300 text-center"
+                  >
+                    BOOK NOW
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
-      {/* --- 01: HERO SECTION (ADJOURN THE TRIAL) --- */}  
-      <section className="relative pt-60 pb-40 px-8 max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">  
-        <div className="space-y-12 z-10">  
-          <div className="space-y-4">  
-            <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">Est. 2024 — Mental Health Specialty</p>  
-            <h2 className="text-7xl lg:text-9xl font-serif leading-[0.82] tracking-tighter">  
-              Adjourn <br />the <span className="italic text-[#cbb26a]">Internal <br />Trial.</span>  
-            </h2>  
+      {/* Hero Section */}  
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">  
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(217,119,6,0.08),transparent_70%)]" />  
+        <div className="max-w-5xl mx-auto px-6 text-center z-10 space-y-8">  
+          <motion.div  
+            initial={{ opacity: 0, y: 30 }}  
+            animate={{ opacity: 1, y: 0 }}  
+            transition={{ duration: 1 }}  
+            className="space-y-8"
+          >  
+            <h1 className="text-6xl md:text-7xl font-bold leading-tight tracking-tight font-serif">  
+              Stop Litigating <br />   
+              Your Own Worth.  
+            </h1>  
+            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed">  
+              Specialist telehealth for the Double-Outsider. We help LGBTQ+ and Neurodivergent visionaries dismantle the internal courtroom and step into radical belonging.  
+            </p>  
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">  
+              <a   
+                href="#book"   
+                className="bg-amber-50 text-emerald-950 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"  
+              >  
+                Book Consultation  
+              </a>  
+              <a 
+                href="https://blog.queerpathways.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-amber-50 text-amber-50 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-50/10 transition-all"  
+              >  
+                Read the Manifesto  
+              </a>  
+            </div>  
+          </motion.div>  
+        </div>  
+      </section>
+
+      {/* The Framework Section */}  
+      <section id="philosophy" className="py-32 px-6 bg-emerald-900/20">  
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">  
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-8"
+          >  
+            <div className="space-y-2">
+              <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">The Framework</span>
+              <h2 className="text-5xl md:text-6xl font-bold font-serif leading-tight">The Internal Auditor is a Relentless Litigator.</h2>
+            </div>
+            <div className="space-y-6 text-amber-100 text-lg leading-relaxed border-l-2 border-amber-400 pl-6">  
+              <p>Many queer and neurodivergent clients arrive with an <strong>Internal Auditor</strong>—a psychological mechanism that constantly litigates their worthiness, identity, and right to take up space.</p>  
+              <p>Our role is to investigate these internal laws and help you move toward a more compassionate form of self-governance. We dismantle the "garbage coat" of shame and replace it with <strong>Somatic Sovereignty</strong>.</p>  
+            </div>  
+          </motion.div>  
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
+              <h4 className="text-xl font-bold flex items-center gap-2">
+                <Lightbulb className="text-amber-400" size={24} />
+                Neuro-Affirming Care
+              </h4>  
+              <p className="text-amber-100 text-base">Your neurodivergence is not a diagnosis. It's your design. We meet you there.</p>  
+            </div>  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
+              <h4 className="text-xl font-bold flex items-center gap-2">
+                <Compass className="text-amber-400" size={24} />
+                Somatic Sovereignty
+              </h4>  
+              <p className="text-amber-100 text-base">Reclaim your body. Reclaim your nervous system. Reclaim your right to exist.</p>  
+            </div>  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
+              <h4 className="text-xl font-bold flex items-center gap-2">
+                <Sparkles className="text-amber-400" size={24} />
+                Unmasked Joy
+              </h4>  
+              <p className="text-amber-100 text-base">Beyond survival. Beyond performative authenticity. True freedom to be.</p>  
+            </div>  
+          </motion.div>  
+        </div>  
+      </section>
+
+      {/* Specialist Triptych Section */}  
+      <section id="specialists" className="py-32 px-6">  
+        <div className="max-w-6xl mx-auto">  
+          <div className="text-center mb-20 space-y-4">  
+            <h2 className="text-5xl font-bold font-serif">How We Specialize.</h2>  
+            <p className="text-amber-100 max-w-2xl mx-auto text-lg">Three pathways. One sanctuary. Each designed for your specific journey.</p>  
           </div>  
             
-          <div className="max-w-lg space-y-8 border-l border-[#cbb26a]/20 pl-10 py-2">  
-            <p className="text-xl text-gray-300 leading-relaxed font-light">  
-              High-level, telehealth-based advocacy for queer and neurodivergent professionals across Pennsylvania.   
-              We investigate the <span className="text-[#cbb26a] font-medium">Internal Legal System</span> of shame that governs your choices.  
-            </p>  
-            <p className="text-sm text-gray-500 uppercase tracking-widest font-medium">Appointments available within 7 days</p>  
-          </div>
+          <div className="grid lg:grid-cols-3 gap-10">  
+            {/* Card 1: Individual Advocacy */}  
+            <motion.div 
+              whileHover={{ y: -8 }} 
+              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
+            >  
+              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
+                <Brain className="text-amber-400" size={24} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold font-serif">Individual Advocacy</h3>  
+                <p className="text-amber-400 text-sm uppercase tracking-widest">ADHD • RSD • Executive Dysregulation</p>
+              </div>
+              <p className="text-amber-100 leading-relaxed">For neurodivergent queers navigating the overwhelm. We map your sensory world, dismantle shame cycles, and build sustainable self-advocacy strategies.</p>  
+              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Shame cycle interruption</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Masking recovery</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Executive function coaching</li>
+              </ul>  
+            </motion.div>
 
-          <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 pt-6">  
-            <button className="bg-[#cbb26a] text-[#153009] px-12 py-6 font-bold uppercase tracking-widest text-[11px] hover:bg-white hover:scale-[1.02] transition-all shadow-2xl">  
-              Enter The Territory  
-            </button>  
-            <button className="bg-transparent border border-white/10 px-12 py-6 font-bold uppercase tracking-widest text-[11px] hover:border-[#cbb26a] transition-all">  
-              The Path Journal  
-            </button>  
+            {/* Card 2: Relational Sovereignty */}  
+            <motion.div 
+              whileHover={{ y: -8 }} 
+              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
+            >  
+              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
+                <Heart className="text-amber-400" size={24} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold font-serif">Relational Sovereignty</h3>  
+                <p className="text-amber-400 text-sm uppercase tracking-widest">Kink • Polyamory • Queer Joy</p>
+              </div>
+              <p className="text-amber-100 leading-relaxed">For those building love on your own terms. We explore desire, attachment, and radical relational authenticity—no gatekeeping, no moralizing.</p>  
+              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Attachment pattern work</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Polyam communication</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Kink-affirming sex therapy</li>
+              </ul>  
+            </motion.div>
+
+            {/* Card 3: Surgical Readiness */}  
+            <motion.div 
+              whileHover={{ y: -8 }} 
+              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
+            >  
+              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
+                <Shield className="text-amber-400" size={24} />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-2xl font-bold font-serif">Gender Story Prep</h3>  
+                <p className="text-amber-400 text-sm uppercase tracking-widest">Pre-op • Non-gatekeeping • Existential clarity</p>
+              </div>
+              <p className="text-amber-100 leading-relaxed">For trans and gender-expansive clients on any pathway. We explore your gender story without judgment—no required regrets, no timelines we impose.</p>  
+              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Gender identity exploration</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Somatic dysphoria work</li>  
+                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Non-gatekeeping letters</li>
+              </ul>  
+            </motion.div>  
           </div>  
+        </div>  
+      </section>
+
+      {/* Surgical Advocacy Checklist Section */}
+      <section id="surgical-advocacy" className="py-24 px-6 bg-emerald-900/30">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-emerald-950/60 border border-emerald-800/60 rounded-3xl p-8 md:p-12 space-y-8">
+            <div className="space-y-4">
+              <p className="text-amber-400 uppercase tracking-widest text-xs font-bold">Before You Schedule</p>
+              <h2 className="text-4xl md:text-5xl font-bold font-serif">Your Surgical Advocacy Checklist</h2>
+              <p className="text-amber-100 leading-relaxed text-lg">
+                We believe in a non-gatekeeper approach. My job isn't to "assess" your gender - it's to advocate for your care and help you navigate the medical system's requirements with dignity.
+              </p>
+              <p className="text-amber-100 leading-relaxed">
+                To ensure we can get your letter signed and sent as quickly as possible, please have the following ready before booking your session:
+              </p>
+            </div>
+
+            <ul className="space-y-4 text-amber-100">
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
+                <span><strong>The Specific Procedure:</strong> Are we prepping for Top Surgery, HRT, or a Gender-Affirming Genital procedure?</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
+                <span><strong>Your Surgeon's Details:</strong> I will need the surgeon's name, clinic name, and their fax number or secure email address to send the final letter.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
+                <span><strong>Insurance Requirements:</strong> Check with your insurance provider. Do they require one letter (usually for Top/Hormones) or two letters (usually for genital/sterilization procedures)?</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
+                <span><strong>The "Magic Words":</strong> Does your insurance or surgeon require a specific template or specific clinical buzzwords to ensure coverage? If you're not sure, bring your policy's Gender Reassignment Surgery criteria document.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
+                <span><strong>Your Timeline:</strong> When is your surgery date or your deadline for submitting paperwork?</span>
+              </li>
+            </ul>
+
+            <div className="space-y-6 border-t border-emerald-800/60 pt-6">
+              <h3 className="text-2xl font-bold font-serif">Note on the Session</h3>
+              <div className="space-y-2">
+                <p className="font-semibold text-amber-200">The Session:</p>
+                <p className="text-amber-100 leading-relaxed">
+                  This is a 60–90 minute collaborative session. We will map out your Gender Story and discuss your support plan for post-op recovery. This is about making sure you are somatically and practically ready for major surgery—not proving who you are.
+                </p>
+              </div>
+              <div className="space-y-2">
+                <p className="font-semibold text-amber-200">The Timeline:</p>
+                <p className="text-amber-100 leading-relaxed">
+                  90% of the time, we wrap this up in one or two sessions. On rare occasions, a third might be necessary to get the details right. At Queer Pathways, we strive to eliminate unnecessary hurdles to your care. Our goal is to get you your letter and get you on your way.
+                </p>
+              </div>
+            </div>
+
+            <div className="pt-2">
+              <a
+                href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"
+              >
+                Book Your Advocacy Session
+              </a>
+            </div>
+
+            <div className="bg-emerald-900/40 border border-emerald-800/60 rounded-2xl p-6 space-y-4">
+              <img
+                src="/Images/Alex ICA.webp"
+                alt="Alex ICA archetype"
+                className="w-full max-w-md rounded-xl border border-emerald-700/50"
+              />
+              <p className="text-amber-300 font-semibold">Implementation Tip for the Alex Archetype</p>
+              <p className="text-amber-100 text-sm leading-relaxed">
+                The Magic Words checklist item is intentionally included for clients who feel anxious about doing paperwork wrong. It supports executive-function clarity while keeping the identity tone soft, affirming, and non-gatekeeping.
+              </p>
+            </div>
+          </div>
         </div>
-
-        <div className="relative group">  
-          <div className="absolute -inset-4 border border-[#cbb26a]/10 group-hover:border-[#cbb26a]/30 transition-colors pointer-events-none"></div>  
-          <img   
-            src="https://cdn.marblism.com/cOn4FeRyy-l.webp"   
-            alt="Academic Noir Moody Study"   
-            className="rounded-sm grayscale contrast-125 opacity-80 brightness-90 shadow-2xl transition-all duration-1000 group-hover:brightness-100"  
-          />  
-          <div className="absolute -bottom-12 -left-12 bg-[#0a1804] border border-[#cbb26a]/20 p-12 hidden xl:block shadow-3xl transform group-hover:-translate-y-2 transition-transform">  
-            <p className="font-serif text-3xl italic text-[#cbb26a] leading-tight">  
-              "Healing is a <br />Dignity Investment."  
-            </p>  
-          </div>  
-        </div>  
       </section>
 
-      {/* --- 02: THE MOAT (SERVICES & ARCHETYPES) --- */}  
-      <section id="moat" className="py-40 px-8 bg-[#0a1804]">  
-        <div className="max-w-7xl mx-auto space-y-24">  
-          <div className="grid lg:grid-cols-2 gap-16 items-end">  
-            <div className="space-y-6">  
-              <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">01 — The Moat</p>  
-              <h3 className="text-6xl font-serif tracking-tight">Specialized Reframes</h3>  
+      {/* Referrals Section */}  
+      <section id="referrals" className="py-32 px-6 bg-emerald-900/20">  
+        <div className="max-w-4xl mx-auto text-center space-y-8">  
+          <Shield className="w-16 h-16 text-amber-400 mx-auto" />  
+          <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>  
+          <p className="text-xl text-amber-100 leading-relaxed">  
+            We understand the vulnerability of stepping down from PHP or IOP. Queer Pathways offers <strong>priority access</strong> fast-track consultations to ensure clinical momentum is never lost.  
+          </p>  
+          <div className="grid md:grid-cols-2 gap-6 text-left pt-10">  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
+              <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
+              <div>  
+                <p className="font-bold">In-Network</p>  
+                <p className="text-sm text-amber-100">Accepting Aetna (PA).</p>  
+              </div>  
             </div>  
-            <p className="text-gray-400 text-lg max-w-md pb-2">  
-              We replace standard "services" with specialized advocacy that addresses the core friction of high-masking neurodivergent life.  
-            </p>  
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-px bg-[#cbb26a]/10 border border-[#cbb26a]/10 shadow-2xl">  
-            {/* Archetype 1: Justin (Refactored) */}  
-            <div className="bg-[#153009] p-16 space-y-10 hover:bg-[#1c3d0c] transition-all duration-500 group">  
-              <div className="flex justify-between items-start">  
-                <span className="text-[#cbb26a] font-serif text-5xl italic opacity-20 group-hover:opacity-100 transition-opacity">01</span>  
-                <div className="bg-[#cbb26a]/5 px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-[#cbb26a]">Active Profile</div>  
-              </div>  
-              <div className="space-y-4">  
-                <h4 className="text-2xl font-serif text-[#cbb26a]">Justin: The Relationship Alchemist</h4>  
-                <p className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-200 transition-colors">  
-                  Navigating the intersection of high-intensity professional life, <span className="text-white font-medium italic underline decoration-[#cbb26a]">chemsex use</span>, and complex relational dynamics.   
-                  We implement an explicit <span className="text-white font-medium uppercase tracking-tighter">Harm Reduction model</span>   
-                  to prioritize agency and somatic safety over institutional judgment.  
-                </p>  
-              </div>  
-              <div className="pt-4 flex items-center space-x-2 text-[9px] uppercase tracking-widest text-[#cbb26a]/60">  
-                <span className="w-1 h-1 bg-[#cbb26a] rounded-full"></span>  
-                <span>Substance Advocacy • Kink • ENM</span>  
-              </div>  
-            </div>
-
-            {/* Archetype 2: RSD & Shame */}  
-            <div className="bg-[#153009] p-16 space-y-10 hover:bg-[#1c3d0c] transition-all duration-500 group">  
-              <div className="flex justify-between items-start">  
-                <span className="text-[#cbb26a] font-serif text-5xl italic opacity-20 group-hover:opacity-100 transition-opacity">02</span>  
-                <div className="bg-[#cbb26a]/5 px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-[#cbb26a]">Core Framework</div>  
-              </div>  
-              <div className="space-y-4">  
-                <h4 className="text-2xl font-serif text-[#cbb26a]">The Internal Courtroom</h4>  
-                <p className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-200 transition-colors">  
-                  For those who feel like a defendant in their own head. We focus on dismantling the <span className="text-white italic">Internal Auditor</span>   
-                  and reclaiming your territory from the soul-crushing trial of Rejection Sensitive Dysphoria (RSD).  
-                </p>  
-              </div>  
-              <div className="pt-4 flex items-center space-x-2 text-[9px] uppercase tracking-widest text-[#cbb26a]/60">  
-                <span className="w-1 h-1 bg-[#cbb26a] rounded-full"></span>  
-                <span>Neurobiology • Masking • Shame Relief</span>  
-              </div>  
-            </div>
-
-            {/* Archetype 3: Relational Diversity */}  
-            <div className="bg-[#153009] p-16 space-y-10 hover:bg-[#1c3d0c] transition-all duration-500 group">  
-              <div className="flex justify-between items-start">  
-                <span className="text-[#cbb26a] font-serif text-5xl italic opacity-20 group-hover:opacity-100 transition-opacity">03</span>  
-                <div className="bg-[#cbb26a]/5 px-3 py-1 rounded-full text-[9px] uppercase tracking-widest text-[#cbb26a]">Somatic Anchor</div>  
-              </div>  
-              <div className="space-y-4">  
-                <h4 className="text-2xl font-serif text-[#cbb26a]">Somatic Sovereignty</h4>  
-                <p className="text-gray-400 leading-relaxed text-sm group-hover:text-gray-200 transition-colors">  
-                  Framing kink and relational diversity as attachment repair. Your love language is neurodivergent,   
-                  and we move beyond "tolerance" to clinical fluency in power exchange and non-traditional structures.  
-                </p>  
-              </div>  
-              <div className="pt-4 flex items-center space-x-2 text-[9px] uppercase tracking-widest text-[#cbb26a]/60">  
-                <span className="w-1 h-1 bg-[#cbb26a] rounded-full"></span>  
-                <span>BDSM • Polycules • Attachment Repair</span>  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
+              <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
+              <div>  
+                <p className="font-bold">Telehealth-First</p>  
+                <p className="text-sm text-amber-100">Serving the entirety of Pennsylvania.</p>  
               </div>  
             </div>  
           </div>  
         </div>  
       </section>
 
-      {/* --- 03: DIGITAL SANCTUARY (THE NEW SPATIAL REFRAME) --- */}  
-      <section id="sanctuary" className="py-48 px-8 bg-[#153009] relative overflow-hidden">  
-        {/* Decorative background element */}  
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[#cbb26a]/[0.02] -skew-x-12"></div>  
-          
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-24 items-center relative z-10">  
-          <div className="space-y-10">  
-            <div className="space-y-4">  
-              <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">Telehealth Framework</p>  
-              <h3 className="text-6xl font-serif leading-tight">Digital Sanctuary</h3>  
-            </div>  
-              
-            <div className="space-y-8 text-xl leading-relaxed text-gray-300 font-light">  
-              <p>  
-                Our practice is a 100% telehealth model, serving Philadelphia and the rural stretches of Pennsylvania.   
-                We provide a secure, HIPAA-compliant space that respects the   
-                <span className="text-[#cbb26a] italic font-medium"> metabolic cost of high-functioning neurodivergence.</span>  
-              </p>  
-              <p>  
-                No commute, no sensory-overwhelming waiting rooms—just deep, investigative work   
-                from the safety of your own territory.  
-              </p>  
-            </div>
-
-            <div className="flex items-center space-x-6 pt-6">  
-                <div className="h-px w-20 bg-[#cbb26a]/30"></div>  
-                <p className="font-bold uppercase tracking-[0.3em] text-[11px] text-[#cbb26a]">  
-                  Serving All of Pennsylvania  
-                </p>  
-            </div>  
+      {/* Booking Section */}
+      <section id="book" className="py-32 px-6 bg-emerald-900/40">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <div className="space-y-6">
+            <h2 className="text-5xl md:text-6xl font-bold font-serif">Secure Your Intake.</h2>
+            <p className="text-xl text-amber-100 leading-relaxed max-w-2xl mx-auto">
+              Your journey toward thriving begins with a single conversation. We offer flexible telehealth consultations across Pennsylvania with affirming, specialized care.
+            </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 items-start">  
-            <div className="space-y-8 translate-y-16">  
-              <img   
-                src="https://cdn.marblism.com/HJCzfTp0-eF.webp"   
-                alt="Sanctuary 1"   
-                className="rounded-sm border border-[#cbb26a]/20 shadow-3xl hover:border-[#cbb26a]/50 transition-colors"   
-              />  
-              <div className="bg-[#0a1804]/50 p-6 border-l border-[#cbb26a]/20">  
-                <p className="text-[10px] uppercase tracking-widest text-[#cbb26a]">Secure Base Architecture</p>  
-              </div>  
-            </div>  
-            <img   
-              src="https://cdn.marblism.com/BKayhLnpsN6.webp"   
-              alt="Sanctuary 2"   
-              className="rounded-sm border border-[#cbb26a]/20 shadow-3xl hover:border-[#cbb26a]/50 transition-colors"   
-            />  
-          </div>  
-        </div>  
-      </section>
-
-      {/* --- 04: PA REFERRAL SHORTCUT (SAFETY NET) --- */}  
-      <section id="referrals" className="py-40 px-8 bg-[#0a1804] border-y border-[#cbb26a]/10 relative">  
-        <div className="max-w-4xl mx-auto text-center space-y-12">  
-            <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">04 — The 7-Day Safety Net</p>  
-            <h3 className="text-6xl font-serif tracking-tight">Pennsylvania Referral Shortcut</h3>  
-            <p className="text-2xl text-gray-400 leading-relaxed font-light max-w-3xl mx-auto">  
-                Addressing the "Leaky Bucket" of post-IOP care. We prioritize <span className="text-white italic underline decoration-[#cbb26a]/40 underline-offset-8">7-day consultation windows</span>   
-                for 2SLGBTQI+ and ADHD clients stepping down from PHP/IOP care.  
-            </p>  
-            <div className="pt-12 flex justify-center space-x-12">  
-                <div className="text-left space-y-2">  
-                    <p className="text-[10px] text-[#cbb26a] uppercase tracking-widest">Fast-Track For</p>  
-                    <p className="text-sm font-medium">Step-down Coordination</p>  
-                </div>  
-                <div className="text-left space-y-2">  
-                    <p className="text-[10px] text-[#cbb26a] uppercase tracking-widest">Priority Intake</p>  
-                    <p className="text-sm font-medium">Clinical Continuity</p>  
-                </div>  
-            </div>  
-            <div className="pt-10">  
-                <button className="bg-transparent border border-white/20 text-white px-12 py-6 font-bold uppercase tracking-widest text-[11px] hover:border-[#cbb26a] hover:text-[#cbb26a] transition-all">  
-                    Direct Clinician Line  
-                </button>  
-            </div>  
-        </div>  
-      </section>
-
-      {/* --- 05: DIGNITY INVESTMENT (THE FINANCIAL ARCHITECTURE) --- */}  
-      <section id="investment" className="py-48 px-8 bg-[#153009]">  
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-32 items-center">  
-            <div className="space-y-12">  
-                <div className="space-y-4">  
-                  <p className="text-[#cbb26a] uppercase tracking-widest text-[10px] font-bold">02 — Financial Framing</p>  
-                  <h3 className="text-7xl font-serif leading-[1.1]">The Dignity <br />Investment</h3>  
-                </div>  
-                <div className="space-y-8 text-gray-400 text-xl leading-relaxed font-light">  
-                  <p>  
-                      Generalist therapy often requires you to spend months educating your therapist on your identity.   
-                      At Queer Pathways, we speak <span className="text-white">2SLGBTQI+, Kink, and Neurodivergent</span> fluently.  
-                  </p>  
-                  <p className="text-lg italic">  
-                    You aren't paying for "talk therapy"; you are investing in a specialist advocate who helps you recover your bandwidth and your time.  
-                  </p>  
-                </div>  
+          {/* Session Rates */}
+          <div className="border border-amber-400/20 rounded-2xl p-8 bg-emerald-950/40">
+            <p className="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-6">Session Rates</p>
+            <div className="grid grid-cols-3 divide-x divide-amber-400/20">
+              <div className="px-6 text-center">
+                <p className="text-3xl font-bold font-serif text-amber-50">$150</p>
+                <p className="text-sm text-amber-100/70 mt-1">Individual</p>
+              </div>
+              <div className="px-6 text-center">
+                <p className="text-3xl font-bold font-serif text-amber-50">$200</p>
+                <p className="text-sm text-amber-100/70 mt-1">Relationship</p>
+              </div>
+              <div className="px-6 text-center">
+                <p className="text-3xl font-bold font-serif text-amber-50">$225</p>
+                <p className="text-sm text-amber-100/70 mt-1">Intake</p>
+              </div>
             </div>
-
-            <div className="bg-[#0a1804] border border-[#cbb26a]/20 p-16 space-y-12 shadow-3xl transform rotate-1 hover:rotate-0 transition-transform duration-700">  
-                <div className="space-y-10">  
-                  <div className="flex justify-between items-end border-b border-[#cbb26a]/10 pb-6">  
-                      <div className="space-y-1">  
-                        <span className="font-serif text-2xl">Intake Assessment</span>  
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest">90 Minute Deep Dive</p>  
-                      </div>  
-                      <span className="text-[#cbb26a] font-bold text-2xl">$225</span>  
-                  </div>  
-                  <div className="flex justify-between items-end border-b border-[#cbb26a]/10 pb-6">  
-                      <div className="space-y-1">  
-                        <span className="font-serif text-2xl">Individual Therapy</span>  
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest">50 Minute Clinical Session</p>  
-                      </div>  
-                      <span className="text-[#cbb26a] font-bold text-2xl">$150</span>  
-                  </div>  
-                  <div className="flex justify-between items-end border-b border-[#cbb26a]/10 pb-6">  
-                      <div className="space-y-1">  
-                        <span className="font-serif text-2xl">Relationship Therapy</span>  
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest">Polyam & ENM Friendly (50 min)</p>  
-                      </div>  
-                      <span className="text-[#cbb26a] font-bold text-2xl">$200</span>  
-                  </div>  
-                </div>
-
-                <div className="space-y-8">  
-                  <div className="bg-[#cbb26a]/5 p-6 rounded-sm text-center">  
-                    <p className="text-[10px] text-gray-400 uppercase tracking-[0.3em] font-medium leading-relaxed">  
-                        In-Network with Aetna • Automated Superbills via Thrizer <br />to maximize OON benefits without executive drain.  
-                    </p>  
-                  </div>  
-                  <button className="w-full bg-[#cbb26a] text-[#153009] py-7 font-bold uppercase tracking-widest text-xs hover:bg-white transition-all shadow-xl">  
-                      Secure Your Clinical Slot  
-                  </button>  
-                </div>  
-            </div>  
-        </div>  
-      </section>
-
-      {/* --- 06: THE CLINICIAN (JOSHUA BIO) --- */}  
-      <section id="clinician" className="py-48 px-8 bg-[#0a1804] relative">  
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-24 items-center">  
-          <div className="relative group overflow-hidden">  
-            <img   
-              src="/Joshua dark background.webp"   
-              alt="Joshua Jonassaint LCSW"   
-              className="rounded-sm grayscale contrast-110 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-[2000ms] border border-[#cbb26a]/20 shadow-3xl"  
-            />  
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0a1804] to-transparent opacity-60"></div>  
-            <div className="absolute bottom-8 left-8">  
-               <p className="text-[#cbb26a] font-serif text-xl italic">Joshua | They/Them</p>  
-            </div>  
           </div>
 
-          <div className="space-y-12">  
-            <div className="space-y-4">  
-              <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">03 — The Clinician</p>  
-              <h3 className="text-8xl font-serif tracking-tighter leading-[0.85]">Joshua <br />Jonassaint</h3>  
-              <p className="text-xl font-sans font-light tracking-[0.1em] text-gray-500 uppercase">LCSW (PA, ON) — WPATH Certified</p>  
-            </div>  
-              
-            <p className="text-2xl text-gray-300 italic font-light leading-relaxed border-l-2 border-[#cbb26a]/40 pl-10">  
-              "Healing isn't about fixing what's broken; it's about reclaiming the parts of yourself that were told they didn't belong."  
+          {/* Thrizer OON Benefits */}
+          <div className="text-center">
+            <div dangerouslySetInnerHTML={{
+              __html: `<script src="https://eligibility.thrizer.com/embed.js" data-src="https://eligibility.thrizer.com/facility/thrizer7t1oh?type=iframe" data-title="Check Your Insurance Benefits" async crossorigin="anonymous"><\/script>`
+            }} />
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3 text-left">
+              <h4 className="font-bold text-lg flex items-center gap-2">
+                <CheckCircle2 className="text-amber-400" size={20} />
+                Initial Consultation
+              </h4>
+              <p className="text-sm text-amber-100">15-minute intake to understand your needs and treatment goals. Call us to book @ <a href="tel:3655999002" className="text-amber-300 hover:text-amber-200 transition">365-599-9002</a></p>
+            </div>
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3 text-left">
+              <h4 className="font-bold text-lg flex items-center gap-2">
+                <CheckCircle2 className="text-amber-400" size={20} />
+                Intake Assessment
+              </h4>
+              <p className="text-sm text-amber-100">An initial intake assessment is a comprehensive, biopsychosocial evaluation designed to understand the client's internal landscape, attachment history, and neurobiological profile. This process prioritizes somatic stabilization and identity affirmation, particularly for those within the queer community.</p>
+            </div>
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-4 text-left">
+              <h4 className="font-bold text-lg flex items-center gap-2">
+                <CheckCircle2 className="text-amber-400" size={20} />
+                Investment & Accessibility
+              </h4>
+              <div className="space-y-3 text-sm text-amber-100">
+                <p className="font-semibold text-amber-50">Direct Network:</p>
+                <p>Proudly In-Network with Aetna (PA).</p>
+                <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
+                <p>For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront—Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills. Find your co-pay with the Thrizer Form below.</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <p className="text-sm text-amber-100">Questions? <a href="mailto:hello@queerpathways.org" className="text-amber-300 hover:text-amber-200 transition">Reach out directly.</a></p>
+            <div>
+              <a
+                href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+                rel="noopener"
+                title="Book appointment"
+                style={carepatronButtonStyle}
+                target="_blank"
+              >
+                Book appointment
+              </a>
+            </div>
+          </div>
+
+          <div className="space-y-4 text-left">
+            <p className="text-sm uppercase tracking-widest text-amber-400 font-semibold text-center">Book directly below</p>
+            <div style={{ display: 'grid', width: '100%', height: '100%', minWidth: '320px', minHeight: '600px' }}>
+              <iframe
+                title="Carepatron Online Booking"
+                aria-label="Book appointments online via Carepatron"
+                width="100%"
+                height="100%"
+                src="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=i"
+                style={{ border: 0 }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Weekend Resource Guide Section */}
+      <section id="weekend-safety-net" className="py-24 px-6 bg-emerald-950/70 border-y border-emerald-800/50">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="space-y-4 text-center">
+            <p className="text-amber-400 uppercase tracking-widest text-xs font-bold">Friday Push</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif">The Weekend Safety Net: Friday Decompression</h2>
+            <p className="text-amber-100 leading-relaxed text-lg max-w-3xl mx-auto">
+              The transition from the work week to the weekend often feels less like a break and more like a collapse. If you're feeling the weight of the Double-Outsider burnout - navigating a world not built for your neurobiology or your identity - this space is for you.
+            </p>
+          </div>
+
+          <div className="bg-emerald-900/30 border border-emerald-800/60 rounded-3xl p-8 md:p-10 space-y-6">
+            <h3 className="text-2xl font-bold font-serif">Don't Let the Momentum Drain</h3>
+            <p className="text-amber-100 leading-relaxed">
+              We call this the Leaky Bucket scenario: you work hard in the week, but without structural scaffolding, that progress can drain away over the weekend. Use this time to secure your spot for next week.
             </p>
 
-            <div className="grid grid-cols-2 gap-12 pt-8">  
-               <div className="space-y-4">  
-                  <h5 className="text-[10px] uppercase tracking-widest text-[#cbb26a] font-bold">Clinical Specialties</h5>  
-                  <ul className="text-sm text-gray-400 space-y-2 leading-relaxed">  
-                    <li>Neurodivergent ASD/ADHD</li>  
-                    <li>Kink & Power Exchange</li>  
-                    <li>Gender Affirming Surgery Referral</li>  
-                    <li>Complex Trauma & RSD</li>  
-                  </ul>  
-               </div>  
-               <div className="space-y-4">  
-                  <h5 className="text-[10px] uppercase tracking-widest text-[#cbb26a] font-bold">Frameworks</h5>  
-                  <ul className="text-sm text-gray-400 space-y-2 leading-relaxed">  
-                    <li>Integrated Pleasure Model</li>  
-                    <li>Wabi-Sabi Body Acceptance</li>  
-                    <li>Somatic Internal Legal System</li>  
-                    <li>Harm Reduction Substance Use</li>  
-                  </ul>  
-               </div>  
-            </div>  
-          </div>  
-        </div>  
-      </section>
-
-      {/* --- 07: THE ALEX FAQ (ADDRESSING THE FEARS) --- */}  
-      <section className="py-40 px-8 bg-[#153009] border-t border-[#cbb26a]/10">  
-        <div className="max-w-4xl mx-auto space-y-24">  
-          <div className="text-center space-y-4">  
-            <p className="text-[#cbb26a] uppercase tracking-widest text-[10px] font-bold">User Manual</p>  
-            <h3 className="text-5xl font-serif italic text-white tracking-tight">Addressing The Fears</h3>  
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-20">  
-              <div className="space-y-6">  
-                  <div className="w-12 h-px bg-[#cbb26a]/50 mb-8"></div>  
-                  <h4 className="text-2xl font-serif text-[#cbb26a] tracking-tight">What if I forget my session?</h4>  
-                  <p className="text-gray-400 leading-relaxed text-lg">  
-                    We use multi-channel SMS/Email prompts to support your executive functioning. We build the <span className="italic">structural scaffolding</span> so you don't have to carry the mental load alone.  
-                  </p>  
-              </div>  
-              <div className="space-y-6">  
-                  <div className="w-12 h-px bg-[#cbb26a]/50 mb-8"></div>  
-                  <h4 className="text-2xl font-serif text-[#cbb26a] tracking-tight">What if I’m 'too broken'?</h4>  
-                  <p className="text-gray-400 leading-relaxed text-lg">  
-                    The court is adjourned here; there is no 'broken,' only 'unmapped.' We aren't fixing you; we're reclaiming your territory from societal scripts that weren't yours to begin with.  
-                  </p>  
-              </div>  
-          </div>  
-        </div>  
-      </section>
-
-      {/* --- 08: QUEER RESILIENCE (COMMUNITY) --- */}  
-      <section className="py-40 px-8 bg-[#0a1804]">  
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-24 items-center">  
-           <div className="space-y-12">  
-              <h3 className="text-6xl font-serif leading-tight">Queer Resilience <br /><span className="text-[#cbb26a] italic">Community Groups</span></h3>  
-              <p className="text-xl text-gray-400 font-light leading-relaxed">  
-                 Community is our greatest anchor. Our DBT-informed consultation and resilience groups are designed for those tired of explaining their identity to the world.  
-              </p>  
-              <div className="space-y-6 pt-6">  
-                  {["DBT Consultation for Therapists", "Queer & Neurodivergent Peer Support", "Structured Relief & Regulation Workshops"].map((item, idx) => (  
-                    <div key={idx} className="flex items-center space-x-6 group cursor-pointer">  
-                        <span className="w-2 h-2 bg-[#cbb26a] rounded-full group-hover:scale-150 transition-transform"></span>  
-                        <p className="text-sm uppercase tracking-[0.2em] group-hover:text-white transition-colors">{item}</p>  
-                    </div>  
-                  ))}  
-              </div>  
-              <button className="bg-[#cbb26a] text-[#153009] px-10 py-5 font-bold uppercase tracking-widest text-[11px] mt-8">  
-                  Join the Circle  
-              </button>  
-           </div>  
-           <div className="relative">  
-              <img   
-                src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?auto=format&fit=crop&q=80&w=1200"   
-                alt="Community"   
-                className="rounded-sm grayscale contrast-125 opacity-70 border border-[#cbb26a]/10 shadow-3xl"  
-              />  
-           </div>  
-        </div>  
-      </section>
-
-      {/* --- 09: THE PATH (JOURNAL / BLOG) --- */}  
-      <section id="journal" className="py-48 px-8 bg-[#153009]">  
-        <div className="max-w-7xl mx-auto space-y-24">  
-            <div className="flex justify-between items-end border-b border-[#cbb26a]/10 pb-12">  
-                <div className="space-y-4">  
-                  <p className="text-[#cbb26a] uppercase tracking-[0.4em] text-[10px] font-bold">04 — Journal</p>  
-                  <h3 className="text-6xl font-serif">The Path</h3>  
-                </div>  
-                <a href="/journal" className="text-[#cbb26a] uppercase tracking-widest text-[11px] font-bold hover:text-white transition-colors">  
-                  View Full Archives →  
-                </a>  
+            <div className="space-y-4">
+              <h4 className="text-xl font-bold">Your Weekend Checklist:</h4>
+              <ul className="space-y-4 text-amber-100 leading-relaxed">
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
+                  <span><strong>Stop Litigating Your Worth:</strong> You don't need to earn your rest. The weekend is for re-regulation, not just recovering so you can work again on Monday.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
+                  <span><strong>Audit Your Capacity:</strong> If your internal legal system is screaming about all the things you didn't do, give it a recess.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
+                  <span><strong>Secure Your Monday:</strong> We reserve priority slots for Monday morning intakes ($195-$250). Booking now means you start your week with a plan already in place.</span>
+                </li>
+              </ul>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-12">  
-                {/* Entry 1: Resonance */}  
-                <div className="space-y-8 group cursor-pointer">  
-                    <div className="overflow-hidden">  
-                      <img src="https://cdn.marblism.com/99KYkoEtGgD.webp" alt="Resonance" className="grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" />  
-                    </div>  
-                    <div className="space-y-4">  
-                      <p className="text-[#cbb26a] uppercase text-[10px] tracking-[0.3em] font-bold">Clinical • Somatic</p>  
-                      <h4 className="text-2xl font-serif group-hover:italic transition-all">Resonance: The Country Music Connection</h4>  
-                      <p className="text-sm text-gray-500 leading-relaxed">Exploring somatic listening and the Internal Courtroom through 24 frames of sound.</p>  
-                    </div>  
-                </div>
-
-                {/* Entry 2: Bedroom */}  
-                <div className="space-y-8 group cursor-pointer">  
-                    <div className="overflow-hidden">  
-                      <img src="https://cdn.marblism.com/p8vT6f0mHBR.webp" alt="Identity" className="grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000" />  
-                    </div>  
-                    <div className="space-y-4">  
-                      <p className="text-[#cbb26a] uppercase text-[10px] tracking-[0.3em] font-bold">Identity • Sexuality</p>  
-                      <h4 className="text-2xl font-serif group-hover:italic transition-all">Neurodivergence in the Bedroom</h4>  
-                      <p className="text-sm text-gray-500 leading-relaxed">Dismantling performance anxiety and sensory overload in intimate spaces.</p>  
-                    </div>  
-                </div>
-
-                {/* Entry 3: Ledger Resource */}  
-                <div className="bg-[#cbb26a] p-12 text-[#153009] flex flex-col justify-between transform hover:-translate-y-4 transition-transform duration-700 shadow-3xl">  
-                    <div className="space-y-6">  
-                      <p className="uppercase text-[10px] tracking-widest font-black opacity-60">The Resource Vault</p>  
-                      <h4 className="text-4xl font-serif italic tracking-tighter leading-none">The Internal Auditor's <br />Ledger</h4>  
-                      <p className="text-sm font-medium leading-relaxed">  
-                        Volume 01: Understanding neurobiology, RSD, and how kink acts as structured relief for the ND brain.  
-                      </p>  
-                    </div>  
-                    <button className="bg-[#153009] text-white w-full py-6 text-[10px] font-black uppercase tracking-[0.3em] mt-12 hover:bg-black transition-colors">  
-                      Download The Ledger  
-                    </button>  
-                </div>  
-            </div>  
-        </div>  
+            <div className="pt-2 text-center">
+              <a
+                href="/resources/internal-auditor-guide"
+                className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-200 font-semibold transition mb-4"
+              >
+                Read The Internal Auditor Guide Online
+                <ArrowRight size={16} />
+              </a>
+              <br />
+              <a
+                href="/pathways-to-presence.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition px-4 py-2 rounded"
+                style={{ border: '1px solid rgba(251, 191, 36, 0.65)', fontFamily: 'Roboto, Helvetica, Arial, sans-serif' }}
+              >
+                Download the Full Sovereign Sanctuary Resource PDF
+                <ArrowRight size={16} />
+              </a>
+              <p className="text-xs text-amber-100/70 mt-2">Optional email capture link for Friday resource leads.</p>
+            </div>
+          </div>
+        </div>
       </section>
 
-      {/* --- 10: FINAL CTAS & FOOTER --- */}  
-      <section className="py-40 px-8 bg-[#0a1804] text-center border-t border-[#cbb26a]/10">  
-         <div className="max-w-3xl mx-auto space-y-16">  
-            <h2 className="text-[#cbb26a] font-serif text-5xl italic tracking-tighter">Your territory is waiting.</h2>  
-            <div className="flex flex-col sm:flex-row justify-center items-center space-y-6 sm:space-y-0 sm:space-x-10">  
-                <button className="bg-[#cbb26a] text-[#153009] px-16 py-7 font-black uppercase tracking-widest text-[11px] shadow-2xl hover:scale-110 transition-transform">  
-                   Book Now (30 Seconds)  
-                </button>  
-                <div className="flex flex-col text-left">  
-                   <p className="text-[10px] text-gray-500 uppercase tracking-widest">Questions?</p>  
-                   <p className="text-sm font-serif text-[#cbb26a]">Joshua@QueerPathways.org</p>  
-                </div>  
-            </div>  
-         </div>  
+      {/* Sanctuary Section */}
+      <section id="sanctuary" className="py-32 px-6">
+        <div className="max-w-5xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <h2 className="text-5xl md:text-6xl font-bold font-serif">The Sanctuary.</h2>
+            <p className="text-xl text-amber-100">A space designed for your somatic and emotional safety.</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-8">
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold flex items-center gap-3">
+                  <Compass className="text-amber-400" size={24} />
+                  Somatic Navigation
+                </h3>
+                <p className="text-amber-100 leading-relaxed">
+                  We slow down and track your nervous system. Healing isn't just cognitive—it's embodied. We use somatic experiencing, sensory mapping, and trauma-informed techniques to help you reclaim your body as a sanctuary.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold flex items-center gap-3">
+                  <Heart className="text-amber-400" size={24} />
+                  Relational Safety
+                </h3>
+                <p className="text-amber-100 leading-relaxed">
+                  Authentic connection is the medicine. We meet you with curiosity, not judgment. Your identity, your pronouns, your story—all held with genuine care and clinical expertise.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                <h3 className="text-2xl font-bold flex items-center gap-3">
+                  <Sparkles className="text-amber-400" size={24} />
+                  Neurodivergent-Affirming Care
+                </h3>
+                <p className="text-amber-100 leading-relaxed">
+                  We understand masking, sensory overwhelm, and the unique intersections of queerness and neurodivergence. Your neurotype is not a problem to fix—it's part of your design.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-10 rounded-3xl space-y-6">
+              <Quote className="text-amber-400" size={32} />
+              <blockquote className="text-lg leading-relaxed italic text-amber-50">
+                "Therapy isn't about becoming someone else. It's about dismantling the voices that told you who you couldn't be, and remembering who you always were."
+              </blockquote>
+              <p className="text-sm text-amber-300 font-semibold">— Joshua, LCSW</p>
+              <div className="pt-4 border-t border-emerald-800/50 space-y-2">
+                <p className="text-sm text-amber-100"><strong>Specializations:</strong></p>
+                <ul className="text-sm text-amber-100 space-y-1">
+                  <li>✓ LGBTQ+ identity exploration & affirmation</li>
+                  <li>✓ Complex trauma & PTSD</li>
+                  <li>✓ Anxiety & depression in queer/BIPOC communities</li>
+                  <li>✓ Relationship & attachment patterns</li>
+                  <li>✓ Neurodivergence & sensory experiences</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
 
-      <footer className="py-24 px-8 border-t border-[#cbb26a]/5 bg-[#0a1804]">  
-        <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-16">  
-            <div className="col-span-2 space-y-6">  
-                <h1 className="text-[#cbb26a] font-serif text-3xl italic tracking-tighter">Queer Pathways</h1>  
-                <p className="text-xs text-gray-600 uppercase tracking-[0.4em] leading-relaxed max-w-sm">  
-                   Specialized Telehealth for the 2SLGBTQI+ & Neurodivergent Community across Pennsylvania & Ontario.  
-                </p>  
+      {/* Footer */}  
+      <footer className="py-20 border-t border-emerald-900/50 px-6 bg-emerald-950/50">  
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">  
+          <div className="max-w-xs space-y-4">  
+            <img
+              src="/Images/Color logo with background.webp"
+              alt="Queer Pathways"
+              className="h-14 w-auto object-contain"
+            />  
+            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Philadelphia | Pittsburgh | PA</p>  
+          </div>  
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">  
+            <div className="space-y-4">  
+              <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Navigate</h5>  
+              <ul className="space-y-2 text-sm text-amber-100/70">  
+                <li><a href="#philosophy" className="hover:text-amber-50 transition">Philosophy</a></li>  
+                <li><a href="#specialists" className="hover:text-amber-50 transition">Specialists</a></li>  
+                <li><a href="#book" className="hover:text-amber-50 transition">Booking</a></li>  
+              </ul>  
             </div>  
-            <div className="space-y-6">  
-                <h5 className="text-[10px] uppercase tracking-widest text-white font-bold">Clinical Hubs</h5>  
-                <div className="text-gray-600 text-xs space-y-2 uppercase tracking-widest">  
-                   <p>Philadelphia, PA</p>  
-                   <p>Pittsburgh, PA</p>  
-                   <p>Rural PA Territory</p>  
-                </div>  
+            <div className="space-y-4">  
+              <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Connect</h5>  
+              <ul className="space-y-2 text-sm text-amber-100/70">  
+                <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Substack</a></li>  
+                <li><a href="mailto:hello@queerpathways.org" className="hover:text-amber-50 transition">Email</a></li>  
+              </ul>  
             </div>  
-            <div className="space-y-6 text-right">  
-                <h5 className="text-[10px] uppercase tracking-widest text-white font-bold">Archives</h5>  
-                <div className="text-gray-600 text-xs space-y-2 uppercase tracking-widest">  
-                   <p>Substack</p>  
-                   <p>LinkedIn</p>  
-                   <p>Instagram</p>  
-                </div>  
-            </div>  
+          </div>  
         </div>  
-        <div className="max-w-7xl mx-auto pt-24 text-center">  
-            <p className="text-[9px] text-gray-700 uppercase tracking-[0.5em]">  
-               © 2026 Joshua Jonassaint • LCSW • HIPAA Compliant • Designed for the Double-Outsider  
-            </p>  
+        <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-emerald-900/50 text-center text-xs text-amber-100/50">  
+          © 2026 Samuel Jonassaint, LCSW. All rights reserved.  
         </div>  
-      </footer>
-
+      </footer>  
     </div>  
   );  
-};
-
-export default QueerPathwaysApp; 
+}  
