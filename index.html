@@ -15,7 +15,16 @@
     .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); }  
     .text-gradient { background: linear-gradient(to right, #c084fc, #fb7185); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }  
     .scaffold-border { border-left: 2px solid rgba(167, 139, 250, 0.3); padding-left: 1.5rem; }  
-  </style>  
+  </style>
+  <!-- Restore path after GitHub Pages 404 redirect -->
+  <script>
+    (function() {
+      var p = new URLSearchParams(window.location.search).get('p');
+      if (p) {
+        window.history.replaceState(null, null, '/' + decodeURIComponent(p) + window.location.hash);
+      }
+    })();
+  </script>
 </head>  
 <body>  
   <div id="root"></div>  
