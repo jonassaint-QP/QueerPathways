@@ -258,19 +258,18 @@ export default function App() {
             transition={{ duration: 1 }}  
             className="space-y-8"
           >  
-            <h1 className="text-6xl md:text-7xl font-bold leading-tight tracking-tight font-serif">  
-              Stop Litigating <br />   
-              Your Own Worth.  
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
+              You are tired of being the only Defense Attorney in a courtroom where the Judge, the Prosecutor, and the Jury are all your own voice.
             </h1>  
-            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto leading-relaxed">  
-              Specialist telehealth for the Double-Outsider. We help LGBTQ+ and Neurodivergent visionaries dismantle the internal courtroom and step into radical belonging.  
+            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto" style={{ lineHeight: '1.75', paddingBottom: '6pt' }}>  
+              Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
             </p>  
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">  
               <a   
                 href="#book"   
                 className="bg-amber-50 text-emerald-950 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"  
               >  
-                Book Consultation  
+                Adjourn the Court: Book Your Intake
               </a>  
               <a 
                 href="https://blog.queerpathways.org"
@@ -295,12 +294,13 @@ export default function App() {
             className="space-y-8"
           >  
             <div className="space-y-2">
-              <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">The Framework</span>
-              <h2 className="text-5xl md:text-6xl font-bold font-serif leading-tight">The Internal Auditor is a Relentless Litigator.</h2>
+              <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">The Internal Legal System</span>
+              <h2 className="text-5xl md:text-6xl font-bold font-serif leading-tight">The Courtroom You Never Agreed to Enter.</h2>
             </div>
-            <div className="space-y-6 text-amber-100 text-lg leading-relaxed border-l-2 border-amber-400 pl-6">  
-              <p>Many queer and neurodivergent clients arrive with an <strong>Internal Auditor</strong>—a psychological mechanism that constantly litigates their worthiness, identity, and right to take up space.</p>  
-              <p>Our role is to investigate these internal laws and help you move toward a more compassionate form of self-governance. We dismantle the "garbage coat" of shame and replace it with <strong>Somatic Sovereignty</strong>.</p>  
+            <div className="space-y-6 text-amber-100 text-lg border-l-2 border-amber-400 pl-6" style={{ lineHeight: '1.75' }}>  
+              <p>Many queer and neurodivergent visionaries arrive carrying an <strong>Internal Auditor</strong>—the psychological mechanism that tracks the <strong>Ambiguity Tax</strong>: the exhausting mental cost of decoding how to act "normal" in corporate or social spaces while your actual genius is being mis-filed as a character flaw.</p>  
+              <p style={{ paddingTop: '6pt' }}>Trauma isn't just a memory. It is an <strong>Exhibit in a trial that never ends</strong>—stored in an Evidence Locker your nervous system keeps sealed shut. We help you open that locker without being buried by it.</p>
+              <p style={{ paddingTop: '6pt' }}>We dismantle the "garbage coat" of shame. <strong>Somatic Sovereignty</strong> is not a coping strategy. It is the moment you stop litigating your right to exist and start owning your Nervous System Machine.</p>
             </div>  
           </motion.div>  
           
@@ -313,23 +313,23 @@ export default function App() {
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
               <h4 className="text-xl font-bold flex items-center gap-2">
                 <Lightbulb className="text-amber-400" size={24} />
-                Neuro-Affirming Care
+                The Internal Auditor
               </h4>  
-              <p className="text-amber-100 text-base">Your neurodivergence is not a diagnosis. It's your design. We meet you there.</p>  
+              <p className="text-amber-100 text-base" style={{ lineHeight: '1.75' }}>The mechanism that runs the Ambiguity Tax ledger. Every social interaction, every corporate meeting, every moment of masking—it keeps score. We shut the ledger.</p>  
+            </div>  
+            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
+              <h4 className="text-xl font-bold flex items-center gap-2">
+                <Scale className="text-amber-400" size={24} />
+                The Evidence Locker
+              </h4>  
+              <p className="text-amber-100 text-base" style={{ lineHeight: '1.75' }}>Your trauma is not a character witness against you. It is an Exhibit in a trial that never rested. We help you sort the evidence—and finally close the case.</p>  
             </div>  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
               <h4 className="text-xl font-bold flex items-center gap-2">
                 <Compass className="text-amber-400" size={24} />
                 Somatic Sovereignty
               </h4>  
-              <p className="text-amber-100 text-base">Reclaim your body. Reclaim your nervous system. Reclaim your right to exist.</p>  
-            </div>  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
-              <h4 className="text-xl font-bold flex items-center gap-2">
-                <Sparkles className="text-amber-400" size={24} />
-                Unmasked Joy
-              </h4>  
-              <p className="text-amber-100 text-base">Beyond survival. Beyond performative authenticity. True freedom to be.</p>  
+              <p className="text-amber-100 text-base" style={{ lineHeight: '1.75' }}>Not "coping." Not management. The moment you stop litigating your right to exist and start running your own Nervous System Machine on your own terms.</p>  
             </div>  
           </motion.div>  
         </div>  
@@ -340,11 +340,11 @@ export default function App() {
         <div className="max-w-6xl mx-auto">  
           <div className="text-center mb-20 space-y-4">  
             <h2 className="text-5xl font-bold font-serif">How We Specialize.</h2>  
-            <p className="text-amber-100 max-w-2xl mx-auto text-lg">Three pathways. One sanctuary. Each designed for your specific journey.</p>  
+            <p className="text-amber-100 max-w-2xl mx-auto text-lg" style={{ lineHeight: '1.75' }}>Three strategic partnerships. One sanctuary. Each designed for the visionary who is too professional for the protest and too queer for the boardroom.</p>  
           </div>  
             
           <div className="grid lg:grid-cols-3 gap-10">  
-            {/* Card 1: Individual Advocacy */}  
+            {/* Card 1: Specialist Scaffolding */}  
             <motion.div 
               whileHover={{ y: -8 }} 
               className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
@@ -353,15 +353,18 @@ export default function App() {
                 <Brain className="text-amber-400" size={24} />
               </div>
               <div className="space-y-2">
-                <h3 className="text-2xl font-bold font-serif">Individual Advocacy</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">ADHD • RSD • Executive Dysregulation</p>
+                <h3 className="text-2xl font-bold font-serif">Specialist Scaffolding</h3>  
+                <p className="text-amber-400 text-sm uppercase tracking-widest">Performance Advocacy for the Visionary</p>
               </div>
-              <p className="text-amber-100 leading-relaxed">For neurodivergent queers navigating the overwhelm. We map your sensory world, dismantle shame cycles, and build sustainable self-advocacy strategies.</p>  
-              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Shame cycle interruption</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Masking recovery</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Executive function coaching</li>
-              </ul>  
+              <p className="text-amber-100" style={{ lineHeight: '1.75' }}>For the neurodivergent queer staring at an email draft for 45 minutes—the Cognitive Friction that makes the Email Stare feel like a character flaw when it is actually a systems mismatch. We build scaffolding around your brilliance, not around your deficits.</p>  
+              <div className="space-y-3 text-sm text-amber-100 pt-4">  
+                <p><strong>1. Shame Cycle Interruption</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Dismantling the garbage coat, layer by layer.</p>
+                <p><strong>2. Masking Recovery</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Rebuilding the self beneath the performance.</p>
+                <p><strong>3. Executive Function Advocacy</strong></p>
+                <p>Strategic scaffolding for the ADHD and RSD nervous system.</p>
+              </div>  
             </motion.div>
 
             {/* Card 2: Relational Sovereignty */}  
@@ -374,17 +377,20 @@ export default function App() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold font-serif">Relational Sovereignty</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">Kink • Polyamory • Queer Joy</p>
+                <p className="text-amber-400 text-sm uppercase tracking-widest">Negotiation as Love Language</p>
               </div>
-              <p className="text-amber-100 leading-relaxed">For those building love on your own terms. We explore desire, attachment, and radical relational authenticity—no gatekeeping, no moralizing.</p>  
-              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Attachment pattern work</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Polyam communication</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Kink-affirming sex therapy</li>
-              </ul>  
+              <p className="text-amber-100" style={{ lineHeight: '1.75' }}>For those building love on your own terms. We move past "non-judgment" into the active, somatic exploration of desire. Kink and Polyamory are not edge cases here. They are fully integrated into how we understand attachment, consent, and the architecture of radical relational freedom.</p>  
+              <div className="space-y-3 text-sm text-amber-100 pt-4">  
+                <p><strong>1. Attachment Pattern Work</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Understanding the map before you re-draw it.</p>
+                <p><strong>2. Polyam Communication</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Negotiation frameworks for multi-partner structures.</p>
+                <p><strong>3. Kink-Affirming Somatic Exploration</strong></p>
+                <p>Active, embodied work with desire and consent—no gatekeeping.</p>
+              </div>  
             </motion.div>
 
-            {/* Card 3: Surgical Readiness */}  
+            {/* Card 3: Gender Story Prep */}  
             <motion.div 
               whileHover={{ y: -8 }} 
               className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
@@ -394,14 +400,17 @@ export default function App() {
               </div>
               <div className="space-y-2">
                 <h3 className="text-2xl font-bold font-serif">Gender Story Prep</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">Pre-op • Non-gatekeeping • Existential clarity</p>
+                <p className="text-amber-400 text-sm uppercase tracking-widest">Pre-op Advocacy Without Gatekeeping</p>
               </div>
-              <p className="text-amber-100 leading-relaxed">For trans and gender-expansive clients on any pathway. We explore your gender story without judgment—no required regrets, no timelines we impose.</p>  
-              <ul className="space-y-3 text-sm text-amber-100 pt-4">  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Gender identity exploration</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Somatic dysphoria work</li>  
-                <li className="flex items-center gap-2"><CheckCircle2 size={16} className="text-amber-400" /> Non-gatekeeping letters</li>
-              </ul>  
+              <p className="text-amber-100" style={{ lineHeight: '1.75' }}>For trans and gender-expansive clients on any pathway. We explore your gender story without imposed timelines or required regrets. Your narrative is not evidence to be evaluated. It is a map you already hold.</p>  
+              <div className="space-y-3 text-sm text-amber-100 pt-4">  
+                <p><strong>1. Gender Identity Exploration</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Your story, your terms, your timeline.</p>
+                <p><strong>2. Somatic Dysphoria Work</strong></p>
+                <p style={{ paddingBottom: '6pt' }}>Embodied tools for navigating body-based distress.</p>
+                <p><strong>3. Non-Gatekeeping Letters</strong></p>
+                <p>Advocacy documentation written for your care, not the system's comfort.</p>
+              </div>  
             </motion.div>  
           </div>  
         </div>  
@@ -491,16 +500,22 @@ export default function App() {
       <section id="referrals" className="py-32 px-6 bg-emerald-900/20">  
         <div className="max-w-4xl mx-auto text-center space-y-8">  
           <Shield className="w-16 h-16 text-amber-400 mx-auto" />  
-          <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>  
-          <p className="text-xl text-amber-100 leading-relaxed">  
+          <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>
+          <div className="bg-amber-400/10 border-2 border-amber-400/40 rounded-2xl p-8 text-left space-y-4">
+            <p className="text-xl font-bold text-amber-300 font-serif">The 7-Day Safety Net</p>
+            <p className="text-lg text-amber-100" style={{ lineHeight: '1.75' }}>
+              We stop the Leaky Bucket. If you are stepping down from PHP or IOP in Pennsylvania, we guarantee a consultation within 7 days to ensure your momentum isn't lost to a 90-day waitlist.
+            </p>
+          </div>
+          <p className="text-xl text-amber-100" style={{ lineHeight: '1.75' }}>  
             We understand the vulnerability of stepping down from PHP or IOP. Queer Pathways offers <strong>priority access</strong> fast-track consultations to ensure clinical momentum is never lost.  
           </p>  
           <div className="grid md:grid-cols-2 gap-6 text-left pt-10">  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
-                <p className="font-bold">In-Network</p>  
-                <p className="text-sm text-amber-100">Accepting Aetna (PA).</p>  
+                <p className="font-bold">Direct Integration</p>  
+                <p className="text-sm text-amber-100">In-Network with Aetna (PA) and UPMC (PA). No executive function hurdle to verify your benefits.</p>  
               </div>  
             </div>  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
@@ -518,9 +533,9 @@ export default function App() {
       <section id="book" className="py-32 px-6 bg-emerald-900/40">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6">
-            <h2 className="text-5xl md:text-6xl font-bold font-serif">Secure Your Intake.</h2>
-            <p className="text-xl text-amber-100 leading-relaxed max-w-2xl mx-auto">
-              Your journey toward thriving begins with a single conversation. We offer flexible telehealth consultations across Pennsylvania with affirming, specialized care.
+            <h2 className="text-5xl md:text-6xl font-bold font-serif">Dignity Investment.</h2>
+            <p className="text-xl text-amber-100 max-w-2xl mx-auto" style={{ lineHeight: '1.75' }}>
+              We don't charge an "Ambiguity Tax." You are paying for a specialist who understands the mechanics of a neuro-atypical heart without you having to explain the glossary.
             </p>
           </div>
 
@@ -556,25 +571,25 @@ export default function App() {
                 <CheckCircle2 className="text-amber-400" size={20} />
                 Initial Consultation
               </h4>
-              <p className="text-sm text-amber-100">15-minute intake to understand your needs and treatment goals. Call us to book @ <a href="tel:3655999002" className="text-amber-300 hover:text-amber-200 transition">365-599-9002</a></p>
+              <p className="text-sm text-amber-100" style={{ lineHeight: '1.75' }}>15-minute intake to understand your needs and goals. Call us to book @ <a href="tel:3655999002" className="text-amber-300 hover:text-amber-200 transition">365-599-9002</a></p>
             </div>
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3 text-left">
               <h4 className="font-bold text-lg flex items-center gap-2">
                 <CheckCircle2 className="text-amber-400" size={20} />
                 Intake Assessment
               </h4>
-              <p className="text-sm text-amber-100">An initial intake assessment is a comprehensive, biopsychosocial evaluation designed to understand the client's internal landscape, attachment history, and neurobiological profile. This process prioritizes somatic stabilization and identity affirmation, particularly for those within the queer community.</p>
+              <p className="text-sm text-amber-100" style={{ lineHeight: '1.75' }}>A comprehensive biopsychosocial evaluation designed to understand your internal landscape, attachment history, and neurobiological profile. Somatic stabilization and identity affirmation from session one.</p>
             </div>
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-4 text-left">
               <h4 className="font-bold text-lg flex items-center gap-2">
                 <CheckCircle2 className="text-amber-400" size={20} />
-                Investment & Accessibility
+                Dignity Investment
               </h4>
               <div className="space-y-3 text-sm text-amber-100">
-                <p className="font-semibold text-amber-50">Direct Network:</p>
-                <p>Proudly In-Network with Aetna (PA).</p>
+                <p className="font-semibold text-amber-50">Direct Integration:</p>
+                <p style={{ lineHeight: '1.75' }}>Proudly In-Network with Aetna (PA) and UPMC (PA). Direct Integration means no executive function hurdle to verify your benefits before you walk in.</p>
                 <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
-                <p>For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront—Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills. Find your co-pay with the Thrizer Form below.</p>
+                <p style={{ lineHeight: '1.75' }}>For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
               </div>
             </div>
           </div>
@@ -623,26 +638,23 @@ export default function App() {
 
           <div className="bg-emerald-900/30 border border-emerald-800/60 rounded-3xl p-8 md:p-10 space-y-6">
             <h3 className="text-2xl font-bold font-serif">Don't Let the Momentum Drain</h3>
-            <p className="text-amber-100 leading-relaxed">
-              We call this the Leaky Bucket scenario: you work hard in the week, but without structural scaffolding, that progress can drain away over the weekend. Use this time to secure your spot for next week.
+            <p className="text-amber-100" style={{ lineHeight: '1.75' }}>
+              You are a brilliant leader by day and a ghost in burnout-recovery by night. We call this the Leaky Bucket: you work hard in the week, but without structural scaffolding, that progress can drain away. Use this time to secure your spot for next week.
             </p>
 
-            <div className="space-y-4">
-              <h4 className="text-xl font-bold">Your Weekend Checklist:</h4>
-              <ul className="space-y-4 text-amber-100 leading-relaxed">
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
-                  <span><strong>Stop Litigating Your Worth:</strong> You don't need to earn your rest. The weekend is for re-regulation, not just recovering so you can work again on Monday.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
-                  <span><strong>Audit Your Capacity:</strong> If your internal legal system is screaming about all the things you didn't do, give it a recess.</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <CheckCircle2 className="text-amber-400 mt-0.5 shrink-0" size={18} />
-                  <span><strong>Secure Your Monday:</strong> We reserve priority slots for Monday morning intakes ($195-$250). Booking now means you start your week with a plan already in place.</span>
-                </li>
-              </ul>
+            <div className="space-y-6">
+              <h4 className="text-xl font-bold">Your Weekend Framework:</h4>
+              <div className="space-y-5 text-amber-100">
+                <div>
+                  <p style={{ lineHeight: '1.75' }}><strong>1. Stop Litigating Your Worth.</strong> You don't need to earn your rest. The weekend is for re-regulation, not just recovering so you can perform again on Monday.</p>
+                </div>
+                <div>
+                  <p style={{ lineHeight: '1.75' }}><strong>2. Audit Your Capacity.</strong> If your Internal Legal System is screaming about all the things you didn't accomplish, give it a recess. The court is adjourned.</p>
+                </div>
+                <div>
+                  <p style={{ lineHeight: '1.75' }}><strong>3. Secure Your Monday.</strong> We reserve priority slots for Monday morning intakes. Booking now means you start your week with a plan already in place.</p>
+                </div>
+              </div>
             </div>
 
             <div className="pt-2 text-center">
@@ -675,7 +687,7 @@ export default function App() {
         <div className="max-w-5xl mx-auto space-y-16">
           <div className="text-center space-y-4">
             <h2 className="text-5xl md:text-6xl font-bold font-serif">The Sanctuary.</h2>
-            <p className="text-xl text-amber-100">A space designed for your somatic and emotional safety.</p>
+            <p className="text-xl text-amber-100" style={{ lineHeight: '1.75' }}>A space designed for the visionary who is exhausted from being brilliant by day and a ghost in burnout-recovery by night.</p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -685,7 +697,7 @@ export default function App() {
                   <Compass className="text-amber-400" size={24} />
                   Somatic Navigation
                 </h3>
-                <p className="text-amber-100 leading-relaxed">
+                <p className="text-amber-100" style={{ lineHeight: '1.75' }}>
                   We slow down and track your nervous system. Healing isn't just cognitive—it's embodied. We use somatic experiencing, sensory mapping, and trauma-informed techniques to help you reclaim your body as a sanctuary.
                 </p>
               </div>
@@ -695,7 +707,7 @@ export default function App() {
                   <Heart className="text-amber-400" size={24} />
                   Relational Safety
                 </h3>
-                <p className="text-amber-100 leading-relaxed">
+                <p className="text-amber-100" style={{ lineHeight: '1.75' }}>
                   Authentic connection is the medicine. We meet you with curiosity, not judgment. Your identity, your pronouns, your story—all held with genuine care and clinical expertise.
                 </p>
               </div>
@@ -705,29 +717,33 @@ export default function App() {
                   <Sparkles className="text-amber-400" size={24} />
                   Neurodivergent-Affirming Care
                 </h3>
-                <p className="text-amber-100 leading-relaxed">
-                  We understand masking, sensory overwhelm, and the unique intersections of queerness and neurodivergence. Your neurotype is not a problem to fix—it's part of your design.
+                <p className="text-amber-100" style={{ lineHeight: '1.75' }}>
+                  We understand masking, sensory overwhelm, and the unique intersections of queerness and neurodivergence. Your neurotype is not a problem to fix. It is part of your design.
                 </p>
               </div>
             </div>
 
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-10 rounded-3xl space-y-6">
               <Quote className="text-amber-400" size={32} />
-              <blockquote className="text-lg leading-relaxed italic text-amber-50">
+              <blockquote className="text-lg italic text-amber-50" style={{ lineHeight: '1.75' }}>
                 "Therapy isn't about becoming someone else. It's about dismantling the voices that told you who you couldn't be, and remembering who you always were."
               </blockquote>
               <p className="text-sm text-amber-300 font-semibold">— Joshua, LCSW</p>
-              <div className="pt-4 border-t border-emerald-800/50 space-y-2">
+              <div className="pt-4 border-t border-emerald-800/50 space-y-3">
                 <p className="text-sm text-amber-100"><strong>Specializations:</strong></p>
-                <ul className="text-sm text-amber-100 space-y-1">
-                  <li>✓ LGBTQ+ identity exploration & affirmation</li>
-                  <li>✓ Complex trauma & PTSD</li>
-                  <li>✓ Anxiety & depression in queer/BIPOC communities</li>
-                  <li>✓ Relationship & attachment patterns</li>
-                  <li>✓ Neurodivergence & sensory experiences</li>
-                </ul>
+                <p className="text-sm text-amber-100" style={{ lineHeight: '1.75' }}>
+                  LGBTQ+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
+                </p>
               </div>
             </div>
+          </div>
+
+          {/* Outlaw Anchor: Lyrical Closing */}
+          <div className="text-center pt-8 space-y-4 border-t border-emerald-800/40">
+            <p className="text-2xl md:text-3xl font-serif italic text-amber-100" style={{ lineHeight: '1.75' }}>
+              Like Zach Bryan said, you're just a "man who's tryin' to find a way back home."
+            </p>
+            <p className="text-xl text-amber-300 font-semibold">We're the map for the home you haven't built yet.</p>
           </div>
         </div>
       </section>
