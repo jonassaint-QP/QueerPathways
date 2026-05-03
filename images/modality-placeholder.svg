@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+  <title id="title">Queer Pathways Image Placeholder</title>
+  <desc id="desc">A decorative placeholder shown when a page image has not been added yet.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#153009"/>
+      <stop offset="100%" stop-color="#090908"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="900" fill="url(#bg)"/>
+  <rect x="70" y="70" width="1060" height="760" fill="none" stroke="#cbb26a" stroke-width="3" opacity="0.45"/>
+  <text x="600" y="430" fill="#d5c28f" font-family="Georgia, serif" font-size="52" text-anchor="middle">Queer Pathways</text>
+  <text x="600" y="500" fill="#dad4b4" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">Image Coming Soon</text>
+</svg>

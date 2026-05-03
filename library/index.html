@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Queer Pathways Library</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <style>
+        :root {
+            --gold-light: #d5c28f;
+            --gold-dark: #cbb26a;
+            --bg-dark: #090908;
+            --text-soft: #dad4b4;
+            --surface: rgba(255,255,255,0.04);
+            --surface-strong: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle at top left, rgba(213,194,143,0.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(185,154,69,0.06), transparent 18%),
+                        linear-gradient(180deg, #0b0b0b 0%, #080808 100%);
+            line-height: 1.6;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; transition: color 0.25s ease, transform 0.25s ease; }
+        a:hover { color: var(--gold-light); }
+        .navbar {
+            width: 100%;
+            padding: 24px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 8, 8, 0.86);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+        }
+            .nav-brand img { height: 74px; width: auto; }
+            .nav-brand-text {
+                display: inline-block;
+                white-space: nowrap;
+            }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+        .btn,
+        .cta-button {
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn {
+            border: 1px solid var(--gold-dark);
+            color: var(--gold-dark);
+            background: rgba(255,255,255,0.04);
+            padding: 14px 28px;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            border-color: transparent;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav-inner .btn { font-size: 0.8rem; padding: 9px 16px; white-space: nowrap; }
+        .page {
+            max-width: 1180px;
+            margin: 0 auto;
+            padding: 80px 48px;
+            overflow: hidden;
+        }
+        .bio-section {
+            margin: 0 0 4rem;
+        }
+        .bio-header {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 2rem;
+        }
+        .bio-header > div {
+            min-width: 0;
+            flex: 1;
+        }
+        .bio-photo {
+            width: 320px;
+            height: auto;
+            border-radius: 12px;
+            object-fit: cover;
+            object-position: top;
+            border: 3px solid rgba(185,154,69,0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+        }
+        .bio-photo-shell {
+            position: relative;
+            width: 320px;
+            flex-shrink: 0;
+        }
+        .bio-photo-fallback {
+            display: none;
+            width: 100%;
+            height: 100%;
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 3px solid rgba(185,154,69,0.3);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+            background: linear-gradient(160deg, rgba(21,48,9,0.92) 0%, rgba(9,9,8,0.98) 100%);
+            color: var(--gold-light);
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            line-height: 1.35;
+            text-align: left;
+            align-items: flex-end;
+        }
+        .bio-photo-shell.missing-photo .bio-photo-fallback {
+            display: flex;
+        }
+        @media (max-width: 639px) {
+            .bio-header {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .bio-section h1 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.9rem;
+            color: #C7AE6A;
+            margin-bottom: 1.5rem;
+            line-height: 1.25;
+            word-break: break-word;
+        }
+        .bio-section h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            color: #C7AE6A;
+            margin: 0 0 1rem;
+            line-height: 1.3;
+        }
+        .bio-section p {
+            line-height: 1.85;
+            margin: 0 0 1.2rem;
+            color: var(--text-soft);
+        }
+        .lead {
+            font-size: 1.15rem;
+            color: #C7AE6A !important;
+            font-style: italic;
+        }
+        .client-list {
+            padding-left: 1.4rem;
+            margin: 1rem 0 0;
+        }
+        .client-list li {
+            line-height: 1.8;
+            margin-bottom: 1.1rem;
+            color: #d5c28f;
+        }
+        .adjourn {
+            border-top: 1px solid rgba(185,154,69,0.25);
+            padding-top: 2.5rem;
+            text-align: center;
+        }
+        blockquote {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.25rem;
+            font-style: italic;
+            color: #b99a45;
+            border-left: 3px solid #b99a45;
+            margin: 1.5rem auto;
+            padding: 0.5rem 1.5rem;
+            text-align: left;
+            max-width: 600px;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 1.5rem;
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            padding: 14px 32px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+        .cta-button:hover {
+            opacity: 0.85;
+        }
+        .footer {
+            padding: 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #cbb26a;
+        }
+        @media (max-width: 640px) {
+            .bio-section h1 { font-size: 1.8rem; }
+            .bio-section h2 { font-size: 1.25rem; }
+        }
+
+        /* ── How It Works Section ───────────────────── */
+        .how-it-works-title {
+            margin-top: 3rem;
+            font-size: 1.35rem;
+        }
+        .how-it-works-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 1.5rem auto;
+            line-height: 1.8;
+            color: var(--text-soft);
+        }
+
+        /* ── Resource Cards (Podcast-style) ───────────────────── */
+        .resources-section {
+            max-width: 860px;
+            margin: 0 auto 4rem;
+        }
+        .resources-section h2 {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.5rem;
+            color: #C7AE6A;
+            margin: 0 0 0.4rem;
+        }
+        .resources-section .section-sub {
+            font-size: 0.85rem;
+            color: #9B91A8;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 0 0 2rem;
+        }
+        .resource-feed {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .resource-card {
+            display: grid;
+            grid-template-columns: 56px 1fr auto;
+            align-items: center;
+            gap: 1.2rem;
+            background: #0b1a08;
+            border: 1px solid rgba(185,154,69,0.14);
+            border-radius: 8px;
+            padding: 1.2rem 1.4rem;
+            transition: border-color 0.2s;
+        }
+        .resource-card:hover {
+            border-color: rgba(185,154,69,0.35);
+        }
+        .resource-card.locked {
+            opacity: 0.6;
+            filter: saturate(0.4);
+        }
+        .resource-thumb {
+            width: 56px;
+            height: 56px;
+            border-radius: 6px;
+            background: #153009;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold-light);
+            flex-shrink: 0;
+            border: 1px solid rgba(185,154,69,0.2);
+        }
+        .resource-card.locked .resource-thumb {
+            background: #1a1a1a;
+        }
+        .resource-meta {
+            min-width: 0;
+        }
+        .resource-badge {
+            display: inline-block;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #9B91A8;
+            margin-bottom: 0.3rem;
+        }
+        .resource-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1rem;
+            color: #C7AE6A;
+            margin: 0 0 0.3rem;
+            line-height: 1.3;
+        }
+        .resource-desc {
+            font-size: 0.82rem;
+            color: #a89c7a;
+            line-height: 1.5;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .resource-action {
+            flex-shrink: 0;
+            text-align: right;
+        }
+        .resource-btn {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+        .resource-btn.open {
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+        }
+        .resource-btn.unlock {
+            background: transparent;
+            border: 1px solid rgba(185,154,69,0.45);
+            color: #b99a45;
+        }
+        .resource-btn.unlock::before {
+            content: "🔒";
+            font-size: 0.7rem;
+            margin-right: 0.3rem;
+        }
+        @media (max-width: 600px) {
+            .resource-card {
+                grid-template-columns: 44px 1fr;
+                grid-template-rows: auto auto;
+            }
+            .resource-action {
+                grid-column: 2;
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+            .resource-thumb {
+                width: 44px;
+                height: 44px;
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="../" class="nav-brand">
+                <img src="../logo.png" alt="" onerror="this.style.display='none'">
+                <span class="nav-brand-text">Queer Pathways</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../modalities/">Treatment Modalities</a></li>
+                    <li><a href="../soundtrack/">The Soundtrack</a></li>
+                    <li><a href="../library/">The Library</a></li>
+                    <li><a href="../pathways/">Pathways</a></li>
+                    <li><a href="https://substack.com/@queerpathways" target="_blank" rel="noopener noreferrer">Podcast</a></li>
+                </ul>
+            </nav>
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+        </div>
+    </header>
+
+    <main class="page">
+
+        <section class="bio-section" id="about">
+            <div class="bio-header">
+                <div class="bio-photo-shell">
+                    <img src="../images/Joshua_headshot.png" alt="Joshua Jonassaint, LCSW - Therapist for 2SLGBTQI+ and Neurodivergent professionals" class="bio-photo">
+                    <div class="bio-photo-fallback">Joshua Jonassaint, LCSW</div>
+                </div>
+                <div>
+                    <h1>About Joshua Jonassaint, LCSW</h1>
+                    <p class="lead">Most therapy is designed to "fix" what is broken. It operates on a deficit model: a diagnostic ledger where you are the debt and the clinician is the auditor. At Queer Pathways, we have burned that ledger.</p>
+                    <a href="#resources" class="btn primary" style="margin-top: 16px; display: inline-flex;">Browse the Resource Library →</a>
+                </div>
+            </div>
+            <p>I am Joshua Jonassaint (They/Them), and I don't believe you are broken. I believe you are <strong>unmapped</strong>. My work isn't about restoration to a "normal" that was never built for you; it is about <strong>territory reclamation</strong>. It is about taking back the psychological and somatic ground that systemic oppression, trauma, and shame have occupied for far too long.</p>
+            <p>As a licensed clinical social worker providing telehealth therapy across Pennsylvania, my role is not to be your judge or your mechanic. I am an architect and a guide. We are here to survey the landscape of your life, identify the occupied territories, and build a sanctuary where your sovereignty is the only law.</p>
+        </section>
+
+        <section class="bio-section" id="internal-trial">
+            <h2>The Internal Trial: Why You're Reading This</h2>
+            <p>You carry an <strong>Internal Courtroom</strong>. It litigates your every decision, cross-examines your worthiness, and keeps a meticulous <strong>Evidence Locker</strong> of every perceived failure. The <strong>Internal Prosecutor</strong> has been building a case against you for years, cataloging every mistake, every "too much" or "not enough," every moment you didn't meet an impossible standard.</p>
+            <p>That court has been in session for far too long. At Queer Pathways, the first thing we do is <strong>adjourn it</strong>.</p>
+            <p>This isn't about silencing your inner voice or pretending harm didn't happen. It's about recognizing that the courtroom itself is the problem—a system imposed by a world that was never designed for you. We don't litigate your worth here. We reclaim the territory that shame, trauma, and systemic oppression have occupied. We burn the ledger and map new ground.</p>
+        </section>
+
+        <section class="bio-section" id="identity-fluent">
+            <h2>Beyond "Affirming": The Power of <strong>Identity-Fluent Care</strong></h2>
+            <p>In the mental health world, "LGBTQ-affirming" has become a buzzword: a participation trophy for clinicians who know what the acronym stands for. For the high-capacity queer professional, the polycule navigating complex attachment, or the kink practitioner seeking somatic depth, "affirming" is the bare minimum. It's the 101 education you shouldn't have to provide to your own therapist.</p>
+            <p>I offer <strong>identity-fluent care</strong>.</p>
+            <p>This means you don't have to explain the vocabulary of your life. Whether we are discussing the nuances of minority stress, the communication architecture of a triad, or the somatic power dynamics of a scene, I speak the language natively. We skip the definitions and go straight to the work. My practice is rooted in the lived experience of the 2SLGBTQI+ community, backed by high-level clinical training and WPATH certification.</p>
+        </section>
+
+        <section class="bio-section" id="pleasure-model">
+            <h2>The <strong>Integrated Pleasure Model</strong>: Reclaiming Joy as Resistance</h2>
+            <p>Traditional therapy often treats pleasure as a secondary concern: a reward you get once you've finished "processing" your trauma. I see pleasure as the primary fuel for the reclamation process.</p>
+            <p>Through the <strong>Integrated Pleasure Model</strong>, we move pleasure from the periphery to the center of the clinical picture. Shame is a "garbage coat" that the world forces you to wear; pleasure is the mechanism that helps you shrug it off.</p>
+            <p>We aren't just looking for the absence of pain. We are looking for the presence of vitality. For clients in the kink and BDSM communities, this means integrating somatic power dynamics and sensory play into the healing journey. We treat your desires not as symptoms to be managed, but as maps to your most authentic self.</p>
+        </section>
+
+        <section class="bio-section" id="wabi-sabi">
+            <h2>The <strong>Wabi-Sabi Body Framework</strong>: Finding Sovereignty in the Seams</h2>
+            <p>The world demands perfection, especially from marginalized bodies. We are told to be smaller, quieter, more "palatable."</p>
+            <p>The <strong>Wabi-Sabi Body Framework</strong> is the answer to that demand. Rooted in the Japanese aesthetic of finding beauty in imperfection and impermanence, this framework treats your history—including your scars, your transitions, and your neurodivergence—as the "golden joinery" of your life.</p>
+            <p>In our sessions, we look at your body not as a project to be completed, but as a site of <strong>Somatic Sovereignty</strong>. We use practices and tools to help you inhabit your skin without the constant interference of an internal auditor. We repair the "leaky buckets" of your energy and teach you how to hold your own space with authority.</p>
+        </section>
+
+        <section class="bio-section" id="advocacy">
+            <h2><strong>Clinical Advocacy</strong>: The Therapist as Collaborator</h2>
+            <p>I am a fierce advocate. My approach is direct, trauma-informed, and unapologetically queer. I recognize that the <strong>Internal Courtroom</strong> many of us carry—that voice that litigates our every move—is often just a reflection of the systemic impact of the world outside.</p>
+            <p>My job is to help you adjourn that court.</p>
+            <p>When you work with me, you aren't just getting a listener. You are getting a strategist. Whether we are uncovering your attachment style to repair a relationship or navigating the high-torque demands of a professional career in Pennsylvania, we work in tandem. I use multi-channel prompts to keep the administrative scaffolding of therapy invisible. Your bandwidth is precious. I respect it by ensuring logistics are seamless, so your focus stays on the reclamation.</p>
+        </section>
+
+        <section class="bio-section" id="who-this-is-for">
+            <h2>Who This Space Is For</h2>
+            <p>Queer Pathways is a specialized sanctuary. It is designed for those who are tired of being the "teacher" in the therapy room.</p>
+            <ol class="client-list">
+                <li>
+                    <strong>Queer Professionals in PA.</strong> You are high-capacity, high-impact, and looking for a therapist who understands the specific weight of navigating professional spaces while queer.
+                </li>
+                <li>
+                    <strong>Polycules &amp; ENM Practitioners.</strong> Whether you are in a triad, a quad, or a solo-poly explorer, we provide structured support for boundaries, communication, and the complex blueprints of non-traditional connection.
+                </li>
+                <li>
+                    <strong>The Kink &amp; BDSM Community.</strong> We provide a space where your leather, your toys, and your archetypes are respected as valid tools for somatic and relational growth.
+                </li>
+            </ol>
+        </section>
+
+        <section class="bio-section adjourn" id="adjourn">
+            <h2>The Court Is Adjourned</h2>
+            <p>There is a specific kind of exhaustion that comes from living in a world that views your existence as a debate. In this practice, the debate is over.</p>
+            <blockquote>"The court is adjourned here; there is no 'broken,' only 'unmapped.'"</blockquote>
+            <p>This is the foundational promise of Queer Pathways. We aren't here to find out what's "wrong" with you. We are here to map the territory you've already conquered and design the life you actually want to live.</p>
+            <p>You have spent enough time litigating your own worth. It's time to stop explaining and start evolving.</p>
+            
+            <h2 class="how-it-works-title">How It Works</h2>
+            <ol class="how-it-works-list">
+                <li><strong>Schedule a free 15-minute consultation</strong> to determine if we're a fit. No pressure, no sales pitch—just clarity.</li>
+                <li><strong>Sessions are conducted via telehealth</strong> across Pennsylvania. Meet from your own sanctuary, wherever that is.</li>
+                <li><strong>Sliding scale and insurance options available.</strong> Your financial reality shouldn't be a barrier to care. We'll discuss pricing during the consultation.</li>
+                <li><strong>No long-term commitment required.</strong> You control the pace. This is your reclamation, not a contract.</li>
+            </ol>
+            
+            <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Schedule Your Consultation</a>
+        </section>
+
+        <!-- ── Resource Feed ───────────────────────────────────── -->
+        <section class="resources-section" id="resources">
+            <h2>The Resource Library</h2>
+            <p class="section-sub">Guides &amp; Tools for the Double-Outsider</p>
+
+            <div class="resource-feed">
+
+                <!-- Unlocked -->
+                <div class="resource-card">
+                    <div class="resource-thumb">G</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Guide &mdash; Free</span>
+                        <p class="resource-title">The Internal Auditor's Guide to Kink &amp; Internal Regulation</p>
+                        <p class="resource-desc">Bridging identity, regulation, and the clinical terrain of internal accountability.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn open" href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read</a>
+                    </div>
+                </div>
+
+                <!-- Unlocked -->
+                <div class="resource-card">
+                    <div class="resource-thumb">A</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Audio &mdash; Free</span>
+                        <p class="resource-title">The Top/Bottom Binary Debate</p>
+                        <p class="resource-desc">Asking questions and unmapping the energetic trap of the binary to reclaim somatic sovereignty.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn open" href="https://drive.google.com/uc?export=download&id=1aHuRi061HMXrdLBdGscEmCfo9-eEM_4p" target="_blank" rel="noopener noreferrer">Listen</a>
+                        <a class="resource-btn open" href="https://drive.google.com/uc?export=download&id=13iNPWywt8UgCqv2nLiUwDlZMG2Iw0HQh" target="_blank" rel="noopener noreferrer">Read</a>
+                    </div>
+                </div>
+
+                <!-- Locked -->
+                <div class="resource-card locked">
+                    <div class="resource-thumb">W</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Worksheet &mdash; Client Access</span>
+                        <p class="resource-title">The Evidence Locker Audit</p>
+                        <p class="resource-desc">A structured self-inventory for mapping the Internal Prosecutor's case files.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn unlock" href="mailto:info@queerpathways.org?subject=Resource%20Request:%20Evidence%20Locker%20Audit&body=Hi%20Joshua,%0D%0A%0D%0AI'd%20like%20to%20access%20the%20Evidence%20Locker%20Audit%20worksheet.%0D%0A%0D%0AThank%20you!" target="_blank" rel="noopener noreferrer">Request Access</a>
+                    </div>
+                </div>
+
+                <!-- Locked -->
+                <div class="resource-card locked">
+                    <div class="resource-thumb">A</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Audio &mdash; Client Access</span>
+                        <p class="resource-title">Adjourn the Court: A 12-Minute Somatic Reset</p>
+                        <p class="resource-desc">Guided audio for grounding the nervous system after high-masking days.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn unlock" href="mailto:info@queerpathways.org?subject=Resource%20Request:%20Adjourn%20the%20Court%20Audio&body=Hi%20Joshua,%0D%0A%0D%0AI'd%20like%20to%20access%20the%20Adjourn%20the%20Court%20guided%20audio.%0D%0A%0D%0AThank%20you!" target="_blank" rel="noopener noreferrer">Request Access</a>
+                    </div>
+                </div>
+
+                <!-- Locked -->
+                <div class="resource-card locked">
+                    <div class="resource-thumb">F</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Framework &mdash; Client Access</span>
+                        <p class="resource-title">The Wabi-Sabi Body Inventory</p>
+                        <p class="resource-desc">A somatic mapping tool for reclaiming your body as a site of sovereignty, not a project.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn unlock" href="mailto:info@queerpathways.org?subject=Resource%20Request:%20Wabi-Sabi%20Body%20Inventory&body=Hi%20Joshua,%0D%0A%0D%0AI'd%20like%20to%20access%20the%20Wabi-Sabi%20Body%20Inventory%20framework.%0D%0A%0D%0AThank%20you!" target="_blank" rel="noopener noreferrer">Request Access</a>
+                    </div>
+                </div>
+
+                <!-- Locked -->
+                <div class="resource-card locked">
+                    <div class="resource-thumb">C</div>
+                    <div class="resource-meta">
+                        <span class="resource-badge">Guide &mdash; Client Access</span>
+                        <p class="resource-title">Polycule Communication Architecture</p>
+                        <p class="resource-desc">Practical scaffolding for boundaries, repair, and the blueprints of non-traditional connection.</p>
+                    </div>
+                    <div class="resource-action">
+                        <a class="resource-btn unlock" href="mailto:info@queerpathways.org?subject=Resource%20Request:%20Polycule%20Communication%20Architecture&body=Hi%20Joshua,%0D%0A%0D%0AI'd%20like%20to%20access%20the%20Polycule%20Communication%20Architecture%20guide.%0D%0A%0D%0AThank%20you!" target="_blank" rel="noopener noreferrer">Request Access</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+    <footer class="footer">
+        <!-- Inclusive Therapists Verified Member Badge -->
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        Serving all of Pennsylvania via High-Fidelity Telehealth.
+        <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
+    </footer>
+</body>
+</html>

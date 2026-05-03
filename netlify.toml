@@ -1,0 +1,30 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/modalities"
+  to   = "/modalities/"
+  status = 301
+
+[[redirects]]
+  from = "/library"
+  to   = "/library/"
+  status = 301
+
+[[redirects]]
+  from = "/pathways"
+  to   = "/pathways/"
+  status = 301
+
+[[redirects]]
+  from = "/soundtrack"
+  to   = "/soundtrack/"
+  status = 301
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"

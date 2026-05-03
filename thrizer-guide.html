@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Out-of-Network Guide | Queer Pathways</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-light: #d5c28f;
+            --gold-dark: #cbb26a;
+            --bg-dark: #090908;
+            --text-soft: #dad4b4;
+            --surface: rgba(255,255,255,0.04);
+            --surface-strong: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle at top left, rgba(213,194,143,0.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(185,154,69,0.06), transparent 18%),
+                        linear-gradient(180deg, #0b0b0b 0%, #080808 100%);
+            line-height: 1.6;
+        }
+        .navbar {
+            width: 100%;
+            padding: 24px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 8, 8, 0.86);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+        }
+        .nav-brand img { height: 74px; width: auto; }
+        .btn {
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            background: linear-gradient(135deg, var(--gold-dark) 0%, #a88b42 100%);
+            color: #030300;
+            border-color: transparent;
+            padding: 14px 28px;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav-inner .btn { font-size: 0.8rem; padding: 9px 16px; white-space: nowrap; }
+        .content {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 60px 24px 100px;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 4vw, 3rem);
+            color: var(--gold-light);
+            margin: 0 0 1rem;
+            line-height: 1.15;
+        }
+        .lead {
+            font-size: 1.15rem;
+            color: #d7d1b8;
+            margin: 0 0 3rem;
+            line-height: 1.7;
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold-light);
+            margin: 2.5rem 0 1rem;
+            border-bottom: 1px solid rgba(185,154,69,0.2);
+            padding-bottom: 0.5rem;
+        }
+        h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            color: #b99a45;
+            margin: 1.8rem 0 0.8rem;
+            font-weight: 600;
+        }
+        p {
+            color: var(--text-soft);
+            margin: 0 0 1.2rem;
+            line-height: 1.85;
+        }
+        strong {
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+        .step-box {
+            background: rgba(27, 67, 50, 0.15);
+            border: 1px solid rgba(185,154,69,0.2);
+            border-left: 4px solid #b99a45;
+            padding: 1.5rem 1.8rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+        }
+        .step-box p:last-child { margin-bottom: 0; }
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #b99a45;
+            font-weight: 700;
+            margin: 0 0 0.5rem;
+        }
+        ol {
+            padding-left: 1.5rem;
+            margin: 1rem 0;
+        }
+        ol li {
+            color: var(--text-soft);
+            margin-bottom: 0.8rem;
+            line-height: 1.75;
+        }
+        .callout {
+            background: rgba(185,154,69,0.08);
+            border: 1px solid rgba(185,154,69,0.25);
+            border-radius: 8px;
+            padding: 1.5rem 1.8rem;
+            margin: 2rem 0;
+        }
+        .callout-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #b99a45;
+            margin: 0 0 0.8rem;
+        }
+        .accent-link {
+            color: #b99a45;
+            font-weight: 600;
+        }
+        .no-margin-bottom {
+            margin-bottom: 0;
+        }
+        .cta-row {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .footer-email {
+            color: #b99a45;
+        }
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            color: #cbb26a;
+        }
+        @media (max-width: 640px) {
+            h1 { font-size: 1.8rem; }
+            .content { padding: 40px 20px 60px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">
+                <img src="logo.png" alt="Queer Pathways">
+            </a>
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+        </div>
+    </nav>
+
+    <div class="content">
+        <h1>The Low-Friction Out-of-Network Guide</h1>
+        <p class="lead">Your care shouldn't be dictated by an insurance auditor who doesn't know the difference between RSD and general anxiety. This guide lowers the executive function hurdle for accessing specialist care when you're out-of-network.</p>
+
+        <h2>Why Out-of-Network Is a Privacy and Quality Safeguard</h2>
+        <p><strong>The Autonomy Filter:</strong> When you work with an out-of-network provider, insurance companies have less control over your treatment plan, session frequency, and diagnostic framing. For 2SLGBTQI+ and neurodivergent clients, this means:</p>
+        <ol>
+            <li>Your diagnoses aren't weaponized in future insurance applications</li>
+            <li>Your therapy isn't subject to arbitrary session limits based on outdated clinical guidelines</li>
+            <li>Your Internal Courtroom stays between you and Joshua—not you, Joshua, and a claims adjuster in Des Moines</li>
+        </ol>
+
+        <div class="callout">
+            <div class="callout-title">The Bottom Line</div>
+            <p>We handle the litigation with your insurance company so you can focus on the territory reclamation. You pay your co-insurance upfront. We submit the superbill. Your insurance reimburses you directly.</p>
+        </div>
+
+        <h2>The 3-Step Thrizer Process (Low Executive Function Edition)</h2>
+
+        <div class="step-box">
+            <div class="step-number">1.</div>
+            <h3>Check Your Benefits (Before Your Intake)</h3>
+            <p><strong>Use Thrizer to verify your out-of-network mental health benefits:</strong></p>
+            <p>Visit <a href="https://eligibility.thrizer.com/queerpathwayseerpathways" target="_blank" rel="noopener noreferrer" class="accent-link">eligibility.thrizer.com/queerpathwayseerpathways</a></p>
+            <p><strong>What You'll Learn:</strong></p>
+            <ol>
+                <li>Your out-of-network deductible (how much you pay before reimbursement kicks in)</li>
+                <li>Your co-insurance percentage (typically 50-80% reimbursement after deductible)</li>
+                <li>Your out-of-pocket maximum (the cap on your annual spending)</li>
+            </ol>
+            <p><strong>Example:</strong> If your session is $150, your deductible is met, and your co-insurance is 70%, you pay $150 upfront and get $105 back from insurance. Your actual cost per session: $45.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">2.</div>
+            <h3>Book Your Intake and Pay</h3>
+            <p><strong>Dignity Investment, Not a Transaction:</strong></p>
+            <p>You'll pay $225 for your intake session via <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer" class="accent-link">Carepatron</a>. This isn't a 50-minute hour—it's an Expert Witness in the trial of your own life who already knows the laws of the Double-Outsider economy.</p>
+            <p><strong>Payment Methods Accepted:</strong> Credit/debit cards, HSA/FSA cards.</p>
+        </div>
+
+        <div class="step-box">
+            <div class="step-number">3.</div>
+            <h3>We Generate Your Superbill (You Submit It)</h3>
+            <p><strong>Zero Cognitive Load for You:</strong></p>
+            <p>After each session, we generate a <strong>Superbill</strong>—a standardized receipt with all the codes your insurance needs. You'll receive it via email within 48 hours.</p>
+            <p><strong>How to Submit Your Superbill:</strong></p>
+            <ol>
+                <li><strong>Log into your insurance portal</strong> (or use their mobile app)</li>
+                <li><strong>Find "Submit a Claim"</strong> or "Out-of-Network Reimbursement"</li>
+                <li><strong>Upload the superbill PDF</strong> (no forms to fill out—the superbill has everything)</li>
+                <li><strong>Wait 2-4 weeks</strong> for your reimbursement check or direct deposit</li>
+            </ol>
+            <p><strong>If You Get Stuck:</strong> Email Joshua@queerpathways.org with the subject line "Superbill Support" and we'll walk you through it or provide a pre-filled claim form template.</p>
+        </div>
+
+        <h2>Common Out-of-Network Questions</h2>
+
+        <h3>What if my insurance denies the claim?</h3>
+        <p>Rare, but it happens. We provide a <strong>Letter of Medical Necessity</strong> template you can submit with your appeal. For clients with complex diagnoses (ADHD + PTSD, for example), we can also provide clinical justification for why specialist care is medically necessary.</p>
+
+        <h3>Can I use my HSA/FSA card?</h3>
+        <p>Yes. You can pay directly with your HSA/FSA card at the time of service, which means you're using pre-tax dollars. You don't need to submit a superbill to get reimbursed—the HSA/FSA automatically covers qualified mental health services.</p>
+
+        <h3>What if I can't afford the upfront cost?</h3>
+        <p>Email Joshua@queerpathways.org. We offer a limited number of sliding scale slots for clients in active financial crisis. The investment shouldn't be the wall preventing you from getting support.</p>
+
+        <h3>Do you take Medicare or Medicaid?</h3>
+        <p>Not at this time. Queer Pathways is structured as a specialist practice with a focus on high-complexity, identity-fluent care that requires clinical autonomy outside of Medicare/Medicaid constraints.</p>
+
+        <div class="callout">
+            <div class="callout-title">The Pennsylvania 7-Day Safety Net</div>
+            <p>If you are stepping down from Partial Hospitalization (PHP) or Intensive Outpatient (IOP) care in Pennsylvania, we guarantee a consultation within 7 days. This is the bridge between institutional care and sustainable outpatient support—high-fidelity telehealth that respects your bandwidth while maintaining clinical rigor.</p>
+            <p class="no-margin-bottom"><strong>In-network with Aetna.</strong> All other PPO plans follow the OON process above.</p>
+        </div>
+
+        <h2>Ready to Adjourn the Trial?</h2>
+        <p>You have spent enough time litigating your own worth. It's time to stop explaining and start evolving.</p>
+        <p class="cta-row">
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn" target="_blank" rel="noopener noreferrer">Book Your Intake</a>
+        </p>
+    </div>
+
+    <footer class="footer">
+        <!-- Inclusive Therapists Verified Member Badge -->
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <p>Serving all of Pennsylvania via High-Fidelity Telehealth.</p>
+        <p>Contact: Joshua Jonassaint, LCSW | <a href="mailto:Joshua@QueerPathways.org" class="footer-email">Joshua@QueerPathways.org</a></p>
+        <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>
+        <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
+    </footer>
+</body>
+</html>

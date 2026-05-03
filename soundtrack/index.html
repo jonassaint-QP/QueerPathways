@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queer Pathways - The Soundtrack</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-light: #d5c28f;
+            --gold-dark: #cbb26a;
+            --bg-dark: #090908;
+            --text-soft: #dad4b4;
+            --surface: rgba(255,255,255,0.04);
+            --surface-strong: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle at top left, rgba(213,194,143,0.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(185,154,69,0.06), transparent 18%),
+                        linear-gradient(180deg, #0b0b0b 0%, #080808 100%);
+            line-height: 1.6;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; transition: color 0.25s ease, transform 0.25s ease; }
+        a:hover { color: var(--gold-light); }
+        .navbar {
+            width: 100%;
+            padding: 24px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 8, 8, 0.86);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+        }
+        .nav-brand img { height: 74px; width: auto; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+        .btn,
+        .cta-button {
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn {
+            border: 1px solid var(--gold-dark);
+            color: var(--gold-dark);
+            background: rgba(255,255,255,0.04);
+            padding: 14px 28px;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, #a88b42 100%);
+            color: #030300;
+            border-color: transparent;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav-inner .btn { font-size: 0.8rem; padding: 9px 16px; white-space: nowrap; }
+        .section {
+            padding: 80px 24px;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: 2.4rem;
+            color: var(--gold-light);
+        }
+        .section h1 {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: clamp(2.4rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            color: var(--gold-light);
+        }
+        .section p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 880px;
+            margin: 0 auto 24px;
+        }
+        .soundtrack {
+            background-color: #020501;
+            color: #cbb26a;
+        }
+        /* Hero band */
+        .soundtrack-hero {
+            background: linear-gradient(160deg, #0d1f0a 0%, #020501 60%);
+            border-bottom: 1px solid rgba(185,154,69,0.15);
+            padding: 72px 24px 60px;
+            text-align: center;
+        }
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #b99a45;
+            margin-bottom: 1.2rem;
+        }
+        .soundtrack-hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.4rem);
+            color: #C7AE6A;
+            margin: 0 0 0.4rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .hero-sub {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: #9B91A8;
+            margin: 0 auto 2.2rem;
+            letter-spacing: 0.04em;
+        }
+        /* Waveform divider */
+        .waveform {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 3px;
+            height: 36px;
+            margin: 0 auto 2rem;
+            max-width: 240px;
+        }
+        .waveform span {
+            display: block;
+            width: 4px;
+            border-radius: 2px;
+            background: #b99a45;
+            opacity: 0.55;
+        }
+        .hero-intro {
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        .hero-intro p {
+            font-size: 1rem;
+            line-height: 1.85;
+            color: #d5c28f;
+            margin: 0 0 1rem;
+        }
+        .hero-intro .callout {
+            display: inline-block;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.15rem;
+            color: #C7AE6A;
+            border-left: 3px solid #b99a45;
+            padding: 0.5rem 1rem 0.5rem 1.1rem;
+            text-align: left;
+            margin: 1rem auto 0;
+            max-width: 560px;
+        }
+        .playlist-embed-frame {
+            width: 100%;
+            max-width: 660px;
+            overflow: hidden;
+            background: transparent;
+            border: none;
+        }
+        /* Chapter grid */
+        .soundtrack h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #C7AE6A;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+        .soundtrack h3 {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            color: #b99a45;
+            font-weight: 600;
+            font-style: normal;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+        .soundtrack p {
+            max-width: 680px;
+            margin: 0 auto 1.2rem;
+            line-height: 1.8;
+            font-size: 1rem;
+            color: #d5c28f;
+        }
+        .chapter-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            text-align: left;
+            margin-top: 1rem;
+        }
+        .chapter-card {
+            background: #0b1a08;
+            border: 1px solid rgba(185,154,69,0.14);
+            border-top: 3px solid rgba(185,154,69,0.45);
+            border-radius: 6px;
+            padding: 1.6rem 1.8rem;
+        }
+        .chapter-number {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #b99a45;
+            margin-bottom: 0.35rem;
+            font-weight: 600;
+        }
+        .chapter-song {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #d5c28f;
+            font-style: normal;
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.01em;
+            line-height: 1.3;
+        }
+        .chapter-artist {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #9B91A8;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+        .chapter-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: #C7AE6A;
+            margin: 0 0 0.75rem;
+            line-height: 1.3;
+            border-bottom: 1px solid rgba(185,154,69,0.12);
+            padding-bottom: 0.6rem;
+        }
+        .chapter-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            color: #c5b47a;
+            line-height: 1.75;
+            margin: 0 0 0.7rem;
+            font-weight: 300;
+        }
+        .chapter-card p:last-child {
+            margin-bottom: 0;
+        }
+        .chapter-card strong {
+            font-weight: 600;
+            color: #d5c28f;
+        }
+        .pull-quote {
+            border-left: 3px solid #b99a45;
+            padding: 0.4rem 0 0.4rem 0.9rem;
+            font-style: italic;
+            color: #C7AE6A !important;
+            background: rgba(185,154,69,0.04);
+            border-radius: 0 4px 4px 0;
+        }
+        @media (max-width: 640px) {
+            .chapter-grid {
+                grid-template-columns: 1fr;
+            }
+            .soundtrack-hero {
+                padding: 52px 20px 44px;
+            }
+        }
+        .footer {
+            background-color: #020501;
+            color: #cbb26a;
+            padding: 20px;
+        }
+        .footer-action {
+            margin-top: 22px;
+        }
+        .footer-action .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #b99a45;
+            color: #020501;
+            padding: 12px 24px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+        }
+        @media (max-width: 800px) {
+            .section {
+                padding: 38px 18px;
+            }
+        }
+
+        /* ── Sticky Player Bar ─────────────────────────────────── */
+        body {
+            padding-bottom: 88px; /* prevent footer overlap */
+        }
+        .player-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: #0b1a08;
+            border-top: 1px solid rgba(185,154,69,0.28);
+            padding: 0 20px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 -4px 24px rgba(0,0,0,0.55);
+        }
+        .player-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 6px;
+            background: #153009;
+            border: 1px solid rgba(185,154,69,0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+        .player-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .player-title {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #C7AE6A;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.3;
+        }
+        .player-artist {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            color: #9B91A8;
+            font-style: italic;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .player-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-shrink: 0;
+        }
+        .player-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            color: #d5c28f;
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: color 0.15s;
+        }
+        .player-btn:hover { color: #b99a45; }
+        .player-btn.play {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #b99a45;
+            color: #020501;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            padding: 0;
+            transition: opacity 0.15s;
+        }
+        .player-btn.play:hover { opacity: 0.8; }
+        .player-stream {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+        }
+        .stream-link {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 999px;
+            border: 1px solid rgba(185,154,69,0.3);
+            color: #b99a45;
+            white-space: nowrap;
+            transition: border-color 0.15s;
+        }
+        .stream-link:hover { border-color: rgba(185,154,69,0.7); color: #C7AE6A; }
+        .player-chapter-tag {
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #285b11;
+            background: rgba(40,91,17,0.18);
+            padding: 2px 7px;
+            border-radius: 4px;
+            flex-shrink: 0;
+        }
+        @media (max-width: 600px) {
+            .player-stream { display: none; }
+            .player-chapter-tag { display: none; }
+            body { padding-bottom: 76px; }
+        }
+        /* waveform bar heights via nth-child */
+        .waveform span:nth-child(1)  { height: 10px; }
+        .waveform span:nth-child(2)  { height: 20px; }
+        .waveform span:nth-child(3)  { height: 28px; }
+        .waveform span:nth-child(4)  { height: 16px; }
+        .waveform span:nth-child(5)  { height: 32px; }
+        .waveform span:nth-child(6)  { height: 24px; }
+        .waveform span:nth-child(7)  { height: 36px; }
+        .waveform span:nth-child(8)  { height: 22px; }
+        .waveform span:nth-child(9)  { height: 30px; }
+        .waveform span:nth-child(10) { height: 18px; }
+        .waveform span:nth-child(11) { height: 26px; }
+        .waveform span:nth-child(12) { height: 12px; }
+        .waveform span:nth-child(13) { height: 22px; }
+        .waveform span:nth-child(14) { height: 34px; }
+        .waveform span:nth-child(15) { height: 20px; }
+        .waveform span:nth-child(16) { height: 14px; }
+        .waveform span:nth-child(17) { height: 28px; }
+        .waveform span:nth-child(18) { height: 10px; }
+
+        /* ── Playlist Embed Section ────────────────────────────── */
+        .playlist-section {
+            background: #020501;
+            padding: 60px 24px;
+            text-align: center;
+            border-bottom: 1px solid rgba(185,154,69,0.12);
+        }
+        .playlist-container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        .playlist-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.68rem;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: #b99a45;
+            margin-bottom: 1rem;
+        }
+        .playlist-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #C7AE6A;
+            margin: 0 0 1.2rem;
+            line-height: 1.3;
+        }
+        .playlist-description {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: #d5c28f;
+            margin: 0 0 2rem;
+            max-width: 560px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .playlist-embed-wrapper {
+            background: #0b1a08;
+            border: 1px solid rgba(185,154,69,0.18);
+            border-radius: 8px;
+            padding: 24px;
+            margin: 0 auto;
+            max-width: 660px;
+        }
+        .playlist-embed-wrapper iframe {
+            width: 100%;
+            max-width: 660px;
+            overflow: hidden;
+            background: transparent;
+            border-radius: 6px;
+        }
+        @media (max-width: 640px) {
+            .playlist-section {
+                padding: 44px 20px;
+            }
+            .playlist-embed-wrapper {
+                padding: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="../" class="nav-brand">
+                <img src="../logo.png" alt="Queer Pathways">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../modalities/">Treatment Modalities</a></li>
+                    <li><a href="../soundtrack/">The Soundtrack</a></li>
+                    <li><a href="../library/">The Library</a></li>
+                    <li><a href="../pathways/">Pathways</a></li>
+                    <li><a href="https://substack.com/@queerpathways" target="_blank" rel="noopener noreferrer">Podcast</a></li>
+                </ul>
+            </nav>
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+        </div>
+    </header>
+
+    <div class="soundtrack-hero">
+        <p class="hero-eyebrow">Pathways to Presence &mdash; The Acoustic Ecology</p>
+        <h1>Three Chords and<br>the Clinical Truth</h1>
+        <p class="hero-sub">A Somatic Strategy for the Double-Outsider</p>
+
+        <!-- Inline waveform decoration -->
+        <div class="waveform" aria-hidden="true">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+        </div>
+
+        <div class="hero-intro">
+            <p>Every chapter of <em>Pathways to Presence</em> is anchored by a lyric from the country music canon. This isn't a stylistic flourish&mdash;it is a somatic strategy.</p>
+            <p class="callout">Trauma lives in the limbic system, inaccessible to logic but highly responsive to rhythm and tone. For the Double-Outsider, these songs serve as an external regulator: a vocabulary for the feelings the DSM hasn't caught up to yet.</p>
+        </div>
+    </div>
+
+    <!-- ── Playlist Embed Section ────────────────────────────── -->
+    <section class="playlist-section">
+        <div class="playlist-container">
+            <p class="playlist-eyebrow">The Full Somatic Archive</p>
+            <h2 class="playlist-headline">Acoustic Ecology: The Complete Playlist</h2>
+            <p class="playlist-description">This is the external regulator for the Double-Outsider—a curated sonic scaffolding for moments when the Internal Courtroom goes silent and the body needs a vocabulary.</p>
+            <div class="playlist-embed-wrapper">
+                <iframe class="playlist-embed-frame" title="Acoustic Ecology Playlist - Apple Music" allow="autoplay *; encrypted-media *;" frameborder="0" height="450" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="section soundtrack" id="chapters">
+        <div class="chapter-grid">
+
+            <article class="chapter-card">
+                <div class="chapter-number">Chapter 1</div>
+                <div class="chapter-song">"I Am Not Okay"</div>
+                <div class="chapter-artist">Jelly Roll &mdash; 2024</div>
+                <h4>The First Adjournment</h4>
+                <p>This is the moment the <strong>Masking Visionary</strong> admits the metabolic drain has reached zero. It is the sound of the <strong>Internal Courtroom</strong> hitting a recess because the defendant has finally collapsed. This is not weakness—it's the <strong>First Adjournment</strong>. The moment Alex stops pleading and starts breathing.</p>
+                <p>The performance is over. What remains is the only truth that matters.</p>
+            </article>
+
+            <article class="chapter-card">
+                <div class="chapter-number">Chapter 2</div>
+                <div class="chapter-song">"24 Frames"</div>
+                <div class="chapter-artist">Jason Isbell &mdash; 2015</div>
+                <h4>The Architecture of Neuroception</h4>
+                <p class="pull-quote">"You thought God was an architect, now you know / He's something like a pipe bomb ready to go."</p>
+                <p>The sonic backdrop for the sudden collapse of high-functioning masking systems. The moment <strong>Neuroception</strong> overrides narrative&mdash;when the body knows before the mind has language for what it knows.</p>
+            </article>
+
+            <article class="chapter-card">
+                <div class="chapter-number">Chapter 3</div>
+                <div class="chapter-song">"Record Year"</div>
+                <div class="chapter-artist">Eric Church &mdash; 2015</div>
+                <h4>The ADHD Deep Dive</h4>
+                <p>Focused on <strong>Rejection Sensitive Dysphoria (RSD)</strong> and the <strong>Vulnerability Hangover</strong>. Using isolation not as a prison but as a record year&mdash;a season of internal growth where the only audience is the self you are becoming.</p>
+            </article>
+
+            <article class="chapter-card">
+                <div class="chapter-number">Chapter 4</div>
+                <div class="chapter-song">The Kacey Code</div>
+                <div class="chapter-artist">Kacey Musgraves</div>
+                <h4>Scaffolding and Steam</h4>
+                <p>Building the structures&mdash;the slow burn&mdash;that allow authentic presence without the burnout. <strong>The Scaffolding</strong> is not a cage; it is the frame that holds the walls upright long enough for the foundation to cure.</p>
+            </article>
+
+            <article class="chapter-card">
+                <div class="chapter-number">Chapter 5</div>
+                <div class="chapter-song">"F-150"</div>
+                <div class="chapter-artist">Dixon Dallas &mdash; 2023</div>
+                <h4>The Industrial Mask</h4>
+                <p>A direct, unpolished look at the social contract and the <strong>Industrial Mask</strong>&mdash;the performance of ruggedness that hides precision. For masc-leaning folks who carry the somatic freeze of never being allowed to express vulnerability, this is the moment we stop being palatable and start being honest. The "rugged performance" is just another form of masking. Underneath is a human who bleeds.</p>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- ── Sticky Player Bar ──────────────────────────────────── -->
+    <div class="player-bar" id="playerBar">
+        <div class="player-thumb" id="playerThumb">🎵</div>
+        <div class="player-info">
+            <div class="player-title" id="playerTitle">Select a chapter to begin</div>
+            <div class="player-artist" id="playerArtist">The Acoustic Ecology</div>
+        </div>
+        <span class="player-chapter-tag" id="playerTag">CH &mdash;</span>
+        <div class="player-controls">
+            <button class="player-btn" id="prevBtn" aria-label="Previous track" title="Previous">&#9664;&#9664;</button>
+            <a class="player-btn play" id="playBtn" href="#" target="_blank" rel="noopener noreferrer" aria-label="Open on Spotify">&#9654;</a>
+            <button class="player-btn" id="nextBtn" aria-label="Next track" title="Next">&#9654;&#9654;</button>
+        </div>
+        <div class="player-stream">
+            <a class="stream-link" id="spotifyLink" href="#" target="_blank" rel="noopener noreferrer">Spotify</a>
+            <a class="stream-link" id="appleLink" href="#" target="_blank" rel="noopener noreferrer">Apple</a>
+        </div>
+    </div>
+
+    <script>
+        const tracks = [
+            {
+                ch: 1,
+                title: '"I Am Not Okay"',
+                artist: 'Jelly Roll',
+                emoji: '🎸',
+                spotify: 'https://open.spotify.com/search/I%20Am%20Not%20Okay%20Jelly%20Roll',
+                apple: 'https://music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV'
+            },
+            {
+                ch: 2,
+                title: '"24 Frames"',
+                artist: 'Jason Isbell',
+                emoji: '🪕',
+                spotify: 'https://open.spotify.com/search/24%20Frames%20Jason%20Isbell',
+                apple: 'https://music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV'
+            },
+            {
+                ch: 3,
+                title: '"Record Year"',
+                artist: 'Eric Church',
+                emoji: '🎤',
+                spotify: 'https://open.spotify.com/search/Record%20Year%20Eric%20Church',
+                apple: 'https://music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV'
+            },
+            {
+                ch: 4,
+                title: 'The Kacey Code',
+                artist: 'Kacey Musgraves',
+                emoji: '✨',
+                spotify: 'https://open.spotify.com/search/Kacey%20Musgraves',
+                apple: 'https://music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV'
+            },
+            {
+                ch: 5,
+                title: '"F-150"',
+                artist: 'Dixon Dallas',
+                emoji: '🛻',
+                spotify: 'https://open.spotify.com/search/F-150%20Dixon%20Dallas',
+                apple: 'https://music.apple.com/us/playlist/acoustic-ecology/pl.u-9N4XdFgMrDV'
+            }
+        ];
+
+        let current = 0;
+
+        function setTrack(i) {
+            current = (i + tracks.length) % tracks.length;
+            const t = tracks[current];
+            document.getElementById('playerTitle').textContent = t.title;
+            document.getElementById('playerArtist').textContent = t.artist;
+            document.getElementById('playerThumb').textContent = t.emoji;
+            document.getElementById('playerTag').textContent = 'CH ' + t.ch;
+            document.getElementById('playBtn').href = t.spotify;
+            document.getElementById('spotifyLink').href = t.spotify;
+            document.getElementById('appleLink').href = t.apple;
+            // Highlight active card
+            document.querySelectorAll('.chapter-card').forEach((el, idx) => {
+                el.style.borderTopColor = idx === current ? '#b99a45' : 'rgba(185,154,69,0.45)';
+                el.style.background = idx === current ? '#122b0e' : '#0b1a08';
+            });
+        }
+
+        // Wire up chapter cards
+        document.querySelectorAll('.chapter-card').forEach((card, i) => {
+            card.style.cursor = 'pointer';
+            card.addEventListener('click', () => setTrack(i));
+        });
+
+        // Prev / Next
+        document.getElementById('prevBtn').addEventListener('click', () => setTrack(current - 1));
+        document.getElementById('nextBtn').addEventListener('click', () => setTrack(current + 1));
+
+        // Load first track by default
+        setTrack(0);
+    </script>
+
+    <footer class="footer">
+        <!-- Inclusive Therapists Verified Member Badge -->
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <p>Serving all of Pennsylvania via High-Fidelity Telehealth.</p>
+        <p>Contact: Joshua Jonassaint, LCSW | Joshua@QueerPathways.org</p>
+        <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>
+        <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
+        <div class="footer-action">
+            <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book now with Carepatron</a>
+        </div>
+    </footer>
+</body>
+</html>

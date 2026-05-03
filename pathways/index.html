@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queer Pathways - Pathways to Presence</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold-light: #d5c28f;
+            --gold-dark: #cbb26a;
+            --bg-dark: #090908;
+            --text-soft: #dad4b4;
+            --surface: rgba(255,255,255,0.04);
+            --surface-strong: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle at top left, rgba(213,194,143,0.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(185,154,69,0.06), transparent 18%),
+                        linear-gradient(180deg, #0b0b0b 0%, #080808 100%);
+            line-height: 1.6;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; transition: color 0.25s ease, transform 0.25s ease; }
+        a:hover { color: var(--gold-light); }
+        .navbar {
+            width: 100%;
+            padding: 24px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 8, 8, 0.86);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+        }
+        .nav-brand img { height: 74px; width: auto; }
+        .nav-brand-text {
+            display: inline-block;
+            white-space: nowrap;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+        .btn,
+        .cta-button {
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn {
+            border: 1px solid var(--gold-dark);
+            color: var(--gold-dark);
+            background: rgba(255,255,255,0.04);
+            padding: 14px 28px;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            border-color: transparent;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav-inner .btn { font-size: 0.8rem; padding: 9px 16px; white-space: nowrap; }
+        .btn-group {
+            display: inline-flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .section {
+            padding: 80px 24px;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: 2.4rem;
+            color: var(--gold-light);
+        }
+        .section p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+        .presence {
+            background: #153009;
+            border: 1px solid rgba(185,154,69,0.2);
+            padding: 60px 32px;
+            border-radius: 24px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+        .blog-link-wrap {
+            margin-top: 32px;
+        }
+        .blog-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.04);
+            color: var(--gold-dark);
+            border: 1px solid var(--gold-dark);
+            padding: 12px 24px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            transition: all 0.25s ease;
+        }
+        .blog-link:hover {
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+        .footer {
+            padding: 60px 24px;
+            text-align: center;
+            color: #bdb495;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .footer p { margin: 8px 0; font-size: 0.95rem; }
+        .footer a { color: var(--gold-light); text-decoration: none; }
+        .footer-action {
+            margin-top: 32px;
+        }
+        .footer-action .cta-button {
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            padding: 14px 28px;
+        }
+        @media (max-width: 860px) {
+            .section { padding: 60px 20px; }
+        }
+        @media (max-width: 620px) {
+            .nav-inner { flex-direction: column; align-items: flex-start; }
+            .nav-links { flex-wrap: wrap; gap: 12px; }
+        }
+
+        /* ── Hero Section ────────────────────────────────────── */
+        .hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(160deg, #0d1f0a 0%, #020501 70%);
+            border-bottom: 1px solid rgba(185,154,69,0.2);
+            overflow: hidden;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 720px;
+            padding: 60px 24px;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 3.6rem);
+            color: #C7AE6A;
+            margin: 0 0 1rem;
+            line-height: 1.15;
+            letter-spacing: -0.01em;
+        }
+        .hero-lead {
+            font-size: 1.1rem;
+            line-height: 1.75;
+            color: #d5c28f;
+            margin: 0 0 2rem;
+        }
+        .hero-note {
+            margin: 0 auto 2rem;
+            max-width: 620px;
+            color: #bdb495;
+            font-size: 0.98rem;
+        }
+
+        /* ── Gallery Grid ────────────────────────────────────── */
+        .gallery-section {
+            padding: 80px 24px;
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+        .gallery-header {
+            text-align: center;
+            max-width: 680px;
+            margin: 0 auto 3rem;
+        }
+        .gallery-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: #C7AE6A;
+            margin: 0 0 0.8rem;
+        }
+        .gallery-header p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #a89c7a;
+        }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .gallery-card {
+            position: relative;
+            aspect-ratio: 4/3;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(185,154,69,0.15);
+            transition: transform 0.3s, border-color 0.3s;
+        }
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(185,154,69,0.4);
+        }
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .gallery-card .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(2,5,1,0.95), transparent);
+            padding: 2rem 1.5rem 1rem;
+            color: #C7AE6A;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            font-style: italic;
+        }
+        .gallery-card .caption-sub {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            color: #9B91A8;
+            font-style: normal;
+            margin-top: 0.3rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        /* ── Featured (Wide) Cards ─────────────────────────── */
+        .gallery-featured {
+            grid-column: span 2;
+        }
+        @media (max-width: 720px) {
+            .gallery-featured {
+                grid-column: span 1;
+            }
+        }
+
+        /* ── Section Divider ───────────────────────────────── */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(185,154,69,0.3), transparent);
+            margin: 4rem auto;
+            max-width: 600px;
+        }
+
+        /* ── Community Offerings Cards ─────────────────────── */
+        .offering-card {
+            background: linear-gradient(160deg, #0a361f 0%, #020501 100%);
+            border: 1px solid rgba(185,154,69,0.25);
+            border-radius: 8px;
+            padding: 3rem 2.5rem;
+            margin-bottom: 3rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .offering-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #C7AE6A;
+            margin: 0 0 1rem;
+            line-height: 1.3;
+        }
+        .offering-tagline {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: #9B91A8;
+            margin: 0 0 2rem;
+            line-height: 1.7;
+        }
+        .offering-details {
+            text-align: left;
+            margin-bottom: 2.5rem;
+        }
+        .offering-facts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+            margin-bottom: 2rem;
+        }
+        .offering-fact {
+            padding: 14px 16px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(185,154,69,0.2);
+            border-radius: 10px;
+            text-align: left;
+        }
+        .offering-fact-label {
+            display: block;
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9B91A8;
+            margin-bottom: 0.45rem;
+        }
+        .offering-fact-value {
+            color: #d5c28f;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            font-weight: 600;
+        }
+        .offering-details p {
+            font-size: 1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: #d5c28f;
+        }
+        .offering-details strong {
+            color: #C7AE6A;
+            font-weight: 600;
+        }
+        .offering-note {
+            font-size: 0.9rem;
+            color: #9B91A8;
+            margin-top: 1.5rem;
+        }
+        .offering-cta {
+            text-align: center;
+        }
+        .offering-cta .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            padding: 14px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            font-size: 0.95rem;
+            transition: transform 0.3s, opacity 0.3s;
+        }
+        .offering-cta .cta-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        @media (max-width: 768px) {
+            .offering-card {
+                padding: 2rem 1.5rem;
+            }
+            .offering-card h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="../" class="nav-brand">
+                <img src="../logo.png" alt="" onerror="this.style.display='none'">
+                <span class="nav-brand-text">Queer Pathways</span>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../modalities/">Treatment Modalities</a></li>
+                    <li><a href="../soundtrack/">The Soundtrack</a></li>
+                    <li><a href="../library/">The Library</a></li>
+                    <li><a href="../pathways/">Pathways</a></li>
+                    <li><a href="https://substack.com/@queerpathways" target="_blank" rel="noopener noreferrer">Podcast</a></li>
+                </ul>
+            </nav>
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Stop performing your way through connection.</h1>
+            <p class="hero-lead">These are structured pathways out of the Internal Courtroom and into a Secure Base: community, skills, and consultation that respect the Double-Outsider nervous system.</p>
+            <p class="hero-note">Choose the entry point that fits your current capacity. You do not need to prove readiness before you belong here.</p>
+            <div class="btn-group">
+                <a class="blog-link" href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Community Offerings Section -->
+    <section class="gallery-section" id="community-offerings">
+        <div class="gallery-header">
+            <h2>Pathways to Community</h2>
+            <p>High-Performance Labs for identity integration. Moving you from the isolation of the Internal Courtroom into a collective Secure Base.</p>
+        </div>
+
+        <!-- Offering 1: The Online Munch -->
+        <div class="offering-card">
+            <h3>The Online Munch: A Digital Third Place for the Double-Outsider</h3>
+            <p class="offering-tagline">Adjourn the boardroom. Unbutton the tailored suit. A space where your identity isn't a "case" to be proven, but a presence to be shared.</p>
+            <div class="offering-facts">
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Cost</span>
+                    <span class="offering-fact-value">Free community scaffolding</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Cadence</span>
+                    <span class="offering-fact-value">Third Wednesday, 7:00 PM EST</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Format</span>
+                    <span class="offering-fact-value">Secure Google Meet, cameras optional</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Best Fit</span>
+                    <span class="offering-fact-value">Professionals arriving home with nothing left for real connection</span>
+                </div>
+            </div>
+            
+            <div class="offering-details">
+                <p><strong>The Strategic Goal:</strong> A Digital Sanctuary where Kink, BDSM, and Queer identities are the baseline, not the exception. No masking. No Executive Function Tax.</p>
+                
+                <p><strong>The No-Surprises Operational Itinerary:</strong></p>
+                <p>1. <strong>19:00 | The Low-Threshold Entry</strong> — Cameras optional. No cold-calling. No performance anxiety.<br><br>
+                2. <strong>19:10 | The Arousal Check</strong> — 2-minute somatic scan (Sweet Spot vs. Red Zone).<br><br>
+                3. <strong>19:15 | The Yum/Yuk Protocol</strong> — Explicit boundary setting for the session. You name what's on-limits and off-limits.<br><br>
+                4. <strong>19:20 | Parallel Play & Connection</strong> — Facilitated discussion or quiet co-presence. Silence is valid participation.<br><br>
+                5. <strong>20:00 | The Soft Close</strong> — Structured exit. No lingering social pressure. You're free.</p>
+                
+                <p><strong>Somatic Architecture & Community Safeguards:</strong></p>
+                <p>a. <strong>Visual Volume Control</strong> — No all-caps in chat to prevent sensory overwhelm.<br><br>
+                b. <strong>The "Lurk" Validation</strong> — Silence is a valid form of participation. No one will call you out.<br><br>
+                c. <strong>Sovereignty First</strong> — Zero-pressure, explanation-free exits at any time. The Court is Adjourned.<br><br>
+                d. <strong>Identity Protection</strong> — What's shared stays shared. No screenshots. No outing.</p>
+                
+                <p><strong>Logistics:</strong></p>
+                <p><strong>Cost:</strong> $0 (Community Scaffolding / Lead Magnet)<br>
+                <strong>Cadence:</strong> 3rd Wednesday of every month at 7:00 PM EST<br>
+                <strong>Platform:</strong> Secure Google Meet (Link via registration)<br>
+                <strong>Who This Serves:</strong> The "Alex" archetype—professionals who've spent all day code-switching between the boardroom and the leather bar, arriving home with nothing left for authentic connection.</p>
+                
+                <p class="offering-note"><em>Note: The Online Munch is a peer-support event, not a clinical therapy group. Participation does not establish a therapist-client relationship.</em></p>
+            </div>
+            
+            <div class="offering-cta">
+                <a class="cta-button" href="https://forms.gle/brW4XT5VNWAYo1wN7" target="_blank" rel="noopener noreferrer">Register for The Munch</a>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Offering 2: DBT Skills Group -->
+        <div class="offering-card">
+            <h3>The DBT Skills Group: The Internal Defense Attorney's Toolkit</h3>
+            <p class="offering-tagline">Stop litigating your reactions. Start managing your architecture. A 14-week intensive to build the internal scaffolding that the neurotypical world forgot to give you.</p>
+            <div class="offering-facts">
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Length</span>
+                    <span class="offering-fact-value">14 weeks</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Session Rhythm</span>
+                    <span class="offering-fact-value">Weekly 90-minute telehealth sessions</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Access</span>
+                    <span class="offering-fact-value">Aetna in-network, Thrizer-supported out-of-network</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Best Fit</span>
+                    <span class="offering-fact-value">RSD, emotional flooding, post-IOP step-down support</span>
+                </div>
+            </div>
+            
+            <div class="offering-details">
+                <p><strong>The Strategic Goal:</strong> To provide the Operating Manual for the Nervous System Machine.</p>
+                
+                <p><strong>Clinical Utility:</strong></p>
+                <p>1. This is the Prosthetic Environment for the ADHD/Trauma brain. Traditional DBT feels like compliance training; the Queer Pathways version is about Radical Self-Governance.<br><br>
+                2. Focus on <strong>Mastering the Pause</strong>—the space between stimulus and response—to dismantle impulsivity and Emotion Mind hijacking.<br><br>
+                3. Learn to treat your nervous system not as a broken machine requiring repair, but as a sensitive instrument requiring calibration.</p>
+                
+                <p><strong>Who This Serves:</strong> Neurodivergent visionaries who need structural scaffolding to navigate RSD, emotional flooding, and the metabolic cost of constant masking. Perfect for post-IOP step-downs.</p>
+                
+                <p><strong>Format:</strong> 14 weeks, weekly 90-minute sessions via telehealth. In-network with Aetna. Out-of-network rates available with Thrizer support.</p>
+            </div>
+            
+            <div class="offering-cta">
+                <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book DBT Group Consultation</a>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Offering 3: Individual Consultation for Clinicians -->
+        <div class="offering-card">
+            <h3>Individual Consultation: The Clinical Lighthouse for the Double-Outsider</h3>
+            <p class="offering-tagline">Stop paying the "Ambiguity Tax." Secure high-level, 1-on-1 specialist advocacy designed for clinicians ready to trade "generic support" for deep-dive clinical architecture.</p>
+            <div class="offering-facts">
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Audience</span>
+                    <span class="offering-fact-value">Licensed clinicians in Pennsylvania.</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Format</span>
+                    <span class="offering-fact-value">Individual 60-minute specialist consultation sessions via telehealth.</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Focus</span>
+                    <span class="offering-fact-value">High-fidelity 2SLGBTQI+ and neurodivergent case complexity.</span>
+                </div>
+                <div class="offering-fact">
+                    <span class="offering-fact-label">Access</span>
+                    <span class="offering-fact-value">Sliding scale available for early-career clinicians.</span>
+                </div>
+            </div>
+            
+            <div class="offering-details">
+                <p><strong>The Strategic Goal:</strong> To establish a direct pipeline for Pennsylvania clinicians to navigate high-complexity cases with Joshua Jonassaint, moving beyond "Affirming 101" into advanced clinical frameworks.</p>
+                
+                <p><strong>Clinical Utility:</strong></p>
+                <p>1. Generativity Play: Move beyond basic affirmation into Big Idea Architecture tailored specifically to your caseload.<br><br>
+                2. The Internal Legal System: Master the metaphor (The Auditor, The Prosecutor, The Evidence Locker) to unlock your most "stuck" clients in real-time.<br><br>
+                3. Specialist Advocacy: Individual support for clinicians drowning in the Ambiguity Tax - polycules, kink-aware practice, ADHD + trauma intersection, and professional identity fragmentation.</p>
+                
+                <p><strong>Format:</strong> Individual 60-minute specialist consultation sessions via telehealth. Sliding scale available for early-career clinicians.</p>
+            </div>
+            
+            <div class="offering-cta">
+                <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book Your Individual Consultation Intake</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section presence">
+        <h2>Start Your Reclamation</h2>
+        <p>You have spent enough time litigating your own worth. It's time to stop explaining and start evolving.</p>
+        <div class="blog-link-wrap">
+            <a class="btn primary" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book Your Consultation</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <!-- Inclusive Therapists Verified Member Badge -->
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <p>Serving all of Pennsylvania via High-Fidelity Telehealth.</p>
+        <p>Contact: Joshua Jonassaint, LCSW | <a href="mailto:Joshua@QueerPathways.org">Joshua@QueerPathways.org</a></p>
+        <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>
+        <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
+        <div class="footer-action">
+            <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book now with Carepatron</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queer Pathways - Treatment Modalities</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+    <style>
+        :root {
+            --gold-light: #d5c28f;
+            --gold-dark: #cbb26a;
+            --bg-dark: #090908;
+            --text-soft: #dad4b4;
+            --surface: rgba(255,255,255,0.04);
+            --surface-strong: rgba(255,255,255,0.08);
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: #fff;
+            background: radial-gradient(circle at top left, rgba(213,194,143,0.08), transparent 22%),
+                        radial-gradient(circle at bottom right, rgba(185,154,69,0.06), transparent 18%),
+                        linear-gradient(180deg, #0b0b0b 0%, #080808 100%);
+            line-height: 1.6;
+        }
+        img { max-width: 100%; display: block; }
+        a { color: inherit; transition: color 0.25s ease, transform 0.25s ease; }
+        a:hover { color: var(--gold-light); }
+        .navbar {
+            width: 100%;
+            padding: 24px 28px;
+            position: sticky;
+            top: 0;
+            z-index: 20;
+            background: rgba(8, 8, 8, 0.86);
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .nav-inner {
+            max-width: 1180px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+        .nav-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: var(--gold-light);
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            font-size: 0.95rem;
+        }
+        .nav-brand img { height: 74px; width: auto; }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-soft);
+            font-size: 0.94rem;
+            font-weight: 500;
+            padding: 8px 10px;
+            border-radius: 10px;
+        }
+        .nav-links a:hover {
+            background: rgba(255,255,255,0.06);
+            color: var(--gold-light);
+            transform: translateY(-1px);
+        }
+        .btn,
+        .cta-button {
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            text-decoration: none;
+            transition: all 0.25s ease;
+        }
+        .btn {
+            border: 1px solid var(--gold-dark);
+            color: var(--gold-dark);
+            background: rgba(255,255,255,0.04);
+            padding: 14px 28px;
+        }
+        .btn.primary {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, #a88b42 100%);
+            color: #030300;
+            border-color: transparent;
+        }
+        .btn:hover { transform: translateY(-2px); }
+        .nav-inner .btn { font-size: 0.8rem; padding: 9px 16px; white-space: nowrap; }
+        .section {
+            padding: 80px 24px;
+            max-width: 1040px;
+            margin: 0 auto;
+        }
+        .section h2 {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: 2.4rem;
+            color: var(--gold-light);
+        }
+        .section h1 {
+            margin: 0 0 28px;
+            text-align: center;
+            font-size: clamp(2.4rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            color: var(--gold-light);
+        }
+        .section p {
+            color: var(--text-soft);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 880px;
+            margin: 0 auto 24px;
+        }
+        .hero {
+            background: #153009;
+            border: 1px solid rgba(185,154,69,0.2);
+            padding: 60px 32px;
+            border-radius: 24px;
+            box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+        }
+        .footer {
+            padding: 60px 24px;
+            text-align: center;
+            color: #bdb495;
+        }
+        .footer p { margin: 8px 0; font-size: 0.95rem; }
+        .footer a { color: var(--gold-light); text-decoration: none; }
+        .footer-action {
+            margin-top: 32px;
+        }
+        .footer-action .cta-button {
+            background: linear-gradient(135deg, var(--gold-dark) 0%, #a88b42 100%);
+            color: #030300;
+            padding: 14px 28px;
+        }
+        .archetype {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+        .archetype.reverse {
+            grid-template-columns: 1fr 340px;
+        }
+        .archetype-image {
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+        }
+        .archetype-image img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            display: block;
+        }
+        .archetype.reverse .archetype-image {
+            order: 2;
+        }
+        .archetype-content h2 {
+            text-align: left;
+            margin-top: 0;
+        }
+        .adjourn-banner {
+            text-align: center;
+            padding: 40px 24px;
+            background: #153009;
+            margin: 0 auto;
+            max-width: 1040px;
+            border-radius: 16px;
+            border: 1px solid rgba(185,154,69,0.2);
+        }
+        .adjourn-banner-label {
+            color: #C7AE6A;
+            font-size: 1.1rem;
+            margin: 0 0 20px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+        .cta-large {
+            font-size: 1.05rem;
+            padding: 16px 36px;
+        }
+        .profile-header {
+            text-align: center;
+            padding: 60px 32px;
+            background: #153009;
+            margin: 0 auto 60px;
+            max-width: 1040px;
+            border-radius: 16px;
+            border: 1px solid rgba(185,154,69,0.2);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+        }
+        .profile-header h2 {
+            color: #C7AE6A;
+            font-size: 2.2rem;
+            margin: 0 0 16px;
+            font-weight: 700;
+        }
+        .profile-subtitle {
+            color: #cbb26a;
+            font-size: 1.1rem;
+            margin: 0 0 28px;
+            font-weight: 500;
+        }
+        .profile-copy {
+            color: #dad4b4;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+        .insight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+        .insight-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 16px;
+            padding: 32px;
+        }
+        .insight-card h3 {
+            color: #C7AE6A;
+            font-size: 1.4rem;
+            margin: 0 0 16px;
+        }
+        .insight-tag {
+            color: #b99a45;
+            font-size: 1.05rem;
+            margin: 0 0 12px;
+            font-weight: 600;
+        }
+        .insight-copy {
+            color: #dad4b4;
+            font-size: 0.98rem;
+            line-height: 1.8;
+            margin: 0;
+        }
+        .closing-panel {
+            text-align: center;
+            padding: 60px 32px;
+            background: #153009;
+            margin: 0 auto;
+            max-width: 1040px;
+            border-radius: 16px;
+            border: 1px solid rgba(185,154,69,0.2);
+            box-shadow: 0 18px 50px rgba(0,0,0,0.3);
+        }
+        .closing-panel h2 {
+            color: #C7AE6A;
+            font-size: 2.2rem;
+            margin: 0 0 28px;
+            font-weight: 700;
+        }
+        .closing-copy {
+            color: #dad4b4;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 auto 20px;
+        }
+        .closing-quote {
+            color: #d5c28f;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 auto 20px;
+            font-style: italic;
+            font-weight: 500;
+        }
+        .closing-subhead {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.4rem;
+            color: var(--gold-light);
+            margin: 2.5rem 0 0.5rem;
+        }
+        @media (max-width: 860px) {
+            .section { padding: 60px 20px; }
+            .archetype {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .archetype.reverse {
+                grid-template-columns: 1fr;
+            }
+            .archetype.reverse .archetype-image {
+                order: 0;
+            }
+            .archetype-image img {
+                height: 320px;
+            }
+        }
+        @media (max-width: 620px) {
+            .nav-inner { flex-direction: column; align-items: flex-start; }
+            .nav-links { flex-wrap: wrap; gap: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar">
+        <div class="nav-inner">
+            <a href="../" class="nav-brand">
+                <img src="../logo.png" alt="Queer Pathways">
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../modalities/">Treatment Modalities</a></li>
+                    <li><a href="../soundtrack/">The Soundtrack</a></li>
+                    <li><a href="../library/">The Library</a></li>
+                    <li><a href="../pathways/">Pathways</a></li>
+                    <li><a href="https://substack.com/@queerpathways" target="_blank" rel="noopener noreferrer">Podcast</a></li>
+                </ul>
+            </nav>
+            <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary" target="_blank" rel="noopener noreferrer">BOOK NOW</a>
+        </div>
+    </header>
+
+    <section class="section hero">
+        <h1>Mapping Modalities to the Internal Courtroom</h1>
+        <p>Walking into therapy can sometimes feel like walking into a deposition where you are the only one on the stand. We spend so much of our lives answering to a jury of ghosts, internalizing a gaze that was never meant to be kind to us. In our work at Queer Pathways, we call this the Internal Courtroom. It is that mental space where the Internal Auditor, that relentless, high-performance voice of self-criticism, is constantly reviewing your "Evidence Locker" of past mistakes and systemic trauma to justify why you need to mask a little harder or run a little faster.</p>
+        <p>Tyler Childers captures this ancestral weight in his song "Nose on the Grindstone," where he sings about the advice passed down to keep your head down and stay out of trouble. For many of us in the 2SLGBTQI+ community, that grindstone isn't just about work; it is the metabolic cost of staying safe in a world that wasn't built for our neurobiology or our identities. We are here to help you adjourn that trial. We aren't just looking for "coping skills" that help you endure the grindstone longer. We are mapping out a clinical codex designed to turn the defendant into their own strongest advocate.</p>
+    </section>
+
+    <div class="adjourn-banner">
+        <p class="adjourn-banner-label">THE COURT IS ADJOURNED</p>
+        <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary cta-large" target="_blank" rel="noopener noreferrer">Secure Your Intake Now</a>
+    </div>
+
+    <section class="section">
+        <div class="archetype">
+            <div class="archetype-image">
+                <img src="../images/AlexICA.png" alt="Neurodivergent client at desk at night, laptop screen showing 'When Masking Reaches Zero'">
+            </div>
+            <div class="archetype-content">
+                <h2>Alex: The Masking Visionary and the Smoke Detector</h2>
+        <p>When we look at the Alex archetype, the high-achieving visionary balancing ADHD and Rejection Sensitive Dysphoria (RSD), the Internal Courtroom is usually in a state of emergency. Alex’s amygdala, which we often call the Smoke Detector of the Brain, is constantly going off. The problem is that this smoke detector can’t tell the difference between a burnt piece of toast (a small social gaffe) and a three-alarm house fire (a career-ending failure). This leads to what we call the "Vulnerability Hangover," that cold dread that sets in after being seen or speaking up.</p>
+                <p>For Alex, we lean heavily into Radical Acceptance and Narrative Therapy. In our practice, we use the "Pittsburgh vs. Cleveland" metaphor for Radical Acceptance. You don't have to like that you're in Cleveland if you wanted to be in Pittsburgh, but if you keep pretending the map says Pittsburgh, you're never going to find your way to where you actually are. We use DBT tools to help Alex "Master the Pause," creating a somatic buffer between the emotional spike and the impulsive reaction. By externalizing the Auditor through Narrative Therapy, we help Alex see that their ADHD isn't a character flaw; it's a specific neuro-architecture that requires a different kind of stewardship.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="archetype reverse">
+            <div class="archetype-image">
+                <img src="../images/BrianICA.png" alt="Queer elder seated in a library setting, representing deep clinical expertise and grounded guidance">
+            </div>
+            <div class="archetype-content">
+                <h2>Bryan: The Exhausted Architect and the Blueprint of Attachment</h2>
+                <p>Bryan represents the "Old Guard," the Type A leader rooted in Philly who has spent decades holding up the structures of his life through sheer force of will. For Bryan, the Internal Courtroom is often silent but incredibly heavy, filled with religious trauma and a dismissive-avoidant attachment style that served as a survival mechanism in the leather community and the corporate world alike. The metabolic cost for Bryan is astronomical; he is holding it all together, but his battery is permanently in the red.</p>
+                <p>To support the Bryan archetype, we combine the DBT skill of Opposite Action with Emotionally Focused Therapy (EFT). When the avoidant urge says "shut down and retreat," Opposite Action provides a tactical way to lean in, even when it feels counter-intuitive. We use EFT to help Bryan deconstruct his "Internal Working Model", the subconscious rulebook that tells him he has to be the strongest person in the room to be worthy of love. By auditing the "Evidence Locker" of his religious and community history, we help him move toward a secure attachment with himself, allowing the Architect to finally rest.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="archetype">
+            <div class="archetype-image">
+                <img src="../images/XavierICA.png" alt="Young client portrait representing embodied presence and emerging somatic sovereignty">
+            </div>
+            <div class="archetype-content">
+                <h2>Xavier: The Embodied Pioneer and Somatic Sovereignty</h2>
+                <p>Xavier is our pioneer, 21, trans-masculine, and navigating a world of sensory overwhelm and neuro-scanning. For Xavier, the Internal Courtroom isn't just a mental space; it is a physical one. His body is constantly scanning for threats, a process that creates a hum of overwhelm that makes it hard to land in the present moment. The Auditor in Xavier's head often uses his trans identity or neurodivergence as "evidence" that he doesn't belong in his own skin.</p>
+                <p>Our clinical approach here is rooted in Somatic Sovereignty and Sensory Grounding. We move away from abstract talk and into the Body Dashboard. We help Xavier build a "Sensory Menu" that acknowledges his ADHD and sensory needs as valid data points rather than obstacles to be overcome. By using DBT grounding techniques, we teach Xavier how to anchor himself during moments of dysregulation, moving from a state of hyper-vigilance to one of Presence-Forward living. This is about reclaiming the body as a sanctuary rather than a crime scene.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="archetype reverse">
+            <div class="archetype-image">
+                <img src="../images/JustinICA.png" alt="Portrait representing Justin's relationship alchemy and identity integration">
+            </div>
+            <div class="archetype-content">
+                <h2>Justin (The Relationship Alchemist): The Double-Outsider Audit</h2>
+                <p>Justin is 34, a bisexual man navigating the PnP (chemsex) scene while carrying the quiet, grinding tension of being a double outsider. Part of him is reaching for somatic release, erotic intensity, and the kind of connection that can feel immediate when the body finally drops its guard. Another part is already bracing for the Auditor's review, scanning for signs that his desire makes him too much, too risky, or too difficult to fully know. In Justin's Internal Courtroom, the trial is not just about worthiness in relationships. It is about whether he is allowed to want what he wants without collapsing into shame and masking.</p>
+                <p>For Justin, we center Harm Reduction and the first stage of de-escalation in EFT. Before we ask the system to make meaning, we help it come down from the spike. That means slowing the cycle enough to notice the body's signals, the moment the hum of urgency turns into narrowing vision, self-surveillance, or dissociation. Harm Reduction gives Justin a practical, non-shaming framework for honesty, safety, and choice inside a scene that can hold both genuine connection and genuine risk. EFT's first stage of de-escalation helps interrupt the reactive loop between longing and self-attack so he can name what is happening without immediately disappearing behind performance. The goal is not purity. It is not perfect behavior. It is helping Justin move from secrecy and internal prosecution toward a more honest, embodied form of self-advocacy, where connection does not have to be purchased through self-erasure.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="archetype">
+            <div class="archetype-image">
+                <img src="../images/WilliamICA.png" alt="Reflective queer elder with phone in hand, representing late-blooming advocacy and reconnection">
+            </div>
+            <div class="archetype-content">
+                <h2>William: The Late-Blooming Advocate and the Stonewall Defense</h2>
+                <p>William carries the legacy of the AIDS crisis and the weight of a late-stage ADHD diagnosis. His Internal Courtroom is ancient, filled with what we call the "Stonewall Defense", a protective shell built during an era where being seen was truly dangerous. Now, as a queer elder, that defense often keeps him isolated. The Auditor in his mind uses the "Evidence Locker" of the 80s and 90s to argue that it is still safer to stay hidden, even though his heart is screaming for connection.</p>
+                <p>For William, we use Mindfulness and Narrative Therapy to re-author his story. We honor the "Specialist Advocate" within him, the part that survived the crisis, but we ask if those same tools are still serving him today. By re-authoring the "Stonewall Defense" into a "Pathways to Presence," we help William integrate his history with his new understanding of his neurodivergent brain. It is about acknowledging the high metabolic cost of his survival while making room for the quiet, incremental joy of a late-blooming life.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="closing-panel">
+        <h2>The Court Is Adjourned</h2>
+        <p class="closing-copy">There is a specific kind of exhaustion that comes from living in a world that views your existence as a debate. In this practice, the debate is over.</p>
+        <p class="closing-quote">"The court is adjourned here; there is no 'broken,' only 'unmapped.'"</p>
+        <p class="closing-copy">This is the foundational promise of Queer Pathways. We aren't here to find out what's "wrong" with you. We are here to map the territory you've already conquered and design the life you actually want to live.</p>
+        <p class="closing-copy">You have spent enough time litigating your own worth. It's time to stop explaining and start evolving.</p>
+        <h3 class="closing-subhead">Second Ring Deep Dive</h3>
+        <p class="profile-subtitle"><a href="../library/">Resource Library: Guides &amp; Tools for the Double-Outsider</a></p>
+        <div class="booking-embed" style="margin: 2rem 0;">
+            <iframe title="Carepatron Online Booking" src="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=i" style="width:100%;height:600px;border:none;border-radius:12px;"></iframe>
+        </div>
+        <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary cta-large" target="_blank" rel="noopener noreferrer">Schedule Your Consultation</a>
+    </div>
+
+    <footer class="footer">
+        <!-- Inclusive Therapists Verified Member Badge -->
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <p>Serving all of Pennsylvania via High-Fidelity Telehealth.</p>
+        <p>Contact: Joshua Jonassaint, LCSW | Joshua@QueerPathways.org</p>
+        <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>
+        <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
+    </footer>
+</body>
+</html>
