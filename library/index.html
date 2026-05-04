@@ -388,9 +388,160 @@
                 font-size: 1.1rem;
             }
         }
+
+        /* ── Library Gate Modal ──────────────────────── */
+        #library-gate {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(9, 9, 8, 0.92);
+            -webkit-backdrop-filter: blur(18px);
+            backdrop-filter: blur(18px);
+        }
+        #library-gate.hidden {
+            display: none;
+        }
+        .gate-card {
+            width: 100%;
+            max-width: 480px;
+            background: linear-gradient(160deg, #0e1a0b 0%, #090908 100%);
+            border: 1px solid rgba(185, 154, 69, 0.28);
+            border-radius: 16px;
+            padding: 44px 40px;
+            box-shadow: 0 24px 64px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+        .gate-eyebrow {
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #9B91A8;
+            margin: 0 0 0.75rem;
+        }
+        .gate-title {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 1.65rem;
+            color: #C7AE6A;
+            margin: 0 0 0.6rem;
+            line-height: 1.25;
+        }
+        .gate-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-soft);
+            margin: 0 0 2rem;
+            line-height: 1.6;
+        }
+        .gate-field {
+            width: 100%;
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .gate-field label {
+            display: block;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #9B91A8;
+            margin-bottom: 6px;
+        }
+        .gate-field input {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(185, 154, 69, 0.25);
+            border-radius: 8px;
+            padding: 12px 16px;
+            color: #fff;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: border-color 0.2s;
+            box-sizing: border-box;
+        }
+        .gate-field input:focus {
+            border-color: rgba(185, 154, 69, 0.6);
+        }
+        .gate-field input::placeholder {
+            color: rgba(218, 212, 180, 0.35);
+        }
+        .gate-submit {
+            width: 100%;
+            margin-top: 8px;
+            padding: 14px;
+            background: linear-gradient(135deg, #1a4d2e 0%, #153009 100%);
+            color: var(--gold-light);
+            border: none;
+            border-radius: 999px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: opacity 0.2s, transform 0.2s;
+            font-family: inherit;
+        }
+        .gate-submit:hover:not(:disabled) {
+            opacity: 0.88;
+            transform: translateY(-1px);
+        }
+        .gate-submit:disabled {
+            opacity: 0.55;
+            cursor: not-allowed;
+        }
+        .gate-privacy {
+            margin-top: 1rem;
+            font-size: 0.72rem;
+            color: #6b6456;
+            line-height: 1.5;
+        }
+        .gate-error {
+            margin-top: 10px;
+            font-size: 0.82rem;
+            color: #e07070;
+            display: none;
+        }
+        @media (max-width: 520px) {
+            .gate-card { padding: 32px 24px; }
+            .gate-title { font-size: 1.35rem; }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Hidden Netlify form for bot detection & form recognition -->
+    <form name="library-access" netlify netlify-honeypot="bot-field" hidden>
+        <input type="text" name="name" />
+        <input type="email" name="email" />
+        <input name="bot-field" />
+    </form>
+
+    <!-- Library Access Gate -->
+    <div id="library-gate" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+        <div class="gate-card">
+            <p class="gate-eyebrow">Queer Pathways — Resource Library</p>
+            <h2 class="gate-title" id="gate-title">Access the Library</h2>
+            <p class="gate-subtitle">Enter your name and email to get free access to guides, audio, and frameworks built for the 2SLGBTQI+ community.</p>
+            <form id="gate-form" novalidate>
+                <input type="text" name="bot-field" style="display:none" tabindex="-1" autocomplete="off" />
+                <div class="gate-field">
+                    <label for="gate-name">Full Name <span aria-hidden="true">*</span></label>
+                    <input type="text" id="gate-name" name="name" placeholder="Your name" required autocomplete="name" />
+                </div>
+                <div class="gate-field">
+                    <label for="gate-email">Email Address <span aria-hidden="true">*</span></label>
+                    <input type="email" id="gate-email" name="email" placeholder="you@example.com" required autocomplete="email" />
+                </div>
+                <button type="submit" class="gate-submit" id="gate-submit-btn">Access the Library →</button>
+                <p class="gate-error" id="gate-error" role="alert"></p>
+            </form>
+            <p class="gate-privacy">Your information is kept private and will never be sold. You may receive occasional resource updates from Queer Pathways.</p>
+        </div>
+    </div>
+
     <header class="navbar">
         <div class="nav-inner">
             <a href="../" class="nav-brand">
@@ -593,5 +744,77 @@
         Serving all of Pennsylvania via High-Fidelity Telehealth.
         <p><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer">Read the Blog</a></p>
     </footer>
+
+    <script>
+        (function () {
+            const STORAGE_KEY = 'qp_library_access';
+            const gate = document.getElementById('library-gate');
+            const form = document.getElementById('gate-form');
+            const submitBtn = document.getElementById('gate-submit-btn');
+            const errorEl = document.getElementById('gate-error');
+
+            function unlockLibrary() {
+                gate.classList.add('hidden');
+                gate.setAttribute('aria-hidden', 'true');
+            }
+
+            // Already granted access?
+            if (localStorage.getItem(STORAGE_KEY)) {
+                unlockLibrary();
+                return;
+            }
+
+            // Focus first input for accessibility
+            document.getElementById('gate-name').focus();
+
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                errorEl.style.display = 'none';
+
+                const name = document.getElementById('gate-name').value.trim();
+                const email = document.getElementById('gate-email').value.trim();
+
+                if (!name) {
+                    errorEl.textContent = 'Please enter your name.';
+                    errorEl.style.display = 'block';
+                    document.getElementById('gate-name').focus();
+                    return;
+                }
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    errorEl.textContent = 'Please enter a valid email address.';
+                    errorEl.style.display = 'block';
+                    document.getElementById('gate-email').focus();
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting…';
+
+                try {
+                    const body = new URLSearchParams({
+                        'form-name': 'library-access',
+                        'name': name,
+                        'email': email
+                    });
+
+                    const res = await fetch('/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: body.toString()
+                    });
+
+                    if (!res.ok) throw new Error('Network response was not ok');
+
+                    localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, email, ts: Date.now() }));
+                    unlockLibrary();
+                } catch (err) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Access the Library →';
+                    errorEl.textContent = 'Something went wrong. Please try again.';
+                    errorEl.style.display = 'block';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
