@@ -5,6 +5,14 @@
 
 declare( strict_types = 1 );
 
+/**
+ * Google OAuth Client ID.
+ * Set QUEER_TIMES_GOOGLE_CLIENT_ID in wp-config.php or replace the placeholder below.
+ */
+if ( ! defined( 'QUEER_TIMES_GOOGLE_CLIENT_ID' ) ) {
+    define( 'QUEER_TIMES_GOOGLE_CLIENT_ID', '' ); // ← paste your Client ID here
+}
+
 /* ─── Theme Setup ───────────────────────────────────────── */
 function queer_times_setup(): void {
     load_theme_textdomain( 'queer-times', get_template_directory() . '/languages' );
@@ -53,14 +61,30 @@ function queer_times_enqueue_assets(): void {
         wp_get_theme()->get( 'Version' )
     );
 
+    // Google Identity Services (Sign In With Google)
+    wp_enqueue_script(
+        'google-gsi',
+        'https://accounts.google.com/gsi/client',
+        [],
+        null,
+        false
+    );
+
     // Theme script
     wp_enqueue_script(
         'queer-times-script',
         get_template_directory_uri() . '/assets/js/theme.js',
-        [],
+        [ 'google-gsi' ],
         wp_get_theme()->get( 'Version' ),
         true
     );
+
+    // Pass config to JS
+    wp_localize_script( 'queer-times-script', 'QueerTimesConfig', [
+        'googleClientId' => QUEER_TIMES_GOOGLE_CLIENT_ID,
+        'restUrl'        => esc_url_raw( rest_url( 'queer-times/v1/subscriber' ) ),
+        'nonce'          => wp_create_nonce( 'wp_rest' ),
+    ] );
 }
 add_action( 'wp_enqueue_scripts', 'queer_times_enqueue_assets' );
 
@@ -157,3 +181,47 @@ function queer_times_register_sidebars(): void {
     ] );
 }
 add_action( 'widgets_init', 'queer_times_register_sidebars' );
+
+/* ─── REST API: Subscriber Endpoint ────────────────────── */
+function queer_times_register_subscriber_endpoint(): void {
+    register_rest_route( 'queer-times/v1', '/subscriber', [
+        'methods'             => 'POST',
+        'callback'            => 'queer_times_save_subscriber',
+        'permission_callback' => '__return_true',
+        'args'                => [
+            'name'  => [
+                'required'          => true,
+                'sanitize_callback' => 'sanitize_text_field',
+                'validate_callback' => fn( $v ) => ! empty( trim( $v ) ),
+            ],
+            'email' => [
+                'required'          => true,
+                'sanitize_callback' => 'sanitize_email',
+                'validate_callback' => 'is_email',
+            ],
+        ],
+    ] );
+}
+add_action( 'rest_api_init', 'queer_times_register_subscriber_endpoint' );
+
+function queer_times_save_subscriber( WP_REST_Request $request ): WP_REST_Response {
+    $name  = $request->get_param( 'name' );
+    $email = $request->get_param( 'email' );
+
+    // Store as a WordPress user meta-free subscriber using options (simple store).
+    // For production, swap this for your CRM / email platform (Mailchimp, ConvertKit, etc.).
+    $subscribers = get_option( 'queer_times_subscribers', [] );
+
+    // Deduplicate by email
+    $emails = array_column( $subscribers, 'email' );
+    if ( ! in_array( $email, $emails, true ) ) {
+        $subscribers[] = [
+            'name'       => $name,
+            'email'      => $email,
+            'subscribed' => current_time( 'mysql' ),
+        ];
+        update_option( 'queer_times_subscribers', $subscribers );
+    }
+
+    return new WP_REST_Response( [ 'success' => true ], 200 );
+}

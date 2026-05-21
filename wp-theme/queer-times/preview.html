@@ -67,6 +67,52 @@
     </button>
   </div>
 
+  <!-- Reader Gate Modal -->
+  <div id="reader-gate-overlay"
+       class="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center px-4 hidden"
+       role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="bg-[#f4f1ea] border-2 border-[#1a1a1a] max-w-md w-full p-8 text-center">
+      <div class="flex items-center gap-3 mb-5">
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+        <span class="text-[#8b7355]">✦</span>
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+      </div>
+      <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">Join the Queer Times</p>
+      <h2 id="gate-title" class="text-3xl mb-2" style="font-family:'UnifrakturMaguntia',serif;">
+        Read More. Stay Connected.
+      </h2>
+      <p class="text-sm font-serif italic mb-6 leading-relaxed">
+        Enter your name and email — or sign in with Google — to access the full archive.
+      </p>
+      <form id="reader-gate-form" novalidate class="space-y-3 mb-4">
+        <input id="gate-name" type="text" name="name" placeholder="Your Name" required
+               class="w-full border border-[#8b7355] bg-transparent px-4 py-2 text-sm font-serif
+                      placeholder:text-[#8b7355] focus:outline-none focus:ring-1 focus:ring-[#1a1a1a]" />
+        <input id="gate-email" type="email" name="email" placeholder="Your Email Address" required
+               class="w-full border border-[#8b7355] bg-transparent px-4 py-2 text-sm font-serif
+                      placeholder:text-[#8b7355] focus:outline-none focus:ring-1 focus:ring-[#1a1a1a]" />
+        <p id="gate-error" role="alert" class="text-xs text-red-700 font-serif hidden"></p>
+        <button type="submit"
+                class="w-full py-3 border-2 border-[#1a1a1a] text-sm tracking-[0.25em] uppercase
+                       font-serif hover:bg-[#1a1a1a] hover:text-[#f4f1ea] transition-colors duration-300">
+          Continue Reading
+        </button>
+      </form>
+      <div class="flex items-center gap-3 my-4">
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+        <span class="text-xs tracking-widest uppercase font-serif text-[#8b7355]">or</span>
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+      </div>
+      <div id="gate-google-btn" class="flex justify-center"></div>
+      <p class="text-xs font-serif text-[#8b7355] mt-5 leading-relaxed">We respect your privacy. No spam, ever.</p>
+      <div class="flex items-center gap-3 mt-5">
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+        <span class="text-[#8b7355]">✦</span>
+        <span class="block h-px flex-1 bg-[#8b7355]"></span>
+      </div>
+    </div>
+  </div>
+
   <!-- 3-column newspaper grid -->
   <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-12 gap-0 divide-x divide-[#8b7355]">
 
@@ -183,14 +229,102 @@
   </div>
 </footer>
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script>
+const GATE_KEY = 'qt_reader_registered';
+
+function isRegistered() { return localStorage.getItem(GATE_KEY) === '1'; }
+function markRegistered() { localStorage.setItem(GATE_KEY, '1'); }
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+function showError(el, msg) { if (el) { el.textContent = msg; el.classList.remove('hidden'); } }
+
+// ── Sovereign Pause ──────────────────────────────────────
 (function () {
   const btn = document.getElementById('sovereign-pause-btn');
   const overlay = document.getElementById('sovereign-pause-overlay');
   const close = document.getElementById('sovereign-pause-close');
+  if (!btn || !overlay || !close) return;
   btn.addEventListener('click', () => { overlay.classList.remove('hidden'); close.focus(); });
   close.addEventListener('click', () => { overlay.classList.add('hidden'); btn.focus(); });
   overlay.addEventListener('keydown', (e) => { if (e.key === 'Escape') { overlay.classList.add('hidden'); btn.focus(); } });
+})();
+
+// ── Reader Gate ──────────────────────────────────────────
+(function () {
+  if (isRegistered()) return;
+
+  const overlay = document.getElementById('reader-gate-overlay');
+  const form    = document.getElementById('reader-gate-form');
+  const error   = document.getElementById('gate-error');
+  if (!overlay) return;
+
+  let pendingHref = null;
+
+  function isGatedLink(el) {
+    if (!el || el.tagName !== 'A') return false;
+    const text = el.textContent.trim().toLowerCase();
+    return text.includes('continue reading') || text.includes('earlier') || text.includes('later') || text.includes('all events') || text.includes('learn more');
+  }
+
+  document.addEventListener('click', (e) => {
+    if (isRegistered()) return;
+    const link = e.target.closest('a');
+    if (!link || !isGatedLink(link)) return;
+    e.preventDefault();
+    pendingHref = link.href || null;
+    overlay.classList.remove('hidden');
+    document.getElementById('gate-name')?.focus();
+  }, true);
+
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name  = document.getElementById('gate-name')?.value.trim();
+      const email = document.getElementById('gate-email')?.value.trim();
+      if (!name || !email || !isValidEmail(email)) {
+        showError(error, 'Please enter a valid name and email address.');
+        return;
+      }
+      markRegistered();
+      overlay.classList.add('hidden');
+      if (pendingHref && pendingHref !== '#') window.location.href = pendingHref;
+    });
+  }
+
+  // Google Sign-In (preview: replace YOUR_CLIENT_ID with your actual client ID to test)
+  const GOOGLE_CLIENT_ID = ''; // ← paste your Client ID here for preview testing
+  if (GOOGLE_CLIENT_ID) {
+    function tryRenderGoogle() {
+      if (typeof google === 'undefined' || !google.accounts) { setTimeout(tryRenderGoogle, 200); return; }
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: (response) => {
+          try {
+            const payload = JSON.parse(atob(response.credential.split('.')[1]));
+            if (payload.name && payload.email) {
+              markRegistered();
+              overlay.classList.add('hidden');
+              if (pendingHref && pendingHref !== '#') window.location.href = pendingHref;
+            }
+          } catch { showError(error, 'Google sign-in failed. Please use the form above.'); }
+        },
+        auto_select: false,
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('gate-google-btn'),
+        { type: 'standard', theme: 'outline', size: 'large', text: 'signin_with', shape: 'rectangular', width: 300 }
+      );
+    }
+    tryRenderGoogle();
+  } else {
+    // No client ID — hide the Google divider + button in preview
+    const gBtn = document.getElementById('gate-google-btn');
+    if (gBtn) {
+      const siblings = gBtn.parentElement.querySelectorAll('.flex.items-center.gap-3');
+      siblings.forEach(el => el.remove());
+      gBtn.remove();
+    }
+  }
 })();
 </script>
 </body>
