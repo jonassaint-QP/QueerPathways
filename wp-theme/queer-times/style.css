@@ -1,0 +1,53 @@
+/*
+Theme Name: Queer Times
+Theme URI: https://queerpathways.com
+Author: QueerPathways
+Author URI: https://queerpathways.com
+Description: A vintage newspaper-inspired WordPress theme for QueerPathways, featuring the Pathways and Pillars taxonomies.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: queer-times
+Tags: custom-menu, featured-images, full-width-template, custom-logo
+*/
+
+/* ─── Base ─────────────────────────────────────────────── */
+:root {
+    --color-parchment: #f4f1ea;
+    --color-ink:       #1a1a1a;
+    --color-rule:      #8b7355;
+    --font-serif:      'UnifrakturMaguntia', 'IM Fell English', Georgia, serif;
+    --font-body:       'IM Fell English', Georgia, 'Times New Roman', serif;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--color-parchment);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: var(--color-ink);
+    text-decoration: underline;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}

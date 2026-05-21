@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Queer Times — Preview</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --parchment: #f4f1ea;
+    --ink: #1a1a1a;
+    --rule: #8b7355;
+  }
+  body { background: var(--parchment); color: var(--ink); font-family: 'IM Fell English', Georgia, serif; }
+</style>
+</head>
+<body class="bg-[#f4f1ea] text-[#1a1a1a]">
+
+<!-- Skip link -->
+<a class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-[#1a1a1a] text-[#f4f1ea] px-4 py-2 text-sm"
+   href="#main-content">Skip to content</a>
+
+<main id="main-content" class="min-h-screen">
+
+  <!-- Dateline -->
+  <div class="border-b-2 border-[#1a1a1a] py-1 px-4 flex justify-between items-center text-xs tracking-widest uppercase font-serif">
+    <span>Thursday, May 21, 2026</span>
+    <span>Where Queer Stories Find Their Voice</span>
+    <span>Vol. I &mdash; No. 1</span>
+  </div>
+
+  <!-- Masthead -->
+  <header class="py-8 px-4 text-center border-b-4 border-double border-[#1a1a1a]">
+    <h1 class="text-7xl md:text-9xl leading-none tracking-tight"
+        style="font-family:'UnifrakturMaguntia',serif;">
+      Queer Times
+    </h1>
+    <div class="flex items-center justify-center gap-3 my-3">
+      <span class="block h-px flex-1 bg-[#8b7355]"></span>
+      <span class="text-[#8b7355] text-xl">✦</span>
+      <span class="block h-px flex-1 bg-[#8b7355]"></span>
+    </div>
+    <button id="sovereign-pause-btn"
+            class="mt-2 px-8 py-3 border-2 border-[#1a1a1a] text-sm tracking-[0.25em] uppercase
+                   font-serif hover:bg-[#1a1a1a] hover:text-[#f4f1ea] transition-colors duration-300
+                   focus:outline-none focus:ring-2 focus:ring-[#8b7355] focus:ring-offset-2">
+      Sovereign Pause
+    </button>
+  </header>
+
+  <!-- Sovereign Pause overlay -->
+  <div id="sovereign-pause-overlay"
+       class="fixed inset-0 bg-[#f4f1ea]/95 backdrop-blur-sm z-50 flex flex-col items-center
+              justify-center text-center px-6 hidden"
+       role="dialog" aria-modal="true">
+    <p class="text-4xl md:text-5xl mb-6" style="font-family:'UnifrakturMaguntia',serif;">
+      Pause. Breathe. Return.
+    </p>
+    <p class="max-w-md text-base leading-relaxed mb-8 font-serif">
+      You are allowed to take up space, to rest, and to exist fully — exactly as you are.
+    </p>
+    <button id="sovereign-pause-close"
+            class="px-8 py-3 border-2 border-[#1a1a1a] text-sm tracking-[0.25em] uppercase font-serif
+                   hover:bg-[#1a1a1a] hover:text-[#f4f1ea] transition-colors duration-300">
+      Continue
+    </button>
+  </div>
+
+  <!-- 3-column newspaper grid -->
+  <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-12 gap-0 divide-x divide-[#8b7355]">
+
+    <!-- Left: Pathways -->
+    <aside class="md:col-span-3 pr-4 pb-8 md:pb-0">
+      <h2 class="text-xs tracking-widest uppercase border-b border-[#1a1a1a] pb-1 mb-3 font-serif">Pathways</h2>
+      <ul class="space-y-2 text-sm font-serif list-none p-0">
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">I Am Not Okay</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">24 Frames</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">Record Year</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">The Power of Presence</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">F-150</a></li>
+      </ul>
+    </aside>
+
+    <!-- Centre: Feature articles -->
+    <section class="md:col-span-6 px-4 pb-8 md:pb-0">
+
+      <article class="mb-8">
+        <h2 class="text-3xl leading-tight mb-2" style="font-family:'UnifrakturMaguntia',serif;">
+          <a href="#" class="hover:underline">On Somatic Sovereignty: Reclaiming the Body as Home</a>
+        </h2>
+        <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-3 font-serif">By Jordan Ellis — May 21, 2026</p>
+        <div class="w-full h-40 bg-[#d6d0c4] border border-[#8b7355] mb-4 flex items-center justify-center text-[#8b7355] text-xs tracking-widest uppercase">
+          [ Featured Image ]
+        </div>
+        <div class="font-serif text-sm leading-relaxed columns-1 md:columns-2 gap-6">
+          <p>In the tradition of queer elders who taught us that our bodies hold memory, this dispatch explores the radical act of stillness. Sovereignty is not granted — it is practiced, breath by breath, in the spaces we carve out for ourselves.</p>
+        </div>
+        <a href="#" class="inline-block mt-3 text-xs tracking-widest uppercase underline font-serif hover:no-underline">Continue Reading &rarr;</a>
+      </article>
+
+      <hr class="border-t border-double border-[#8b7355] my-6" />
+
+      <article>
+        <h2 class="text-3xl leading-tight mb-2" style="font-family:'UnifrakturMaguntia',serif;">
+          <a href="#" class="hover:underline">Relational Architecture: Building Bonds That Hold</a>
+        </h2>
+        <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-3 font-serif">By Sam Okafor — May 14, 2026</p>
+        <div class="font-serif text-sm leading-relaxed">
+          <p>Queer community is not accidental. It is architected — through intention, repair, and the willingness to remain in relationship when it is difficult. This piece examines the frameworks that let us build chosen family that lasts.</p>
+        </div>
+        <a href="#" class="inline-block mt-3 text-xs tracking-widest uppercase underline font-serif hover:no-underline">Continue Reading &rarr;</a>
+      </article>
+
+    </section>
+
+    <!-- Right: Pillars + sidebar -->
+    <aside class="md:col-span-3 pl-4">
+      <h2 class="text-xs tracking-widest uppercase border-b border-[#1a1a1a] pb-1 mb-3 font-serif">Pillars</h2>
+      <ul class="space-y-2 text-sm font-serif list-none p-0">
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">Somatic Sovereignty</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">Relational Architecture</a></li>
+        <li class="border-b border-dotted border-[#8b7355] pb-1"><a href="#" class="hover:underline">Clinical Advocacy</a></li>
+      </ul>
+
+      <div class="mt-8 border-t border-[#8b7355] pt-4">
+        <h3 class="text-xs tracking-widest uppercase mb-3 font-serif">About</h3>
+        <p class="text-sm font-serif italic leading-relaxed">
+          Queer Times is the editorial voice of QueerPathways — a space for stories of sovereignty, healing, and collective care.
+        </p>
+      </div>
+    </aside>
+
+  </div>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-[#1a1a1a] text-[#f4f1ea] py-10 mt-12">
+  <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div>
+      <p class="text-4xl leading-none" style="font-family:'UnifrakturMaguntia',serif;">Queer Times</p>
+      <p class="text-xs tracking-widest uppercase mt-2 text-[#8b7355]">Where Queer Stories Find Their Voice</p>
+    </div>
+    <nav class="text-sm font-serif space-y-1">
+      <p><a href="#" class="underline hover:no-underline text-[#f4f1ea]">Pathways</a></p>
+      <p><a href="#" class="underline hover:no-underline text-[#f4f1ea]">Pillars</a></p>
+      <p><a href="#" class="underline hover:no-underline text-[#f4f1ea]">About</a></p>
+    </nav>
+    <div class="text-xs font-serif text-[#8b7355] space-y-1 text-right">
+      <p>&copy; 2026 Queer Times. All rights reserved.</p>
+      <p>Powered by <a href="https://wordpress.org" class="underline text-[#f4f1ea]">WordPress</a></p>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-4 mt-8 pt-4 border-t border-[#8b7355] text-center text-xs text-[#8b7355] tracking-widest uppercase font-serif">
+    Queer Times — Published in solidarity &amp; care
+  </div>
+</footer>
+
+<script>
+(function () {
+  const btn = document.getElementById('sovereign-pause-btn');
+  const overlay = document.getElementById('sovereign-pause-overlay');
+  const close = document.getElementById('sovereign-pause-close');
+  btn.addEventListener('click', () => { overlay.classList.remove('hidden'); close.focus(); });
+  close.addEventListener('click', () => { overlay.classList.add('hidden'); btn.focus(); });
+  overlay.addEventListener('keydown', (e) => { if (e.key === 'Escape') { overlay.classList.add('hidden'); btn.focus(); } });
+})();
+</script>
+</body>
+</html>
