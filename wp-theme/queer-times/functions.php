@@ -10,7 +10,7 @@ declare( strict_types = 1 );
  * Set QUEER_TIMES_GOOGLE_CLIENT_ID in wp-config.php or replace the placeholder below.
  */
 if ( ! defined( 'QUEER_TIMES_GOOGLE_CLIENT_ID' ) ) {
-    define( 'QUEER_TIMES_GOOGLE_CLIENT_ID', '' ); // ← paste your Client ID here
+    define( 'QUEER_TIMES_GOOGLE_CLIENT_ID', '888592715201-sf8kiqp6ojh5ia5ktr37hdpj4hunp2be.apps.googleusercontent.com' );
 }
 
 /* ─── Theme Setup ───────────────────────────────────────── */

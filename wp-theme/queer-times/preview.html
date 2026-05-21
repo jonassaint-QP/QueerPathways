@@ -292,7 +292,7 @@ function showError(el, msg) { if (el) { el.textContent = msg; el.classList.remov
   }
 
   // Google Sign-In (preview: replace YOUR_CLIENT_ID with your actual client ID to test)
-  const GOOGLE_CLIENT_ID = ''; // ← paste your Client ID here for preview testing
+  const GOOGLE_CLIENT_ID = '888592715201-sf8kiqp6ojh5ia5ktr37hdpj4hunp2be.apps.googleusercontent.com';
   if (GOOGLE_CLIENT_ID) {
     function tryRenderGoogle() {
       if (typeof google === 'undefined' || !google.accounts) { setTimeout(tryRenderGoogle, 200); return; }
