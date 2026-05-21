@@ -66,7 +66,7 @@ get_header();
     <!-- ── Newspaper Grid ────────────────────────────────── -->
     <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-12 gap-0 divide-x divide-[#8b7355]">
 
-        <!-- Left column: Pathways index -->
+        <!-- Left column: Pathways index + About -->
         <aside class="md:col-span-3 pr-4 pb-8 md:pb-0">
             <h2 class="text-xs tracking-widest uppercase border-b border-[#1a1a1a] pb-1 mb-3 font-serif">
                 <?php _e( 'Pathways', 'queer-times' ); ?>
@@ -85,6 +85,16 @@ get_header();
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
+
+            <!-- About -->
+            <div class="mt-8 border-t border-[#8b7355] pt-4">
+                <h3 class="text-xs tracking-widest uppercase mb-3 font-serif">
+                    <?php _e( 'About', 'queer-times' ); ?>
+                </h3>
+                <p class="text-sm font-serif italic leading-relaxed">
+                    <?php echo wp_kses_post( get_bloginfo( 'description' ) ?: __( 'Queer Times is the editorial voice of QueerPathways — a space for stories of sovereignty, healing, and collective care.', 'queer-times' ) ); ?>
+                </p>
+            </div>
         </aside>
 
         <!-- Centre column: Main content -->
@@ -149,7 +159,7 @@ get_header();
             <?php endif; ?>
         </section>
 
-        <!-- Right column: Pillars index -->
+        <!-- Right column: Pillars index + Events -->
         <aside class="md:col-span-3 pl-4">
             <h2 class="text-xs tracking-widest uppercase border-b border-[#1a1a1a] pb-1 mb-3 font-serif">
                 <?php _e( 'Pillars', 'queer-times' ); ?>
@@ -168,6 +178,55 @@ get_header();
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
+
+            <!-- Events -->
+            <div class="mt-8 border-t border-[#8b7355] pt-4">
+                <h3 class="text-xs tracking-widest uppercase mb-3 font-serif">
+                    <?php _e( 'Events', 'queer-times' ); ?>
+                </h3>
+                <?php
+                $events = get_posts( [
+                    'post_type'      => 'tribe_events',
+                    'posts_per_page' => 3,
+                    'post_status'    => 'publish',
+                ] );
+
+                // Fallback: query regular posts tagged with an 'event' category
+                if ( empty( $events ) ) {
+                    $events = get_posts( [
+                        'post_type'      => 'post',
+                        'posts_per_page' => 3,
+                        'category_name'  => 'events',
+                        'post_status'    => 'publish',
+                    ] );
+                }
+                ?>
+
+                <?php if ( ! empty( $events ) ) : ?>
+                    <ul class="space-y-4 text-sm font-serif list-none p-0">
+                        <?php foreach ( $events as $event ) : ?>
+                            <li class="border-b border-dotted border-[#8b7355] pb-3 last:border-b-0 last:pb-0">
+                                <p class="text-xs tracking-widest uppercase text-[#8b7355]">
+                                    <?php echo esc_html( get_the_date( 'M j, Y', $event ) ); ?>
+                                </p>
+                                <a href="<?php echo esc_url( get_permalink( $event ) ); ?>"
+                                   class="hover:underline font-semibold">
+                                    <?php echo esc_html( get_the_title( $event ) ); ?>
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php else : ?>
+                    <p class="text-sm font-serif italic">
+                        <?php _e( 'No upcoming events. Check back soon.', 'queer-times' ); ?>
+                    </p>
+                <?php endif; ?>
+
+                <a href="<?php echo esc_url( home_url( '/events' ) ); ?>"
+                   class="inline-block mt-4 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
+                    <?php _e( 'All Events &rarr;', 'queer-times' ); ?>
+                </a>
+            </div>
 
             <!-- Sidebar widgets -->
             <?php if ( is_active_sidebar( 'sidebar-1' ) ) : ?>
