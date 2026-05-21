@@ -91,10 +91,58 @@ get_header();
                 <h3 class="text-xs tracking-widest uppercase mb-3 font-serif">
                     <?php _e( 'About', 'queer-times' ); ?>
                 </h3>
-                <p class="text-sm font-serif italic leading-relaxed">
-                    <?php echo wp_kses_post( get_bloginfo( 'description' ) ?: __( 'Queer Times is the editorial voice of QueerPathways — a space for stories of sovereignty, healing, and collective care.', 'queer-times' ) ); ?>
-                </p>
+                <?php
+                // Primary: query the 'queerpathways' custom post type
+                $about_posts = get_posts( [
+                    'post_type'      => 'queerpathways',
+                    'posts_per_page' => 3,
+                    'post_status'    => 'publish',
+                ] );
+
+                // Fallback: posts in the standard 'about' category
+                if ( empty( $about_posts ) ) {
+                    $about_posts = get_posts( [
+                        'post_type'      => 'post',
+                        'posts_per_page' => 3,
+                        'category_name'  => 'about',
+                        'post_status'    => 'publish',
+                    ] );
+                }
+                ?>
+
+                <?php if ( ! empty( $about_posts ) ) : ?>
+                    <ul class="space-y-4 text-sm font-serif list-none p-0">
+                        <?php foreach ( $about_posts as $about_post ) : ?>
+                            <li class="border-b border-dotted border-[#8b7355] pb-3 last:border-b-0 last:pb-0">
+                                <a href="<?php echo esc_url( get_permalink( $about_post ) ); ?>"
+                                   class="hover:underline font-semibold leading-snug">
+                                    <?php echo esc_html( get_the_title( $about_post ) ); ?>
+                                </a>
+                                <?php
+                                $excerpt = get_the_excerpt( $about_post );
+                                if ( $excerpt ) : ?>
+                                    <p class="text-xs italic mt-0.5 leading-relaxed">
+                                        <?php echo esc_html( wp_trim_words( $excerpt, 15 ) ); ?>
+                                    </p>
+                                <?php endif; ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <a href="<?php echo esc_url( get_post_type_archive_link( 'queerpathways' ) ?: home_url( '/about' ) ); ?>"
+                       class="inline-block mt-4 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
+                        <?php _e( 'Learn More &rarr;', 'queer-times' ); ?>
+                    </a>
+                <?php else : ?>
+                    <p class="text-sm font-serif italic leading-relaxed">
+                        <?php _e( 'Queer Times is the editorial voice of QueerPathways — a space for stories of sovereignty, healing, and collective care.', 'queer-times' ); ?>
+                    </p>
+                    <a href="<?php echo esc_url( home_url( '/about' ) ); ?>"
+                       class="inline-block mt-3 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
+                        <?php _e( 'Learn More &rarr;', 'queer-times' ); ?>
+                    </a>
+                <?php endif; ?>
             </div>
+
         </aside>
 
         <!-- Centre column: Main content -->
