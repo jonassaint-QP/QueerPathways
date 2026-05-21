@@ -38,6 +38,12 @@ function markRegistered() {
 }
 
 function initReaderGate() {
+    // Staff bypass — editors and above sail through with no gate
+    if (typeof QueerTimesConfig !== 'undefined' && QueerTimesConfig.is_staff) {
+        console.log('Staff detected. The harbor is open—no gate required.');
+        return;
+    }
+
     if (isRegistered()) return; // already signed up — no gate needed
 
     const overlay = document.getElementById('reader-gate-overlay');

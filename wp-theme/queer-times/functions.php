@@ -84,6 +84,7 @@ function queer_times_enqueue_assets(): void {
         'googleClientId' => QUEER_TIMES_GOOGLE_CLIENT_ID,
         'restUrl'        => esc_url_raw( rest_url( 'queer-times/v1/subscriber' ) ),
         'nonce'          => wp_create_nonce( 'wp_rest' ),
+        'is_staff'       => current_user_can( 'edit_posts' ),
     ] );
 }
 add_action( 'wp_enqueue_scripts', 'queer_times_enqueue_assets' );
