@@ -276,10 +276,27 @@ function queer_times_fetch_feed( string $feed_url, int $limit = 3, string $cache
         return [];
     }
 
-    $items  = $feed->get_items( 0, $limit );
-    $result = [];
+    // Fetch extra items so we still hit $limit after filtering
+    $raw_items = $feed->get_items( 0, $limit + 10 );
+    $result    = [];
 
-    foreach ( $items as $item ) {
+    // Articles go live on LinkedIn/Substack 48 hours after the website publish.
+    // Only surface items whose feed date is at least 48 hours old so we never
+    // link to a platform post before it exists.
+    $cutoff = time() - ( 48 * HOUR_IN_SECONDS );
+
+    foreach ( $raw_items as $item ) {
+        if ( count( $result ) >= $limit ) {
+            break;
+        }
+
+        $pub_timestamp = $item->get_date( 'U' ); // Unix timestamp
+
+        // If the feed item has no date, include it (can't know, so be permissive)
+        if ( $pub_timestamp && (int) $pub_timestamp > $cutoff ) {
+            continue; // Too recent — not yet on the platform
+        }
+
         $description = $item->get_description();
         $result[]    = [
             'title'   => wp_strip_all_tags( $item->get_title() ),
