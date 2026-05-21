@@ -361,6 +361,97 @@ get_header();
 
     </div><!-- /.grid -->
 
+    <!-- ── From the Desk: LinkedIn & Substack ────────────── -->
+    <?php
+    $substack_articles = queer_times_get_substack_articles( 3 );
+    $linkedin_articles = queer_times_get_linkedin_articles( 3 );
+    $has_external      = ! empty( $substack_articles ) || ! empty( $linkedin_articles );
+    ?>
+
+    <?php if ( $has_external ) : ?>
+    <section class="max-w-7xl mx-auto px-4 py-8 border-t-4 border-double border-[#1a1a1a] mt-4">
+
+        <h2 class="text-center text-xs tracking-widest uppercase mb-6 font-serif border-b border-[#8b7355] pb-2">
+            <?php _e( 'From the Desk', 'queer-times' ); ?>
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-0 divide-x divide-[#8b7355]">
+
+            <!-- Substack -->
+            <?php if ( ! empty( $substack_articles ) ) : ?>
+            <div class="pr-0 md:pr-6 pb-8 md:pb-0">
+                <div class="flex items-center gap-2 mb-4">
+                    <!-- Substack icon -->
+                    <svg class="w-4 h-4 text-[#8b7355] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+                    </svg>
+                    <h3 class="text-xs tracking-widest uppercase font-serif"><?php _e( 'On Substack', 'queer-times' ); ?></h3>
+                </div>
+                <ul class="space-y-5 list-none p-0">
+                    <?php foreach ( $substack_articles as $article ) : ?>
+                        <li class="border-b border-dotted border-[#8b7355] pb-4 last:border-b-0 last:pb-0">
+                            <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">
+                                <?php echo esc_html( $article['date'] ); ?>
+                            </p>
+                            <a href="<?php echo esc_url( $article['url'] ); ?>"
+                               target="_blank" rel="noopener noreferrer"
+                               class="font-semibold text-sm leading-snug hover:underline font-serif">
+                                <?php echo esc_html( $article['title'] ); ?>
+                            </a>
+                            <?php if ( $article['excerpt'] ) : ?>
+                                <p class="text-xs italic mt-1 leading-relaxed font-serif">
+                                    <?php echo esc_html( $article['excerpt'] ); ?>
+                                </p>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+                <?php if ( QUEER_TIMES_SUBSTACK_URL ) : ?>
+                    <a href="<?php echo esc_url( rtrim( QUEER_TIMES_SUBSTACK_URL, '/' ) ); ?>"
+                       target="_blank" rel="noopener noreferrer"
+                       class="inline-block mt-4 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
+                        <?php _e( 'All Posts on Substack &rarr;', 'queer-times' ); ?>
+                    </a>
+                <?php endif; ?>
+            </div>
+            <?php endif; ?>
+
+            <!-- LinkedIn -->
+            <?php if ( ! empty( $linkedin_articles ) ) : ?>
+            <div class="pl-0 md:pl-6 pt-8 md:pt-0">
+                <div class="flex items-center gap-2 mb-4">
+                    <!-- LinkedIn icon -->
+                    <svg class="w-4 h-4 text-[#8b7355] fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                    <h3 class="text-xs tracking-widest uppercase font-serif"><?php _e( 'On LinkedIn', 'queer-times' ); ?></h3>
+                </div>
+                <ul class="space-y-5 list-none p-0">
+                    <?php foreach ( $linkedin_articles as $article ) : ?>
+                        <li class="border-b border-dotted border-[#8b7355] pb-4 last:border-b-0 last:pb-0">
+                            <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">
+                                <?php echo esc_html( $article['date'] ); ?>
+                            </p>
+                            <a href="<?php echo esc_url( $article['url'] ); ?>"
+                               target="_blank" rel="noopener noreferrer"
+                               class="font-semibold text-sm leading-snug hover:underline font-serif">
+                                <?php echo esc_html( $article['title'] ); ?>
+                            </a>
+                            <?php if ( $article['excerpt'] ) : ?>
+                                <p class="text-xs italic mt-1 leading-relaxed font-serif">
+                                    <?php echo esc_html( $article['excerpt'] ); ?>
+                                </p>
+                            <?php endif; ?>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+            <?php endif; ?>
+
+        </div>
+    </section>
+    <?php endif; ?>
+
 </main>
 
 <script>

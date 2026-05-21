@@ -226,3 +226,90 @@ function queer_times_save_subscriber( WP_REST_Request $request ): WP_REST_Respon
 
     return new WP_REST_Response( [ 'success' => true ], 200 );
 }
+
+/* ─── External Feed Helpers ─────────────────────────────── */
+
+/**
+ * Feed URLs — set these in wp-config.php or override here.
+ *   define( 'QUEER_TIMES_SUBSTACK_URL', 'https://yourname.substack.com' );
+ *   define( 'QUEER_TIMES_LINKEDIN_RSS', 'https://rss.app/feeds/YOUR_FEED_ID.xml' );
+ *
+ * LinkedIn no longer provides native public RSS feeds. Use rss.app, fetchrss.com,
+ * or a similar bridge service to generate an RSS URL from your LinkedIn profile/articles,
+ * then set it as QUEER_TIMES_LINKEDIN_RSS.
+ */
+if ( ! defined( 'QUEER_TIMES_SUBSTACK_URL' ) ) {
+    define( 'QUEER_TIMES_SUBSTACK_URL', '' ); // e.g. https://yourname.substack.com
+}
+if ( ! defined( 'QUEER_TIMES_LINKEDIN_RSS' ) ) {
+    define( 'QUEER_TIMES_LINKEDIN_RSS', '' ); // RSS bridge URL for your LinkedIn articles
+}
+
+/**
+ * Fetch and cache an external RSS feed.
+ *
+ * @param string $feed_url  Full RSS feed URL.
+ * @param int    $limit     Number of items to return.
+ * @param string $cache_key Transient key.
+ * @return array<int, array{title: string, url: string, date: string, excerpt: string}> Items or empty array.
+ */
+function queer_times_fetch_feed( string $feed_url, int $limit = 3, string $cache_key = '' ): array {
+    if ( empty( $feed_url ) ) {
+        return [];
+    }
+
+    $cache_key = $cache_key ?: 'qt_feed_' . md5( $feed_url );
+    $cached    = get_transient( $cache_key );
+
+    if ( is_array( $cached ) ) {
+        return $cached;
+    }
+
+    // WordPress built-in RSS parser (SimplePie)
+    if ( ! function_exists( 'fetch_feed' ) ) {
+        require_once ABSPATH . WPINC . '/feed.php';
+    }
+
+    $feed = fetch_feed( $feed_url );
+
+    if ( is_wp_error( $feed ) ) {
+        return [];
+    }
+
+    $items  = $feed->get_items( 0, $limit );
+    $result = [];
+
+    foreach ( $items as $item ) {
+        $description = $item->get_description();
+        $result[]    = [
+            'title'   => wp_strip_all_tags( $item->get_title() ),
+            'url'     => esc_url( $item->get_permalink() ),
+            'date'    => $item->get_date( 'M j, Y' ),
+            'excerpt' => wp_trim_words( wp_strip_all_tags( $description ), 20 ),
+        ];
+    }
+
+    // Cache for 2 hours
+    set_transient( $cache_key, $result, 2 * HOUR_IN_SECONDS );
+
+    return $result;
+}
+
+/**
+ * Fetch Substack articles.
+ */
+function queer_times_get_substack_articles( int $limit = 3 ): array {
+    $url = QUEER_TIMES_SUBSTACK_URL;
+    if ( empty( $url ) ) return [];
+
+    // Substack RSS feed is at /feed
+    $feed_url = rtrim( $url, '/' ) . '/feed';
+    return queer_times_fetch_feed( $feed_url, $limit, 'qt_substack_feed' );
+}
+
+/**
+ * Fetch LinkedIn articles via RSS bridge.
+ */
+function queer_times_get_linkedin_articles( int $limit = 3 ): array {
+    return queer_times_fetch_feed( QUEER_TIMES_LINKEDIN_RSS, $limit, 'qt_linkedin_feed' );
+}
