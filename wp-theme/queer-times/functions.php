@@ -288,6 +288,62 @@ function queer_times_get_linkedin_posts( int $limit = 3 ): array {
     return queer_times_get_distribution_posts( 'linkedin', $limit );
 }
 
+/* ─── Podcast Helpers ───────────────────────────────────── */
+
+/**
+ * Substack podcast RSS. Override in wp-config.php once on Apple Podcasts.
+ * define( 'QUEER_TIMES_APPLE_PODCASTS_URL', 'https://podcasts.apple.com/us/podcast/...' );
+ * define( 'QUEER_TIMES_SPOTIFY_URL', 'https://open.spotify.com/show/...' );
+ */
+if ( ! defined( 'QUEER_TIMES_SUBSTACK_PODCAST_URL' ) ) {
+    define( 'QUEER_TIMES_SUBSTACK_PODCAST_URL', 'https://queerpathways.substack.com/podcast' );
+}
+
+/**
+ * Fetch latest podcast episodes from the Substack RSS feed.
+ *
+ * @param int $limit Max episodes to return.
+ * @return array<int, array{title, url, date, duration, excerpt}>
+ */
+function queer_times_get_podcast_episodes( int $limit = 20 ): array {
+    $feed_url  = QUEER_TIMES_SUBSTACK_PODCAST_URL;
+    $cache_key = 'qt_podcast_episodes';
+    $cached    = get_transient( $cache_key );
+
+    if ( is_array( $cached ) ) return $cached;
+
+    if ( ! function_exists( 'fetch_feed' ) ) {
+        require_once ABSPATH . WPINC . '/feed.php';
+    }
+
+    $feed = fetch_feed( $feed_url );
+
+    if ( is_wp_error( $feed ) ) return [];
+
+    $items   = $feed->get_items( 0, $limit );
+    $result  = [];
+
+    foreach ( $items as $item ) {
+        // Duration from iTunes namespace
+        $duration = '';
+        $itunes   = $item->get_item_tags( 'http://www.itunes.com/dtds/podcast-1.0.dtd', 'duration' );
+        if ( ! empty( $itunes[0]['data'] ) ) {
+            $duration = esc_html( $itunes[0]['data'] );
+        }
+
+        $result[] = [
+            'title'    => wp_strip_all_tags( $item->get_title() ),
+            'url'      => esc_url_raw( $item->get_permalink() ),
+            'date'     => $item->get_date( 'F j, Y' ),
+            'duration' => $duration,
+            'excerpt'  => wp_trim_words( wp_strip_all_tags( $item->get_description() ), 30 ),
+        ];
+    }
+
+    set_transient( $cache_key, $result, 2 * HOUR_IN_SECONDS );
+    return $result;
+}
+
 /* ─── Lu.ma Events Helper ───────────────────────────────── */
 
 /**
