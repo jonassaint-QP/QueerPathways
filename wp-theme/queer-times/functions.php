@@ -227,22 +227,73 @@ function queer_times_save_subscriber( WP_REST_Request $request ): WP_REST_Respon
     return new WP_REST_Response( [ 'success' => true ], 200 );
 }
 
-/* ─── External Feed Helpers ─────────────────────────────── */
-
+/* ─── Seed Distribution Categories ─────────────────────── */
 /**
- * Feed URLs — set these in wp-config.php or override here.
- *   define( 'QUEER_TIMES_SUBSTACK_URL', 'https://yourname.substack.com' );
- *   define( 'QUEER_TIMES_LINKEDIN_RSS', 'https://rss.app/feeds/YOUR_FEED_ID.xml' );
- *
- * LinkedIn no longer provides native public RSS feeds. Use rss.app, fetchrss.com,
- * or a similar bridge service to generate an RSS URL from your LinkedIn profile/articles,
- * then set it as QUEER_TIMES_LINKEDIN_RSS.
+ * Create the 'substack' and 'linkedin' categories on theme activation
+ * so editors can immediately tag articles for cross-posting.
  */
+function queer_times_seed_distribution_categories(): void {
+    $categories = [
+        'substack' => [
+            'name'        => 'Substack',
+            'description' => 'Articles written for QueerPathways and cross-posted to Substack 48 hours after site publication.',
+        ],
+        'linkedin' => [
+            'name'        => 'LinkedIn',
+            'description' => 'Articles written for QueerPathways and cross-posted to LinkedIn 48 hours after site publication.',
+        ],
+    ];
+
+    foreach ( $categories as $slug => $data ) {
+        if ( ! term_exists( $slug, 'category' ) ) {
+            wp_insert_term( $data['name'], 'category', [
+                'slug'        => $slug,
+                'description' => $data['description'],
+            ] );
+        }
+    }
+}
+add_action( 'after_switch_theme', 'queer_times_seed_distribution_categories' );
+
+/* ─── Distribution Article Helpers ─────────────────────── */
+/**
+ * Get WordPress posts in a distribution category, filtered to those
+ * published at least 48 hours ago (already live on the platform).
+ *
+ * @param string $category_slug 'substack' or 'linkedin'.
+ * @param int    $limit         Number of posts to return.
+ * @return WP_Post[]
+ */
+function queer_times_get_distribution_posts( string $category_slug, int $limit = 3 ): array {
+    $cutoff = gmdate( 'Y-m-d H:i:s', time() - ( 48 * HOUR_IN_SECONDS ) );
+
+    return get_posts( [
+        'post_type'      => 'post',
+        'post_status'    => 'publish',
+        'posts_per_page' => $limit,
+        'category_name'  => $category_slug,
+        'date_query'     => [
+            [ 'column' => 'post_date_gmt', 'before' => $cutoff ],
+        ],
+        'orderby'        => 'date',
+        'order'          => 'DESC',
+    ] );
+}
+
+function queer_times_get_substack_posts( int $limit = 3 ): array {
+    return queer_times_get_distribution_posts( 'substack', $limit );
+}
+
+function queer_times_get_linkedin_posts( int $limit = 3 ): array {
+    return queer_times_get_distribution_posts( 'linkedin', $limit );
+}
+
+/* ─── External Feed Helpers (optional RSS import) ───────── */
 if ( ! defined( 'QUEER_TIMES_SUBSTACK_URL' ) ) {
-    define( 'QUEER_TIMES_SUBSTACK_URL', '' ); // e.g. https://yourname.substack.com
+    define( 'QUEER_TIMES_SUBSTACK_URL', '' );
 }
 if ( ! defined( 'QUEER_TIMES_LINKEDIN_RSS' ) ) {
-    define( 'QUEER_TIMES_LINKEDIN_RSS', '' ); // RSS bridge URL for your LinkedIn articles
+    define( 'QUEER_TIMES_LINKEDIN_RSS', '' );
 }
 
 /**
