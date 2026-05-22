@@ -17,9 +17,15 @@
   status = 301
 
 [[redirects]]
-  from = "/soundtrack"
-  to   = "/soundtrack/"
+  from   = "/soundtrack"
+  to     = "/soundtrack/"
   status = 301
+
+# SPA catch-all — serves index.html for any unmatched route (200 = no URL change)
+[[redirects]]
+  from   = "/*"
+  to     = "/index.html"
+  status = 200
 
 [[headers]]
   for = "/*"
