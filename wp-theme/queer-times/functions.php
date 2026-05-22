@@ -288,6 +288,145 @@ function queer_times_get_linkedin_posts( int $limit = 3 ): array {
     return queer_times_get_distribution_posts( 'linkedin', $limit );
 }
 
+/* ─── Lu.ma Events Helper ───────────────────────────────── */
+
+/**
+ * Lu.ma calendar iCal URL.
+ * To get your URL: lu.ma → Calendar Settings → Add to Calendar → Copy iCal link.
+ * Format: https://api.lu.ma/ics/cal-XXXXXXXXXX
+ * Override in wp-config.php: define( 'QUEER_TIMES_LUMA_CALENDAR_URL', 'https://api.lu.ma/ics/cal-...' );
+ */
+if ( ! defined( 'QUEER_TIMES_LUMA_CALENDAR_URL' ) ) {
+    define( 'QUEER_TIMES_LUMA_CALENDAR_URL', 'https://lu.ma/queerpathways/events.ics' );
+}
+
+/**
+ * Fetch upcoming events from the Lu.ma iCal feed.
+ *
+ * @param int $limit Max events to return (0 = all upcoming).
+ * @return array<int, array{title, start_ts, end_ts, start_fmt, start_time, start_month, start_day, start_year, url, location, description}>
+ */
+function queer_times_get_luma_events( int $limit = 20 ): array {
+    $url = QUEER_TIMES_LUMA_CALENDAR_URL;
+    if ( empty( $url ) ) return [];
+
+    $cache_key = 'qt_luma_events_' . md5( $url );
+    $cached    = get_transient( $cache_key );
+    if ( is_array( $cached ) ) return $cached;
+
+    $response = wp_remote_get( $url, [ 'timeout' => 10 ] );
+    if ( is_wp_error( $response ) || wp_remote_retrieve_response_code( $response ) !== 200 ) {
+        return [];
+    }
+
+    $ical   = wp_remote_retrieve_body( $response );
+    $events = queer_times_parse_ical( $ical );
+
+    // Keep only upcoming events, sorted soonest first
+    $now    = time();
+    $events = array_filter( $events, fn( $e ) => $e['start_ts'] >= $now );
+    usort( $events, fn( $a, $b ) => $a['start_ts'] <=> $b['start_ts'] );
+
+    if ( $limit > 0 ) {
+        $events = array_slice( $events, 0, $limit );
+    }
+
+    $events = array_values( $events );
+    set_transient( $cache_key, $events, HOUR_IN_SECONDS ); // refresh every hour
+
+    return $events;
+}
+
+/**
+ * Minimal RFC 5545 iCal VEVENT parser.
+ *
+ * @param string $ical Raw .ics content.
+ * @return array<int, array{...}>
+ */
+function queer_times_parse_ical( string $ical ): array {
+    // Unfold continuation lines (RFC 5545 §3.1)
+    $ical = preg_replace( "/\r\n[ \t]/", '', $ical );
+    $ical = preg_replace( "/\n[ \t]/", '', $ical );
+
+    $events   = [];
+    $in_event = false;
+    $current  = [];
+
+    foreach ( explode( "\n", $ical ) as $raw_line ) {
+        $line = rtrim( $raw_line, "\r" );
+
+        if ( $line === 'BEGIN:VEVENT' ) {
+            $in_event = true;
+            $current  = [];
+            continue;
+        }
+
+        if ( $line === 'END:VEVENT' ) {
+            $in_event = false;
+            if ( ! empty( $current['SUMMARY'] ) && ! empty( $current['DTSTART'] ) ) {
+                $start_ts = queer_times_ical_ts( $current['DTSTART'] );
+                $end_ts   = isset( $current['DTEND'] ) ? queer_times_ical_ts( $current['DTEND'] ) : $start_ts;
+
+                $events[] = [
+                    'title'       => queer_times_ical_unescape( $current['SUMMARY'] ),
+                    'start_ts'    => $start_ts,
+                    'end_ts'      => $end_ts,
+                    'start_fmt'   => $start_ts ? date_i18n( 'l, F j, Y', $start_ts ) : '',
+                    'start_time'  => $start_ts ? date_i18n( 'g:i a T', $start_ts ) : '',
+                    'start_month' => $start_ts ? date_i18n( 'M', $start_ts ) : '',
+                    'start_day'   => $start_ts ? date_i18n( 'j', $start_ts ) : '',
+                    'start_year'  => $start_ts ? date_i18n( 'Y', $start_ts ) : '',
+                    'url'         => isset( $current['URL'] ) ? esc_url_raw( trim( $current['URL'] ) ) : '',
+                    'location'    => queer_times_ical_unescape( $current['LOCATION']    ?? '' ),
+                    'description' => queer_times_ical_unescape( $current['DESCRIPTION'] ?? '' ),
+                ];
+            }
+            continue;
+        }
+
+        if ( ! $in_event ) continue;
+
+        // Property lines may carry parameters: DTSTART;TZID=America/New_York:20250101T190000
+        $colon = strpos( $line, ':' );
+        if ( $colon === false ) continue;
+
+        $prop_full = substr( $line, 0, $colon );
+        $value     = substr( $line, $colon + 1 );
+        $prop_name = strtoupper( explode( ';', $prop_full )[0] );
+
+        $current[ $prop_name ] = $value;
+    }
+
+    return $events;
+}
+
+/** Convert iCal date/datetime string to Unix timestamp. */
+function queer_times_ical_ts( string $dt ): int {
+    $dt = trim( $dt );
+    // Date only: YYYYMMDD
+    if ( preg_match( '/^(\d{4})(\d{2})(\d{2})$/', $dt, $m ) ) {
+        return (int) mktime( 0, 0, 0, (int) $m[2], (int) $m[3], (int) $m[1] );
+    }
+    // UTC datetime: YYYYMMDDTHHmmssZ
+    if ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})Z$/', $dt, $m ) ) {
+        return (int) gmmktime( (int) $m[4], (int) $m[5], (int) $m[6], (int) $m[2], (int) $m[3], (int) $m[1] );
+    }
+    // Floating datetime: YYYYMMDDTHHmmss
+    if ( preg_match( '/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})$/', $dt, $m ) ) {
+        return (int) mktime( (int) $m[4], (int) $m[5], (int) $m[6], (int) $m[2], (int) $m[3], (int) $m[1] );
+    }
+    return 0;
+}
+
+/** Unescape iCal text values per RFC 5545. */
+function queer_times_ical_unescape( string $v ): string {
+    return str_replace(
+        [ '\\,', '\\;', '\\n', '\\N', '\\\\' ],
+        [ ',',   ';',   "\n",  "\n",  '\\'   ],
+        $v
+    );
+}
+
 /* ─── External Feed Helpers (optional RSS import) ───────── */
 if ( ! defined( 'QUEER_TIMES_SUBSTACK_URL' ) ) {
     define( 'QUEER_TIMES_SUBSTACK_URL', '' );
