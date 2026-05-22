@@ -297,7 +297,7 @@ function queer_times_get_linkedin_posts( int $limit = 3 ): array {
  * Override in wp-config.php: define( 'QUEER_TIMES_LUMA_CALENDAR_URL', 'https://api.lu.ma/ics/cal-...' );
  */
 if ( ! defined( 'QUEER_TIMES_LUMA_CALENDAR_URL' ) ) {
-    define( 'QUEER_TIMES_LUMA_CALENDAR_URL', 'https://lu.ma/queerpathways/events.ics' );
+    define( 'QUEER_TIMES_LUMA_CALENDAR_URL', 'https://api.lu.ma/ics/cal-ueIXUSOSnDJQsIS' );
 }
 
 /**
