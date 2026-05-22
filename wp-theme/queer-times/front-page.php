@@ -402,10 +402,14 @@ get_header();
                         </li>
                     <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
-                <a href="<?php echo esc_url( get_category_link( get_category_by_slug( 'substack' ) ) ); ?>"
+                <?php
+                $substack_cat = get_category_by_slug( 'substack' );
+                if ( $substack_cat ) : ?>
+                <a href="<?php echo esc_url( get_category_link( $substack_cat ) ); ?>"
                    class="inline-block mt-4 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
                     <?php _e( 'All Substack Articles &rarr;', 'queer-times' ); ?>
                 </a>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
 
@@ -434,10 +438,14 @@ get_header();
                         </li>
                     <?php endforeach; wp_reset_postdata(); ?>
                 </ul>
-                <a href="<?php echo esc_url( get_category_link( get_category_by_slug( 'linkedin' ) ) ); ?>"
+                <?php
+                $linkedin_cat = get_category_by_slug( 'linkedin' );
+                if ( $linkedin_cat ) : ?>
+                <a href="<?php echo esc_url( get_category_link( $linkedin_cat ) ); ?>"
                    class="inline-block mt-4 text-xs tracking-widest uppercase underline font-serif hover:no-underline">
                     <?php _e( 'All LinkedIn Articles &rarr;', 'queer-times' ); ?>
                 </a>
+                <?php endif; ?>
             </div>
             <?php endif; ?>
 
