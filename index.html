@@ -424,6 +424,24 @@
             .btn { width: 100%; }
         }
     </style>
+    <script>
+      // Restore route encoded by 404.html for GitHub Pages SPA routing.
+      // Runs before React mounts so the router sees the correct pathname.
+      (function(l) {
+        if (l.search[1] === 'p' && l.search[2] === '=') {
+          var decoded = l.search.slice(1).split('&').reduce(function(acc, s) {
+            var kv = s.split('=');
+            if (kv[0] === 'p') acc.path = decodeURIComponent(kv[1].replace(/~and~/g, '&'));
+            if (kv[0] === 'q') acc.query = '?' + decodeURIComponent(kv[1].replace(/~and~/g, '&'));
+            return acc;
+          }, { path: '', query: '' });
+          window.history.replaceState(
+            null, null,
+            l.pathname.slice(0, -1) + decoded.path + decoded.query + l.hash
+          );
+        }
+      }(window.location));
+    </script>
 </head>
 <body>
     <header class="navbar">

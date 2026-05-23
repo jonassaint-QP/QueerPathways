@@ -5,13 +5,20 @@
     <title>Queer Pathways</title>
     <script>
       // Single-page app routing for GitHub Pages.
-      // Redirects 404s back to index.html while preserving the URL path.
+      // When GitHub Pages serves a 404 for a deep route (e.g. /presence),
+      // this script encodes the path into a query param and redirects to
+      // index.html, which decodes it and restores the URL via history API.
+      //
+      // pathSegmentsToKeep = 1 → keeps the repo name segment in the URL
+      // (use 0 only for root GitHub Pages sites like username.github.io)
+      var pathSegmentsToKeep = 1;
+
       var l = window.location;
       l.replace(
         l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
-        l.pathname.split('/').slice(0, 1).join('/') +
-        '/?p=' + encodeURIComponent(l.pathname.slice(1)) +
-        (l.search ? '&' + l.search.slice(1) : '') +
+        l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') +
+        '/?p=/' + l.pathname.split('/').slice(1 + pathSegmentsToKeep).join('/').replace(/&/g, '~and~') +
+        (l.search ? '&q=' + l.search.slice(1).replace(/&/g, '~and~') : '') +
         l.hash
       );
     </script>
