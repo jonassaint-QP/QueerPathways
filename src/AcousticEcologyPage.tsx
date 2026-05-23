@@ -15,7 +15,7 @@ const tracks = [
     hz: '528Hz Solfeggio',
   },
   {
-    title: 'Internal Auditor Recess',
+    title: 'Systemic Exhaustion Recess',
     description: 'Rhythmic, repetitive patterns that interrupt shame-loop rumination by engaging the pattern-recognition circuitry.',
     use: 'RSD episodes / Shame spirals',
     hz: 'Alpha wave 10Hz',

@@ -127,7 +127,7 @@ export default function ReferralFactSheet() {
                     className="text-lg font-bold mb-2"
                     style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
                   >
-                    The Internal Auditor
+                    Systemic Exhaustion
                   </h3>
                   <p className="text-amber-100/70 text-sm leading-relaxed">
                     The part of the client that relentlessly monitors for evidence of wrongness.

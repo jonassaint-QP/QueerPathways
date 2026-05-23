@@ -17,11 +17,11 @@ export default function InternalAuditorGuide() {
         <header className="space-y-4">
           <p className="text-xs uppercase tracking-widest text-amber-400 font-semibold">Resource Landing Page</p>
           <h1 className="text-4xl md:text-6xl font-bold font-serif leading-tight">
-            The Internal Auditor&apos;s Guide to Kink and Internal Regulation
+            The Systemic Exhaustion Guide to Kink and Internal Regulation
           </h1>
           <p className="text-lg text-amber-100 leading-relaxed max-w-4xl">
             A practical roadmap for queer and neurodivergent adults navigating rejection sensitivity,
-            double-masking, and burnout. The goal is not to erase the Internal Auditor, but to demote it
+            double-masking, and burnout. The goal is not to erase Systemic Exhaustion, but to demote it
             from CEO to junior accountant.
           </p>
         </header>
@@ -40,7 +40,7 @@ export default function InternalAuditorGuide() {
             Cliff Notes (TLDR)
           </h2>
           <ul className="space-y-3 text-amber-100 leading-relaxed">
-            <li className="flex items-start gap-3"><CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} /><span>The Internal Auditor is a nervous system safety strategy, not a character flaw.</span></li>
+            <li className="flex items-start gap-3"><CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} /><span>Systemic Exhaustion is a nervous system safety strategy, not a character flaw.</span></li>
             <li className="flex items-start gap-3"><CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} /><span>Somatic anchors bring attention back to the body when rumination and threat-scanning spike.</span></li>
             <li className="flex items-start gap-3"><CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} /><span>Negotiation is executive functioning support in disguise: explicit agreements reduce ambiguity and cognitive load.</span></li>
             <li className="flex items-start gap-3"><CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} /><span>Aftercare and DBT-based regulation prevent neurochemical drops from becoming shame spirals.</span></li>
@@ -50,7 +50,7 @@ export default function InternalAuditorGuide() {
         <section className="grid md:grid-cols-3 gap-5">
           <article className="bg-emerald-900/30 border border-emerald-800/60 rounded-2xl p-6 space-y-3">
             <h3 className="font-bold text-xl flex items-center gap-2"><Brain className="text-amber-400" size={20} />Part 1</h3>
-            <p className="font-semibold">Meeting the Internal Auditor</p>
+            <p className="font-semibold">Meeting Systemic Exhaustion</p>
             <p className="text-sm text-amber-100">Understand RSD, minority stress, and double-masking as a predictable neurobiological pattern.</p>
           </article>
           <article className="bg-emerald-900/30 border border-emerald-800/60 rounded-2xl p-6 space-y-3">

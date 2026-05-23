@@ -19,7 +19,7 @@ export default function ICAPage() {
             Meet Alex.
           </h1>
           <p className="text-lg text-amber-100 leading-relaxed max-w-4xl">
-            Alex is our Ideal Client Archetype — a composite of the brilliant, burned-out, Double-Outsider who arrives at Queer Pathways ready to dismantle the internal courtroom and step into radical belonging.
+            Alex is our Ideal Client Archetype — a composite of the brilliant, burned-out, Double-Outsider who arrives at Queer Pathways ready to build sovereignty architecture and step into radical belonging.
           </p>
         </header>
 
@@ -44,7 +44,7 @@ export default function ICAPage() {
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} />
-                <span>Carries an Internal Auditor — relentlessly litigating their worthiness.</span>
+                <span>Carries Systemic Exhaustion — relentlessly litigating their worthiness.</span>
               </li>
               <li className="flex items-start gap-3">
                 <CheckCircle2 className="text-amber-400 mt-1 shrink-0" size={18} />
@@ -120,7 +120,7 @@ export default function ICAPage() {
             href="/resources/internal-auditor-guide"
             className="inline-block border-2 border-amber-50 text-amber-50 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-50/10 transition-all text-center"
           >
-            Read the Internal Auditor Guide
+            Read the Systemic Exhaustion Guide
           </a>
         </div>
       </div>

@@ -313,7 +313,7 @@ export default function App() {
               <h2 className="text-5xl md:text-6xl font-bold font-serif leading-tight">The Courtroom You Never Agreed to Enter.</h2>
             </div>
             <div className="space-y-6 text-amber-100 text-lg border-l-2 border-amber-400 pl-6" style={{ lineHeight: '1.75' }}>  
-              <p>Many queer and neurodivergent visionaries arrive carrying an <strong>Internal Auditor</strong>—the psychological mechanism that tracks the <strong>Ambiguity Tax</strong>: the exhausting mental cost of decoding how to act "normal" in corporate or social spaces while your actual genius is being mis-filed as a character flaw.</p>  
+              <p>Many queer and neurodivergent visionaries arrive carrying <strong>Systemic Exhaustion</strong>—the psychological mechanism that tracks the <strong>Ambiguity Tax</strong>: the exhausting mental cost of decoding how to act "normal" in corporate or social spaces while your actual genius is being mis-filed as a character flaw.</p>  
               <p style={{ paddingTop: '6pt' }}>Trauma isn't just a memory. It is an <strong>Exhibit in a trial that never ends</strong>—stored in an Evidence Locker your nervous system keeps sealed shut. We help you open that locker without being buried by it.</p>
               <p style={{ paddingTop: '6pt' }}>We dismantle the "garbage coat" of shame. <strong>Somatic Sovereignty</strong> is not a coping strategy. It is the moment you stop litigating your right to exist and start owning your Nervous System Machine.</p>
             </div>  
@@ -328,7 +328,7 @@ export default function App() {
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
               <h4 className="text-xl font-bold flex items-center gap-2">
                 <Lightbulb className="text-amber-400" size={24} />
-                The Internal Auditor
+                Systemic Exhaustion
               </h4>  
               <p className="text-amber-100 text-base" style={{ lineHeight: '1.75' }}>The mechanism that runs the Ambiguity Tax ledger. Every social interaction, every corporate meeting, every moment of masking—it keeps score. We shut the ledger.</p>  
             </div>  
@@ -677,7 +677,7 @@ export default function App() {
                 to="/resources/internal-auditor-guide"
                 className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-200 font-semibold transition mb-4"
               >
-                Read The Internal Auditor Guide Online
+                Read The Systemic Exhaustion Guide Online
                 <ArrowRight size={16} />
               </Link>
               <br />
@@ -753,7 +753,7 @@ export default function App() {
             </div>
           </div>
 
-          {/* Outlaw Anchor: Lyrical Closing */}
+          {/* Bespoke Anchor: Lyrical Closing */}
           <div className="text-center pt-8 space-y-4 border-t border-emerald-800/40">
             <p className="text-2xl md:text-3xl font-serif italic text-amber-100" style={{ lineHeight: '1.75' }}>
               Like Zach Bryan said, you're just a "man who's tryin' to find a way back home."

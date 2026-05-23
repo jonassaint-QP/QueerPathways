@@ -15,7 +15,7 @@ const tenets = [
   {
     number: '03',
     title: 'Shame is a Navigation Error',
-    body: 'Shame says: you are wrong. Guilt says: you did something wrong. We work with the former. The Internal Auditor built its case from inherited verdicts — family systems, religious institutions, medical gatekeepers. We appeal every one.',
+    body: 'Shame says: you are wrong. Guilt says: you did something wrong. We work with the former. Systemic Exhaustion built its case from inherited verdicts — family systems, religious institutions, medical gatekeepers. We appeal every one.',
   },
   {
     number: '04',
@@ -52,7 +52,7 @@ export default function PresencePage() {
             Pathways to Presence.
           </h1>
           <p className="text-xl text-amber-100 leading-relaxed">
-            A manifesto for the Double-Outsider. A declaration against the internal courtroom. A map toward Somatic Sovereignty, unmasked joy, and radical belonging.
+            A manifesto for the Double-Outsider. A declaration for sovereignty architecture. A map toward Somatic Sovereignty, unmasked joy, and radical belonging.
           </p>
           <div className="h-px w-16 bg-amber-400" />
         </header>
