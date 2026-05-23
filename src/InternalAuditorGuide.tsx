@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, BookOpen, Brain, CheckCircle2, HeartHandshake, Shield } from 'lucide-react';
 
 export default function InternalAuditorGuide() {
   return (
     <div className="min-h-screen bg-emerald-950 text-amber-50 px-6 py-14">
       <div className="max-w-5xl mx-auto space-y-10">
-        <a
-          href="/"
+        <Link
+          to="/"
           className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-100 transition"
         >
           <ArrowLeft size={16} />
           Back to Queer Pathways
-        </a>
+        </Link>
 
         <header className="space-y-4">
           <p className="text-xs uppercase tracking-widest text-amber-400 font-semibold">Resource Landing Page</p>

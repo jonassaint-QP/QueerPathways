@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';  
+import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';  
 import {   
   Shield, Sparkles, Brain, Scale, Compass, ArrowRight, Menu, X,   
@@ -6,15 +7,29 @@ import {
   ChevronDown
 } from 'lucide-react';
 
-const NavLink = ({ href, children, external = false }: any) => (  
-  <a   
-    href={href}   
-    target={external ? "_blank" : "_self"}  
-    className="text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"  
-  >  
-    {children}  
-  </a>  
-);
+const NavLink = ({ href, children, external = false }: any) => {
+  const isInternal = !external && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel');
+  if (isInternal) {
+    return (
+      <Link
+        to={href}
+        className="text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"
+      >
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <a
+      href={href}
+      target={external ? "_blank" : "_self"}
+      rel={external ? "noopener noreferrer" : undefined}
+      className="text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"
+    >
+      {children}
+    </a>
+  );
+};
 
 const carepatronButtonStyle: React.CSSProperties = {
   WebkitTextSizeAdjust: '100%',
@@ -137,14 +152,14 @@ export default function App() {
               </AnimatePresence>
             </div>
 
-            <a
-              href="/resources/internal-auditor-guide"
+            <Link
+              to="/resources/internal-auditor-guide"
               className="text-xs text-amber-100/80 hover:text-amber-50 transition-colors px-3 py-2 rounded-md border border-amber-300/30 hover:border-amber-200/50"
               style={{ fontFamily: 'Roboto, Helvetica, Arial, sans-serif', letterSpacing: '0.02857em' }}
             >
               Dignity Investment
-            </a>
-            <NavLink href="https://blog.queerpathways.org" external>Newsletter</NavLink>  
+            </Link>
+            <NavLink href="https://blog.queerpathways.org" external>Newsletter</NavLink>
             <a   
               href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"   
               target="_blank"
@@ -209,14 +224,14 @@ export default function App() {
                   >
                     Newsletter
                   </a>
-                  <a
-                    href="/resources/internal-auditor-guide"
+                  <Link
+                    to="/resources/internal-auditor-guide"
                     onClick={() => setIsMenuOpen(false)}
                     className="text-sm text-amber-100 hover:text-amber-50 transition-colors py-2 px-3 rounded border border-amber-300/30"
                     style={{ fontFamily: 'Roboto, Helvetica, Arial, sans-serif' }}
                   >
                     Dignity Investment
-                  </a>
+                  </Link>
                   <div className="pt-2 pb-1">
                     <p className="text-xs uppercase tracking-widest text-amber-400/60 font-semibold px-1 pb-2">Programs</p>
                     {PROGRAMS.map((p) => (
@@ -658,13 +673,13 @@ export default function App() {
             </div>
 
             <div className="pt-2 text-center">
-              <a
-                href="/resources/internal-auditor-guide"
+              <Link
+                to="/resources/internal-auditor-guide"
                 className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-200 font-semibold transition mb-4"
               >
                 Read The Internal Auditor Guide Online
                 <ArrowRight size={16} />
-              </a>
+              </Link>
               <br />
               <a
                 href="/pathways-to-presence.pdf"

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import {
   Shield, Brain, Heart, Compass, CheckCircle2, Quote, ArrowRight,
   Mail, Users, Zap, BookOpen, Sparkles, Scale, ExternalLink
@@ -42,13 +43,13 @@ export default function ReferralFactSheet() {
       {/* Back nav */}
       <div className="border-b border-emerald-800/40">
         <div className="max-w-5xl mx-auto px-6 py-4">
-          <a
-            href="/"
+          <Link
+            to="/"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-amber-100/50 hover:text-amber-100 transition-colors"
           >
             <ArrowRight className="rotate-180" size={14} />
             Back to Queer Pathways
-          </a>
+          </Link>
         </div>
       </div>
 
