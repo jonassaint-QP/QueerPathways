@@ -1,27 +1,8 @@
 [build]
   publish = "."
 
-[[redirects]]
-  from = "/modalities"
-  to   = "/modalities/"
-  status = 301
-
-[[redirects]]
-  from = "/library"
-  to   = "/library/"
-  status = 301
-
-[[redirects]]
-  from = "/pathways"
-  to   = "/pathways/"
-  status = 301
-
-[[redirects]]
-  from   = "/soundtrack"
-  to     = "/soundtrack/"
-  status = 301
-
-# SPA catch-all — serves index.html for any unmatched route (200 = no URL change)
+# SPA catch-all — serves index.html for any unmatched route (200 = rewrite, no URL change)
+# Must come after Netlify resolves real files/directories
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
