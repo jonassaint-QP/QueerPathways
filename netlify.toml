@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  command = "npm run build"
+  publish = "dist"
 
 # SPA catch-all — serves index.html for any unmatched route (200 = rewrite, no URL change)
 # force = false ensures real files and directories are served first
