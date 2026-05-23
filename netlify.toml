@@ -2,11 +2,12 @@
   publish = "."
 
 # SPA catch-all — serves index.html for any unmatched route (200 = rewrite, no URL change)
-# Must come after Netlify resolves real files/directories
+# force = false ensures real files and directories are served first
 [[redirects]]
   from   = "/*"
   to     = "/index.html"
   status = 200
+  force  = false
 
 [[headers]]
   for = "/*"
