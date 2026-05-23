@@ -797,13 +797,15 @@
                         'email': email
                     });
 
-                    const res = await fetch('/', {
+                    const res = await fetch('/library/', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: body.toString()
                     });
 
-                    if (!res.ok) throw new Error('Network response was not ok');
+                    // Netlify Forms returns 200 or a redirect on success.
+                    // Any 2xx or 3xx is a successful submission.
+                    if (res.status >= 400) throw new Error('Form submission failed: ' + res.status);
 
                     localStorage.setItem(STORAGE_KEY, JSON.stringify({ name, email, ts: Date.now() }));
                     unlockLibrary();
