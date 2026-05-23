@@ -9,9 +9,9 @@
       // this script encodes the path into a query param and redirects to
       // index.html, which decodes it and restores the URL via history API.
       //
-      // pathSegmentsToKeep = 1 → keeps the repo name segment in the URL
-      // (use 0 only for root GitHub Pages sites like username.github.io)
-      var pathSegmentsToKeep = 1;
+      // pathSegmentsToKeep = 0 → custom domain served at root (queerpathways.org)
+      // Use 1 only when served from a subfolder like username.github.io/RepoName/
+      var pathSegmentsToKeep = 0;
 
       var l = window.location;
       l.replace(
