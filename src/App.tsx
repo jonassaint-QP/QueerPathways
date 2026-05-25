@@ -772,7 +772,7 @@ export default function App() {
               alt="Queer Pathways"
               className="h-14 w-auto object-contain"
             />  
-            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Philadelphia | Pittsburgh | PA</p>  
+            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Philadelphia | Pittsburgh | PA | Ontario, Canada</p>  
           </div>  
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">  
             <div className="space-y-4">  
@@ -788,6 +788,7 @@ export default function App() {
               <ul className="space-y-2 text-sm text-amber-100/70">  
                 <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Substack</a></li>  
                 <li><a href="mailto:hello@queerpathways.org" className="hover:text-amber-50 transition">Email</a></li>  
+                <li><a href="tel:+13655999002" className="hover:text-amber-50 transition">365-599-9002</a></li>  
               </ul>  
             </div>  
           </div>  

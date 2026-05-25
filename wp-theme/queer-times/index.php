@@ -56,7 +56,7 @@ get_header();
 
                     <?php if ( has_post_thumbnail() ) : ?>
                         <div class="mb-4">
-                            <?php the_post_thumbnail( 'medium_large', [ 'class' => 'w-full object-cover grayscale border border-[#8b7355]' ] ); ?>
+                            <?php the_post_thumbnail( 'medium_large', [ 'class' => 'w-full object-cover border border-[#8b7355]' ] ); ?>
                         </div>
                     <?php endif; ?>
 

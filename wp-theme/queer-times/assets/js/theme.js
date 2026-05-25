@@ -82,6 +82,7 @@ function initReaderGate() {
 
         e.preventDefault();
         pendingHref = link.href;
+        window._qtPendingHref = pendingHref;
         showGate(overlay);
     }, true); // capture phase so it fires before other handlers
 

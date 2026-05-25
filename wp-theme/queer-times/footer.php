@@ -33,6 +33,9 @@
             <!-- Legal + colophon -->
             <div class="text-xs font-serif text-[#8b7355] space-y-1 text-center md:text-right">
                 <p>
+                    <?php _e( 'Ontario, Canada', 'queer-times' ); ?> | <a href="tel:+13655999002" class="underline hover:no-underline text-[#f4f1ea]">365-599-9002</a>
+                </p>
+                <p>
                     &copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?>
                     <?php bloginfo( 'name' ); ?>.
                     <?php _e( 'All rights reserved.', 'queer-times' ); ?>
