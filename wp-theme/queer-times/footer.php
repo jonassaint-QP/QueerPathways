@@ -10,7 +10,7 @@
 
             <!-- Masthead signature -->
             <div class="text-center md:text-left">
-                <p class="text-4xl leading-none" style="font-family: 'UnifrakturMaguntia', serif;">
+                <p class="text-4xl leading-none" data-fraktur="true">
                     <?php bloginfo( 'name' ); ?>
                 </p>
                 <p class="text-xs tracking-widest uppercase mt-2 text-[#8b7355]">

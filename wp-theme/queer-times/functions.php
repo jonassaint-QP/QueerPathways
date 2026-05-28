@@ -299,15 +299,19 @@ if ( ! defined( 'QUEER_TIMES_SUBSTACK_PODCAST_URL' ) ) {
     define( 'QUEER_TIMES_SUBSTACK_PODCAST_URL', 'https://queerpathways.substack.com/podcast' );
 }
 
+if ( ! defined( 'QUEER_TIMES_APPLE_PODCASTS_URL' ) ) {
+    define( 'QUEER_TIMES_APPLE_PODCASTS_URL', 'https://podcasts.apple.com/us/podcast/queer-connections-unmapped/id1896794094' );
+}
+
 /**
- * Fetch latest podcast episodes from the Substack RSS feed.
+ * Fetch latest podcast episodes from the syndicated podcast RSS feed.
  *
  * @param int $limit Max episodes to return.
- * @return array<int, array{title, url, date, duration, excerpt}>
+ * @return array<int, array{title, url, audio_url, date, duration, excerpt}>
  */
 function queer_times_get_podcast_episodes( int $limit = 20 ): array {
     $feed_url  = QUEER_TIMES_SUBSTACK_PODCAST_URL;
-    $cache_key = 'qt_podcast_episodes';
+    $cache_key = 'qt_podcast_episodes_v2';
     $cached    = get_transient( $cache_key );
 
     if ( is_array( $cached ) ) return $cached;
@@ -331,9 +335,24 @@ function queer_times_get_podcast_episodes( int $limit = 20 ): array {
             $duration = esc_html( $itunes[0]['data'] );
         }
 
+        // Prefer direct audio enclosure for on-site playback.
+        $audio_url   = '';
+        $enclosures  = $item->get_enclosures();
+        if ( ! empty( $enclosures ) ) {
+            foreach ( $enclosures as $enclosure ) {
+                $type = (string) $enclosure->get_type();
+                $link = (string) $enclosure->get_link();
+                if ( $link && ( strpos( $type, 'audio/' ) === 0 || preg_match( '/\.(mp3|m4a|aac|ogg|wav)(\?|$)/i', $link ) ) ) {
+                    $audio_url = esc_url_raw( $link );
+                    break;
+                }
+            }
+        }
+
         $result[] = [
             'title'    => wp_strip_all_tags( $item->get_title() ),
             'url'      => esc_url_raw( $item->get_permalink() ),
+            'audio_url'=> $audio_url,
             'date'     => $item->get_date( 'F j, Y' ),
             'duration' => $duration,
             'excerpt'  => wp_trim_words( wp_strip_all_tags( $item->get_description() ), 30 ),
@@ -485,10 +504,22 @@ function queer_times_ical_unescape( string $v ): string {
 
 /* ─── External Feed Helpers (optional RSS import) ───────── */
 if ( ! defined( 'QUEER_TIMES_SUBSTACK_URL' ) ) {
-    define( 'QUEER_TIMES_SUBSTACK_URL', '' );
+    define( 'QUEER_TIMES_SUBSTACK_URL', 'https://queerpathways.substack.com' );
 }
 if ( ! defined( 'QUEER_TIMES_LINKEDIN_RSS' ) ) {
     define( 'QUEER_TIMES_LINKEDIN_RSS', '' );
+}
+if ( ! defined( 'QUEER_TIMES_SUBSTACK_RAIL_POSITION' ) ) {
+    // Allowed values: 'lower' (conversion-first default) or 'higher' (distribution-first).
+    define( 'QUEER_TIMES_SUBSTACK_RAIL_POSITION', 'lower' );
+}
+
+/**
+ * Return normalized Substack rail position.
+ */
+function queer_times_get_substack_rail_position(): string {
+    $position = strtolower( trim( (string) QUEER_TIMES_SUBSTACK_RAIL_POSITION ) );
+    return in_array( $position, [ 'lower', 'higher' ], true ) ? $position : 'lower';
 }
 
 /**
@@ -567,7 +598,7 @@ function queer_times_get_substack_articles( int $limit = 3 ): array {
 
     // Substack RSS feed is at /feed
     $feed_url = rtrim( $url, '/' ) . '/feed';
-    return queer_times_fetch_feed( $feed_url, $limit, 'qt_substack_feed' );
+    return queer_times_fetch_feed( $feed_url, $limit, 'qt_substack_feed_' . $limit );
 }
 
 /**

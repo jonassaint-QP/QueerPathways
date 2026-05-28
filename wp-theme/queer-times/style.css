@@ -51,3 +51,7 @@ img {
     height: auto;
     display: block;
 }
+
+[data-fraktur="true"] {
+    font-family: 'UnifrakturMaguntia', serif;
+}

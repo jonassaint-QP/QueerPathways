@@ -25,7 +25,7 @@ get_header();
         <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-2 font-serif">
             <?php _e( 'The Queer Times', 'queer-times' ); ?>
         </p>
-        <h1 class="text-6xl md:text-8xl leading-none" style="font-family:'UnifrakturMaguntia',serif;">
+        <h1 class="text-6xl md:text-8xl leading-none" data-fraktur="true">
             <?php _e( 'Substack', 'queer-times' ); ?>
         </h1>
         <div class="flex items-center justify-center gap-3 my-3">
@@ -54,7 +54,7 @@ get_header();
                     <article <?php post_class( 'pt-8 first:pt-0' ); ?>>
 
                         <h2 class="text-3xl leading-snug mb-1"
-                            style="font-family:'UnifrakturMaguntia',serif;">
+                            data-fraktur="true">
                             <a href="<?php the_permalink(); ?>" class="hover:underline">
                                 <?php the_title(); ?>
                             </a>

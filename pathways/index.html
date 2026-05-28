@@ -177,6 +177,17 @@
             color: var(--gold-light);
             padding: 14px 28px;
         }
+        .logo-hidden {
+            display: none;
+        }
+        .inclusive-badge {
+            width: 150px;
+            border: 0;
+            transition: transform 0.3s;
+        }
+        .inclusive-badge:hover {
+            transform: scale(1.05);
+        }
         @media (max-width: 860px) {
             .section { padding: 60px 20px; }
         }
@@ -417,7 +428,7 @@
     <header class="navbar">
         <div class="nav-inner">
             <a href="/" class="nav-brand">
-                <img src="../logo.png" alt="" onerror="this.style.display='none'">
+                <img src="../logo.png" alt="" class="nav-brand-logo">
                 <span class="nav-brand-text">Queer Pathways</span>
             </a>
             <nav>
@@ -601,7 +612,7 @@
 
     <footer class="footer">
         <!-- Inclusive Therapists Verified Member Badge -->
-        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank" rel="noopener noreferrer"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank" rel="noopener noreferrer"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" class="inclusive-badge"></a>
         <p>Serving Pennsylvania and Ontario, Canada via High-Fidelity Telehealth.</p>
         <p>Contact: Joshua Jonassaint, LCSW | <a href="mailto:Joshua@QueerPathways.org">Joshua@QueerPathways.org</a> | <a href="tel:+13655999002">365-599-9002</a></p>
         <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>
@@ -610,5 +621,12 @@
             <a class="cta-button" href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" target="_blank" rel="noopener noreferrer">Book now with Carepatron</a>
         </div>
     </footer>
+    <script>
+        document.querySelectorAll('.nav-brand-logo').forEach(function (logo) {
+            logo.addEventListener('error', function () {
+                logo.classList.add('logo-hidden');
+            });
+        });
+    </script>
 </body>
 </html>

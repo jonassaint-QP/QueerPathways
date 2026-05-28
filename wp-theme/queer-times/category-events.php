@@ -29,7 +29,7 @@ $luma_url    = 'https://lu.ma/queerpathways';
             <?php bloginfo( 'name' ); ?>
         </p>
         <h1 class="text-6xl md:text-8xl leading-none"
-            style="font-family:'UnifrakturMaguntia',serif;">
+            data-fraktur="true">
             <?php _e( 'Events', 'queer-times' ); ?>
         </h1>
         <div class="flex items-center justify-center gap-3 my-3">
@@ -73,7 +73,7 @@ $luma_url    = 'https://lu.ma/queerpathways';
                         <!-- Details -->
                         <div class="flex-1 min-w-0">
                             <h2 class="text-2xl md:text-3xl leading-snug mb-1"
-                                style="font-family:'UnifrakturMaguntia',serif;">
+                                data-fraktur="true">
                                 <?php if ( $event['url'] ) : ?>
                                     <a href="<?php echo esc_url( $event['url'] ); ?>"
                                        target="_blank" rel="noopener noreferrer"

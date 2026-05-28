@@ -1,51 +1,85 @@
-<!DOCTYPE html>  
-<html lang="en">  
-  <head>  
-    <meta charset="UTF-8" />  
-    <link rel="icon" type="image/svg+xml" href="https://cdn.marblism.com/bt5CmFoiRSi.webp" />  
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />  
-      
-    <!-- --- Primary Meta Tags --- -->  
-    <title>Queer Pathways | Affirming Telehealth Therapy for the LGBTQ+ Community</title>  
-    <meta name="title" content="Queer Pathways | Affirming Telehealth Therapy" />  
-    <meta name="description" content="Specialized telehealth therapy for the Masking Visionary. Dismantle the Internal Courtroom with trauma-informed, neuro-affirming care in Philadelphia and Pennsylvania." />
+@import "tailwindcss";
 
-    <!-- --- Open Graph / Facebook / LinkedIn --- -->  
-    <meta property="og:type" content="website" />  
-    <meta property="og:url" content="https://queerpathways.org/" />  
-    <meta property="og:title" content="Queer Pathways | Dismantle the Internal Courtroom" />  
-    <meta property="og:description" content="High-somatic, structural scaffolding for queer and neurodivergent hearts. Integrated with Thrizer for instant out-of-network reimbursements." />  
-    <meta property="og:image" content="https://cdn.marblism.com/bt5CmFoiRSi.webp" />
+html {
+  scroll-behavior: smooth;
+}
 
-    <!-- --- Twitter / Substack Sharing --- -->  
-    <meta property="twitter:card" content="summary_large_image" />  
-    <meta property="twitter:url" content="https://queerpathways.org/" />  
-    <meta property="twitter:title" content="Queer Pathways | Affirming Telehealth Therapy" />  
-    <meta property="twitter:description" content="Specialized care for LGBTQ+ individuals and neurodivergent brains. Start your Internal Courtroom Audit today." />  
-    <meta property="twitter:image" content="https://cdn.marblism.com/bt5CmFoiRSi.webp" />
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
 
-    <!-- --- Fonts --- -->  
-    <link rel="preconnect" href="https://fonts.googleapis.com">  
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>  
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+.qp-font-roboto {
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+}
 
-    <style>  
-      /* Ensure smooth scrolling for navigation anchors */  
-      html {  
-        scroll-behavior: smooth;  
-      }  
-      body {  
-        margin: 0;  
-        padding: 0;  
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;  
-      }  
-    </style>  
-  </head>  
-  <body>  
-    <!-- React Root Entry Point -->  
-    <div id="root"></div>  
-      
-    <!-- Main Script Module -->  
-    <script type="module" src="/src/main.tsx"></script>  
-  </body>  
-</html>  
+.qp-tracking-carepatron {
+  letter-spacing: 0.02857em;
+}
+
+.qp-leading-175 {
+  line-height: 1.75;
+}
+
+.qp-pt-6pt {
+  padding-top: 6pt;
+}
+
+.qp-pb-6pt {
+  padding-bottom: 6pt;
+}
+
+.qp-amber-border {
+  border: 1px solid rgba(251, 191, 36, 0.65);
+}
+
+.qp-booking-embed {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  min-height: 600px;
+}
+
+.qp-border-0 {
+  border: 0;
+}
+
+.qp-carepatron-button {
+  -webkit-font-smoothing: antialiased;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
+  border: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  -webkit-appearance: none;
+  text-decoration: none;
+  font-family: Roboto, Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.02857em;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+              color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  color: #fff;
+  background-color: #104714;
+  text-transform: none;
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: none;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  height: 36px;
+  padding: 6px 16px;
+  font-size: 14px;
+  line-height: 26px;
+}

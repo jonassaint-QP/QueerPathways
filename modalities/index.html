@@ -150,6 +150,23 @@
             color: #030300;
             padding: 14px 28px;
         }
+        .booking-embed {
+            margin: 2rem 0;
+        }
+        .booking-embed-frame {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 12px;
+        }
+        .inclusive-badge {
+            width: 150px;
+            border: 0;
+            transition: transform 0.3s;
+        }
+        .inclusive-badge:hover {
+            transform: scale(1.05);
+        }
         .archetype {
             display: grid;
             grid-template-columns: 340px 1fr;
@@ -419,15 +436,15 @@
         <p class="closing-copy">You have spent enough time litigating your own worth. It's time to stop explaining and start evolving.</p>
         <h3 class="closing-subhead">Second Ring Deep Dive</h3>
         <p class="profile-subtitle"><a href="/library/">Resource Library: Guides &amp; Tools for the Double-Outsider</a></p>
-        <div class="booking-embed" style="margin: 2rem 0;">
-            <iframe title="Carepatron Online Booking" src="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=i" style="width:100%;height:600px;border:none;border-radius:12px;"></iframe>
+        <div class="booking-embed">
+            <iframe title="Carepatron Online Booking" src="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=i" class="booking-embed-frame"></iframe>
         </div>
         <a href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b" class="btn primary cta-large" target="_blank" rel="noopener noreferrer">Schedule Your Consultation</a>
     </div>
 
     <footer class="footer">
         <!-- Inclusive Therapists Verified Member Badge -->
-        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank" rel="noopener noreferrer"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" style="width: 150px; border: 0; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"></a>
+        <a href="https://www.inclusivetherapists.com/pennsylvania/bridgeville/joshua-jonassaint" title="Find me on Inclusive Therapists" target="_blank" rel="noopener noreferrer"><img src="https://www.inclusivetherapists.com/images/badges/16.png" border="0" alt="Inclusive Therapists Verified Member" class="inclusive-badge"></a>
         <p>Serving Pennsylvania and Ontario, Canada via High-Fidelity Telehealth.</p>
         <p>Contact: Joshua Jonassaint, LCSW | <a href="mailto:Joshua@QueerPathways.org">Joshua@QueerPathways.org</a> | <a href="tel:+13655999002">365-599-9002</a></p>
         <p>Legal: In-Network with Aetna. Specialist advocacy for the Double-Outsider.</p>

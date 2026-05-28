@@ -3,7 +3,7 @@
  * Template Name: Podcast
  * Queer Times — Podcast Page
  *
- * Fetches episodes from the Substack podcast RSS feed.
+ * Renders episodes on-site from the syndicated podcast feed.
  * Swap in QUEER_TIMES_APPLE_PODCASTS_URL / QUEER_TIMES_SPOTIFY_URL in
  * wp-config.php once you're approved on those platforms.
  */
@@ -11,7 +11,6 @@
 get_header();
 
 $episodes      = queer_times_get_podcast_episodes( 20 );
-$substack_url  = 'https://queerpathways.substack.com';
 $apple_url     = defined( 'QUEER_TIMES_APPLE_PODCASTS_URL' ) ? QUEER_TIMES_APPLE_PODCASTS_URL : '';
 $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTIFY_URL        : '';
 ?>
@@ -33,7 +32,7 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
             <?php bloginfo( 'name' ); ?>
         </p>
         <h1 class="text-6xl md:text-8xl leading-none"
-            style="font-family:'UnifrakturMaguntia',serif;">
+            data-fraktur="true">
             <?php _e( 'The Podcast', 'queer-times' ); ?>
         </h1>
         <div class="flex items-center justify-center gap-3 my-3">
@@ -50,16 +49,6 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
 
         <!-- Platform CTAs -->
         <div class="flex flex-wrap justify-center gap-3 mt-2">
-
-            <!-- Primary: Substack (always shown) -->
-            <a href="<?php echo esc_url( $substack_url ); ?>"
-               target="_blank" rel="noopener noreferrer"
-               class="inline-flex items-center gap-2 px-5 py-2 bg-[#1a1a1a] text-[#f4f1ea] text-xs tracking-widest uppercase font-serif hover:bg-[#8b7355] transition-colors">
-                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-                </svg>
-                <?php _e( 'Listen on Substack', 'queer-times' ); ?>
-            </a>
 
             <?php if ( $apple_url ) : ?>
             <a href="<?php echo esc_url( $apple_url ); ?>"
@@ -84,6 +73,10 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
             <?php endif; ?>
 
         </div>
+
+        <p class="text-xs font-serif italic text-[#8b7355] mt-4">
+            <?php _e( 'All episodes are playable directly on this page.', 'queer-times' ); ?>
+        </p>
     </header>
 
     <!-- Episode listing -->
@@ -110,7 +103,7 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
                         <!-- Details -->
                         <div class="flex-1 min-w-0">
                             <h3 class="text-2xl md:text-3xl leading-snug mb-1"
-                                style="font-family:'UnifrakturMaguntia',serif;">
+                                data-fraktur="true">
                                 <?php echo esc_html( $ep['title'] ); ?>
                             </h3>
 
@@ -128,14 +121,19 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
                                 </p>
                             <?php endif; ?>
 
-                            <a href="<?php echo esc_url( $ep['url'] ?: $substack_url ); ?>"
-                               target="_blank" rel="noopener noreferrer"
-                               class="inline-flex items-center gap-2 text-xs tracking-widest uppercase font-serif underline hover:no-underline">
-                                <svg class="w-3 h-3 fill-current text-[#8b7355]" viewBox="0 0 24 24" aria-hidden="true">
-                                    <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-                                </svg>
-                                <?php _e( 'Listen on Substack &rarr;', 'queer-times' ); ?>
-                            </a>
+                            <?php if ( ! empty( $ep['audio_url'] ) ) : ?>
+                                <div class="mt-4">
+                                    <audio controls preload="none" class="w-full" src="<?php echo esc_url( $ep['audio_url'] ); ?>">
+                                        <?php _e( 'Your browser does not support audio playback.', 'queer-times' ); ?>
+                                    </audio>
+                                </div>
+                            <?php elseif ( ! empty( $ep['url'] ) ) : ?>
+                                <a href="<?php echo esc_url( $ep['url'] ); ?>"
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 text-xs tracking-widest uppercase font-serif underline hover:no-underline mt-2">
+                                    <?php _e( 'Episode details &rarr;', 'queer-times' ); ?>
+                                </a>
+                            <?php endif; ?>
                         </div>
 
                     </article>
@@ -147,16 +145,8 @@ $spotify_url   = defined( 'QUEER_TIMES_SPOTIFY_URL' )        ? QUEER_TIMES_SPOTI
 
             <div class="text-center py-16">
                 <p class="font-serif text-sm italic mb-4">
-                    <?php _e( 'Episodes are loading from Substack. If nothing appears, check back shortly.', 'queer-times' ); ?>
+                    <?php _e( 'Episodes are temporarily unavailable. Please check back shortly.', 'queer-times' ); ?>
                 </p>
-                <a href="<?php echo esc_url( $substack_url ); ?>"
-                   target="_blank" rel="noopener noreferrer"
-                   class="inline-flex items-center gap-2 px-5 py-2 bg-[#1a1a1a] text-[#f4f1ea] text-xs tracking-widest uppercase font-serif hover:bg-[#8b7355] transition-colors">
-                    <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                        <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-                    </svg>
-                    <?php _e( 'Listen on Substack', 'queer-times' ); ?>
-                </a>
             </div>
 
         <?php endif; ?>

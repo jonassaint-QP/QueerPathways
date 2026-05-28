@@ -148,7 +148,7 @@ export default function PresencePage() {
             Begin Your Pathway
           </a>
           <a
-            href="/pathways-to-presence.pdf"
+            href="/pathways/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 border-2 border-amber-50 text-amber-50 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-50/10 transition-all"

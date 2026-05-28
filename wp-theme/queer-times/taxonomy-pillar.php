@@ -39,7 +39,7 @@ $description = $term->description ?: ( $pillar_descriptions[ $term->slug ] ?? ''
             <?php _e( 'Pillar', 'queer-times' ); ?>
         </p>
         <h1 class="text-5xl md:text-7xl leading-tight"
-            style="font-family:'UnifrakturMaguntia',serif;">
+            data-fraktur="true">
             <?php echo esc_html( $term->name ); ?>
         </h1>
         <div class="flex items-center justify-center gap-3 my-3">
@@ -79,7 +79,7 @@ $description = $term->description ?: ( $pillar_descriptions[ $term->slug ] ?? ''
 
                     <article <?php post_class( 'pt-8 first:pt-0' ); ?>>
                         <h2 class="text-3xl leading-snug mb-1"
-                            style="font-family:'UnifrakturMaguntia',serif;">
+                            data-fraktur="true">
                             <a href="<?php the_permalink(); ?>" class="hover:underline">
                                 <?php the_title(); ?>
                             </a>

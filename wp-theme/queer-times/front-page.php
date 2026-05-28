@@ -20,7 +20,7 @@ get_header();
     <!-- ── Masthead ──────────────────────────────────────── -->
     <header class="py-8 px-4 text-center border-b-4 border-double border-[#1a1a1a]">
         <h1 class="text-7xl md:text-9xl leading-none tracking-tight"
-            style="font-family: 'UnifrakturMaguntia', serif;">
+            data-fraktur="true">
             <?php bloginfo( 'name' ); ?>
         </h1>
 
@@ -49,7 +49,7 @@ get_header();
          role="dialog" aria-modal="true" aria-labelledby="pause-title">
         <p id="pause-title"
            class="text-4xl md:text-5xl mb-6"
-           style="font-family: 'UnifrakturMaguntia', serif;">
+           data-fraktur="true">
             <?php _e( 'Pause. Breathe. Return.', 'queer-times' ); ?>
         </p>
         <p class="max-w-md text-base leading-relaxed mb-8 font-serif">
@@ -63,80 +63,44 @@ get_header();
         </button>
     </div>
 
-    <!-- ── Reader Gate Modal ─────────────────────────────── -->
-    <div id="reader-gate-overlay"
-         class="fixed inset-0 bg-[#1a1a1a]/80 backdrop-blur-sm z-50 flex items-center justify-center px-4 hidden"
-         role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <?php
+    $substack_feed_items    = queer_times_get_substack_articles( 10 );
+    $substack_rail_position = function_exists( 'queer_times_get_substack_rail_position' )
+        ? queer_times_get_substack_rail_position()
+        : 'lower';
+    ?>
 
-        <div class="bg-[#f4f1ea] border-2 border-[#1a1a1a] max-w-md w-full p-8 text-center relative">
+    <?php if ( ! empty( $substack_feed_items ) && 'higher' === $substack_rail_position ) : ?>
+    <section class="max-w-7xl mx-auto px-4 py-8 border-t-4 border-double border-[#1a1a1a] mt-4">
+        <h2 class="text-center text-xs tracking-widest uppercase mb-6 font-serif border-b border-[#8b7355] pb-2">
+            <?php _e( 'From Substack: Latest 10', 'queer-times' ); ?>
+        </h2>
 
-            <!-- Ornamental top rule -->
-            <div class="flex items-center gap-3 mb-5">
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-                <span class="text-[#8b7355]">✦</span>
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-            </div>
-
-            <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">
-                <?php _e( 'Join the Queer Times', 'queer-times' ); ?>
-            </p>
-            <h2 id="gate-title"
-                class="text-3xl mb-2"
-                style="font-family:'UnifrakturMaguntia',serif;">
-                <?php _e( 'Read More. Stay Connected.', 'queer-times' ); ?>
-            </h2>
-            <p class="text-sm font-serif italic mb-6 leading-relaxed">
-                <?php _e( 'Enter your name and email — or sign in with Google — to access the full archive.', 'queer-times' ); ?>
-            </p>
-
-            <!-- Manual form -->
-            <form id="reader-gate-form" novalidate class="space-y-3 mb-4">
-                <input id="gate-name"
-                       type="text"
-                       name="name"
-                       placeholder="<?php esc_attr_e( 'Your Name', 'queer-times' ); ?>"
-                       required
-                       class="w-full border border-[#8b7355] bg-transparent px-4 py-2 text-sm font-serif
-                              placeholder:text-[#8b7355] focus:outline-none focus:ring-1 focus:ring-[#1a1a1a]" />
-                <input id="gate-email"
-                       type="email"
-                       name="email"
-                       placeholder="<?php esc_attr_e( 'Your Email Address', 'queer-times' ); ?>"
-                       required
-                       class="w-full border border-[#8b7355] bg-transparent px-4 py-2 text-sm font-serif
-                              placeholder:text-[#8b7355] focus:outline-none focus:ring-1 focus:ring-[#1a1a1a]" />
-                <p id="gate-error" role="alert"
-                   class="text-xs text-red-700 font-serif hidden"></p>
-                <button type="submit"
-                        class="w-full py-3 border-2 border-[#1a1a1a] text-sm tracking-[0.25em] uppercase
-                               font-serif hover:bg-[#1a1a1a] hover:text-[#f4f1ea] transition-colors duration-300
-                               focus:outline-none focus:ring-2 focus:ring-[#8b7355]">
-                    <?php _e( 'Continue Reading', 'queer-times' ); ?>
-                </button>
-            </form>
-
-            <!-- Divider -->
-            <div class="flex items-center gap-3 my-4">
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-                <span class="text-xs tracking-widest uppercase font-serif text-[#8b7355]"><?php _e( 'or', 'queer-times' ); ?></span>
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-            </div>
-
-            <!-- Google Sign-In button (rendered by GIS) -->
-            <div id="gate-google-btn" class="flex justify-center"></div>
-
-            <p class="text-xs font-serif text-[#8b7355] mt-5 leading-relaxed">
-                <?php _e( 'We respect your privacy. No spam, ever.', 'queer-times' ); ?>
-            </p>
-
-            <!-- Ornamental bottom rule -->
-            <div class="flex items-center gap-3 mt-5">
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-                <span class="text-[#8b7355]">✦</span>
-                <span class="block h-px flex-1 bg-[#8b7355]"></span>
-            </div>
+        <div class="max-w-5xl mx-auto">
+            <ul class="space-y-5 list-none p-0">
+                <?php foreach ( $substack_feed_items as $item ) : ?>
+                    <li class="border-b border-dotted border-[#8b7355] pb-4 last:border-b-0 last:pb-0">
+                        <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">
+                            <?php echo esc_html( $item['date'] ); ?>
+                            <span class="mx-2">|</span>
+                            <?php _e( 'External Link to Substack', 'queer-times' ); ?>
+                        </p>
+                        <a href="<?php echo esc_url( $item['url'] ); ?>"
+                           target="_blank" rel="noopener noreferrer"
+                           class="font-semibold text-sm md:text-base leading-snug hover:underline font-serif">
+                            <?php echo esc_html( $item['title'] ); ?>
+                        </a>
+                        <?php if ( ! empty( $item['excerpt'] ) ) : ?>
+                            <p class="text-xs italic mt-1 leading-relaxed font-serif">
+                                <?php echo esc_html( $item['excerpt'] ); ?>
+                            </p>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
-    </div>
+    </section>
+    <?php endif; ?>
 
     <!-- ── Newspaper Grid ────────────────────────────────── -->
     <div class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-12 gap-0 divide-x divide-[#8b7355]">
@@ -227,7 +191,7 @@ get_header();
 
                     <article <?php post_class( 'mb-8' ); ?>>
                         <h2 class="text-3xl leading-tight mb-2"
-                            style="font-family: 'UnifrakturMaguntia', serif;">
+                            data-fraktur="true">
                             <a href="<?php the_permalink(); ?>" class="hover:underline">
                                 <?php the_title(); ?>
                             </a>
@@ -449,6 +413,39 @@ get_header();
             </div>
             <?php endif; ?>
 
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- ── Distribution Rail: Substack RSS ───────────────── -->
+    <?php if ( ! empty( $substack_feed_items ) && 'lower' === $substack_rail_position ) : ?>
+    <section class="max-w-7xl mx-auto px-4 py-8 border-t-4 border-double border-[#1a1a1a] mt-4">
+        <h2 class="text-center text-xs tracking-widest uppercase mb-6 font-serif border-b border-[#8b7355] pb-2">
+            <?php _e( 'From Substack: Latest 10', 'queer-times' ); ?>
+        </h2>
+
+        <div class="max-w-5xl mx-auto">
+            <ul class="space-y-5 list-none p-0">
+                <?php foreach ( $substack_feed_items as $item ) : ?>
+                    <li class="border-b border-dotted border-[#8b7355] pb-4 last:border-b-0 last:pb-0">
+                        <p class="text-xs tracking-widest uppercase text-[#8b7355] mb-1 font-serif">
+                            <?php echo esc_html( $item['date'] ); ?>
+                            <span class="mx-2">|</span>
+                            <?php _e( 'External Link to Substack', 'queer-times' ); ?>
+                        </p>
+                        <a href="<?php echo esc_url( $item['url'] ); ?>"
+                           target="_blank" rel="noopener noreferrer"
+                           class="font-semibold text-sm md:text-base leading-snug hover:underline font-serif">
+                            <?php echo esc_html( $item['title'] ); ?>
+                        </a>
+                        <?php if ( ! empty( $item['excerpt'] ) ) : ?>
+                            <p class="text-xs italic mt-1 leading-relaxed font-serif">
+                                <?php echo esc_html( $item['excerpt'] ); ?>
+                            </p>
+                        <?php endif; ?>
+                    </li>
+                <?php endforeach; ?>
+            </ul>
         </div>
     </section>
     <?php endif; ?>

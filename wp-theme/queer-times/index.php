@@ -38,7 +38,7 @@ get_header();
 
                 <article <?php post_class( 'pt-8 first:pt-0' ); ?>>
                     <h2 class="text-3xl leading-snug mb-1"
-                        style="font-family: 'UnifrakturMaguntia', serif;">
+                        data-fraktur="true">
                         <a href="<?php the_permalink(); ?>" class="hover:underline">
                             <?php the_title(); ?>
                         </a>

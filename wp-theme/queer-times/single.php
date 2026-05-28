@@ -24,7 +24,7 @@ get_header();
                     </p>
 
                     <h1 class="text-4xl md:text-5xl leading-tight"
-                        style="font-family: 'UnifrakturMaguntia', serif;">
+                        data-fraktur="true">
                         <?php the_title(); ?>
                     </h1>
                 </header>

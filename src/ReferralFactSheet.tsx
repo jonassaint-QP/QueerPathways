@@ -304,36 +304,6 @@ export default function ReferralFactSheet() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Rates */}
-            <div className="bg-emerald-900/30 border border-emerald-800/40 rounded-2xl p-8 space-y-6">
-              <h3 className="font-semibold text-amber-200 text-sm uppercase tracking-widest">
-                Session Rates — Radical Transparency
-              </h3>
-              <div className="space-y-4">
-                {[
-                  { label: 'Individual Session', rate: '$150', note: '50 min' },
-                  { label: 'Relationship / Couples', rate: '$200', note: '50 min' },
-                  { label: 'Intake Session', rate: '$225', note: '75 min' },
-                ].map(({ label, rate, note }) => (
-                  <div key={label} className="flex justify-between items-center border-b border-emerald-800/30 pb-4 last:border-0 last:pb-0">
-                    <div>
-                      <p className="font-medium text-amber-50">{label}</p>
-                      <p className="text-xs text-amber-100/40">{note}</p>
-                    </div>
-                    <p
-                      className="text-2xl font-bold"
-                      style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
-                    >
-                      {rate}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <p className="text-xs text-amber-100/40 leading-relaxed">
-                Sliding-scale availability discussed during intake. Good Faith Estimate
-                provided in compliance with the No Surprises Act.
-              </p>
-            </div>
-
             {/* Insurance */}
             <div className="bg-emerald-900/30 border border-emerald-800/40 rounded-2xl p-8 space-y-6">
               <h3 className="font-semibold text-amber-200 text-sm uppercase tracking-widest">
