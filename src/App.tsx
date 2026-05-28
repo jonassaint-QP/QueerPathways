@@ -6,7 +6,6 @@ import {
   Heart, Gem, CheckCircle2, Zap, Quote, ExternalLink, Mail, BookOpen, Users, Lightbulb,
   ChevronDown
 } from 'lucide-react';
-import SovereignHero from './app/sovereign-harbor/components/SovereignHero';
 
 const NavLink = ({ href, children, external = false }: any) => {
   const isInternal = !external && !href.startsWith('#') && !href.startsWith('http') && !href.startsWith('mailto') && !href.startsWith('tel');
@@ -250,7 +249,41 @@ export default function App() {
         </AnimatePresence>
       </nav>
 
-      <SovereignHero />
+      {/* Hero Section */}  
+      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">  
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(217,119,6,0.08),transparent_70%)]" />  
+        <div className="max-w-5xl mx-auto px-6 text-center z-10 space-y-8">  
+          <motion.div  
+            initial={{ opacity: 0, y: 30 }}  
+            animate={{ opacity: 1, y: 0 }}  
+            transition={{ duration: 1 }}  
+            className="space-y-8"
+          >  
+            <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
+              You are tired of being the only Defense Attorney in a courtroom where the Judge, the Prosecutor, and the Jury are all your own voice.
+            </h1>  
+            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175 qp-pb-6pt">  
+              Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
+            </p>  
+            <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">  
+              <a   
+                href="#book"   
+                className="bg-amber-50 text-emerald-950 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"  
+              >  
+                Adjourn the Court: Book Your Intake
+              </a>  
+              <a 
+                href="https://blog.queerpathways.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-amber-50 text-amber-50 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-50/10 transition-all"  
+              >  
+                Read the Manifesto  
+              </a>  
+            </div>  
+          </motion.div>  
+        </div>  
+      </section>
 
       {/* The Framework Section */}  
       <section id="philosophy" className="py-32 px-6 bg-emerald-900/20">  

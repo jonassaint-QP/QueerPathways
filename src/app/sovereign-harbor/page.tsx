@@ -1,13 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import {
-  AnimatePresence,
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-} from "framer-motion";
+import React, { useState } from "react";
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 
 interface ICAProfile {
   id: string;
@@ -66,10 +60,8 @@ const dossiers: ICAProfile[] = [
     id: "xavier-03",
     name: "Xavier",
     clinicalStamp: "EMBODIED_PIONEER",
-    somaticMap:
-      "Formula 1 engine with bicycle brakes; task initiation deadbolt; sensory gating static.",
-    kinkIrony:
-      "Masculinity performance masking a 'withdraw to survive' freeze state.",
+    somaticMap: "Formula 1 engine with bicycle brakes; task initiation deadbolt; sensory gating static.",
+    kinkIrony: "Masculinity performance masking a \"withdraw to survive\" freeze state.",
     folderWeight: 72,
     assets: {
       armor: "https://cdn.marblism.com/A28dHBBJgxv.webp",
@@ -85,9 +77,8 @@ const dossiers: ICAProfile[] = [
     id: "justin-04",
     name: "Justin",
     clinicalStamp: "RELATIONSHIP_ALCHEMIST",
-    somaticMap: "RSD-driven metabolic spikes; Lexapro 'mute'; high-empathy sensory overload.",
-    kinkIrony:
-      "Scenes as nervous system regulation masking a deep fear of rejection (RSD).",
+    somaticMap: "RSD-driven metabolic spikes; Lexapro \"mute\"; high-empathy sensory overload.",
+    kinkIrony: "Scenes as nervous system regulation masking a deep fear of rejection (RSD).",
     folderWeight: 45,
     assets: {
       armor: "https://cdn.marblism.com/kzxypR7L_aI.webp",
@@ -103,10 +94,8 @@ const dossiers: ICAProfile[] = [
     id: "william-05",
     name: "William",
     clinicalStamp: "LATE_BLOOMING_ADVOCATE",
-    somaticMap:
-      "Sensory burnout; healthcare crisis 'cool head' vs domestic collapse; AIDS crisis legacy.",
-    kinkIrony:
-      "Late-blooming advocacy masking the grief of 'lost years' and touch-aversion.",
+    somaticMap: "Sensory burnout; healthcare crisis \"cool head\" vs domestic collapse; AIDS crisis legacy.",
+    kinkIrony: "Late-blooming advocacy masking the grief of \"lost years\" and touch-aversion.",
     folderWeight: 88,
     assets: {
       armor: "https://cdn.marblism.com/TWUoWDHBQzG.webp",
@@ -121,37 +110,39 @@ const dossiers: ICAProfile[] = [
 ];
 
 export default function EvidenceLocker() {
-  const [activeMatch, setActiveMatch] = useState<string | null>(null);
+  const [activeMatch, setActiveMatch] = React.useState<string | null>(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const matchId = params.get("match");
-    setActiveMatch(matchId);
+    if (matchId) {
+      setActiveMatch(matchId.toLowerCase());
+    }
   }, []);
 
-  return (
-    <main className="relative min-h-screen overflow-hidden bg-[#090b0f] px-6 py-12 text-zinc-100">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_15%,rgba(217,119,6,0.16),transparent_32%),radial-gradient(circle_at_85%_20%,rgba(220,38,38,0.12),transparent_30%),linear-gradient(180deg,rgba(10,12,17,0.94),rgba(6,7,10,1))]" />
-      <div className="pointer-events-none absolute inset-0 opacity-25 bg-[linear-gradient(transparent_49%,rgba(255,255,255,0.03)_50%,transparent_51%)] bg-[length:100%_4px]" />
+  const isMatchedDossier = (id: string) => {
+    if (!activeMatch) {
+      return false;
+    }
+    const normalizedId = id.toLowerCase();
+    const shortId = normalizedId.split("-")[0];
+    return activeMatch === normalizedId || activeMatch === shortId || normalizedId.startsWith(activeMatch);
+  };
 
-      <div className="relative mx-auto max-w-6xl">
-        <header className="mb-8 border border-zinc-700/70 bg-zinc-950/65 p-5 backdrop-blur-sm">
-          <p className="text-xs uppercase tracking-[0.35em] text-amber-200/80">Sovereign Harbor</p>
-          <h1 className="mt-2 text-3xl font-black uppercase tracking-tight md:text-4xl">
-            The Evidence Locker
-          </h1>
-          <p className="mt-2 text-sm uppercase tracking-[0.22em] text-zinc-300/85">
-            Unmasking Pass // Somatic Portrait Dossiers
-          </p>
+  return (
+    <main className="relative min-h-screen overflow-hidden bg-[#0a0c11] px-4 py-10 text-zinc-100 sm:px-6 lg:px-10">
+      <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noisy-grid.png')] opacity-25" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(16,185,129,0.15),transparent_46%),radial-gradient(circle_at_82%_80%,rgba(239,68,68,0.14),transparent_46%)]" />
+
+      <div className="relative z-10 mx-auto max-w-7xl">
+        <header className="mb-8 rounded-md border border-zinc-700/80 bg-zinc-900/70 px-5 py-4 backdrop-blur-sm">
+          <h1 className="text-xl font-black uppercase tracking-[0.24em] sm:text-2xl">Sovereign Harbor // Evidence Locker</h1>
+          <p className="mt-2 text-xs uppercase tracking-[0.16em] text-zinc-400 sm:text-sm">Unmasking Pass</p>
         </header>
 
-        <section className="grid gap-8 md:grid-cols-2 md:items-start xl:grid-cols-3">
+        <section className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {dossiers.map((ica) => (
-            <DossierCard
-              key={ica.id}
-              ica={ica}
-              isMatched={activeMatch === ica.id || activeMatch === ica.name.toLowerCase()}
-            />
+            <DossierCard key={ica.id} ica={ica} isMatched={isMatchedDossier(ica.id)} />
           ))}
         </section>
       </div>
@@ -165,19 +156,17 @@ function DossierCard({ ica, isMatched }: { ica: ICAProfile; isMatched: boolean }
   const y = useMotionValue(0);
 
   const springConfig = {
-    damping: Math.max(18, ica.folderWeight / 2),
-    stiffness: Math.max(48, 150 - ica.folderWeight),
+    damping: ica.folderWeight / 2,
+    stiffness: Math.max(60, 150 - ica.folderWeight),
   };
 
   const mouseXSpring = useSpring(x, springConfig);
   const mouseYSpring = useSpring(y, springConfig);
 
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], [15, -15]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], [-15, 15]);
-  const armorX = useTransform(mouseXSpring, [-0.5, 0.5], [-14, 14]);
-  const armorY = useTransform(mouseYSpring, [-0.5, 0.5], [-10, 10]);
-  const truthX = useTransform(mouseXSpring, [-0.5, 0.5], [8, -8]);
-  const truthY = useTransform(mouseYSpring, [-0.5, 0.5], [6, -6]);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["15deg", "-15deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-15deg", "15deg"]);
+  const armorX = useTransform(mouseXSpring, [-0.5, 0.5], [-8, 8]);
+  const armorY = useTransform(mouseYSpring, [-0.5, 0.5], [-8, 8]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -195,88 +184,67 @@ function DossierCard({ ica, isMatched }: { ica: ICAProfile; isMatched: boolean }
         setIsHovered(false);
       }}
       style={{ rotateX, rotateY, transformStyle: "preserve-3d" }}
-      className={`group relative mx-auto h-[550px] w-full max-w-[400px] cursor-crosshair overflow-hidden rounded-sm border border-[#bdaa88] bg-[#e3d5b5] text-zinc-900 shadow-[0_22px_55px_rgba(0,0,0,0.5)] transition-all duration-500 ${
+      className={`group relative h-[550px] w-full max-w-[400px] cursor-crosshair transition-all duration-500 ${
         isMatched ? "ring-4 ring-red-600/50 shadow-[0_0_50px_rgba(220,38,38,0.3)]" : ""
       }`}
-      whileHover={{ y: -6 }}
-      transition={{ type: "spring", stiffness: 220, damping: 18 }}
     >
-      {isMatched ? (
-        <div className="absolute left-4 top-4 z-30 border border-red-700 bg-red-950/85 px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-red-100">
+      {isMatched && (
+        <div className="absolute -top-4 right-2 z-40 rounded-sm border border-red-500/60 bg-red-950/80 px-2 py-1 text-[10px] font-black uppercase tracking-[0.14em] text-red-200">
           [ACTIVE_PROBE_MATCH: DETECTED]
         </div>
-      ) : null}
+      )}
 
-      <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cardboard-flat.png')] opacity-45 mix-blend-multiply" />
-      <div className="absolute inset-x-0 top-0 h-9 bg-[#d1bf96]" />
+      <div className="absolute inset-0 rounded-r-2xl rounded-tl-md border border-[#b7a37d] bg-[#efe2bf] shadow-[0_30px_55px_rgba(0,0,0,0.45)]" />
+      <div className="pointer-events-none absolute inset-0 rounded-r-2xl rounded-tl-md bg-[url('https://www.transparenttextures.com/patterns/cardboard-flat.png')] opacity-45 mix-blend-multiply" />
 
-      <div className="relative z-20 ml-5 mt-4 inline-flex rounded-t-sm border border-b-0 border-zinc-900/25 bg-[#e7d9b8] px-4 py-2 text-[11px] font-bold uppercase tracking-[0.22em] text-zinc-700">
+      <div className="absolute left-4 top-0 z-20 -translate-y-1/2 rounded-t-md border border-zinc-800 bg-[#d5c29a] px-4 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-zinc-900">
         ICA_REF_{ica.id.split("-")[1]}
       </div>
 
-      <aside className="relative z-20 mx-5 mt-3 border border-zinc-900/25 bg-[#ecdfc4]/95 p-3 text-[10px] font-bold uppercase tracking-[0.14em] text-zinc-700">
-        <p>PROCESS // {ica.metadata.neuralEngine}</p>
-        <p className="mt-1">ARMOR // {ica.metadata.armorLabel}</p>
-        <p className="mt-1">AUDIT // {ica.metadata.internalAuditor}</p>
-      </aside>
+      <div className="relative z-10 flex h-full flex-col p-4 text-zinc-900">
+        <div className="rounded-md border border-zinc-700/50 bg-[#f7ebd1] p-3 text-[10px] font-bold uppercase tracking-[0.12em] text-zinc-700">
+          <p>PROCESS // {ica.metadata.neuralEngine}</p>
+          <p className="mt-1">ARMOR // {ica.metadata.armorLabel}</p>
+          <p className="mt-1">AUDIT // {ica.metadata.internalAuditor}</p>
+        </div>
 
-      <div className="relative z-20 mx-5 mt-4 h-[252px] [transform-style:preserve-3d]">
-        <motion.img
-          src={ica.assets.truth}
-          alt={`${ica.name} truth layer`}
-          className="absolute inset-0 h-full w-full rounded-sm border border-zinc-900/20 object-cover saturate-[0.9]"
-          style={{ x: truthX, y: truthY, z: 10 }}
-        />
+        <div className="relative mt-4 flex-1 overflow-hidden rounded-md border border-zinc-700/40 bg-[#f7ebd1] p-3">
+          <img src={ica.assets.truth} alt={`${ica.name} truth`} className="absolute inset-0 h-full w-full object-cover opacity-90" />
+          <motion.img
+            src={ica.assets.armor}
+            alt={`${ica.name} armor`}
+            style={{ x: armorX, y: armorY }}
+            className="absolute inset-0 h-full w-full object-cover"
+          />
 
-        <motion.img
-          src={ica.assets.armor}
-          alt={`${ica.name} armor layer`}
-          className="absolute inset-0 h-full w-full rounded-sm border border-zinc-900/20 object-cover"
-          style={{ x: armorX, y: armorY, z: 30 }}
-          animate={{ opacity: isHovered ? 0.2 : 1, scale: isHovered ? 1.02 : 1 }}
-          transition={{ duration: 0.35, ease: "easeOut" }}
-        />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/35 to-transparent" />
 
-        <AnimatePresence>
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.92, rotate: -8 }}
-              animate={{ opacity: 1, scale: 1, rotate: -8 }}
-              exit={{ opacity: 0, scale: 0.92, rotate: -8 }}
-              className="pointer-events-none absolute right-4 top-5 border-2 border-red-700 bg-red-50/85 px-4 py-2 text-sm font-black uppercase tracking-[0.22em] text-red-700 shadow-sm"
-              style={{ z: 60 }}
-            >
-              UNMASKED
-            </motion.div>
-          )}
-        </AnimatePresence>
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9, rotate: -8 }}
+                animate={{ opacity: 1, scale: 1, rotate: -5 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                className="absolute right-4 top-4 border-4 border-red-600 px-3 py-2 text-[11px] font-black uppercase tracking-[0.16em] text-red-600"
+              >
+                UNMASKED
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <div className="absolute bottom-3 left-3 right-3 text-zinc-100">
+            <p className="text-xl font-black tracking-tight">{ica.name}</p>
+            <p className="text-xs font-bold uppercase tracking-[0.14em] text-red-300">{ica.clinicalStamp}</p>
+            <p className="mt-2 text-sm leading-snug">{ica.somaticMap}</p>
+            <p className="mt-2 text-sm leading-snug">{ica.kinkIrony}</p>
+          </div>
+        </div>
+
+        <div className="mt-3 text-right text-[11px] font-black uppercase tracking-[0.16em] text-zinc-700">
+          <p>FOLDER_WEIGHT: {ica.folderWeight}%</p>
+          <p>VOL_{ica.folderWeight}.SH</p>
+        </div>
       </div>
-
-      <section className="relative z-20 mx-5 mt-4 border border-zinc-900/25 bg-[#f0e5cb]/95 p-4">
-        <div className="flex items-start justify-between gap-4 border-b border-zinc-900/15 pb-3">
-          <h2 className="text-3xl font-black uppercase tracking-tight">{ica.name}</h2>
-          <p className="rotate-[-7deg] border-2 border-red-700 px-2 py-1 text-xs font-black uppercase tracking-[0.12em] text-red-700">
-            {ica.clinicalStamp}
-          </p>
-        </div>
-
-        <div className="mt-3 space-y-3 text-sm leading-relaxed text-zinc-800">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-600">Somatic Map</p>
-            <p className="mt-1">{ica.somaticMap}</p>
-          </div>
-
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-zinc-600">Kink Irony</p>
-            <p className="mt-1">{ica.kinkIrony}</p>
-          </div>
-        </div>
-      </section>
-
-      <footer className="absolute bottom-4 right-4 z-20 border border-zinc-900/35 bg-zinc-950 px-3 py-2 font-mono text-xs font-bold uppercase tracking-[0.12em] text-amber-100">
-        <p>FOLDER_WEIGHT: {ica.folderWeight}%</p>
-        <p className="mt-1">VOL_{ica.folderWeight}.SH</p>
-      </footer>
     </motion.article>
   );
 }

@@ -4,72 +4,56 @@ import { Link } from "react-router-dom";
 
 export default function SovereignHero() {
   return (
-    <section className="relative overflow-hidden border border-[#CBB26A]/20 bg-[#090d10] px-6 py-14 text-[#E8DFC4] md:px-10 md:py-20">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(203,178,106,0.18),transparent_42%),radial-gradient(circle_at_85%_20%,rgba(239,68,68,0.1),transparent_35%)]" />
-      <div className="pointer-events-none absolute inset-0 opacity-20 bg-[linear-gradient(transparent_49%,rgba(255,255,255,0.03)_50%,transparent_51%)] bg-[length:100%_4px]" />
+    <section className="relative min-h-[88vh] overflow-hidden bg-[#0a0d12] px-4 py-14 text-[#d8c58f] sm:px-6 lg:px-10">
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(transparent_96%,rgba(216,197,143,0.12)_96%)] bg-[length:100%_4px] opacity-45" />
+      <div className="pointer-events-none absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')] opacity-30" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(185,28,28,0.14),transparent_44%),radial-gradient(circle_at_80%_70%,rgba(6,95,70,0.2),transparent_48%)]" />
 
-      <div className="pointer-events-none absolute left-4 top-4 h-8 w-8 border-l border-t border-[#CBB26A]/60 md:left-6 md:top-6" />
-      <div className="pointer-events-none absolute bottom-4 right-4 h-8 w-8 border-b border-r border-[#CBB26A]/60 md:bottom-6 md:right-6" />
+      <div className="pointer-events-none absolute left-6 top-6 h-10 w-10 border-l border-t border-[#d8c58f]/45" />
+      <div className="pointer-events-none absolute bottom-6 right-6 h-10 w-10 border-b border-r border-[#d8c58f]/45" />
 
-      <div className="relative mx-auto w-full max-w-5xl">
-        <div className="mb-8 inline-flex border border-[#CBB26A]/35 bg-[#0f1417]/80 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.24em] text-[#CBB26A]">
+      <div className="relative z-10 mx-auto max-w-6xl border border-[#d8c58f]/35 bg-[#0f141b]/85 p-6 shadow-[0_32px_58px_rgba(0,0,0,0.5)] backdrop-blur-sm sm:p-8 lg:p-10">
+        <div className="inline-flex items-center border border-[#d8c58f]/35 bg-[#151c25] px-4 py-2 text-[11px] uppercase tracking-[0.28em] text-[#d8c58f]">
           SYSTEM_STATE: READY_FOR_AUDIT
         </div>
 
-        <header className="space-y-6">
-          <h1 className="max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
+        <div className="mt-8 max-w-4xl">
+          <h1 className="text-4xl font-black uppercase leading-[1.05] tracking-[0.08em] text-[#efdfa9] sm:text-5xl lg:text-6xl">
             The Prosecution Rests.
             <br />
             Your Sovereignty Begins.
           </h1>
-
-          <p className="max-w-3xl text-base leading-relaxed text-[#E8DFC4]/85 md:text-lg">
-            Affirming telehealth designed specifically for the high-functioning, the
-            neurodivergent, and the double-outsider. It&apos;s time to dismantle the Internal
-            Prosecutor.
+          <p className="mt-6 max-w-3xl text-sm leading-relaxed text-[#cdbd94] sm:text-base">
+            Affirming telehealth designed specifically for the high-functioning, the neurodivergent, and the
+            double-outsider. It is time to dismantle the Internal Prosecutor.
           </p>
-        </header>
+        </div>
 
-        <div className="mt-10 max-w-xl">
+        <div className="mt-10 max-w-3xl border border-[#d8c58f]/35 bg-[#121a22] p-4 sm:p-5">
           <Link
-            to="/#probe"
-            className="group relative block overflow-hidden border border-[#CBB26A] bg-transparent px-6 py-5 text-center font-mono text-xs font-bold uppercase tracking-[0.28em] text-[#CBB26A] transition-all duration-500 hover:bg-[#CBB26A] hover:text-[#153009]"
+            to="/intake-terminal"
+            className="group relative block w-full overflow-hidden border border-[#d8c58f] px-5 py-5 text-center text-xs font-semibold uppercase tracking-[0.28em] text-[#d8c58f] transition-all duration-500 hover:bg-[#d8c58f] hover:text-[#15210f]"
           >
-            <span className="pointer-events-none absolute inset-x-0 -top-px h-px origin-left scale-x-0 bg-red-500/80 transition-transform duration-500 group-hover:scale-x-100" />
+            <span className="pointer-events-none absolute inset-x-0 top-1/2 h-px -translate-y-1/2 bg-[#d8c58f]/35 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             [ INITIATE BIOMETRIC PROBE ]
           </Link>
-
-          <p className="mt-3 text-center font-mono text-[10px] uppercase tracking-[0.22em] text-[#CBB26A]/65">
+          <p className="mt-3 text-center text-[10px] uppercase tracking-[0.22em] text-[#bcae81]">
             Authorization Required // Entry Subject to Audit
           </p>
         </div>
 
-        <div className="mt-12 grid gap-4 border-t border-[#CBB26A]/15 pt-6 md:grid-cols-3">
-          <article className="space-y-2 border border-[#CBB26A]/15 bg-[#11171b]/70 p-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#CBB26A]/70">
-              Protocol 01
-            </p>
-            <p className="text-sm text-[#E8DFC4]/90">
-              Trauma-Informed Advocacy over Clinical Neutrality.
-            </p>
+        <div className="mt-10 grid gap-4 text-xs text-[#c6b889] sm:grid-cols-3 sm:gap-6">
+          <article className="border border-[#d8c58f]/25 bg-[#121923] p-4">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[#a89a71]">Protocol 01</p>
+            <p className="mt-2 leading-relaxed">Trauma-Informed Advocacy over Clinical Neutrality.</p>
           </article>
-
-          <article className="space-y-2 border border-[#CBB26A]/15 bg-[#11171b]/70 p-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#CBB26A]/70">
-              Protocol 02
-            </p>
-            <p className="text-sm text-[#E8DFC4]/90">
-              Somatic Stabilization for the ADHD Engine.
-            </p>
+          <article className="border border-[#d8c58f]/25 bg-[#121923] p-4">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[#a89a71]">Protocol 02</p>
+            <p className="mt-2 leading-relaxed">Somatic Stabilization for the ADHD Engine.</p>
           </article>
-
-          <article className="space-y-2 border border-[#CBB26A]/15 bg-[#11171b]/70 p-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#CBB26A]/70">
-              Protocol 03
-            </p>
-            <p className="text-sm text-[#E8DFC4]/90">
-              Building a Secure Base in a World of Static.
-            </p>
+          <article className="border border-[#d8c58f]/25 bg-[#121923] p-4">
+            <p className="text-[10px] uppercase tracking-[0.22em] text-[#a89a71]">Protocol 03</p>
+            <p className="mt-2 leading-relaxed">Building a Secure Base in a World of Static.</p>
           </article>
         </div>
       </div>

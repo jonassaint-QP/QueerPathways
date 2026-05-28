@@ -10,7 +10,6 @@ import KinkAffirmingPage from './KinkAffirmingPage';
 import PresencePage from './PresencePage';
 import SomaticSignalsRedirect from './SomaticSignalsRedirect';
 import SovereignHarbor from './app/sovereign-harbor/page';
-import IntakeTerminalPage from './IntakeTerminalPage';
 import './index.css';
 
 /**  
@@ -30,8 +29,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/presence" element={<PresencePage />} />
         <Route path="/somatic-signals" element={<SomaticSignalsRedirect />} />
         <Route path="/sovereign-harbor" element={<SovereignHarbor />} />
-        <Route path="/contact" element={<IntakeTerminalPage />} />
-        <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,  
