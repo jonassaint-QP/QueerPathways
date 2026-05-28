@@ -1,0 +1,73 @@
+.DS_Store -> archives/moved-pre-2026-05-25/.DS_Store
+.env.example -> archives/moved-pre-2026-05-25/.env.example
+.github/workflows/deploy.yml -> archives/moved-pre-2026-05-25/.github/workflows/deploy.yml
+.htaccess -> archives/moved-pre-2026-05-25/.htaccess
+.vscode/settings.json -> archives/moved-pre-2026-05-25/.vscode/settings.json
+Clinical-Communications-Director.agent.md -> archives/moved-pre-2026-05-25/Clinical-Communications-Director.agent.md
+ODALITIES_UPDATE_TEMPLATE.md -> archives/moved-pre-2026-05-25/MODALITIES_UPDATE_TEMPLATE.md
+README.md -> archives/moved-pre-2026-05-25/README.md
+images/.DS_Store -> archives/moved-pre-2026-05-25/images/.DS_Store
+images/AlexICA.png -> archives/moved-pre-2026-05-25/images/AlexICA.png
+images/BrianICA.png -> archives/moved-pre-2026-05-25/images/BrianICA.png
+images/IMAGE_SAVE_GUIDE.md -> archives/moved-pre-2026-05-25/images/IMAGE_SAVE_GUIDE.md
+images/IndividualAdvocacy.png -> archives/moved-pre-2026-05-25/images/IndividualAdvocacy.png
+images/Joshua_headshot.png -> archives/moved-pre-2026-05-25/images/Joshua_headshot.png
+images/JustinICA.png -> archives/moved-pre-2026-05-25/images/JustinICA.png
+images/Logo.png -> archives/moved-pre-2026-05-25/images/Logo.png
+images/Logo.svg -> archives/moved-pre-2026-05-25/images/Logo.svg
+"images/Relational Sovereignty.png" -> "archives/moved-pre-2026-05-25/images/Relational Sovereignty.png"
+images/RelationalSovereignty.png -> archives/moved-pre-2026-05-25/images/RelationalSovereignty.png
+images/WilliamICA.png -> archives/moved-pre-2026-05-25/images/WilliamICA.png
+images/XavierICA.png -> archives/moved-pre-2026-05-25/images/XavierICA.png
+images/email-stare.png -> archives/moved-pre-2026-05-25/images/email-stare.png
+images/favicon.png -> archives/moved-pre-2026-05-25/images/favicon.png
+images/joshua-headshot.jpg -> archives/moved-pre-2026-05-25/images/joshua-headshot.jpg
+images/modality-placeholder.svg -> archives/moved-pre-2026-05-25/images/modality-placeholder.svg
+images/sovereignty-study.png -> archives/moved-pre-2026-05-25/images/sovereignty-study.png
+logo.png -> archives/moved-pre-2026-05-25/logo.png
+logo.svg -> archives/moved-pre-2026-05-25/logo.svg
+metadata.json -> archives/moved-pre-2026-05-25/metadata.json
+netlify.toml -> archives/moved-pre-2026-05-25/netlify.toml
+pathways/.DS_Store -> archives/moved-pre-2026-05-25/pathways/.DS_Store
+pathways/.github/agents/queer-pathways-designer.agent.md -> archives/moved-pre-2026-05-25/pathways/.github/agents/queer-pathways-designer.agent.md
+pathways/.vscode/launch.json -> archives/moved-pre-2026-05-25/pathways/.vscode/launch.json
+pathways/images/IMAGE_MAPPING.md -> archives/moved-pre-2026-05-25/pathways/images/IMAGE_MAPPING.md
+public/404.html -> archives/moved-pre-2026-05-25/public/404.html
+public/Images/3tfwFXMWNVU.webp -> archives/moved-pre-2026-05-25/public/Images/3tfwFXMWNVU.webp
+public/Images/5Tpq63SBMDh.webp -> archives/moved-pre-2026-05-25/public/Images/5Tpq63SBMDh.webp
+"public/Images/Alex ICA.webp" -> "archives/moved-pre-2026-05-25/public/Images/Alex ICA.webp"
+"public/Images/Books on side table.webp" -> "archives/moved-pre-2026-05-25/public/Images/Books on side table.webp"
+"public/Images/Brian ICA.webp" -> "archives/moved-pre-2026-05-25/public/Images/Brian ICA.webp"
+public/Images/ChapterHalloldguard.webp -> archives/moved-pre-2026-05-25/public/Images/ChapterHalloldguard.webp
+"public/Images/Color logo with background.webp" -> "archives/moved-pre-2026-05-25/public/Images/Color logo with background.webp"
+public/Images/FWfqzbSXHcQ.webp -> archives/moved-pre-2026-05-25/public/Images/FWfqzbSXHcQ.webp
+public/Images/Flogging.webp -> archives/moved-pre-2026-05-25/public/Images/Flogging.webp
+"public/Images/Joshua LCSW.webp" -> "archives/moved-pre-2026-05-25/public/Images/Joshua LCSW.webp"
+"public/Images/Joshua Pride.PNG" -> "archives/moved-pre-2026-05-25/public/Images/Joshua Pride.PNG"
+"public/Images/Joshua Pride.webp" -> "archives/moved-pre-2026-05-25/public/Images/Joshua Pride.webp"
+"public/Images/Justin ICA.webp" -> "archives/moved-pre-2026-05-25/public/Images/Justin ICA.webp"
+public/Images/Leatherdomsub.webp -> archives/moved-pre-2026-05-25/public/Images/Leatherdomsub.webp
+"public/Images/Love talk.webp" -> "archives/moved-pre-2026-05-25/public/Images/Love talk.webp"
+public/Images/OZtWTVBM0-R.webp -> archives/moved-pre-2026-05-25/public/Images/OZtWTVBM0-R.webp
+public/Images/RandomBlkguy.webp -> archives/moved-pre-2026-05-25/public/Images/RandomBlkguy.webp
+public/Images/Relationshiptriad.webp -> archives/moved-pre-2026-05-25/public/Images/Relationshiptriad.webp
+public/Images/V6oDbbkhQxB.webp -> archives/moved-pre-2026-05-25/public/Images/V6oDbbkhQxB.webp
+"public/Images/William ICA.webp" -> "archives/moved-pre-2026-05-25/public/Images/William ICA.webp"
+"public/Images/Xavier ICA.webp" -> "archives/moved-pre-2026-05-25/public/Images/Xavier ICA.webp"
+public/Images/couple.webp -> archives/moved-pre-2026-05-25/public/Images/couple.webp
+public/Images/de7ttJ_La2z.webp -> archives/moved-pre-2026-05-25/public/Images/de7ttJ_La2z.webp
+public/Images/fenlucRiH05.webp -> archives/moved-pre-2026-05-25/public/Images/fenlucRiH05.webp
+public/Images/m88CmMIPM96.webp -> archives/moved-pre-2026-05-25/public/Images/m88CmMIPM96.webp
+"public/Images/office chair.webp" -> "archives/moved-pre-2026-05-25/public/Images/office chair.webp"
+public/Images/qr-code.webp -> archives/moved-pre-2026-05-25/public/Images/qr-code.webp
+public/Images/sadyouth.webp -> archives/moved-pre-2026-05-25/public/Images/sadyouth.webp
+public/Images/therapist.webp -> archives/moved-pre-2026-05-25/public/Images/therapist.webp
+public/robots.txt -> archives/moved-pre-2026-05-25/public/robots.txt
+src/AcousticEcologyPage.tsx -> archives/moved-pre-2026-05-25/src/AcousticEcologyPage.tsx
+src/ICAPage.tsx -> archives/moved-pre-2026-05-25/src/ICAPage.tsx
+src/InternalAuditorGuide.tsx -> archives/moved-pre-2026-05-25/src/InternalAuditorGuide.tsx
+src/KinkAffirmingPage.tsx -> archives/moved-pre-2026-05-25/src/KinkAffirmingPage.tsx
+src/SomaticSignalsRedirect.tsx -> archives/moved-pre-2026-05-25/src/SomaticSignalsRedirect.tsx
+tsconfig.json -> archives/moved-pre-2026-05-25/tsconfig.json
+vite.config.ts -> archives/moved-pre-2026-05-25/vite.config.ts
+wp-theme/queer-times.zip -> archives/moved-pre-2026-05-25/wp-theme/queer-times.zip

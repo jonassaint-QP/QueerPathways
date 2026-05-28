@@ -1,0 +1,2 @@
+.vscode/settings.json -> archives/moved-pre-2026-05-25/.vscode/settings.json
+pathways/.vscode/launch.json -> archives/moved-pre-2026-05-25/pathways/.vscode/launch.json
