@@ -5,27 +5,6 @@ import {
   Mail, Users, Zap, BookOpen, Sparkles, Scale, ExternalLink
 } from 'lucide-react';
 
-const carepatronButtonStyle: React.CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  outline: 0,
-  border: 0,
-  cursor: 'pointer',
-  userSelect: 'none',
-  textDecoration: 'none',
-  fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-  fontWeight: 500,
-  letterSpacing: '0.02857em',
-  color: '#fff',
-  backgroundColor: '#104714',
-  borderRadius: '4px',
-  height: '44px',
-  padding: '8px 24px',
-  fontSize: '15px',
-  transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-};
-
 const Divider = () => (
   <div className="w-12 h-px bg-amber-400/40 mx-auto my-2" />
 );
@@ -38,7 +17,7 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 
 export default function ReferralFactSheet() {
   return (
-    <div className="min-h-screen bg-emerald-950 text-amber-50" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="min-h-screen bg-emerald-950 text-amber-50 qp-font-inter">
 
       {/* Back nav */}
       <div className="border-b border-emerald-800/40">
@@ -60,8 +39,7 @@ export default function ReferralFactSheet() {
             <div className="space-y-4">
               <SectionLabel>Clinical Referral Document · Pennsylvania</SectionLabel>
               <h1
-                className="text-5xl md:text-6xl font-bold leading-tight"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-5xl md:text-6xl font-bold leading-tight qp-font-playfair"
               >
                 Queer Pathways
               </h1>
@@ -103,8 +81,7 @@ export default function ReferralFactSheet() {
                 <Scale className="text-amber-400 shrink-0 mt-1" size={22} />
                 <div>
                   <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                    className="text-lg font-bold mb-2 qp-font-playfair"
                   >
                     The Internal Legal System
                   </h3>
@@ -124,8 +101,7 @@ export default function ReferralFactSheet() {
                 <BookOpen className="text-amber-400 shrink-0 mt-1" size={22} />
                 <div>
                   <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                    className="text-lg font-bold mb-2 qp-font-playfair"
                   >
                     Systemic Exhaustion
                   </h3>
@@ -156,8 +132,7 @@ export default function ReferralFactSheet() {
         <section className="space-y-8">
           <SectionLabel>Specializations</SectionLabel>
           <h2
-            className="text-3xl font-bold"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+            className="text-3xl font-bold qp-font-playfair"
           >
             Who We Serve Best
           </h2>
@@ -224,8 +199,7 @@ export default function ReferralFactSheet() {
               <Zap className="text-amber-400 shrink-0 mt-1" size={24} />
               <div className="space-y-3">
                 <h2
-                  className="text-2xl font-bold"
-                  style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                  className="text-2xl font-bold qp-font-playfair"
                 >
                   Fast-Track Referral Process
                 </h2>
@@ -296,8 +270,7 @@ export default function ReferralFactSheet() {
         <section className="space-y-8">
           <SectionLabel>Financial Transparency</SectionLabel>
           <h2
-            className="text-3xl font-bold"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+            className="text-3xl font-bold qp-font-playfair"
           >
             Rates & Insurance
           </h2>
@@ -364,8 +337,7 @@ export default function ReferralFactSheet() {
             />
             <div className="relative space-y-6 max-w-2xl">
               <p
-                className="text-2xl md:text-3xl font-bold leading-snug"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl md:text-3xl font-bold leading-snug qp-font-playfair"
               >
                 Three chords and the truth.
               </p>
@@ -401,8 +373,7 @@ export default function ReferralFactSheet() {
 
             <div className="space-y-4">
               <h3
-                className="text-2xl font-bold"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl font-bold qp-font-playfair"
               >
                 Book Directly
               </h3>
@@ -414,7 +385,7 @@ export default function ReferralFactSheet() {
                 href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={carepatronButtonStyle}
+                className="qp-carepatron-button"
               >
                 Book appointment
               </a>
@@ -422,8 +393,7 @@ export default function ReferralFactSheet() {
 
             <div className="space-y-4">
               <h3
-                className="text-2xl font-bold"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl font-bold qp-font-playfair"
               >
                 Contact for Clinical Inquiry
               </h3>

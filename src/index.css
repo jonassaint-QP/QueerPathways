@@ -13,6 +13,14 @@ body {
   font-family: Roboto, Helvetica, Arial, sans-serif;
 }
 
+.qp-font-inter {
+  font-family: Inter, sans-serif;
+}
+
+.qp-font-playfair {
+  font-family: "Playfair Display", Georgia, serif;
+}
+
 .qp-tracking-carepatron {
   letter-spacing: 0.02857em;
 }
