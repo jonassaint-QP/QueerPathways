@@ -36,8 +36,14 @@ const PROGRAMS = [
   { href: '/acoustic-ecology', label: 'Acoustic Ecology', external: false },
   { href: '/kink-affirming', label: 'Kink-Affirming Care', external: false },
   { href: '/presence', label: 'Pathways to Presence', external: false },
-  { href: '/somatic-signals', label: 'Somatic Signals Podcast', external: false },
+  {
+    href: 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094',
+    label: 'Queer Connections Podcast',
+    external: true,
+  },
 ];
+
+const APPLE_PODCAST_URL = 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094';
 
 export default function App() {  
   const [scrolled, setScrolled] = useState(false);  
@@ -717,6 +723,51 @@ export default function App() {
         </div>
       </section>
 
+      {/* Podcast Section */}
+      <section id="podcast" className="py-28 px-6 bg-emerald-900/20 border-t border-emerald-900/50">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+          <div className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold">Queer Connections</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif leading-tight">Dedicated Podcast Archive</h2>
+            <p className="text-amber-100 text-lg qp-leading-175 max-w-3xl">
+              Clinical depth, noir honesty, and practical somatic frameworks for queer and neurodivergent high performers.
+              Stream Queer Connections: Unmapped on Apple Podcasts.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <a
+                href={APPLE_PODCAST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-sm font-bold hover:bg-amber-100 transition"
+              >
+                Listen on Apple Podcasts
+                <ExternalLink size={16} />
+              </a>
+              <a
+                href={APPLE_PODCAST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-amber-100/70 text-amber-100 px-8 py-3 rounded-full text-sm font-semibold hover:bg-amber-100/10 transition"
+              >
+                Open Show Page
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-emerald-900/40 border border-emerald-800/60 rounded-3xl p-8 space-y-4">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <BookOpen className="text-amber-400" size={22} />
+              What You Will Hear
+            </h3>
+            <ul className="space-y-3 text-amber-100/90 text-sm qp-leading-175">
+              <li>Attachment trauma, relational pacing, and minority stress analysis.</li>
+              <li>Somatic tools for performance paradox and executive shutdown cycles.</li>
+              <li>Practical, trauma-informed pathways to embodied sovereignty.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}  
       <footer className="py-20 border-t border-emerald-900/50 px-6 bg-emerald-950/50">  
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">  
@@ -740,6 +791,7 @@ export default function App() {
             <div className="space-y-4">  
               <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Connect</h5>  
               <ul className="space-y-2 text-sm text-amber-100/70">  
+                <li><a href={APPLE_PODCAST_URL} target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Apple Podcasts</a></li>
                 <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Substack</a></li>  
                 <li><a href="mailto:hello@queerpathways.org" className="hover:text-amber-50 transition">Email</a></li>  
                 <li><a href="tel:+13655999002" className="hover:text-amber-50 transition">365-599-9002</a></li>  

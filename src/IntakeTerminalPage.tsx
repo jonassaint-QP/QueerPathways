@@ -1,15 +1,11 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function ContactForm() {
-  const [match, setMatch] = useState("GENERAL_ENQUIRY");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const matchParam = params.get("match");
-    setMatch(matchParam ? matchParam : "GENERAL_ENQUIRY");
-  }, []);
+  const [searchParams] = useSearchParams();
+  const match = searchParams.get("match") || "GENERAL_ENQUIRY";
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0b1310] px-4 py-10 text-[#d6c187] sm:px-6 lg:px-12">
@@ -69,7 +65,7 @@ function ContactForm() {
             />
           </label>
 
-          <div className="relative overflow-hidden border border-[#d6c187] p-4 text-center">
+          <div className="group relative overflow-hidden border border-[#d6c187] p-4 text-center">
             <div className="pointer-events-none absolute right-4 top-4 rotate-6 border-2 border-red-600 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-red-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
               Submit_Final
             </div>
