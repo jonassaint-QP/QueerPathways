@@ -37,26 +37,26 @@ export default function ReferralFactSheet() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div className="space-y-4">
-              <SectionLabel>Clinical Referral Document · Pennsylvania</SectionLabel>
+              <SectionLabel>Clinical Referral Document · Ontario</SectionLabel>
               <h1
                 className="text-5xl md:text-6xl font-bold leading-tight qp-font-playfair"
               >
                 Queer Pathways
               </h1>
               <h2 className="text-xl md:text-2xl text-amber-100/80 font-light leading-snug">
-                Pennsylvania Referral Fact Sheet
+                Ontario Referral Fact Sheet
               </h2>
               <p className="text-amber-100/60 max-w-xl leading-relaxed text-sm">
                 Specialized telehealth psychotherapy for 2SLGBTQI+ and neurodivergent adults
-                across Pennsylvania. Affirming, somatic, and structurally informed care — built
+                across Toronto and Ontario. Affirming, somatic, and structurally informed care — built
                 for clients whose nervous systems have been legislated against.
               </p>
             </div>
             <div className="shrink-0 text-right space-y-1">
               <p className="text-xs text-amber-100/40 uppercase tracking-widest">Provider</p>
               <p className="text-amber-50 font-semibold">Joshua Jonassaint, LCSW</p>
-              <p className="text-amber-100/60 text-sm">Licensed Clinical Social Worker</p>
-              <p className="text-amber-100/60 text-sm">Pennsylvania</p>
+              <p className="text-amber-100/60 text-sm">Registered Social Worker (Ontario)</p>
+              <p className="text-amber-100/60 text-sm">Toronto, Ontario</p>
               <a
                 href="mailto:Joshua@QueerPathways.org"
                 className="inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 transition text-sm mt-2"
@@ -287,20 +287,20 @@ export default function ReferralFactSheet() {
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="text-emerald-400 shrink-0" size={18} />
                     <div>
-                      <p className="font-medium text-amber-50">Aetna</p>
-                      <p className="text-xs text-amber-100/40">Individual &amp; Couples</p>
+                      <p className="font-medium text-amber-50">Sun Life / Manulife / Canada Life / Desjardins</p>
+                      <p className="text-xs text-amber-100/40">Receipt-ready reimbursement support</p>
                     </div>
                   </div>
                   <span className="text-xs bg-emerald-700/60 text-emerald-200 px-3 py-1 rounded-full font-medium">
-                    In-Network
+                    Eligible
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Heart className="text-amber-400/60 shrink-0" size={18} />
                     <div>
-                      <p className="font-medium text-amber-50">Out-of-Network via Thrizer</p>
-                      <p className="text-xs text-amber-100/40">Pay only your estimated copay — Thrizer handles the rest</p>
+                      <p className="font-medium text-amber-50">Private-Pay + Clinical Superbills</p>
+                      <p className="text-xs text-amber-100/40">Submission-ready receipts for extended health claims</p>
                     </div>
                   </div>
                   <span className="text-xs bg-amber-400/10 text-amber-300/70 px-3 py-1 rounded-full font-medium">
@@ -309,18 +309,9 @@ export default function ReferralFactSheet() {
                 </div>
               </div>
               <p className="text-xs text-amber-100/40 leading-relaxed">
-                Queer Pathways uses{' '}
-                <a
-                  href="https://eligibility.thrizer.com/facility/thrizer7t1oh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-300 hover:text-amber-200 transition"
-                >
-                  Thrizer
-                </a>{' '}
-                for out-of-network billing. Clients pay only their estimated coinsurance at
-                the time of session — Thrizer submits the claim and fronts the reimbursement.
-                Verify your benefits before intake.
+                Queer Pathways provides insurer-ready receipts and coding support for Ontario
+                clients seeking reimbursement through extended health plans. Verify your
+                plan's psychotherapy/social work coverage before intake.
               </p>
             </div>
           </div>
@@ -418,8 +409,9 @@ export default function ReferralFactSheet() {
         {/* Telehealth disclosure */}
         <div className="border-t border-emerald-800/30 pt-8 pb-4 text-center">
           <p className="text-xs text-amber-100/30 max-w-xl mx-auto leading-relaxed">
-            Queer Pathways provides telehealth services exclusively within the Commonwealth
-            of Pennsylvania. Services rendered by Joshua Jonassaint, LCSW. This document
+            Queer Pathways provides telehealth services for residents of Ontario, including
+            Toronto and surrounding communities. Services rendered by Joshua Jonassaint, LCSW.
+            This document
             is intended for clinical and referral use only.
           </p>
           <p className="text-xs text-amber-100/20 mt-3">

@@ -79,7 +79,8 @@ export default function InternalAuditorGuide() {
           <h2 className="text-3xl font-bold font-serif">Ready to Start Your Own Roadmap?</h2>
           <p className="text-amber-100 max-w-3xl mx-auto">
             We provide kink-aware, trauma-informed therapy for neurodivergent adults and the queer and
-            2SLGBTQI+ community in Pennsylvania. Accepting Aetna (in-network) for PA clients.
+            2SLGBTQI+ community across Toronto and Ontario. Superbills available for Sun Life,
+            Manulife, Canada Life, and Desjardins reimbursement.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a

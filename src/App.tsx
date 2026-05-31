@@ -90,9 +90,9 @@ export default function App() {
   }, []);
 
   return (  
-    <div className="relative bg-emerald-950 text-amber-50">  
+    <div className="relative bg-[#001807] text-amber-50">  
       {/* Navigation */}  
-      <nav className={`fixed w-full z-50 transition-all duration-500 bg-[#153009] border-b border-emerald-900/70 ${scrolled ? 'py-4 shadow-[0_10px_24px_rgba(0,0,0,0.35)]' : 'py-6'}`}>  
+      <nav className={`fixed w-full z-50 transition-all duration-500 bg-[#001807] border-b border-emerald-900/70 ${scrolled ? 'py-4 shadow-[0_10px_24px_rgba(0,0,0,0.35)]' : 'py-6'}`}>  
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">  
           <div className="flex items-center">
             <img
@@ -295,7 +295,9 @@ export default function App() {
           >  
             <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
               This is no broken here. Only unmapped. <br />
-              Serving Ontario residence tired of aswering the 3am sopena of the Internal court.
+              <span className="block mt-3 text-base font-medium tracking-normal font-sans">
+                Serving Ontario residents tired of answering the 3am subpoena of the Internal Court.
+              </span>
             </h1>  
             <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175 qp-pb-6pt">  
               Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
@@ -321,7 +323,7 @@ export default function App() {
       </section>
 
       {/* The Framework Section */}  
-      <section id="philosophy" className="py-32 px-6 bg-emerald-900/20">  
+      <section id="philosophy" className="py-32 px-6">  
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">  
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -453,7 +455,7 @@ export default function App() {
       </section>
 
       {/* Surgical Advocacy Checklist Section */}
-      <section id="surgical-advocacy" className="py-24 px-6 bg-emerald-900/30">
+      <section id="surgical-advocacy" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-emerald-950/60 border border-emerald-800/60 rounded-3xl p-8 md:p-12 space-y-8">
             <div className="space-y-4">
@@ -522,7 +524,7 @@ export default function App() {
       </section>
 
       {/* Referrals Section */}  
-      <section id="referrals" className="py-32 px-6 bg-emerald-900/20">  
+      <section id="referrals" className="py-32 px-6">  
         <div className="max-w-4xl mx-auto text-center space-y-8">  
           <Shield className="w-16 h-16 text-amber-400 mx-auto" />  
           <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>
@@ -547,15 +549,15 @@ export default function App() {
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
-                <p className="font-bold">Direct Integration - PA (Telehealth)</p>  
-                <p className="text-sm text-amber-100">In-Network with Aetna and Highmark BCBS.</p>  
+                <p className="font-bold">Direct Integration - ON (Telehealth)</p>  
+                <p className="text-sm text-amber-100">Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins claims.</p>  
               </div>  
             </div>  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
                 <p className="font-bold">Telehealth-First</p>  
-                <p className="text-sm text-amber-100">Serving the entirety of Ontario and Pennsylvania.</p>  
+                <p className="text-sm text-amber-100">Serving Toronto and the entirety of Ontario.</p>  
               </div>  
             </div>  
           </div>  
@@ -564,7 +566,7 @@ export default function App() {
 
       {/* Booking Section */}
       <div id="probe" className="relative -top-24" aria-hidden="true" />
-      <section id="book" className="py-32 px-6 bg-emerald-900/40">
+      <section id="book" className="py-32 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6">
             <h2 className="text-5xl md:text-6xl font-bold font-serif">Dignity Investment.</h2>
@@ -600,7 +602,7 @@ export default function App() {
               </h4>
               <div className="space-y-3 text-sm text-amber-100">
                 <p className="font-semibold text-amber-50">Direct Integration:</p>
-                <p className="qp-leading-175">Direct Integration - PA (Telehealth). In-Network with Aetna and Highmark BCBS.</p>
+                <p className="qp-leading-175">Direct Integration - ON (Telehealth). Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins.</p>
                 <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
                 <p className="qp-leading-175">For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
               </div>
@@ -639,7 +641,7 @@ export default function App() {
       </section>
 
       {/* Weekend Resource Guide Section */}
-      <section id="weekend-safety-net" className="py-24 px-6 bg-emerald-950/70 border-y border-emerald-800/50">
+      <section id="weekend-safety-net" className="py-24 px-6 border-y border-emerald-800/50">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="space-y-4 text-center">
             <p className="text-amber-400 uppercase tracking-widest text-xs font-bold">Friday Push</p>
@@ -685,7 +687,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition px-4 py-2 rounded qp-amber-border qp-font-roboto"
               >
-                Download the Full Sovereign Sanctuary Resource PDF
+                Full Sovereign Sanctuary Resource
                 <ArrowRight size={16} />
               </a>
               <p className="text-xs text-amber-100/70 mt-2">Optional email capture link for Friday resource leads.</p>
@@ -761,7 +763,7 @@ export default function App() {
       </section>
 
       {/* Podcast Section */}
-      <section id="podcast" className="py-28 px-6 bg-emerald-900/20 border-t border-emerald-900/50">
+      <section id="podcast" className="py-28 px-6 border-t border-emerald-900/50">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
           <div className="space-y-6">
             <p className="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold">Queer Connections</p>
@@ -814,7 +816,7 @@ export default function App() {
               alt="Queer Pathways"
               className="h-14 w-auto object-contain"
             />  
-            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Philadelphia | Pittsburgh | PA | Ontario, Canada</p>  
+            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Ontario, Canada | Pennsylvania, US</p>  
           </div>  
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">  
             <div className="space-y-4">  

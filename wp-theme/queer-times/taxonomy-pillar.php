@@ -8,6 +8,129 @@
  * /pillar/clinical-advocacy/
  */
 
+// Fallbacks for non-WordPress static analyzers.
+if (!function_exists('get_header')) {
+    function get_header() {}
+}
+if (!function_exists('get_footer')) {
+    function get_footer() {}
+}
+if (!function_exists('get_queried_object')) {
+    function get_queried_object() {
+        return (object) ['name' => '', 'slug' => '', 'description' => ''];
+    }
+}
+if (!function_exists('esc_html')) {
+    function esc_html($text = '') {
+        return (string) $text;
+    }
+}
+if (!function_exists('date_i18n')) {
+    function date_i18n($format = '', $timestamp = null) {
+        return '';
+    }
+}
+if (!function_exists('_e')) {
+    function _e($text = '', $domain = '') {
+        echo $text;
+    }
+}
+if (!function_exists('esc_url')) {
+    function esc_url($url = '') {
+        return (string) $url;
+    }
+}
+if (!function_exists('home_url')) {
+    function home_url($path = '') {
+        return (string) $path;
+    }
+}
+if (!function_exists('get_terms')) {
+    function get_terms($args = []) {
+        return [];
+    }
+}
+if (!function_exists('is_wp_error')) {
+    function is_wp_error($thing) {
+        return false;
+    }
+}
+if (!function_exists('esc_attr_e')) {
+    function esc_attr_e($text = '', $domain = '') {
+        echo $text;
+    }
+}
+if (!function_exists('get_term_link')) {
+    function get_term_link($term) {
+        return '#';
+    }
+}
+if (!function_exists('have_posts')) {
+    function have_posts() {
+        return false;
+    }
+}
+if (!function_exists('the_post')) {
+    function the_post() {}
+}
+if (!function_exists('post_class')) {
+    function post_class($class = '') {
+        $className = is_array($class) ? implode(' ', $class) : (string) $class;
+        echo 'class="' . $className . '"';
+    }
+}
+if (!function_exists('the_permalink')) {
+    function the_permalink() {
+        echo '#';
+    }
+}
+if (!function_exists('the_title')) {
+    function the_title() {
+        echo '';
+    }
+}
+if (!function_exists('esc_html__')) {
+    function esc_html__($text = '', $domain = '') {
+        return (string) $text;
+    }
+}
+if (!function_exists('get_the_author')) {
+    function get_the_author() {
+        return '';
+    }
+}
+if (!function_exists('get_the_date')) {
+    function get_the_date() {
+        return '';
+    }
+}
+if (!function_exists('has_post_thumbnail')) {
+    function has_post_thumbnail() {
+        return false;
+    }
+}
+if (!function_exists('the_post_thumbnail')) {
+    function the_post_thumbnail($size = 'thumbnail', $attr = []) {}
+}
+if (!function_exists('the_excerpt')) {
+    function the_excerpt() {
+        echo '';
+    }
+}
+if (!function_exists('the_posts_pagination')) {
+    function the_posts_pagination($args = []) {}
+}
+if (!function_exists('__')) {
+    function __($text = '', $domain = '') {
+        return (string) $text;
+    }
+}
+
+// Analysis-only stub include for editor tooling; never executes at runtime.
+if (false) {
+    require_once __DIR__ . '/../../stubs/wordpress-stubs/wordpress-stubs.php';
+}
+
 get_header();
 
 $term = get_queried_object();
