@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 type Archetype = {
   id: string;
@@ -60,6 +61,7 @@ const ARCHETYPES: Archetype[] = [
 ];
 
 export default function DiagnosticProbe() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [results, setResults] = useState<string[]>([]);
   const [scanning, setScanning] = useState(false);
@@ -123,7 +125,7 @@ export default function DiagnosticProbe() {
 
           <button
             onClick={() => {
-              window.location.href = `/sovereign-harbor?match=${finalReport.id}`;
+              navigate(`/sovereign-harbor?match=${finalReport.id}`);
             }}
             className="mt-2 w-full border border-[#CBB26A] py-5 text-xs font-light uppercase tracking-[0.3em] text-[#CBB26A] transition-all duration-500 hover:bg-[#CBB26A] hover:text-[#153009]"
           >

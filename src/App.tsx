@@ -45,6 +45,8 @@ const PROGRAMS = [
 
 const APPLE_PODCAST_URL = 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094';
 
+const isExternalHref = (href: string) => href.startsWith('http');
+
 export default function App() {  
   const [scrolled, setScrolled] = useState(false);  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,7 +92,7 @@ export default function App() {
   return (  
     <div className="relative bg-emerald-950 text-amber-50">  
       {/* Navigation */}  
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-emerald-950/80 backdrop-blur-md border-b border-emerald-900/50' : 'py-8 bg-emerald-950/40'}`}>  
+      <nav className={`fixed w-full z-50 transition-all duration-500 bg-[#153009] border-b border-emerald-900/70 ${scrolled ? 'py-4 shadow-[0_10px_24px_rgba(0,0,0,0.35)]' : 'py-6'}`}>  
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">  
           <div className="flex items-center">
             <img
@@ -128,14 +130,27 @@ export default function App() {
                     className="absolute top-full left-0 mt-3 w-52 bg-emerald-950/95 border border-emerald-800/70 rounded-xl shadow-xl backdrop-blur-md py-2 z-50"
                   >
                     {PROGRAMS.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setIsProgramsOpen(false)}
-                        className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
-                      >
-                        {p.label}
-                      </a>
+                      isExternalHref(p.href) || p.external ? (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsProgramsOpen(false)}
+                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
+                        >
+                          {p.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={p.href}
+                          to={p.href}
+                          onClick={() => setIsProgramsOpen(false)}
+                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
+                        >
+                          {p.label}
+                        </Link>
+                      )
                     ))}
                   </motion.div>
                 )}
@@ -227,14 +242,27 @@ export default function App() {
                   <div className="pt-2 pb-1">
                     <p className="text-xs uppercase tracking-widest text-amber-400/60 font-semibold px-1 pb-2">Programs</p>
                     {PROGRAMS.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
-                      >
-                        {p.label}
-                      </a>
+                      isExternalHref(p.href) || p.external ? (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
+                        >
+                          {p.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={p.href}
+                          to={p.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
+                        >
+                          {p.label}
+                        </Link>
+                      )
                     ))}
                   </div>
                 </div>
@@ -256,7 +284,7 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}  
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">  
+      <section className="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">  
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(217,119,6,0.08),transparent_70%)]" />  
         <div className="max-w-5xl mx-auto px-6 text-center z-10 space-y-8">  
           <motion.div  
@@ -266,7 +294,8 @@ export default function App() {
             className="space-y-8"
           >  
             <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
-              You are tired of being the only Defense Attorney in a courtroom where the Judge, the Prosecutor, and the Jury are all your own voice.
+              This is no broken here. Only unmapped. <br />
+              Serving Ontario residence tired of aswering the 3am sopena of the Internal court.
             </h1>  
             <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175 qp-pb-6pt">  
               Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
@@ -500,25 +529,33 @@ export default function App() {
           <div className="bg-amber-400/10 border-2 border-amber-400/40 rounded-2xl p-8 text-left space-y-4">
             <p className="text-xl font-bold text-amber-300 font-serif">The 7-Day Safety Net</p>
             <p className="text-lg text-amber-100 qp-leading-175">
-              We stop the Leaky Bucket. If you are stepping down from PHP or IOP in Pennsylvania, we guarantee a consultation within 7 days to ensure your momentum isn't lost to a 90-day waitlist.
+              For queer and neurodivergent professionals, those hard times are often the exhausting weight of waiting for a space to put their armor down.
             </p>
           </div>
-          <p className="text-xl text-amber-100 qp-leading-175">  
-            We understand the vulnerability of stepping down from PHP or IOP. Queer Pathways offers <strong>priority access</strong> fast-track consultations to ensure clinical momentum is never lost.  
-          </p>  
+          <div className="space-y-4 text-left">
+            <p className="text-xl text-amber-100 qp-leading-175">
+              Taking the first step to seek specialized care is an act of profound vulnerability. When you finally reach out, you shouldn't have to watch your momentum leak away on a ninety-day waitlist, left alone with an internal courtroom that claims you are "too much" to handle.
+            </p>
+            <p className="text-xl text-amber-100 qp-leading-175">
+              At Queer Pathways, we guarantee an initial consultation within seven days of your inquiry. We don't believe in leaving a dysregulated nervous system on ice.
+            </p>
+            <p className="text-xl text-amber-100 qp-leading-175">
+              If you are tired of litigating your worth while waiting for traditional systems to catch up, let's change the timeline. Connect with Joshua Jonassaint, LCSW, at QueerPathways.org to book your consultation within the week and rewrite your internal law.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-6 text-left pt-10">  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
-                <p className="font-bold">Direct Integration</p>  
-                <p className="text-sm text-amber-100">In-Network with Aetna (PA) and UPMC (PA). No executive function hurdle to verify your benefits.</p>  
+                <p className="font-bold">Direct Integration - PA (Telehealth)</p>  
+                <p className="text-sm text-amber-100">In-Network with Aetna and Highmark BCBS.</p>  
               </div>  
             </div>  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
                 <p className="font-bold">Telehealth-First</p>  
-                <p className="text-sm text-amber-100">Serving the entirety of Pennsylvania.</p>  
+                <p className="text-sm text-amber-100">Serving the entirety of Ontario and Pennsylvania.</p>  
               </div>  
             </div>  
           </div>  
@@ -563,7 +600,7 @@ export default function App() {
               </h4>
               <div className="space-y-3 text-sm text-amber-100">
                 <p className="font-semibold text-amber-50">Direct Integration:</p>
-                <p className="qp-leading-175">Proudly In-Network with Aetna (PA) and UPMC (PA). Direct Integration means no executive function hurdle to verify your benefits before you walk in.</p>
+                <p className="qp-leading-175">Direct Integration - PA (Telehealth). In-Network with Aetna and Highmark BCBS.</p>
                 <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
                 <p className="qp-leading-175">For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
               </div>
@@ -707,7 +744,7 @@ export default function App() {
               <div className="pt-4 border-t border-emerald-800/50 space-y-3">
                 <p className="text-sm text-amber-100"><strong>Specializations:</strong></p>
                 <p className="text-sm text-amber-100 qp-leading-175">
-                  LGBTQ+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
+                  2SLGBTQI+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
                 </p>
               </div>
             </div>
@@ -786,6 +823,8 @@ export default function App() {
                 <li><a href="#philosophy" className="hover:text-amber-50 transition">Philosophy</a></li>  
                 <li><a href="#specialists" className="hover:text-amber-50 transition">Specialists</a></li>  
                 <li><a href="#book" className="hover:text-amber-50 transition">Booking</a></li>  
+                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fee Disclosure</Link></li>
+                <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy</Link></li>
               </ul>  
             </div>  
             <div className="space-y-4">  

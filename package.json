@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "rm -rf dist && vite build && for d in modalities library pathways soundtrack images; do [ -d \"$d\" ] && cp -r \"$d\" dist/; done",
+    "prebuild": "node ./scripts/verify-env.mjs",
+    "build": "rm -rf dist && vite build && for d in modalities library pathways soundtrack images; do if [ -d \"$d\" ]; then cp -r \"$d\" dist/; fi; done",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc --noEmit"
+    "lint": "tsc -p ./tsconfig.json --noEmit"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",

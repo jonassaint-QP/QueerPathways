@@ -16,7 +16,7 @@ $term = get_queried_object();
 $pillar_descriptions = [
     'somatic-sovereignty'    => 'The radical practice of reclaiming the body as home — using somatic approaches to help queer people reconnect with themselves on their own terms.',
     'relational-architecture' => 'Intentional frameworks for building chosen family, community, and the bonds that hold. How we design relationships that last.',
-    'clinical-advocacy'      => 'Advocacy as clinical practice — centering the rights, voices, and dignity of LGBTQ+ clients within therapeutic and systemic spaces.',
+    'clinical-advocacy'      => 'Advocacy as clinical practice — centering the rights, voices, and dignity of 2SLGBTQI+ clients within therapeutic and systemic spaces.',
 ];
 
 $description = $term->description ?: ( $pillar_descriptions[ $term->slug ] ?? '' );

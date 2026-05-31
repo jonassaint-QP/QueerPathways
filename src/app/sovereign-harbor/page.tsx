@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
+import { useSearchParams } from "react-router-dom";
 import SovereignHero from "./components/SovereignHero";
 
 interface ICAProfile {
@@ -31,8 +32,8 @@ const dossiers: ICAProfile[] = [
     kinkIrony: "Service Top performance masking an urgent need for executive surrender.",
     folderWeight: 65,
     assets: {
-      armor: "https://cdn.marblism.com/HI_PXNjydwX.webp",
-      truth: "https://cdn.marblism.com/54tKVJJYC3e.webp",
+      armor: "/Images/sovereign-harbor/alex.webp",
+      truth: "/Images/sovereign-harbor/alex.webp",
     },
     metadata: {
       neuralEngine: "HYPER_VIGILANT_TASK_PROCESSOR",
@@ -48,8 +49,8 @@ const dossiers: ICAProfile[] = [
     kinkIrony: "Type-A authority masking a profound, unaddressed loneliness and need for play.",
     folderWeight: 94,
     assets: {
-      armor: "https://cdn.marblism.com/OsVmZ9bk0gf.webp",
-      truth: "https://cdn.marblism.com/6DzZvEuzmQM.webp",
+      armor: "/Images/sovereign-harbor/brian.webp",
+      truth: "/Images/sovereign-harbor/brian.webp",
     },
     metadata: {
       neuralEngine: "BOARDROOM_MAINTENANCE_OS",
@@ -65,8 +66,8 @@ const dossiers: ICAProfile[] = [
     kinkIrony: "Masculinity performance masking a withdraw to survive freeze state.",
     folderWeight: 72,
     assets: {
-      armor: "https://cdn.marblism.com/A28dHBBJgxv.webp",
-      truth: "https://cdn.marblism.com/BtliCQS4Xxq.webp",
+      armor: "/Images/sovereign-harbor/xavier.webp",
+      truth: "/Images/sovereign-harbor/xavier.webp",
     },
     metadata: {
       neuralEngine: "F1_SENSORY_PROCESSOR",
@@ -82,8 +83,8 @@ const dossiers: ICAProfile[] = [
     kinkIrony: "Scenes as nervous system regulation masking a deep fear of rejection (RSD).",
     folderWeight: 45,
     assets: {
-      armor: "https://cdn.marblism.com/kzxypR7L_aI.webp",
-      truth: "https://cdn.marblism.com/EFTXDG9lx9h.webp",
+      armor: "/Images/sovereign-harbor/justin.webp",
+      truth: "/Images/sovereign-harbor/justin.webp",
     },
     metadata: {
       neuralEngine: "RSD_FILTER_OS",
@@ -99,8 +100,8 @@ const dossiers: ICAProfile[] = [
     kinkIrony: "Late-blooming advocacy masking the grief of lost years and touch-aversion.",
     folderWeight: 88,
     assets: {
-      armor: "https://cdn.marblism.com/TWUoWDHBQzG.webp",
-      truth: "https://cdn.marblism.com/wQ3HdoU5uAH.webp",
+      armor: "/Images/sovereign-harbor/william.webp",
+      truth: "/Images/sovereign-harbor/william.webp",
     },
     metadata: {
       neuralEngine: "CRISIS_COOL_HEAD",
@@ -111,15 +112,8 @@ const dossiers: ICAProfile[] = [
 ];
 
 export default function EvidenceLocker() {
-  const [activeMatch, setActiveMatch] = useState<string | null>(null);
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const matchId = params.get("match");
-    if (matchId) {
-      setActiveMatch(matchId.toLowerCase());
-    }
-  }, []);
+  const [searchParams] = useSearchParams();
+  const activeMatch = searchParams.get("match")?.toLowerCase() || null;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#060b11] text-[#d6c793]">

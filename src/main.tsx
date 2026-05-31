@@ -6,10 +6,13 @@ import InternalAuditorGuide from './InternalAuditorGuide';
 import ReferralFactSheet from './ReferralFactSheet';
 import ICAPage from './ICAPage';
 import AcousticEcologyPage from './AcousticEcologyPage';
-import KinkAffirmingPage from './KinkAffirmingPage';
 import PresencePage from './PresencePage';
-import SomaticSignalsRedirect from './SomaticSignalsRedirect';
+import KinkAffirmingPage from './KinkAffirmingPage';
+import FeeDisclosurePage from './FeeDisclosurePage';
+import PrivacyPage from './PrivacyPage';
+import NotFoundPage from './NotFoundPage';
 import SovereignHarbor from './app/sovereign-harbor/page';
+import IntakeTerminalPage from './IntakeTerminalPage';
 import './index.css';
 
 /**  
@@ -27,8 +30,12 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/acoustic-ecology" element={<AcousticEcologyPage />} />
         <Route path="/kink-affirming" element={<KinkAffirmingPage />} />
         <Route path="/presence" element={<PresencePage />} />
-        <Route path="/somatic-signals" element={<SomaticSignalsRedirect />} />
+        <Route path="/fee-disclosure" element={<FeeDisclosurePage />} />
+        <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/sovereign-harbor" element={<SovereignHarbor />} />
+        <Route path="/contact" element={<IntakeTerminalPage />} />
+        <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,  
