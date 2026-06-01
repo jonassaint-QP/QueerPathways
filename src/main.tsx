@@ -13,6 +13,7 @@ import PrivacyPage from './PrivacyPage';
 import NotFoundPage from './NotFoundPage';
 import SovereignHarbor from './app/sovereign-harbor/page';
 import IntakeTerminalPage from './IntakeTerminalPage';
+import ShopPage from './ShopPage';
 import './index.css';
 
 /**  
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/sovereign-harbor" element={<SovereignHarbor />} />
         <Route path="/contact" element={<IntakeTerminalPage />} />
         <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
+        <Route path="/shop" element={<ShopPage />} />
         <Route path="/queertimes" element={<Navigate to="https://blog.queerpathways.org" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

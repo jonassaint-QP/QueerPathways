@@ -36,6 +36,7 @@ const PROGRAMS = [
   { href: '/acoustic-ecology', label: 'Acoustic Ecology', external: false },
   { href: '/kink-affirming', label: 'Kink-Affirming Care', external: false },
   { href: '/presence', label: 'Pathways to Presence', external: false },
+  { href: '/shop', label: "The Centaur's Apothecary", external: false },
   {
     href: 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094',
     label: 'Queer Connections Podcast',
@@ -601,10 +602,12 @@ export default function App() {
                 Dignity Investment
               </h4>
               <div className="space-y-3 text-sm text-amber-100">
-                <p className="font-semibold text-amber-50">Direct Integration:</p>
-                <p className="qp-leading-175">Direct Integration - ON (Telehealth). Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins.</p>
-                <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
-                <p className="qp-leading-175">For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
+                <p className="font-semibold text-amber-50">Ontario (Direct Integration):</p>
+                <p className="qp-leading-175">Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins.</p>
+                <p className="font-semibold text-amber-50 pt-2">Pennsylvania (In-Network):</p>
+                <p className="qp-leading-175">Aetna, Blue Cross Blue Shield, and CIGNA. Direct billing — no superbill required.</p>
+                <p className="font-semibold text-amber-50 pt-2">All Other Providers:</p>
+                <p className="qp-leading-175">We use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
               </div>
             </div>
           </div>
@@ -825,6 +828,7 @@ export default function App() {
                 <li><a href="#philosophy" className="hover:text-amber-50 transition">Philosophy</a></li>  
                 <li><a href="#specialists" className="hover:text-amber-50 transition">Specialists</a></li>  
                 <li><a href="#book" className="hover:text-amber-50 transition">Booking</a></li>  
+                <li><Link to="/shop" className="hover:text-amber-50 transition">Shop</Link></li>
                 <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fee Disclosure</Link></li>
                 <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy</Link></li>
               </ul>  
