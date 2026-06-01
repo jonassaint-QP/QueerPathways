@@ -2,6 +2,20 @@
 	command = "npm run build"
 	publish = "dist"
 
+# Blog distribution rail — must be before the SPA wildcard
+[[redirects]]
+	from = "/queertimes"
+	to = "https://blog.queerpathways.org"
+	status = 301
+	force = true
+
+[[redirects]]
+	from = "/queertimes/*"
+	to = "https://blog.queerpathways.org/:splat"
+	status = 301
+	force = true
+
+# SPA fallback
 [[redirects]]
 	from = "/*"
 	to = "/index.html"

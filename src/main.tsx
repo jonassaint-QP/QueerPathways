@@ -1,6 +1,6 @@
 import React from 'react';  
 import ReactDOM from 'react-dom/client';  
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import App from './App';  
 import InternalAuditorGuide from './InternalAuditorGuide';
 import ReferralFactSheet from './ReferralFactSheet';
@@ -35,6 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/sovereign-harbor" element={<SovereignHarbor />} />
         <Route path="/contact" element={<IntakeTerminalPage />} />
         <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
+        <Route path="/queertimes" element={<Navigate to="https://blog.queerpathways.org" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
