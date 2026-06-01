@@ -3,6 +3,16 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck } from 'lucide-react';
 
+/*
+ * ── PAYMENT LINKS ──────────────────────────────────────────
+ * To activate a product:
+ *   1. Stripe: Dashboard → Products → Payment Links → Copy URL
+ *   2. PayPal: Dashboard → Pay & Get Paid → Payment Buttons → Copy URL
+ * Paste the URLs into stripeUrl / paypalUrl below.
+ * Leave as '' to keep the product in "Coming Soon" state.
+ * ───────────────────────────────────────────────────────────
+ */
+
 /* ── Product Catalogue (Site Bible SB-MASTER-01) ─────────── */
 const CATALOGUE = [
   {
@@ -16,7 +26,9 @@ const CATALOGUE = [
         description:
           'Heavy matte deep forest green vessel. Signature scent: Cedarwood, dark amber, earthy patchouli. An intentional behavioral transition that adjourns the Internal Prosecutor and marks the shift from performance to restoration.',
         tag: 'Olfactory Anchor',
-        available: false,
+        price: '',
+        stripeUrl: '', // e.g. 'https://buy.stripe.com/your_link'
+        paypalUrl: '', // e.g. 'https://www.paypal.com/ncp/payment/your_link'
       },
       {
         id: 'vagal-soundscapes',
@@ -25,7 +37,9 @@ const CATALOGUE = [
         description:
           'Digital audio engineered to stimulate the vagus nerve. Ultra-low frequencies override sensory gating static and anchor focus without an energy crash. No effort required — let the waveform do the regulatory work.',
         tag: 'Sonic Architecture',
-        available: false,
+        price: '',
+        stripeUrl: '', // e.g. 'https://buy.stripe.com/your_link'
+        paypalUrl: '', // e.g. 'https://www.paypal.com/ncp/payment/your_link'
       },
     ],
   },
@@ -40,7 +54,9 @@ const CATALOGUE = [
         description:
           'Light-absorbing pine green velvet. Establishes a protective perimeter that eases chronic bracing and permits the deliberate dropping of Defensive Armor. Your room becomes your secure base.',
         tag: 'Environmental Scaffold',
-        available: false,
+        price: '',
+        stripeUrl: '',
+        paypalUrl: '',
       },
       {
         id: 'teakwood-block',
@@ -49,7 +65,9 @@ const CATALOGUE = [
         description:
           'Solid raw teakwood. A physical reference point that signals to the nervous system: surroundings are stable, safe, and entirely under your sovereignty. Weight, grain, temperature — all working as somatic data.',
         tag: 'Tactile Anchor',
-        available: false,
+        price: '',
+        stripeUrl: '',
+        paypalUrl: '',
       },
     ],
   },
@@ -64,7 +82,9 @@ const CATALOGUE = [
         description:
           'Heritage-quality paper archive with cold steel bindings. A Physical Sovereignty Lab — map task allocation, revenue projections, and identity architecture without rejection-sensitive anxiety derailing the process.',
         tag: 'Administrative Scaffold',
-        available: false,
+        price: '',
+        stripeUrl: '',
+        paypalUrl: '',
       },
       {
         id: 'cowhide-portfolio',
@@ -73,7 +93,9 @@ const CATALOGUE = [
         description:
           'Distressed cowhide sleeve. The functional balance of raw somatic instinct and high-fidelity executive presentation — because the Double-Outsider should not have to choose between being authentic and being taken seriously.',
         tag: 'Presence Object',
-        available: false,
+        price: '',
+        stripeUrl: '',
+        paypalUrl: '',
       },
     ],
   },
@@ -167,28 +189,74 @@ export default function ShopPage() {
 
             {/* Product cards */}
             <div className="grid md:grid-cols-2 gap-6">
-              {section.products.map((product) => (
-                <div
-                  key={product.id}
-                  className="border border-emerald-800/40 rounded-2xl p-8 space-y-5 bg-emerald-950/20 hover:bg-emerald-950/40 transition-all"
-                >
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="flex items-center gap-3">
-                      {product.icon}
-                      <h3 className="text-lg font-bold font-serif leading-snug">{product.name}</h3>
+              {section.products.map((product) => {
+                const isLive = !!(product.stripeUrl || product.paypalUrl);
+                return (
+                  <div
+                    key={product.id}
+                    className="border border-emerald-800/40 rounded-2xl p-8 space-y-5 bg-emerald-950/20 hover:bg-emerald-950/40 transition-all flex flex-col"
+                  >
+                    {/* Header */}
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex items-center gap-3">
+                        {product.icon}
+                        <h3 className="text-lg font-bold font-serif leading-snug">{product.name}</h3>
+                      </div>
+                      <span className="shrink-0 text-xs bg-emerald-900/60 text-emerald-300 px-3 py-1 rounded-full font-medium border border-emerald-700/40">
+                        {product.tag}
+                      </span>
                     </div>
-                    <span className="shrink-0 text-xs bg-emerald-900/60 text-emerald-300 px-3 py-1 rounded-full font-medium border border-emerald-700/40">
-                      {product.tag}
-                    </span>
+
+                    {/* Description */}
+                    <p className="text-sm text-amber-100/75 leading-relaxed flex-1">{product.description}</p>
+
+                    {/* Price + Buttons */}
+                    <div className="pt-2 space-y-3">
+                      {product.price && (
+                        <p className="text-base font-bold text-amber-300">{product.price}</p>
+                      )}
+                      {isLive ? (
+                        <div className="flex flex-col sm:flex-row gap-3">
+                          {product.stripeUrl && (
+                            <a
+                              href={product.stripeUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 text-center py-3 px-5 rounded-full bg-[#635bff] hover:bg-[#7a74ff] text-white text-xs font-bold uppercase tracking-widest transition-all"
+                            >
+                              Pay with Stripe
+                            </a>
+                          )}
+                          {product.paypalUrl && (
+                            <a
+                              href={product.paypalUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="flex-1 text-center py-3 px-5 rounded-full bg-[#003087] hover:bg-[#00256b] text-[#ffc439] text-xs font-bold uppercase tracking-widest transition-all"
+                            >
+                              Pay with PayPal
+                            </a>
+                          )}
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs text-amber-400/60 uppercase tracking-widest font-medium">
+                            Available at Launch
+                          </span>
+                          <a
+                            href="https://blog.queerpathways.org"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs text-amber-300/70 hover:text-amber-200 underline transition"
+                          >
+                            Notify me
+                          </a>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                  <p className="text-sm text-amber-100/75 leading-relaxed">{product.description}</p>
-                  <div className="pt-2">
-                    <span className="text-xs text-amber-400/60 uppercase tracking-widest font-medium">
-                      Available at Launch
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </motion.div>
         ))}
