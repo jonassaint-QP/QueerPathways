@@ -37,7 +37,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <Route path="/contact" element={<IntakeTerminalPage />} />
         <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
         <Route path="/shop" element={<ShopPage />} />
-        <Route path="/queertimes" element={<Navigate to="https://blog.queerpathways.org" replace />} />
+        <Route path="/queertimes" element={<Navigate to="https://mediumseagreen-gnu-447320.hostingersite.com/" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
