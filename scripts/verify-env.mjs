@@ -1,4 +1,15 @@
 const isCiLike = process.env.NETLIFY === "true" || process.env.CI === "true";
+
+// ── Stripe key check ────────────────────────────────────────
+if (isCiLike && !process.env.STRIPE_SECRET_KEY) {
+  console.error(
+    "[verify-env] Missing STRIPE_SECRET_KEY. " +
+    "Set this in Netlify → Site configuration → Environment variables. " +
+    "The /.netlify/functions/create-checkout endpoint will return 503 without it."
+  );
+  process.exit(1);
+}
+
 const janeUrl = process.env.VITE_JANE_APP_INTAKE_URL;
 const secureUrl = process.env.VITE_SECURE_INTAKE_URL;
 const intakeUrl = secureUrl || janeUrl;

@@ -1,15 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck } from 'lucide-react';
+import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck, ShoppingCart, Plus, Check } from 'lucide-react';
+import { useCart } from './CartContext';
+import CartDrawer from './CartDrawer';
 
 /*
- * ── PAYMENT LINKS ──────────────────────────────────────────
- * To activate a product:
- *   1. Stripe: Dashboard → Products → Payment Links → Copy URL
- *   2. PayPal: Dashboard → Pay & Get Paid → Payment Buttons → Copy URL
- * Paste the URLs into stripeUrl / paypalUrl below.
- * Leave as '' to keep the product in "Coming Soon" state.
+ * ── PRICES ─────────────────────────────────────────────────
+ * priceCents : price in CAD cents (e.g. 6800 = $68.00 CAD)
+ * priceDisplay: human-readable string shown on the card
+ * Update these values once final pricing is confirmed.
  * ───────────────────────────────────────────────────────────
  */
 
@@ -26,9 +26,8 @@ const CATALOGUE = [
         description:
           'Heavy matte deep forest green vessel. Signature scent: Cedarwood, dark amber, earthy patchouli. An intentional behavioral transition that adjourns the Internal Prosecutor and marks the shift from performance to restoration.',
         tag: 'Olfactory Anchor',
-        price: '',
-        stripeUrl: '', // e.g. 'https://buy.stripe.com/your_link'
-        paypalUrl: '', // e.g. 'https://www.paypal.com/ncp/payment/your_link'
+        priceCents: 6800,        // CAD — update before launch
+        priceDisplay: '$68.00 CAD',
       },
       {
         id: 'vagal-soundscapes',
@@ -37,9 +36,8 @@ const CATALOGUE = [
         description:
           'Digital audio engineered to stimulate the vagus nerve. Ultra-low frequencies override sensory gating static and anchor focus without an energy crash. No effort required — let the waveform do the regulatory work.',
         tag: 'Sonic Architecture',
-        price: '',
-        stripeUrl: '', // e.g. 'https://buy.stripe.com/your_link'
-        paypalUrl: '', // e.g. 'https://www.paypal.com/ncp/payment/your_link'
+        priceCents: 2400,        // CAD — digital product
+        priceDisplay: '$24.00 CAD',
       },
     ],
   },
@@ -54,9 +52,8 @@ const CATALOGUE = [
         description:
           'Light-absorbing pine green velvet. Establishes a protective perimeter that eases chronic bracing and permits the deliberate dropping of Defensive Armor. Your room becomes your secure base.',
         tag: 'Environmental Scaffold',
-        price: '',
-        stripeUrl: '',
-        paypalUrl: '',
+        priceCents: 24500,       // CAD — update before launch
+        priceDisplay: '$245.00 CAD',
       },
       {
         id: 'teakwood-block',
@@ -65,9 +62,8 @@ const CATALOGUE = [
         description:
           'Solid raw teakwood. A physical reference point that signals to the nervous system: surroundings are stable, safe, and entirely under your sovereignty. Weight, grain, temperature — all working as somatic data.',
         tag: 'Tactile Anchor',
-        price: '',
-        stripeUrl: '',
-        paypalUrl: '',
+        priceCents: 8500,        // CAD — update before launch
+        priceDisplay: '$85.00 CAD',
       },
     ],
   },
@@ -82,9 +78,8 @@ const CATALOGUE = [
         description:
           'Heritage-quality paper archive with cold steel bindings. A Physical Sovereignty Lab — map task allocation, revenue projections, and identity architecture without rejection-sensitive anxiety derailing the process.',
         tag: 'Administrative Scaffold',
-        price: '',
-        stripeUrl: '',
-        paypalUrl: '',
+        priceCents: 4800,        // CAD — update before launch
+        priceDisplay: '$48.00 CAD',
       },
       {
         id: 'cowhide-portfolio',
@@ -93,18 +88,43 @@ const CATALOGUE = [
         description:
           'Distressed cowhide sleeve. The functional balance of raw somatic instinct and high-fidelity executive presentation — because the Double-Outsider should not have to choose between being authentic and being taken seriously.',
         tag: 'Presence Object',
-        price: '',
-        stripeUrl: '',
-        paypalUrl: '',
+        priceCents: 14500,       // CAD — update before launch
+        priceDisplay: '$145.00 CAD',
       },
     ],
   },
 ];
 
 export default function ShopPage() {
+  const { addItem, itemCount, openCart, state } = useCart();
+  // Track recently added items for visual feedback
+  const [addedIds, setAddedIds] = React.useState<Set<string>>(new Set());
+
+  function handleAddToCart(product: typeof CATALOGUE[0]['products'][0]) {
+    addItem({
+      id: product.id,
+      name: product.name,
+      tag: product.tag,
+      price: product.priceCents,
+      priceDisplay: product.priceDisplay,
+    });
+    // Flash check-mark for 1.5 s
+    setAddedIds((prev) => new Set(prev).add(product.id));
+    setTimeout(() => {
+      setAddedIds((prev) => {
+        const next = new Set(prev);
+        next.delete(product.id);
+        return next;
+      });
+    }, 1500);
+  }
+
   return (
     <div className="min-h-screen bg-[#001807] text-amber-50">
-      {/* Nav bar — minimal back link */}
+      {/* Cart drawer */}
+      <CartDrawer />
+
+      {/* Nav bar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#001807] border-b border-emerald-900/40 px-6 py-4 flex items-center justify-between">
         <Link
           to="/"
@@ -115,14 +135,29 @@ export default function ShopPage() {
         <span className="text-xs uppercase tracking-[0.25em] text-amber-400 font-semibold">
           The Centaur's Apothecary
         </span>
-        <a
-          href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-xs bg-amber-50 text-emerald-950 px-5 py-2 rounded-full font-bold hover:bg-amber-100 transition-all"
-        >
-          Book Now
-        </a>
+        <div className="flex items-center gap-3">
+          {/* Cart icon */}
+          <button
+            onClick={openCart}
+            aria-label={`Open cart, ${itemCount} item${itemCount !== 1 ? 's' : ''}`}
+            className="relative text-amber-100/70 hover:text-amber-50 transition p-1"
+          >
+            <ShoppingCart size={20} />
+            {itemCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-amber-400 text-emerald-950 text-[10px] font-bold rounded-full min-w-[16px] h-4 flex items-center justify-center px-1">
+                {itemCount}
+              </span>
+            )}
+          </button>
+          <a
+            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs bg-amber-50 text-emerald-950 px-5 py-2 rounded-full font-bold hover:bg-amber-100 transition-all"
+          >
+            Book Now
+          </a>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -152,23 +187,40 @@ export default function ShopPage() {
         </motion.div>
       </section>
 
-      {/* Coming Soon Banner */}
-      <div className="mx-6 mb-16 max-w-4xl md:mx-auto border border-amber-400/30 bg-amber-400/5 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div className="space-y-1 text-center sm:text-left">
-          <p className="text-sm font-bold text-amber-300 uppercase tracking-widest">Launching Soon</p>
-          <p className="text-sm text-amber-100/70 leading-relaxed">
-            The catalogue is in production. Reserve your access or join the waitlist via Substack.
+      {/* Cart CTA strip — visible when cart has items */}
+      {itemCount > 0 && (
+        <div className="mx-6 mb-6 max-w-4xl md:mx-auto border border-amber-400/30 bg-amber-400/5 rounded-2xl px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-amber-100/80">
+            <span className="font-bold text-amber-300">{itemCount} item{itemCount !== 1 ? 's' : ''}</span> in your cart
           </p>
+          <Link
+            to="/cart"
+            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest bg-amber-400 hover:bg-amber-300 text-emerald-950 px-6 py-3 rounded-full transition-all whitespace-nowrap"
+          >
+            Review Order & Checkout <ArrowRight size={14} />
+          </Link>
         </div>
-        <a
-          href="https://blog.queerpathways.org"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border border-amber-400/50 text-amber-300 px-6 py-3 rounded-full hover:bg-amber-400/10 transition-all whitespace-nowrap"
-        >
-          Join the Queer Times <ArrowRight size={14} />
-        </a>
-      </div>
+      )}
+
+      {/* Waitlist Banner — shown when cart is empty */}
+      {itemCount === 0 && (
+        <div className="mx-6 mb-16 max-w-4xl md:mx-auto border border-amber-400/30 bg-amber-400/5 rounded-2xl px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="space-y-1 text-center sm:text-left">
+            <p className="text-sm font-bold text-amber-300 uppercase tracking-widest">Catalogue Live</p>
+            <p className="text-sm text-amber-100/70 leading-relaxed">
+              Add items to your cart and check out securely with Stripe.
+            </p>
+          </div>
+          <a
+            href="https://blog.queerpathways.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest border border-amber-400/50 text-amber-300 px-6 py-3 rounded-full hover:bg-amber-400/10 transition-all whitespace-nowrap"
+          >
+            Join the Queer Times <ArrowRight size={14} />
+          </a>
+        </div>
+      )}
 
       {/* Catalogue */}
       <main className="max-w-6xl mx-auto px-6 pb-32 space-y-24">
@@ -190,7 +242,8 @@ export default function ShopPage() {
             {/* Product cards */}
             <div className="grid md:grid-cols-2 gap-6">
               {section.products.map((product) => {
-                const isLive = !!(product.stripeUrl || product.paypalUrl);
+                const inCart = state.items.some((i) => i.id === product.id);
+                const justAdded = addedIds.has(product.id);
                 return (
                   <div
                     key={product.id}
@@ -210,49 +263,27 @@ export default function ShopPage() {
                     {/* Description */}
                     <p className="text-sm text-amber-100/75 leading-relaxed flex-1">{product.description}</p>
 
-                    {/* Price + Buttons */}
+                    {/* Price + Add to Cart */}
                     <div className="pt-2 space-y-3">
-                      {product.price && (
-                        <p className="text-base font-bold text-amber-300">{product.price}</p>
-                      )}
-                      {isLive ? (
-                        <div className="flex flex-col sm:flex-row gap-3">
-                          {product.stripeUrl && (
-                            <a
-                              href={product.stripeUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 text-center py-3 px-5 rounded-full bg-[#635bff] hover:bg-[#7a74ff] text-white text-xs font-bold uppercase tracking-widest transition-all"
-                            >
-                              Pay with Stripe
-                            </a>
-                          )}
-                          {product.paypalUrl && (
-                            <a
-                              href={product.paypalUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="flex-1 text-center py-3 px-5 rounded-full bg-[#003087] hover:bg-[#00256b] text-[#ffc439] text-xs font-bold uppercase tracking-widest transition-all"
-                            >
-                              Pay with PayPal
-                            </a>
-                          )}
-                        </div>
-                      ) : (
-                        <div className="flex items-center justify-between">
-                          <span className="text-xs text-amber-400/60 uppercase tracking-widest font-medium">
-                            Available at Launch
-                          </span>
-                          <a
-                            href="https://blog.queerpathways.org"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-xs text-amber-300/70 hover:text-amber-200 underline transition"
-                          >
-                            Notify me
-                          </a>
-                        </div>
-                      )}
+                      <p className="text-base font-bold text-amber-300">{product.priceDisplay}</p>
+                      <button
+                        onClick={() => handleAddToCart(product)}
+                        className={`w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                          justAdded
+                            ? 'bg-emerald-600 text-white'
+                            : inCart
+                            ? 'bg-emerald-900/60 border border-emerald-600/50 text-emerald-300 hover:bg-emerald-800/60'
+                            : 'bg-amber-400 hover:bg-amber-300 text-emerald-950'
+                        }`}
+                      >
+                        {justAdded ? (
+                          <><Check size={13} /> Added to Cart</>
+                        ) : inCart ? (
+                          <><Plus size={13} /> Add Another</>
+                        ) : (
+                          <><ShoppingCart size={13} /> Add to Cart</>
+                        )}
+                      </button>
                     </div>
                   </div>
                 );
@@ -327,10 +358,18 @@ export default function ShopPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-emerald-900/50 py-10 px-6 text-center text-xs text-amber-100/40">
-        © 2026 The Centaur's Apothecary & Double-Outsider Supply Co. — a Queer Pathways venture.
-        Products are not intended to replace clinical intervention.{' '}
-        <Link to="/privacy" className="underline hover:text-amber-100/70 transition">Privacy Policy</Link>.
+      <footer className="border-t border-emerald-900/50 py-10 px-6 text-center text-xs text-amber-100/40 space-y-2">
+        <p>
+          © 2026 The Centaur's Apothecary & Double-Outsider Supply Co. — a Queer Pathways venture.
+          Products are not intended to replace clinical intervention.
+        </p>
+        <p className="flex items-center justify-center gap-3 flex-wrap">
+          <Link to="/privacy" className="underline hover:text-amber-100/70 transition">Privacy Policy</Link>
+          <span aria-hidden>·</span>
+          <Link to="/fee-disclosure" className="underline hover:text-amber-100/70 transition">Terms of Sale & Refund Policy</Link>
+          <span aria-hidden>·</span>
+          <Link to="/cart" className="underline hover:text-amber-100/70 transition">View Cart</Link>
+        </p>
       </footer>
     </div>
   );
