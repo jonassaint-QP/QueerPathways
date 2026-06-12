@@ -6,9 +6,9 @@ import { useCart } from './CartContext';
 import CartDrawer from './CartDrawer';
 
 /*
- * ── PRICES ─────────────────────────────────────────────────
- * priceCents : price in CAD cents (e.g. 6800 = $68.00 CAD)
- * priceDisplay: human-readable string shown on the card
+ * ── PRICES (USD base) ─────────────────────────────────────────
+ * priceUsd : price in USD cents (e.g. 4900 = $49.00 USD)
+ * CAD is derived automatically via CartContext (USD_TO_CAD rate).
  * Update these values once final pricing is confirmed.
  * ───────────────────────────────────────────────────────────
  */
@@ -26,8 +26,7 @@ const CATALOGUE = [
         description:
           'Heavy matte deep forest green vessel. Signature scent: Cedarwood, dark amber, earthy patchouli. An intentional behavioral transition that adjourns the Internal Prosecutor and marks the shift from performance to restoration.',
         tag: 'Olfactory Anchor',
-        priceCents: 6800,        // CAD — update before launch
-        priceDisplay: '$68.00 CAD',
+        priceUsd: 4900,          // $49.00 USD
       },
       {
         id: 'vagal-soundscapes',
@@ -36,8 +35,7 @@ const CATALOGUE = [
         description:
           'Digital audio engineered to stimulate the vagus nerve. Ultra-low frequencies override sensory gating static and anchor focus without an energy crash. No effort required — let the waveform do the regulatory work.',
         tag: 'Sonic Architecture',
-        priceCents: 2400,        // CAD — digital product
-        priceDisplay: '$24.00 CAD',
+        priceUsd: 1700,          // $17.00 USD
       },
     ],
   },
@@ -52,8 +50,7 @@ const CATALOGUE = [
         description:
           'Light-absorbing pine green velvet. Establishes a protective perimeter that eases chronic bracing and permits the deliberate dropping of Defensive Armor. Your room becomes your secure base.',
         tag: 'Environmental Scaffold',
-        priceCents: 24500,       // CAD — update before launch
-        priceDisplay: '$245.00 CAD',
+        priceUsd: 17800,         // $178.00 USD
       },
       {
         id: 'teakwood-block',
@@ -62,8 +59,7 @@ const CATALOGUE = [
         description:
           'Solid raw teakwood. A physical reference point that signals to the nervous system: surroundings are stable, safe, and entirely under your sovereignty. Weight, grain, temperature — all working as somatic data.',
         tag: 'Tactile Anchor',
-        priceCents: 8500,        // CAD — update before launch
-        priceDisplay: '$85.00 CAD',
+        priceUsd: 6200,          // $62.00 USD
       },
     ],
   },
@@ -78,8 +74,7 @@ const CATALOGUE = [
         description:
           'Heritage-quality paper archive with cold steel bindings. A Physical Sovereignty Lab — map task allocation, revenue projections, and identity architecture without rejection-sensitive anxiety derailing the process.',
         tag: 'Administrative Scaffold',
-        priceCents: 4800,        // CAD — update before launch
-        priceDisplay: '$48.00 CAD',
+        priceUsd: 3500,          // $35.00 USD
       },
       {
         id: 'cowhide-portfolio',
@@ -88,15 +83,15 @@ const CATALOGUE = [
         description:
           'Distressed cowhide sleeve. The functional balance of raw somatic instinct and high-fidelity executive presentation — because the Double-Outsider should not have to choose between being authentic and being taken seriously.',
         tag: 'Presence Object',
-        priceCents: 14500,       // CAD — update before launch
-        priceDisplay: '$145.00 CAD',
+        priceUsd: 10500,         // $105.00 USD
       },
     ],
   },
 ];
 
 export default function ShopPage() {
-  const { addItem, itemCount, openCart, state } = useCart();
+  const { addItem, itemCount, openCart, state, formatPrice, setCurrency } = useCart();
+  const { currency } = state;
   // Track recently added items for visual feedback
   const [addedIds, setAddedIds] = React.useState<Set<string>>(new Set());
 
@@ -105,10 +100,8 @@ export default function ShopPage() {
       id: product.id,
       name: product.name,
       tag: product.tag,
-      price: product.priceCents,
-      priceDisplay: product.priceDisplay,
+      priceUsd: product.priceUsd,
     });
-    // Flash check-mark for 1.5 s
     setAddedIds((prev) => new Set(prev).add(product.id));
     setTimeout(() => {
       setAddedIds((prev) => {
@@ -149,6 +142,21 @@ export default function ShopPage() {
               </span>
             )}
           </button>
+          {/* Currency toggle */}
+          <div className="flex items-center text-xs rounded-full border border-emerald-700/50 overflow-hidden">
+            <button
+              onClick={() => setCurrency('USD')}
+              className={`px-2.5 py-1 font-bold transition-all ${currency === 'USD' ? 'bg-amber-400 text-emerald-950' : 'text-amber-100/50 hover:text-amber-100'}`}
+            >
+              USD
+            </button>
+            <button
+              onClick={() => setCurrency('CAD')}
+              className={`px-2.5 py-1 font-bold transition-all ${currency === 'CAD' ? 'bg-amber-400 text-emerald-950' : 'text-amber-100/50 hover:text-amber-100'}`}
+            >
+              CAD
+            </button>
+          </div>
           <a
             href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
             target="_blank"
@@ -265,7 +273,7 @@ export default function ShopPage() {
 
                     {/* Price + Add to Cart */}
                     <div className="pt-2 space-y-3">
-                      <p className="text-base font-bold text-amber-300">{product.priceDisplay}</p>
+                      <p className="text-base font-bold text-amber-300">{formatPrice(product.priceUsd)}</p>
                       <button
                         onClick={() => handleAddToCart(product)}
                         className={`w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
