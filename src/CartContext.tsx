@@ -1,20 +1,33 @@
-import React, { createContext, useContext, useReducer, useEffect, useState } from 'react';
+import React, { createContext, useContext, useReducer, useEffect } from 'react';
+
+/* ── Currency ────────────────────────────────────────────── */
+export type Currency = 'USD' | 'CAD';
+/** Static exchange rate — update periodically or replace with a live API */
+export const USD_TO_CAD = 1.38;
+
+export function formatPriceFn(usdCents: number, currency: Currency): string {
+  const amount = currency === 'CAD' ? usdCents * USD_TO_CAD : usdCents;
+  return new Intl.NumberFormat(currency === 'CAD' ? 'en-CA' : 'en-US', {
+    style: 'currency',
+    currency,
+    minimumFractionDigits: 2,
+  }).format(amount / 100);
+}
 
 /* ── Types ───────────────────────────────────────────────── */
 export interface CartItem {
   id: string;
   name: string;
   tag: string;
-  /** Price in CAD cents (e.g. 6800 = $68.00) */
-  price: number;
-  /** Human-readable price, e.g. "$68.00 CAD" */
-  priceDisplay: string;
+  /** Price in USD cents */
+  priceUsd: number;
   quantity: number;
 }
 
 interface CartState {
   items: CartItem[];
   isOpen: boolean;
+  currency: Currency;
 }
 
 type CartAction =
@@ -23,7 +36,8 @@ type CartAction =
   | { type: 'UPDATE_QTY'; payload: { id: string; quantity: number } }
   | { type: 'CLEAR_CART' }
   | { type: 'OPEN_CART' }
-  | { type: 'CLOSE_CART' };
+  | { type: 'CLOSE_CART' }
+  | { type: 'SET_CURRENCY'; payload: Currency };
 
 interface CartContextValue {
   state: CartState;
@@ -33,8 +47,10 @@ interface CartContextValue {
   clearCart: () => void;
   openCart: () => void;
   closeCart: () => void;
+  setCurrency: (c: Currency) => void;
+  formatPrice: (usdCents: number) => string;
+  subtotalUsd: number;
   itemCount: number;
-  subtotal: number;
 }
 
 /* ── Reducer ─────────────────────────────────────────────── */
@@ -75,13 +91,16 @@ function cartReducer(state: CartState, action: CartAction): CartState {
       return { ...state, isOpen: true };
     case 'CLOSE_CART':
       return { ...state, isOpen: false };
+    case 'SET_CURRENCY':
+      return { ...state, currency: action.payload };
     default:
       return state;
   }
 }
 
 /* ── Storage helpers ─────────────────────────────────────── */
-const STORAGE_KEY = 'qp_cart';
+const STORAGE_KEY = 'qp_cart_v2'; // v2: priceUsd replaces price/priceDisplay
+const CURRENCY_KEY = 'qp_currency';
 
 function loadCart(): CartItem[] {
   try {
@@ -92,12 +111,25 @@ function loadCart(): CartItem[] {
   }
 }
 
+function loadCurrency(): Currency {
+  try {
+    const raw = localStorage.getItem(CURRENCY_KEY);
+    return raw === 'CAD' ? 'CAD' : 'USD';
+  } catch {
+    return 'USD';
+  }
+}
+
 function saveCart(items: CartItem[]) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch {
-    // storage may be unavailable in private mode — fail silently
-  }
+  } catch { /* private mode — fail silently */ }
+}
+
+function saveCurrency(c: Currency) {
+  try {
+    localStorage.setItem(CURRENCY_KEY, c);
+  } catch { /* ignore */ }
 }
 
 /* ── Context ─────────────────────────────────────────────── */
@@ -107,15 +139,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(cartReducer, {
     items: loadCart(),
     isOpen: false,
+    currency: loadCurrency(),
   });
 
-  // Persist items to localStorage on every change
-  useEffect(() => {
-    saveCart(state.items);
-  }, [state.items]);
+  useEffect(() => { saveCart(state.items); }, [state.items]);
+  useEffect(() => { saveCurrency(state.currency); }, [state.currency]);
 
+  const subtotalUsd = state.items.reduce((s, i) => s + i.priceUsd * i.quantity, 0);
   const itemCount = state.items.reduce((n, i) => n + i.quantity, 0);
-  const subtotal = state.items.reduce((s, i) => s + i.price * i.quantity, 0);
 
   const value: CartContextValue = {
     state,
@@ -125,8 +156,10 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     clearCart: () => dispatch({ type: 'CLEAR_CART' }),
     openCart: () => dispatch({ type: 'OPEN_CART' }),
     closeCart: () => dispatch({ type: 'CLOSE_CART' }),
+    setCurrency: (c) => dispatch({ type: 'SET_CURRENCY', payload: c }),
+    formatPrice: (usdCents) => formatPriceFn(usdCents, state.currency),
+    subtotalUsd,
     itemCount,
-    subtotal,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

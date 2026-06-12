@@ -4,12 +4,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, Trash2, ShoppingBag, ArrowRight, ShieldCheck } from 'lucide-react';
 import { useCart } from './CartContext';
 
-function formatCAD(cents: number) {
-  return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(cents / 100);
-}
-
 export default function CartDrawer() {
-  const { state, closeCart, removeItem, updateQty, itemCount, subtotal } = useCart();
+  const { state, closeCart, removeItem, updateQty, itemCount, subtotalUsd, formatPrice, setCurrency } = useCart();
+  const { currency } = state;
 
   return (
     <AnimatePresence>
@@ -50,13 +47,30 @@ export default function CartDrawer() {
                   </span>
                 )}
               </div>
-              <button
-                onClick={closeCart}
-                aria-label="Close cart"
-                className="text-amber-100/50 hover:text-amber-50 transition p-1"
-              >
-                <X size={20} />
-              </button>
+              <div className="flex items-center gap-3">
+                {/* Currency toggle */}
+                <div className="flex items-center text-xs rounded-full border border-emerald-700/50 overflow-hidden">
+                  <button
+                    onClick={() => setCurrency('USD')}
+                    className={`px-3 py-1 font-bold transition-all ${currency === 'USD' ? 'bg-amber-400 text-emerald-950' : 'text-amber-100/50 hover:text-amber-100'}`}
+                  >
+                    USD
+                  </button>
+                  <button
+                    onClick={() => setCurrency('CAD')}
+                    className={`px-3 py-1 font-bold transition-all ${currency === 'CAD' ? 'bg-amber-400 text-emerald-950' : 'text-amber-100/50 hover:text-amber-100'}`}
+                  >
+                    CAD
+                  </button>
+                </div>
+                <button
+                  onClick={closeCart}
+                  aria-label="Close cart"
+                  className="text-amber-100/50 hover:text-amber-50 transition p-1"
+                >
+                  <X size={20} />
+                </button>
+              </div>
             </div>
 
             {/* Body */}
@@ -86,7 +100,7 @@ export default function CartDrawer() {
                         {item.tag}
                       </span>
                       <p className="text-sm font-bold text-amber-300 pt-1">
-                        {formatCAD(item.price * item.quantity)}
+                        {formatPrice(item.priceUsd * item.quantity)}
                       </p>
                     </div>
                     <div className="flex flex-col items-end justify-between gap-2">
@@ -128,11 +142,11 @@ export default function CartDrawer() {
               <div className="border-t border-emerald-800/40 px-6 py-5 space-y-4">
                 {/* Subtotal */}
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-amber-100/60">Subtotal</span>
-                  <span className="font-bold text-amber-300 text-base">{formatCAD(subtotal)}</span>
+                  <span className="text-amber-100/60">Subtotal ({currency})</span>
+                  <span className="font-bold text-amber-300 text-base">{formatPrice(subtotalUsd)}</span>
                 </div>
                 <p className="text-xs text-amber-100/40 -mt-2">
-                  Taxes and shipping calculated at checkout.
+                  Tax and shipping calculated at checkout.
                 </p>
 
                 {/* Trust badge */}

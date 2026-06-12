@@ -2,23 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle2, ShoppingBag, Mail, Home } from 'lucide-react';
+import { formatPriceFn } from './CartContext';
+import type { Currency } from './CartContext';
 
 interface OrderSnapshot {
   items: Array<{
     id: string;
     name: string;
     tag: string;
-    priceDisplay: string;
-    price: number;
+    priceUsd: number;
     quantity: number;
   }>;
-  subtotal: number;
-  taxAmount: number;
-  total: number;
-}
-
-function formatCAD(cents: number) {
-  return new Intl.NumberFormat('en-CA', { style: 'currency', currency: 'CAD' }).format(cents / 100);
+  subtotalUsd: number;
+  currency: Currency;
 }
 
 export default function OrderConfirmationPage() {
@@ -69,7 +65,7 @@ export default function OrderConfirmationPage() {
         {order && (
           <div className="border border-emerald-800/40 rounded-2xl p-6 bg-emerald-950/20 space-y-4">
             <h2 className="text-xs uppercase tracking-widest text-amber-400 font-semibold border-b border-emerald-800/40 pb-3">
-              Order Summary
+              Order Summary ({order.currency})
             </h2>
             <ul className="space-y-2 text-sm">
               {order.items.map((item) => (
@@ -81,24 +77,17 @@ export default function OrderConfirmationPage() {
                     )}
                   </span>
                   <span className="shrink-0 font-medium">
-                    {formatCAD(item.price * item.quantity)}
+                    {formatPriceFn(item.priceUsd * item.quantity, order.currency)}
                   </span>
                 </li>
               ))}
             </ul>
-            <div className="border-t border-emerald-800/40 pt-3 space-y-1.5 text-sm">
-              <div className="flex justify-between text-amber-100/60">
-                <span>Subtotal</span>
-                <span>{formatCAD(order.subtotal)}</span>
+            <div className="border-t border-emerald-800/40 pt-3 text-sm">
+              <div className="flex justify-between font-bold text-amber-200 text-base">
+                <span>Subtotal Charged ({order.currency})</span>
+                <span>{formatPriceFn(order.subtotalUsd, order.currency)}</span>
               </div>
-              <div className="flex justify-between text-amber-100/60">
-                <span>Ontario HST (13%)</span>
-                <span>{formatCAD(order.taxAmount)}</span>
-              </div>
-              <div className="flex justify-between font-bold text-amber-200 text-base pt-1">
-                <span>Total Charged (CAD)</span>
-                <span>{formatCAD(order.total)}</span>
-              </div>
+              <p className="text-xs text-amber-100/30 mt-1">Tax and shipping confirmed at Stripe checkout.</p>
             </div>
           </div>
         )}

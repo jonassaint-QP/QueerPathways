@@ -1,15 +1,19 @@
 import Stripe from 'stripe';
 import type { Handler } from '@netlify/functions';
 
+/** Keep in sync with CartContext.USD_TO_CAD */
+const USD_TO_CAD = 1.38;
+
 interface CartItem {
   id: string;
   name: string;
-  price: number;   // CAD cents
+  priceUsd: number;  // USD cents
   quantity: number;
 }
 
 interface RequestBody {
   items: CartItem[];
+  currency: 'usd' | 'cad';
   successUrl: string;
   cancelUrl: string;
 }
@@ -54,7 +58,8 @@ const handler: Handler = async (event) => {
     };
   }
 
-  const { items, successUrl, cancelUrl } = body;
+  const { items, currency, successUrl, cancelUrl } = body;
+  const stripeCurrency = currency === 'cad' ? 'cad' : 'usd';
 
   if (!Array.isArray(items) || items.length === 0) {
     return {
@@ -64,12 +69,11 @@ const handler: Handler = async (event) => {
     };
   }
 
-  // Validate each item to prevent injection of arbitrary prices
   for (const item of items) {
     if (
       typeof item.name !== 'string' ||
-      typeof item.price !== 'number' ||
-      item.price <= 0 ||
+      typeof item.priceUsd !== 'number' ||
+      item.priceUsd <= 0 ||
       typeof item.quantity !== 'number' ||
       item.quantity < 1 ||
       item.quantity > 99
@@ -89,12 +93,15 @@ const handler: Handler = async (event) => {
       payment_method_types: ['card'],
       line_items: items.map((item) => ({
         price_data: {
-          currency: 'cad',
+          currency: stripeCurrency,
           product_data: {
             name: item.name,
             metadata: { productId: item.id },
           },
-          unit_amount: item.price, // already in cents
+          // Convert from USD cents to target currency cents server-side
+          unit_amount: stripeCurrency === 'cad'
+            ? Math.round(item.priceUsd * USD_TO_CAD)
+            : item.priceUsd,
         },
         quantity: item.quantity,
       })),
@@ -109,6 +116,7 @@ const handler: Handler = async (event) => {
       automatic_tax: { enabled: false }, // Set to true when Stripe Tax is configured
       metadata: {
         source: 'queer-pathways-apothecary',
+        currency: stripeCurrency,
       },
       payment_intent_data: {
         description: "The Centaur's Apothecary — Queer Pathways",
