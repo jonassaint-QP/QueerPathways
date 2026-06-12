@@ -5,27 +5,6 @@ import {
   Mail, Users, Zap, BookOpen, Sparkles, Scale, ExternalLink
 } from 'lucide-react';
 
-const carepatronButtonStyle: React.CSSProperties = {
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  outline: 0,
-  border: 0,
-  cursor: 'pointer',
-  userSelect: 'none',
-  textDecoration: 'none',
-  fontFamily: 'Roboto, Helvetica, Arial, sans-serif',
-  fontWeight: 500,
-  letterSpacing: '0.02857em',
-  color: '#fff',
-  backgroundColor: '#104714',
-  borderRadius: '4px',
-  height: '44px',
-  padding: '8px 24px',
-  fontSize: '15px',
-  transition: 'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1)',
-};
-
 const Divider = () => (
   <div className="w-12 h-px bg-amber-400/40 mx-auto my-2" />
 );
@@ -38,7 +17,7 @@ const SectionLabel = ({ children }: { children: React.ReactNode }) => (
 
 export default function ReferralFactSheet() {
   return (
-    <div className="min-h-screen bg-emerald-950 text-amber-50" style={{ fontFamily: 'Inter, sans-serif' }}>
+    <div className="min-h-screen bg-emerald-950 text-amber-50 qp-font-inter">
 
       {/* Back nav */}
       <div className="border-b border-emerald-800/40">
@@ -58,27 +37,26 @@ export default function ReferralFactSheet() {
         <div className="max-w-5xl mx-auto">
           <div className="grid md:grid-cols-[1fr_auto] gap-8 items-end">
             <div className="space-y-4">
-              <SectionLabel>Clinical Referral Document · Pennsylvania</SectionLabel>
+              <SectionLabel>Clinical Referral Document · Ontario</SectionLabel>
               <h1
-                className="text-5xl md:text-6xl font-bold leading-tight"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-5xl md:text-6xl font-bold leading-tight qp-font-playfair"
               >
                 Queer Pathways
               </h1>
               <h2 className="text-xl md:text-2xl text-amber-100/80 font-light leading-snug">
-                Pennsylvania Referral Fact Sheet
+                Ontario Referral Fact Sheet
               </h2>
               <p className="text-amber-100/60 max-w-xl leading-relaxed text-sm">
                 Specialized telehealth psychotherapy for 2SLGBTQI+ and neurodivergent adults
-                across Pennsylvania. Affirming, somatic, and structurally informed care — built
+                across Toronto and Ontario. Affirming, somatic, and structurally informed care — built
                 for clients whose nervous systems have been legislated against.
               </p>
             </div>
             <div className="shrink-0 text-right space-y-1">
               <p className="text-xs text-amber-100/40 uppercase tracking-widest">Provider</p>
               <p className="text-amber-50 font-semibold">Joshua Jonassaint, LCSW</p>
-              <p className="text-amber-100/60 text-sm">Licensed Clinical Social Worker</p>
-              <p className="text-amber-100/60 text-sm">Pennsylvania</p>
+              <p className="text-amber-100/60 text-sm">Registered Social Worker (Ontario)</p>
+              <p className="text-amber-100/60 text-sm">Toronto, Ontario</p>
               <a
                 href="mailto:Joshua@QueerPathways.org"
                 className="inline-flex items-center gap-1 text-amber-300 hover:text-amber-200 transition text-sm mt-2"
@@ -103,8 +81,7 @@ export default function ReferralFactSheet() {
                 <Scale className="text-amber-400 shrink-0 mt-1" size={22} />
                 <div>
                   <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                    className="text-lg font-bold mb-2 qp-font-playfair"
                   >
                     The Internal Legal System
                   </h3>
@@ -124,8 +101,7 @@ export default function ReferralFactSheet() {
                 <BookOpen className="text-amber-400 shrink-0 mt-1" size={22} />
                 <div>
                   <h3
-                    className="text-lg font-bold mb-2"
-                    style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                    className="text-lg font-bold mb-2 qp-font-playfair"
                   >
                     Systemic Exhaustion
                   </h3>
@@ -156,8 +132,7 @@ export default function ReferralFactSheet() {
         <section className="space-y-8">
           <SectionLabel>Specializations</SectionLabel>
           <h2
-            className="text-3xl font-bold"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+            className="text-3xl font-bold qp-font-playfair"
           >
             Who We Serve Best
           </h2>
@@ -224,8 +199,7 @@ export default function ReferralFactSheet() {
               <Zap className="text-amber-400 shrink-0 mt-1" size={24} />
               <div className="space-y-3">
                 <h2
-                  className="text-2xl font-bold"
-                  style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                  className="text-2xl font-bold qp-font-playfair"
                 >
                   Fast-Track Referral Process
                 </h2>
@@ -296,8 +270,7 @@ export default function ReferralFactSheet() {
         <section className="space-y-8">
           <SectionLabel>Financial Transparency</SectionLabel>
           <h2
-            className="text-3xl font-bold"
-            style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+            className="text-3xl font-bold qp-font-playfair"
           >
             Rates & Insurance
           </h2>
@@ -314,20 +287,20 @@ export default function ReferralFactSheet() {
                   <div className="flex items-center gap-3">
                     <CheckCircle2 className="text-emerald-400 shrink-0" size={18} />
                     <div>
-                      <p className="font-medium text-amber-50">Aetna</p>
-                      <p className="text-xs text-amber-100/40">Individual &amp; Couples</p>
+                      <p className="font-medium text-amber-50">Sun Life / Manulife / Canada Life / Desjardins</p>
+                      <p className="text-xs text-amber-100/40">Receipt-ready reimbursement support</p>
                     </div>
                   </div>
                   <span className="text-xs bg-emerald-700/60 text-emerald-200 px-3 py-1 rounded-full font-medium">
-                    In-Network
+                    Eligible
                   </span>
                 </div>
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <Heart className="text-amber-400/60 shrink-0" size={18} />
                     <div>
-                      <p className="font-medium text-amber-50">Out-of-Network via Thrizer</p>
-                      <p className="text-xs text-amber-100/40">Pay only your estimated copay — Thrizer handles the rest</p>
+                      <p className="font-medium text-amber-50">Private-Pay + Clinical Superbills</p>
+                      <p className="text-xs text-amber-100/40">Submission-ready receipts for extended health claims</p>
                     </div>
                   </div>
                   <span className="text-xs bg-amber-400/10 text-amber-300/70 px-3 py-1 rounded-full font-medium">
@@ -336,18 +309,9 @@ export default function ReferralFactSheet() {
                 </div>
               </div>
               <p className="text-xs text-amber-100/40 leading-relaxed">
-                Queer Pathways uses{' '}
-                <a
-                  href="https://eligibility.thrizer.com/facility/thrizer7t1oh"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-amber-300 hover:text-amber-200 transition"
-                >
-                  Thrizer
-                </a>{' '}
-                for out-of-network billing. Clients pay only their estimated coinsurance at
-                the time of session — Thrizer submits the claim and fronts the reimbursement.
-                Verify your benefits before intake.
+                Queer Pathways provides insurer-ready receipts and coding support for Ontario
+                clients seeking reimbursement through extended health plans. Verify your
+                plan's psychotherapy/social work coverage before intake.
               </p>
             </div>
           </div>
@@ -364,8 +328,7 @@ export default function ReferralFactSheet() {
             />
             <div className="relative space-y-6 max-w-2xl">
               <p
-                className="text-2xl md:text-3xl font-bold leading-snug"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl md:text-3xl font-bold leading-snug qp-font-playfair"
               >
                 Three chords and the truth.
               </p>
@@ -401,8 +364,7 @@ export default function ReferralFactSheet() {
 
             <div className="space-y-4">
               <h3
-                className="text-2xl font-bold"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl font-bold qp-font-playfair"
               >
                 Book Directly
               </h3>
@@ -414,7 +376,7 @@ export default function ReferralFactSheet() {
                 href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
                 target="_blank"
                 rel="noopener noreferrer"
-                style={carepatronButtonStyle}
+                className="qp-carepatron-button"
               >
                 Book appointment
               </a>
@@ -422,8 +384,7 @@ export default function ReferralFactSheet() {
 
             <div className="space-y-4">
               <h3
-                className="text-2xl font-bold"
-                style={{ fontFamily: 'Playfair Display, Georgia, serif' }}
+                className="text-2xl font-bold qp-font-playfair"
               >
                 Contact for Clinical Inquiry
               </h3>
@@ -448,8 +409,9 @@ export default function ReferralFactSheet() {
         {/* Telehealth disclosure */}
         <div className="border-t border-emerald-800/30 pt-8 pb-4 text-center">
           <p className="text-xs text-amber-100/30 max-w-xl mx-auto leading-relaxed">
-            Queer Pathways provides telehealth services exclusively within the Commonwealth
-            of Pennsylvania. Services rendered by Joshua Jonassaint, LCSW. This document
+            Queer Pathways provides telehealth services for residents of Ontario, including
+            Toronto and surrounding communities. Services rendered by Joshua Jonassaint, LCSW.
+            This document
             is intended for clinical and referral use only.
           </p>
           <p className="text-xs text-amber-100/20 mt-3">

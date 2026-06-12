@@ -1,7 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  --qp-soft-grey-text: #d1d5db;
+}
+
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 7.5rem;
 }
 
 body {
@@ -11,6 +16,14 @@ body {
 
 .qp-font-roboto {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+
+.qp-font-inter {
+  font-family: Inter, sans-serif;
+}
+
+.qp-font-playfair {
+  font-family: "Playfair Display", Georgia, serif;
 }
 
 .qp-tracking-carepatron {
@@ -68,7 +81,7 @@ body {
               box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
               border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
               color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  color: #fff;
+  color: var(--qp-soft-grey-text);
   background-color: #104714;
   text-transform: none;
   box-sizing: border-box;
@@ -82,4 +95,11 @@ body {
   padding: 6px 16px;
   font-size: 14px;
   line-height: 26px;
+}
+
+@layer utilities {
+  .text-white,
+  .text-amber-50 {
+    color: var(--qp-soft-grey-text) !important;
+  }
 }

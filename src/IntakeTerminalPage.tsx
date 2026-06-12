@@ -1,15 +1,17 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
+import { useSearchParams } from "react-router-dom";
+
+const INTAKE_PORTAL_URL =
+  import.meta.env.VITE_SECURE_INTAKE_URL ||
+  import.meta.env.VITE_JANE_APP_INTAKE_URL ||
+  "https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b";
 
 function ContactForm() {
-  const [match, setMatch] = useState("GENERAL_ENQUIRY");
-
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const matchParam = params.get("match");
-    setMatch(matchParam ? matchParam : "GENERAL_ENQUIRY");
-  }, []);
+  const [searchParams] = useSearchParams();
+  const match = searchParams.get("match") || "GENERAL_ENQUIRY";
+  const portalConfigured = !!INTAKE_PORTAL_URL;
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-[#0b1310] px-4 py-10 text-[#d6c187] sm:px-6 lg:px-12">
@@ -33,56 +35,36 @@ function ContactForm() {
         </header>
 
         <section className="space-y-6 px-5 py-6 sm:px-8 sm:py-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <label className="text-xs uppercase tracking-[0.16em] text-[#ceb97d]">
-              Filing Party (Full Name)
-              <input
-                type="text"
-                name="fullName"
-                autoComplete="name"
-                className="mt-2 w-full border border-[#d6c187]/40 bg-[#101a14] px-3 py-3 text-sm text-[#edd8a1] outline-none transition focus:border-[#e7cd85]"
-              />
-            </label>
-
-            <label className="text-xs uppercase tracking-[0.16em] text-[#ceb97d]">
-              Secure Channel (Email)
-              <input
-                type="email"
-                name="email"
-                autoComplete="email"
-                className="mt-2 w-full border border-[#d6c187]/40 bg-[#101a14] px-3 py-3 text-sm text-[#edd8a1] outline-none transition focus:border-[#e7cd85]"
-              />
-            </label>
-          </div>
-
           <div className="border border-[#d6c187]/30 bg-[#111d16] px-4 py-3 text-xs uppercase tracking-[0.2em] text-[#d7c17f]">
             Dossier Reference
             <p className="mt-2 text-sm tracking-[0.12em] text-[#f0dcaa]">ARCHETYPE_MATCH: {match.toUpperCase()}</p>
           </div>
 
-          <label className="block text-xs uppercase tracking-[0.16em] text-[#ceb97d]">
-            Statement of Intent / Evidence of Need
-            <textarea
-              name="statement"
-              rows={8}
-              className="mt-2 w-full resize-y border border-[#d6c187]/40 bg-[#101a14] px-3 py-3 text-sm leading-relaxed text-[#edd8a1] outline-none transition focus:border-[#e7cd85]"
-            />
-          </label>
+          <div className="border border-[#d6c187]/30 bg-[#111d16] px-4 py-4 text-sm leading-relaxed text-[#f0dcaa]">
+            Intake submissions are handled through a secure clinical portal to support Canadian privacy requirements (PIPEDA/PHIPA), encrypted transmission, and protected storage.
+          </div>
 
-          <div className="relative overflow-hidden border border-[#d6c187] p-4 text-center">
+          <div className="group relative overflow-hidden border border-[#d6c187] p-4 text-center">
             <div className="pointer-events-none absolute right-4 top-4 rotate-6 border-2 border-red-600 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-red-600 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-              Submit_Final
+              Secure_Transfer
             </div>
 
-            <button
-              type="button"
+            <a
+              href={INTAKE_PORTAL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="group w-full border border-[#d6c187] py-4 text-xs font-semibold uppercase tracking-[0.28em] text-[#d6c187] transition-all duration-500 hover:bg-[#d6c187] hover:text-[#153009]"
             >
-              File Injunction &amp; Request Entry
-            </button>
+              Open Secure Intake Portal
+            </a>
             <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-[#bcae83]">
-              By clicking, you authorize the start of your Internal Courtroom Audit.
+              You will be transferred to a protected intake system to complete your submission.
             </p>
+            {!portalConfigured ? (
+              <p className="mt-3 text-[11px] uppercase tracking-[0.14em] text-[#d6c187]">
+                Admin note: set VITE_SECURE_INTAKE_URL to your clinic's secure intake link.
+              </p>
+            ) : null}
           </div>
         </section>
 

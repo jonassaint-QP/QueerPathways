@@ -36,8 +36,17 @@ const PROGRAMS = [
   { href: '/acoustic-ecology', label: 'Acoustic Ecology', external: false },
   { href: '/kink-affirming', label: 'Kink-Affirming Care', external: false },
   { href: '/presence', label: 'Pathways to Presence', external: false },
-  { href: '/somatic-signals', label: 'Somatic Signals Podcast', external: false },
+  { href: '/shop', label: "The Centaur's Apothecary", external: false },
+  {
+    href: 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094',
+    label: 'Queer Connections Podcast',
+    external: true,
+  },
 ];
+
+const APPLE_PODCAST_URL = 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094';
+
+const isExternalHref = (href: string) => href.startsWith('http');
 
 export default function App() {  
   const [scrolled, setScrolled] = useState(false);  
@@ -82,9 +91,9 @@ export default function App() {
   }, []);
 
   return (  
-    <div className="relative bg-emerald-950 text-amber-50">  
+    <div className="relative bg-[#001807] text-amber-50">  
       {/* Navigation */}  
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${scrolled ? 'py-4 bg-emerald-950/80 backdrop-blur-md border-b border-emerald-900/50' : 'py-8 bg-emerald-950/40'}`}>  
+      <nav className={`fixed w-full z-50 transition-all duration-500 bg-[#001807] border-b border-emerald-900/70 ${scrolled ? 'py-4 shadow-[0_10px_24px_rgba(0,0,0,0.35)]' : 'py-6'}`}>  
         <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">  
           <div className="flex items-center">
             <img
@@ -122,14 +131,27 @@ export default function App() {
                     className="absolute top-full left-0 mt-3 w-52 bg-emerald-950/95 border border-emerald-800/70 rounded-xl shadow-xl backdrop-blur-md py-2 z-50"
                   >
                     {PROGRAMS.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setIsProgramsOpen(false)}
-                        className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
-                      >
-                        {p.label}
-                      </a>
+                      isExternalHref(p.href) || p.external ? (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsProgramsOpen(false)}
+                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
+                        >
+                          {p.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={p.href}
+                          to={p.href}
+                          onClick={() => setIsProgramsOpen(false)}
+                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
+                        >
+                          {p.label}
+                        </Link>
+                      )
                     ))}
                   </motion.div>
                 )}
@@ -221,14 +243,27 @@ export default function App() {
                   <div className="pt-2 pb-1">
                     <p className="text-xs uppercase tracking-widest text-amber-400/60 font-semibold px-1 pb-2">Programs</p>
                     {PROGRAMS.map((p) => (
-                      <a
-                        key={p.href}
-                        href={p.href}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
-                      >
-                        {p.label}
-                      </a>
+                      isExternalHref(p.href) || p.external ? (
+                        <a
+                          key={p.href}
+                          href={p.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
+                        >
+                          {p.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={p.href}
+                          to={p.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
+                        >
+                          {p.label}
+                        </Link>
+                      )
                     ))}
                   </div>
                 </div>
@@ -250,7 +285,7 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}  
-      <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">  
+      <section className="relative min-h-screen flex items-center justify-center pt-32 overflow-hidden">  
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(217,119,6,0.08),transparent_70%)]" />  
         <div className="max-w-5xl mx-auto px-6 text-center z-10 space-y-8">  
           <motion.div  
@@ -260,7 +295,10 @@ export default function App() {
             className="space-y-8"
           >  
             <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
-              You are tired of being the only Defense Attorney in a courtroom where the Judge, the Prosecutor, and the Jury are all your own voice.
+              This is no broken here. Only unmapped. <br />
+              <span className="block mt-3 text-base font-medium tracking-normal font-sans">
+                Serving Ontario residents tired of answering the 3am subpoena of the Internal Court.
+              </span>
             </h1>  
             <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175 qp-pb-6pt">  
               Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
@@ -286,7 +324,7 @@ export default function App() {
       </section>
 
       {/* The Framework Section */}  
-      <section id="philosophy" className="py-32 px-6 bg-emerald-900/20">  
+      <section id="philosophy" className="py-32 px-6">  
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">  
           <motion.div 
             initial={{ opacity: 0, x: -20 }}
@@ -418,7 +456,7 @@ export default function App() {
       </section>
 
       {/* Surgical Advocacy Checklist Section */}
-      <section id="surgical-advocacy" className="py-24 px-6 bg-emerald-900/30">
+      <section id="surgical-advocacy" className="py-24 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-emerald-950/60 border border-emerald-800/60 rounded-3xl p-8 md:p-12 space-y-8">
             <div className="space-y-4">
@@ -487,32 +525,40 @@ export default function App() {
       </section>
 
       {/* Referrals Section */}  
-      <section id="referrals" className="py-32 px-6 bg-emerald-900/20">  
+      <section id="referrals" className="py-32 px-6">  
         <div className="max-w-4xl mx-auto text-center space-y-8">  
           <Shield className="w-16 h-16 text-amber-400 mx-auto" />  
           <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>
           <div className="bg-amber-400/10 border-2 border-amber-400/40 rounded-2xl p-8 text-left space-y-4">
             <p className="text-xl font-bold text-amber-300 font-serif">The 7-Day Safety Net</p>
             <p className="text-lg text-amber-100 qp-leading-175">
-              We stop the Leaky Bucket. If you are stepping down from PHP or IOP in Pennsylvania, we guarantee a consultation within 7 days to ensure your momentum isn't lost to a 90-day waitlist.
+              For queer and neurodivergent professionals, those hard times are often the exhausting weight of waiting for a space to put their armor down.
             </p>
           </div>
-          <p className="text-xl text-amber-100 qp-leading-175">  
-            We understand the vulnerability of stepping down from PHP or IOP. Queer Pathways offers <strong>priority access</strong> fast-track consultations to ensure clinical momentum is never lost.  
-          </p>  
+          <div className="space-y-4 text-left">
+            <p className="text-xl text-amber-100 qp-leading-175">
+              Taking the first step to seek specialized care is an act of profound vulnerability. When you finally reach out, you shouldn't have to watch your momentum leak away on a ninety-day waitlist, left alone with an internal courtroom that claims you are "too much" to handle.
+            </p>
+            <p className="text-xl text-amber-100 qp-leading-175">
+              At Queer Pathways, we guarantee an initial consultation within seven days of your inquiry. We don't believe in leaving a dysregulated nervous system on ice.
+            </p>
+            <p className="text-xl text-amber-100 qp-leading-175">
+              If you are tired of litigating your worth while waiting for traditional systems to catch up, let's change the timeline. Connect with Joshua Jonassaint, LCSW, at QueerPathways.org to book your consultation within the week and rewrite your internal law.
+            </p>
+          </div>
           <div className="grid md:grid-cols-2 gap-6 text-left pt-10">  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
-                <p className="font-bold">Direct Integration</p>  
-                <p className="text-sm text-amber-100">In-Network with Aetna (PA) and UPMC (PA). No executive function hurdle to verify your benefits.</p>  
+                <p className="font-bold">Direct Integration - ON (Telehealth)</p>  
+                <p className="text-sm text-amber-100">Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins claims.</p>  
               </div>  
             </div>  
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
               <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
               <div>  
                 <p className="font-bold">Telehealth-First</p>  
-                <p className="text-sm text-amber-100">Serving the entirety of Pennsylvania.</p>  
+                <p className="text-sm text-amber-100">Serving Toronto and the entirety of Ontario.</p>  
               </div>  
             </div>  
           </div>  
@@ -521,7 +567,7 @@ export default function App() {
 
       {/* Booking Section */}
       <div id="probe" className="relative -top-24" aria-hidden="true" />
-      <section id="book" className="py-32 px-6 bg-emerald-900/40">
+      <section id="book" className="py-32 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6">
             <h2 className="text-5xl md:text-6xl font-bold font-serif">Dignity Investment.</h2>
@@ -556,10 +602,12 @@ export default function App() {
                 Dignity Investment
               </h4>
               <div className="space-y-3 text-sm text-amber-100">
-                <p className="font-semibold text-amber-50">Direct Integration:</p>
-                <p className="qp-leading-175">Proudly In-Network with Aetna (PA) and UPMC (PA). Direct Integration means no executive function hurdle to verify your benefits before you walk in.</p>
-                <p className="font-semibold text-amber-50 pt-2">The OON Solution:</p>
-                <p className="qp-leading-175">For all other providers, we use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
+                <p className="font-semibold text-amber-50">Ontario (Direct Integration):</p>
+                <p className="qp-leading-175">Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins.</p>
+                <p className="font-semibold text-amber-50 pt-2">Pennsylvania (In-Network):</p>
+                <p className="qp-leading-175">Aetna, Blue Cross Blue Shield, and CIGNA. Direct billing — no superbill required.</p>
+                <p className="font-semibold text-amber-50 pt-2">All Other Providers:</p>
+                <p className="qp-leading-175">We use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
               </div>
             </div>
           </div>
@@ -596,7 +644,7 @@ export default function App() {
       </section>
 
       {/* Weekend Resource Guide Section */}
-      <section id="weekend-safety-net" className="py-24 px-6 bg-emerald-950/70 border-y border-emerald-800/50">
+      <section id="weekend-safety-net" className="py-24 px-6 border-y border-emerald-800/50">
         <div className="max-w-4xl mx-auto space-y-8">
           <div className="space-y-4 text-center">
             <p className="text-amber-400 uppercase tracking-widest text-xs font-bold">Friday Push</p>
@@ -642,7 +690,7 @@ export default function App() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-amber-200 hover:text-amber-100 font-medium transition px-4 py-2 rounded qp-amber-border qp-font-roboto"
               >
-                Download the Full Sovereign Sanctuary Resource PDF
+                Full Sovereign Sanctuary Resource
                 <ArrowRight size={16} />
               </a>
               <p className="text-xs text-amber-100/70 mt-2">Optional email capture link for Friday resource leads.</p>
@@ -701,7 +749,7 @@ export default function App() {
               <div className="pt-4 border-t border-emerald-800/50 space-y-3">
                 <p className="text-sm text-amber-100"><strong>Specializations:</strong></p>
                 <p className="text-sm text-amber-100 qp-leading-175">
-                  LGBTQ+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
+                  2SLGBTQI+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
                 </p>
               </div>
             </div>
@@ -717,6 +765,51 @@ export default function App() {
         </div>
       </section>
 
+      {/* Podcast Section */}
+      <section id="podcast" className="py-28 px-6 border-t border-emerald-900/50">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
+          <div className="space-y-6">
+            <p className="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold">Queer Connections</p>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif leading-tight">Dedicated Podcast Archive</h2>
+            <p className="text-amber-100 text-lg qp-leading-175 max-w-3xl">
+              Clinical depth, noir honesty, and practical somatic frameworks for queer and neurodivergent high performers.
+              Stream Queer Connections: Unmapped on Apple Podcasts.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <a
+                href={APPLE_PODCAST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-sm font-bold hover:bg-amber-100 transition"
+              >
+                Listen on Apple Podcasts
+                <ExternalLink size={16} />
+              </a>
+              <a
+                href={APPLE_PODCAST_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 border border-amber-100/70 text-amber-100 px-8 py-3 rounded-full text-sm font-semibold hover:bg-amber-100/10 transition"
+              >
+                Open Show Page
+              </a>
+            </div>
+          </div>
+
+          <div className="bg-emerald-900/40 border border-emerald-800/60 rounded-3xl p-8 space-y-4">
+            <h3 className="text-xl font-bold flex items-center gap-2">
+              <BookOpen className="text-amber-400" size={22} />
+              What You Will Hear
+            </h3>
+            <ul className="space-y-3 text-amber-100/90 text-sm qp-leading-175">
+              <li>Attachment trauma, relational pacing, and minority stress analysis.</li>
+              <li>Somatic tools for performance paradox and executive shutdown cycles.</li>
+              <li>Practical, trauma-informed pathways to embodied sovereignty.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}  
       <footer className="py-20 border-t border-emerald-900/50 px-6 bg-emerald-950/50">  
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">  
@@ -726,7 +819,7 @@ export default function App() {
               alt="Queer Pathways"
               className="h-14 w-auto object-contain"
             />  
-            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Philadelphia | Pittsburgh | PA | Ontario, Canada</p>  
+            <p className="text-sm text-amber-100/70">Specialized Affirming Care <br /> Ontario, Canada | Pennsylvania, US</p>  
           </div>  
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-16">  
             <div className="space-y-4">  
@@ -735,11 +828,15 @@ export default function App() {
                 <li><a href="#philosophy" className="hover:text-amber-50 transition">Philosophy</a></li>  
                 <li><a href="#specialists" className="hover:text-amber-50 transition">Specialists</a></li>  
                 <li><a href="#book" className="hover:text-amber-50 transition">Booking</a></li>  
+                <li><Link to="/shop" className="hover:text-amber-50 transition">Shop</Link></li>
+                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fee Disclosure</Link></li>
+                <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy</Link></li>
               </ul>  
             </div>  
             <div className="space-y-4">  
               <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Connect</h5>  
               <ul className="space-y-2 text-sm text-amber-100/70">  
+                <li><a href={APPLE_PODCAST_URL} target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Apple Podcasts</a></li>
                 <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Substack</a></li>  
                 <li><a href="mailto:hello@queerpathways.org" className="hover:text-amber-50 transition">Email</a></li>  
                 <li><a href="tel:+13655999002" className="hover:text-amber-50 transition">365-599-9002</a></li>  
