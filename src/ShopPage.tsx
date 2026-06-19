@@ -1,9 +1,65 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck, ShoppingCart, Plus, Check, Droplets, EyeOff, Zap, Crosshair, PenLine } from 'lucide-react';
+import { Briefcase, ArrowRight, ShieldCheck, ShoppingCart, Plus, Check, Droplets, EyeOff, Zap, Crosshair, PenLine, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useCart } from './CartContext';
 import CartDrawer from './CartDrawer';
+
+/* ── Image Carousel ─────────────────────────────────────── */
+function ProductCarousel({ images }: { images: string[] }) {
+  const [idx, setIdx] = React.useState(0);
+  const [visible, setVisible] = React.useState(true);
+  if (!visible) return null;
+  const single = images.length === 1;
+  const prev = () => setIdx((i) => (i - 1 + images.length) % images.length);
+  const next = () => setIdx((i) => (i + 1) % images.length);
+  return (
+    <div className="relative rounded-xl overflow-hidden group">
+      <img
+        key={images[idx]}
+        src={images[idx]}
+        alt=""
+        aria-hidden="true"
+        className="w-full object-contain"
+        onError={() => {
+          // if current image fails, try next; if all fail, hide carousel
+          if (images.length === 1) { setVisible(false); return; }
+          setIdx((i) => (i + 1) % images.length);
+        }}
+      />
+      {!single && (
+        <>
+          <button
+            onClick={prev}
+            aria-label="Previous image"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <button
+            onClick={next}
+            aria-label="Next image"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+          >
+            <ChevronRight size={18} />
+          </button>
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                aria-label={`Image ${i + 1}`}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${
+                  i === idx ? 'bg-amber-400' : 'bg-white/40 hover:bg-white/70'
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
 
 /*
  * ── PRICES (USD base) ─────────────────────────────────────────
@@ -21,72 +77,18 @@ interface Product {
   description: string;
   tag: string;
   priceUsd: number; // USD cents; 0 = price not yet set
-  image?: string;   // path relative to /public
+  images?: string[]; // paths relative to /public; carousel when >1
 }
 
 /* ── Product Catalogue (Site Bible SB-MASTER-01) ─────────── */
 const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = [
-  {
-    category: 'Category I — Olfactory & Sonic Grounding',
-    tagline: 'Bypass intellectual defenses. Lower blood pressure. Anchor focus.',
-    products: [
-      {
-        id: 'f150-candle',
-        name: 'The F-150 Performance Armor Candle',
-        icon: <Flame className="text-amber-400" size={22} />,
-        description:
-          'Heavy matte deep forest green vessel. Signature scent: Cedarwood, dark amber, earthy patchouli. An intentional behavioral transition that adjourns the Internal Prosecutor and marks the shift from performance to restoration.',
-        tag: 'Olfactory Anchor',
-        priceUsd: 4900,          // $49.00 USD
-      },
-      {
-        id: 'vagal-soundscapes',
-        name: 'Vagal Tone Continuous Soundscapes',
-        icon: <Music2 className="text-amber-400" size={22} />,
-        description:
-          'Digital audio engineered to stimulate the vagus nerve. Ultra-low frequencies override sensory gating static and anchor focus without an energy crash. No effort required — let the waveform do the regulatory work.',
-        tag: 'Sonic Architecture',
-        priceUsd: 1700,          // $17.00 USD
-      },
-    ],
-  },
-  {
-    category: 'Category II — Tactile Anchors & Rest Zones',
-    tagline: 'Externalized executive function. Physical sovereignty, made tangible.',
-    products: [
-      {
-        id: 'stonewall-drapes',
-        name: 'The Stonewall Defense Heavy Velvet Drapes',
-        icon: <Layers className="text-amber-400" size={22} />,
-        description:
-          'Light-absorbing pine green velvet. Establishes a protective perimeter that eases chronic bracing and permits the deliberate dropping of Defensive Armor. Your room becomes your secure base.',
-        tag: 'Environmental Scaffold',
-        priceUsd: 17800,         // $178.00 USD
-      },
-      {
-        id: 'teakwood-block',
-        name: 'The Sovereign Body Teakwood Block',
-        icon: <Box className="text-amber-400" size={22} />,
-        description:
-          'Solid raw teakwood. A physical reference point that signals to the nervous system: surroundings are stable, safe, and entirely under your sovereignty. Weight, grain, temperature — all working as somatic data.',
-        tag: 'Tactile Anchor',
-        priceUsd: 6200,          // $62.00 USD
-      },
-    ],
-  },
+
+
   {
     category: 'Category III — Double-Outsider Supply Co.',
     tagline: 'Rugged, heavy-weight gear engineered to clear Garbage Code from the neurodivergent mind.',
     products: [
-      {
-        id: 'auditor-ledger',
-        name: 'The Internal Auditor Ledger',
-        icon: <BookOpen className="text-amber-400" size={22} />,
-        description:
-          'Heritage-quality paper archive with cold steel bindings. A Physical Sovereignty Lab — map task allocation, revenue projections, and identity architecture without rejection-sensitive anxiety derailing the process.',
-        tag: 'Administrative Scaffold',
-        priceUsd: 3500,          // $35.00 USD
-      },
+
       {
         id: 'cowhide-portfolio',
         name: 'The Identity Switch Cowhide Portfolio',
@@ -109,7 +111,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'cleanstream-enema-bulb',
         name: 'Cleanstream Deluxe Enema Bulb',
         icon: <Droplets className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/cleanstream-enema-bulb.jpg',
+        images: ['/Images/somatic-toolkit/cleanstream-enema-bulb.jpg'],
         description:
           'The reset button for physical peace. Before you enter the space of total surrender, you clear the field. An act of administrative advocacy for your own comfort — removing the baseline anxiety of the unexpected so your nervous system can settle into absolute presence.',
         tag: 'Somatic Reset',
@@ -119,7 +121,10 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'swiss-navy-silicone-32oz',
         name: 'Swiss Navy Silicone Lubricant (32 oz)',
         icon: <Droplets className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/swiss-navy-silicone-32oz.jpg',
+        images: [
+          '/Images/somatic-toolkit/swiss-navy-silicone-32oz.jpg',
+          '/Images/somatic-toolkit/swiss-navy-silicone-32oz-2.jpg',
+        ],
         description:
           'Uncoupling friction from focus. Premium-grade insulation for deep somatic exploration. Dramatically reduces baseline sensory drag, turning intense physical impact into a seamless, controlled flow state for the brain that craves high-stimulation input.',
         tag: 'Lubrication',
@@ -129,22 +134,17 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'boy-butter-gold-16oz',
         name: 'Boy Butter Gold (16 oz Tub)',
         icon: <Droplets className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/boy-butter-gold-16oz.jpg',
+        images: [
+          '/Images/somatic-toolkit/boy-butter-gold-16oz.jpg',
+          '/Images/somatic-toolkit/boy-butter-gold-16oz-2.jpg',
+          '/Images/somatic-toolkit/boy-butter-gold-16oz-3.jpg',
+        ],
         description:
           'High-end mitigation for high-intensity needs. When your physical armor requires premium-grade protection for deep somatic exploration, Boy Butter Gold delivers — eliminating sensory drag so you can maintain complete focus on the architecture of your experience.',
         tag: 'Lubrication',
         priceUsd: 4499, // $44.99 USD
       },
-      {
-        id: 'QP-SIL-01',
-        name: 'Sovereign Starter Silicone (1 oz)',
-        icon: <Droplets className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/sovereign-starter-1oz.jpg',
-        description:
-          'The entry point to precision lubrication. A travel-ready 1oz format of premium silicone — for the session that happens away from your sanctuary, or the first-time explorer who needs to verify the chemistry before committing to the full arsenal.',
-        tag: 'Lubrication',
-        priceUsd: 0, // TODO: confirm price from BigCommerce catalogue
-      },
+
     ],
   },
   {
@@ -155,7 +155,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'spartacus-glass-medium-clear',
         name: 'Blown Realistic Glass — Medium Clear',
         icon: <Crosshair className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/spartacus-glass-medium-clear.jpg',
+        images: ['/Images/somatic-toolkit/spartacus-glass-medium-clear.jpg'],
         description:
           'The heavy gravity of unyielding truth. Unlike materials that warp or adjust, blown glass offers a frozen geometry of absolute precision. It does not perform, code-switch, or compromise — it provides a cold, dense somatic weight that forces an interest-based nervous system to drop out of analytical circles and land hard into present tissue.',
         tag: 'Glass',
@@ -165,7 +165,11 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'spartacus-glass-large-clear',
         name: 'Blown Realistic Glass — Large Clear',
         icon: <Crosshair className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/spartacus-glass-large-clear.jpg',
+        images: [
+          '/Images/somatic-toolkit/spartacus-glass-large-clear.jpg',
+          '/Images/somatic-toolkit/spartacus-glass-large-clear-2.jpg',
+          '/Images/somatic-toolkit/spartacus-glass-large-clear-3.jpg',
+        ],
         description:
           'Expanded geometry of absolute precision. The same cold, dense somatic weight as the medium format, scaled for those whose nervous system demands a more emphatic landing. The glass does not negotiate or compromise — it simply is.',
         tag: 'Glass',
@@ -175,7 +179,13 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'pivot-positioner-ss360',
         name: 'Pivot Positioner SS360 / Plus Black',
         icon: <Crosshair className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/pivot-positioner-ss360-black.jpg',
+        images: [
+          '/Images/somatic-toolkit/pivot-positioner-ss360-black.jpg',
+          '/Images/somatic-toolkit/pivot-positioner-ss360-black-2.jpg',
+          '/Images/somatic-toolkit/pivot-positioner-ss360-black-3.jpg',
+          '/Images/somatic-toolkit/pivot-positioner-ss360-black-4.jpg',
+          '/Images/somatic-toolkit/pivot-positioner-ss360-black-5.jpg',
+        ],
         description:
           'The secure base of suspension. For the high-achieving professional accustomed to holding up the sky, true relief comes when you are completely forbidden from holding your own weight. A prosthetic environment in structural form — dismantling the hyper-vigilant posture of survival so you can surrender volition entirely.',
         tag: 'Positional',
@@ -185,7 +195,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'sportsheets-everlaster-stud-white',
         name: 'Sportsheets Everlaster-Stud (White)',
         icon: <Crosshair className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/sportsheets-everlaster-stud-white.jpg',
+        images: ['/Images/somatic-toolkit/sportsheets-everlaster-stud-white.jpg'],
         description:
           'A hollow strap-on harness engineered for the body you actually have. The prosthetic architecture of sovereign intimacy — precision-adjustable strapping eliminates the cognitive overhead of improvisation, freeing your full attention for the architecture of the experience itself.',
         tag: 'Harness',
@@ -201,7 +211,10 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'mouth-hood-fetish',
         name: 'Fetish Fashion Mouth Hood',
         icon: <EyeOff className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/mouth-hood-fetish.jpg',
+        images: [
+          '/Images/somatic-toolkit/mouth-hood-fetish.jpg',
+          '/Images/somatic-toolkit/mouth-hood-fetish-3.jpg',
+        ],
         description:
           'The Masking Visionary spends 80 hours a week code-switching, exhausted from performing normal. By explicitly reshaping your sensory horizon, this hood gives your overloaded processing system a total intermission — not hiding, but an intentional sanctuary where the labor of being observed is fully suspended.',
         tag: 'Sensory Gate',
@@ -211,7 +224,12 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'fort-troff-black-ops-hood',
         name: 'Fort Troff Black Ops Hood',
         icon: <EyeOff className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/fort-troff-black-ops-hood.jpg',
+        images: [
+          '/Images/somatic-toolkit/fort-troff-black-ops-hood.jpg',
+          '/Images/somatic-toolkit/fort-troff-black-ops-hood-2.jpg',
+          '/Images/somatic-toolkit/fort-troff-black-ops-hood-3.jpg',
+          '/Images/somatic-toolkit/fort-troff-black-ops-hood-6.jpg',
+        ],
         description:
           'Total blackout for the overloaded processing system. By eliminating your visual field completely, this hood gives the eyes permission to shut, silences the internal prosecutor, and removes the labor of being observed. Maximum sensory containment for maximum nervous system relief.',
         tag: 'Sensory Gate',
@@ -221,7 +239,11 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'spandex-3-hole-hood',
         name: 'Spandex 3-Hole Hood',
         icon: <EyeOff className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/spandex-3-hole-hood.jpg',
+        images: [
+          '/Images/somatic-toolkit/spandex-3-hole-hood.jpg',
+          '/Images/somatic-toolkit/spandex-3-hole-hood-2.jpg',
+          '/Images/somatic-toolkit/spandex-3-hole-hood-3.jpg',
+        ],
         description:
           'Calibrated containment with maintained access. The spandex architecture compresses the field of awareness without total blackout — a precise middle register between full exposure and complete enclosure, for those who need the containment of the mask without full sensory withdrawal.',
         tag: 'Sensory Gate',
@@ -231,7 +253,13 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'ouch-puppy-play-hood',
         name: 'Shots Ouch Puppy Play Hood',
         icon: <EyeOff className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/ouch-puppy-play-hood.jpg',
+        images: [
+          '/Images/somatic-toolkit/ouch-puppy-play-hood.jpg',
+          '/Images/somatic-toolkit/ouch-puppy-play-hood-2.jpg',
+          '/Images/somatic-toolkit/ouch-puppy-play-hood-3.jpg',
+          '/Images/somatic-toolkit/ouch-puppy-play-hood-4.jpg',
+          '/Images/somatic-toolkit/ouch-puppy-play-hood-5.jpg',
+        ],
         description:
           'Persona as somatic technology. By assuming the puppy architecture, the neurotype that has spent years code-switching is granted explicit permission to abandon the human performance register entirely. The hood externalizes the permission slip the nervous system has been waiting for.',
         tag: 'Persona Gate',
@@ -247,7 +275,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'romantic-sting-crop',
         name: 'Sex Mischief Romantic Sting Crop',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/romantic-sting-crop.jpg',
+        images: ['/Images/somatic-toolkit/romantic-sting-crop.jpg'],
         description:
           'The sharp shock of bottom-up regulation. You cannot always think your way out of a deep emotional freeze — sometimes you have to shock the vagus nerve back online. This crop provides a clean, sharp sensory marker that punctures the gray fog of anhedonia, replacing obsessive rumination with sudden, beautiful clarity.',
         tag: 'Impact',
@@ -257,7 +285,11 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'spartacus-donut-ring-blue',
         name: 'Spartacus Wide Silicone Donut Ring',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/spartacus-donut-ring-blue.jpg',
+        images: [
+          '/Images/somatic-toolkit/spartacus-donut-ring-blue.jpg',
+          '/Images/somatic-toolkit/spartacus-donut-ring-blue-2.jpg',
+          '/Images/somatic-toolkit/spartacus-donut-ring-blue-3.jpg',
+        ],
         description:
           'The engine room of focus. Precision-engineered containment that tightens the steering wheel of physical arousal, grounding your energy exactly where it belongs — without the cognitive friction of cheap, uncalibrated alternatives.',
         tag: 'Precision',
@@ -267,7 +299,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'perfect-fit-ergoflo-director',
         name: 'Perfect Fit Ergoflo Director',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/perfect-fit-ergoflo-director.jpg',
+        images: ['/Images/somatic-toolkit/perfect-fit-ergoflo-director.jpg'],
         description:
           'Precision-engineered direction of somatic focus. Calibrated to eliminate the cognitive overhead of improvisation and deliver the kind of reliable, repeatable physical architecture that an interest-based nervous system can actually settle into.',
         tag: 'Precision',
@@ -277,7 +309,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'wood-rocket-passive-aggressive-pens',
         name: 'Wood Rocket Passive Aggressive Pens (3-Pack)',
         icon: <PenLine className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/wood-rocket-passive-aggressive-pens.jpg',
+        images: ['/Images/somatic-toolkit/wood-rocket-passive-aggressive-pens.jpg'],
         description:
           'A playful nod to boardroom friction. For the days you are stuck staring at a corporate analytics report feeling Too Professional for the Protest. A tiny, high-contrast tool to externalize the frustration of low-stimulation bureaucracy before you head home to your real sanctuary.',
         tag: 'Everyday Friction',
@@ -287,32 +319,13 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'OW-BL-CLAMP',
         name: 'Open Wide Blackline Clamps',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/spartacus-open-wide-clamps.jpg',
+        images: ['/Images/somatic-toolkit/spartacus-open-wide-clamps.jpg'],
         description:
           'Precision bite without the bureaucratic drag. Adjustable tension delivers a clean, sharp sensory signal that cuts through anhedonic fog — a calibrated interruption that pulls the overloaded processing system back into the body and out of the recursive loop.',
         tag: 'Impact',
         priceUsd: 2499, // $24.99 USD
       },
-      {
-        id: 'ES-2B-IND',
-        name: 'E-Stim 2B — Individual',
-        icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/estim-2b-bundle.jpg',
-        description:
-          'Electrostimulation as somatic precision engineering. The nervous system that resists conventional input responds to electrical signal where friction has failed. Individual configuration — calibrated intensity, repeatable architecture, zero cognitive overhead once the session begins.',
-        tag: 'E-Stim',
-        priceUsd: 15000, // $150.00 USD
-      },
-      {
-        id: 'ES-2B-REL',
-        name: 'E-Stim 2B — Relational',
-        icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/estim-2b-bundle.jpg',
-        description:
-          'Electrostimulation configured for two-body architecture. The shared electrical field collapses the distance between nervous systems — a co-regulation technology for the double-outsider who experiences intimacy as a second full-time job requiring constant translation.',
-        tag: 'E-Stim',
-        priceUsd: 20000, // $200.00 USD
-      },
+
     ],
   },
 ];
@@ -485,17 +498,9 @@ export default function ShopPage() {
                     key={product.id}
                     className="border border-emerald-800/40 rounded-2xl p-8 space-y-5 bg-emerald-950/20 hover:bg-emerald-950/40 transition-all flex flex-col"
                   >
-                    {/* Product image — shown when image path is provided and file resolves */}
-                    {product.image && (
-                      <div className="rounded-xl overflow-hidden">
-                        <img
-                          src={product.image}
-                          alt=""
-                          aria-hidden="true"
-                          className="w-full h-44 object-cover"
-                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-                        />
-                      </div>
+                    {/* Product images — carousel when multiple, single otherwise */}
+                    {product.images && product.images.length > 0 && (
+                      <ProductCarousel images={product.images} />
                     )}
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4">
