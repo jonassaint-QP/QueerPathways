@@ -70,40 +70,17 @@ interface BcProduct {
 // quantity is the number of that component per *one* unit of the bundle.
 // The expansion step multiplies by the ordered bundle quantity automatically.
 //
-// Example: ordering 2× SM-KIT-01 expands to:
-//   2× 6755-12, 2× BBGOLD, 2× CS-EN-BULB, 4× WT-27030
-const BUNDLE_MAP: Record<string, Array<{ sku: string; quantity: number }>> = {
-  // ── Sovereign Maintenance Kit — BC SKU SM-KIT-01 ───────────────────────
-  // TODO: confirm final component quantities with your product team.
-  'SM-KIT-01': [
-    { sku: '6755-12',    quantity: 1 }, // Swiss Navy Silicone 32oz (confirmed SKU)
-    { sku: 'BBGOLD',     quantity: 1 }, // Boy Butter Gold 16oz (confirmed SKU)
-    { sku: 'CS-EN-BULB', quantity: 1 }, // Cleanstream Enema Bulb
-    { sku: 'WT-27030',   quantity: 2 }, // Wet Platinum Toy & Body Wipes 10ct ×2 (confirmed SKU)
-  ],
-};
+// Bundle expansion is intentionally disabled.
+// SM-KIT-01 and all other bundle SKUs are passed through to the distributor
+// as-is. Do not re-enable expandBundles without a product team sign-off.
+const BUNDLE_MAP: Record<string, Array<{ sku: string; quantity: number }>> = {};
 
 /**
- * Expands a single order line into fulfilable component lines.
- * If the SKU is not a bundle, returns the original line unchanged.
- * Quantities of each component are scaled by the ordered bundle quantity.
+ * Bundle expansion is disabled — returns lines unchanged.
+ * BUNDLE_MAP is intentionally empty.
  */
 function expandBundles(lines: ElDoradoOrderLine[]): ElDoradoOrderLine[] {
-  const expanded: ElDoradoOrderLine[] = [];
-  for (const line of lines) {
-    const components = BUNDLE_MAP[line.sku];
-    if (components) {
-      console.log(
-        `[bc-webhook] Expanding bundle ${line.sku} ×${line.quantity} → ${components.length} components`,
-      );
-      for (const component of components) {
-        expanded.push({ sku: component.sku, quantity: component.quantity * line.quantity });
-      }
-    } else {
-      expanded.push(line);
-    }
-  }
-  return expanded;
+  return lines;
 }
 
 // ── Shipping method normalisation ─────────────────────────────────────────────

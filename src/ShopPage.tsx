@@ -315,22 +315,6 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
       },
     ],
   },
-  {
-    category: 'Category VIII — The Sovereign Maintenance Kit',
-    tagline: 'The complete somatic infrastructure — one curated bundle, zero decision fatigue.',
-    products: [
-      {
-        id: 'SM-KIT-01',
-        name: 'Sovereign Maintenance Kit',
-        icon: <Box className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/sovereign-maintenance-kit.jpg',
-        description:
-          'The full infrastructure of the Sovereign Body, pre-assembled. Every component has been selected because it eliminates a category of cognitive friction — the lubricants, the cleanse protocol, the precision tools. Order once. Stop managing the supply chain of your own nervous system.',
-        tag: 'Bundle',
-        priceUsd: 22500, // $225.00 USD — bundle of Swiss Navy 32oz + Boy Butter 16oz + Cleanstream Bulb + wipes
-      },
-    ],
-  },
 ];
 
 export default function ShopPage() {
