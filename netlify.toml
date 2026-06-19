@@ -12,6 +12,17 @@
 	to = "/index.html"
 	status = 200
 
+# Soundtrack page removed — redirect old URL to home
+[[redirects]]
+	from = "/soundtrack/"
+	to = "/"
+	status = 301
+
+[[redirects]]
+	from = "/soundtrack"
+	to = "/"
+	status = 301
+
 # SPA fallback
 [[redirects]]
 	from = "/*"
