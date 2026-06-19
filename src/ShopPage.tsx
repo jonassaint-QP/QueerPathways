@@ -135,6 +135,16 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         tag: 'Lubrication',
         priceUsd: 4499, // $44.99 USD
       },
+      {
+        id: 'QP-SIL-01',
+        name: 'Sovereign Starter Silicone (1 oz)',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/sovereign-starter-1oz.jpg',
+        description:
+          'The entry point to precision lubrication. A travel-ready 1oz format of premium silicone — for the session that happens away from your sanctuary, or the first-time explorer who needs to verify the chemistry before committing to the full arsenal.',
+        tag: 'Lubrication',
+        priceUsd: 0, // TODO: confirm price from BigCommerce catalogue
+      },
     ],
   },
   {
@@ -277,7 +287,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'OW-BL-CLAMP',
         name: 'Open Wide Blackline Clamps',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/open-wide-blackline-clamps.jpg',
+        image: '/Images/somatic-toolkit/spartacus-open-wide-clamps.jpg',
         description:
           'Precision bite without the bureaucratic drag. Adjustable tension delivers a clean, sharp sensory signal that cuts through anhedonic fog — a calibrated interruption that pulls the overloaded processing system back into the body and out of the recursive loop.',
         tag: 'Impact',
@@ -287,7 +297,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'ES-2B-IND',
         name: 'E-Stim 2B — Individual',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/estim-2b-individual.jpg',
+        image: '/Images/somatic-toolkit/estim-2b-bundle.jpg',
         description:
           'Electrostimulation as somatic precision engineering. The nervous system that resists conventional input responds to electrical signal where friction has failed. Individual configuration — calibrated intensity, repeatable architecture, zero cognitive overhead once the session begins.',
         tag: 'E-Stim',
@@ -297,7 +307,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'ES-2B-REL',
         name: 'E-Stim 2B — Relational',
         icon: <Zap className="text-amber-400" size={22} />,
-        image: '/Images/somatic-toolkit/estim-2b-relational.jpg',
+        image: '/Images/somatic-toolkit/estim-2b-bundle.jpg',
         description:
           'Electrostimulation configured for two-body architecture. The shared electrical field collapses the distance between nervous systems — a co-regulation technology for the double-outsider who experiences intimacy as a second full-time job requiring constant translation.',
         tag: 'E-Stim',

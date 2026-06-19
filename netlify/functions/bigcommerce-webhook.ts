@@ -71,15 +71,15 @@ interface BcProduct {
 // The expansion step multiplies by the ordered bundle quantity automatically.
 //
 // Example: ordering 2× SM-KIT-01 expands to:
-//   2× SN-SIL-32, 2× BB-GOLD-16, 2× CS-EN-BULB, 4× QP-WIPES-10
+//   2× 6755-12, 2× BBGOLD, 2× CS-EN-BULB, 4× WT-27030
 const BUNDLE_MAP: Record<string, Array<{ sku: string; quantity: number }>> = {
   // ── Sovereign Maintenance Kit — BC SKU SM-KIT-01 ───────────────────────
-  // TODO: confirm final component list and quantities with your product team.
+  // TODO: confirm final component quantities with your product team.
   'SM-KIT-01': [
-    { sku: 'SN-SIL-32',    quantity: 1 }, // Swiss Navy Silicone 32oz
-    { sku: 'BB-GOLD-16',   quantity: 1 }, // Boy Butter Gold 16oz
-    { sku: 'CS-EN-BULB',   quantity: 1 }, // Cleanstream Enema Bulb
-    { sku: 'QP-WIPES-10',  quantity: 2 }, // Toy wipes ×2 (placeholder SKU — verify)
+    { sku: '6755-12',    quantity: 1 }, // Swiss Navy Silicone 32oz (confirmed SKU)
+    { sku: 'BBGOLD',     quantity: 1 }, // Boy Butter Gold 16oz (confirmed SKU)
+    { sku: 'CS-EN-BULB', quantity: 1 }, // Cleanstream Enema Bulb
+    { sku: 'WT-27030',   quantity: 2 }, // Wet Platinum Toy & Body Wipes 10ct ×2 (confirmed SKU)
   ],
 };
 

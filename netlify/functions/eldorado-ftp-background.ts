@@ -142,13 +142,10 @@ const SKU_MAP: Record<string, { eldorado?: string; wt?: string }> = {
 
   // ── Cleanse & Fluidity ────────────────────────────────────────────────────
   'CS-EN-BULB':  { eldorado: 'CS-EN-BULB',  wt: 'CS-EN-BULB'  },
-
-  // Swiss Navy — Eldorado brand-prefix candidates: MD-SN-SIL-32 | SN-SIL-32
-  // Verify: Account > Data Feeds > Price List CSV > search "Swiss Navy 32oz"
-  'SN-SIL-32':   { eldorado: 'SN-SIL-32'   /* TODO: verify Eldorado prefix */, wt: 'SN-SIL-32'   },
-
-  // Boy Butter — Eldorado candidates: BB-GOLD-16 | BB-BB-GOLD-16
-  'BB-GOLD-16':  { eldorado: 'BB-GOLD-16'  /* TODO: verify Eldorado prefix */, wt: 'BB-GOLD-16'  },
+  '6755-12':     { eldorado: '6755-12',      wt: '6755-12'      }, // Swiss Navy Silicone 32oz — confirmed
+  'BBGOLD':      { eldorado: 'BBGOLD',       wt: 'BBGOLD'       }, // Boy Butter Gold 16oz — confirmed
+  'WT-27030':    { eldorado: 'WT-27030',     wt: 'WT-27030'     }, // Wet Platinum Wipes 10ct — confirmed
+  'QP-SIL-01':   { eldorado: 'QP-SIL-01',   wt: 'QP-SIL-01'   }, // Sovereign Starter 1oz
 
   // ── Structural Rigor ──────────────────────────────────────────────────────
   'SP-GL-MED':   { eldorado: 'SP-GL-MED',   wt: 'SP-GL-MED'   },
@@ -166,8 +163,7 @@ const SKU_MAP: Record<string, { eldorado?: string; wt?: string }> = {
   'SP-DONUT-W':  { eldorado: 'SP-DONUT-W',  wt: 'SP-DONUT-W'  },
   'EF-DIR-08':   { eldorado: 'EF-DIR-08',   wt: 'EF-DIR-08'   },
   'OW-BL-CLAMP': { eldorado: 'OW-BL-CLAMP', wt: 'OW-BL-CLAMP' },
-  // Pens: WR-PAP-3PK is the BC SKU; manufacturer barcode shows 3PAGP
-  // If distributor rejects WR-PAP-3PK, swap values below to 3PAGP
+
   'WR-PAP-3PK':  { eldorado: 'WR-PAP-3PK', wt: 'WR-PAP-3PK'  },
 
   // ── E-Stim ────────────────────────────────────────────────────────────────
