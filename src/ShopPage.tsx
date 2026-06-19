@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck, ShoppingCart, Plus, Check } from 'lucide-react';
+import { Flame, Music2, Layers, Box, BookOpen, Briefcase, ArrowRight, ShieldCheck, ShoppingCart, Plus, Check, Droplets, EyeOff, Zap, Crosshair, PenLine } from 'lucide-react';
 import { useCart } from './CartContext';
 import CartDrawer from './CartDrawer';
 
@@ -13,8 +13,19 @@ import CartDrawer from './CartDrawer';
  * ───────────────────────────────────────────────────────────
  */
 
+/* ── Product type ────────────────────────────────────────── */
+interface Product {
+  id: string;
+  name: string;
+  icon: React.ReactElement;
+  description: string;
+  tag: string;
+  priceUsd: number; // USD cents; 0 = price not yet set
+  image?: string;   // path relative to /public
+}
+
 /* ── Product Catalogue (Site Bible SB-MASTER-01) ─────────── */
-const CATALOGUE = [
+const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = [
   {
     category: 'Category I — Olfactory & Sonic Grounding',
     tagline: 'Bypass intellectual defenses. Lower blood pressure. Anchor focus.',
@@ -87,6 +98,229 @@ const CATALOGUE = [
       },
     ],
   },
+
+  // ── The Somatic Toolkit ──────────────────────────────────────────────────
+
+  {
+    category: 'Category IV — The Somatic Toolkit: Cleanse & Fluidity',
+    tagline: 'The foundations of grounding — reduce cognitive friction before entering the space of surrender.',
+    products: [
+      {
+        id: 'cleanstream-enema-bulb',
+        name: 'Cleanstream Deluxe Enema Bulb',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/cleanstream-enema-bulb.jpg',
+        description:
+          'The reset button for physical peace. Before you enter the space of total surrender, you clear the field. An act of administrative advocacy for your own comfort — removing the baseline anxiety of the unexpected so your nervous system can settle into absolute presence.',
+        tag: 'Somatic Reset',
+        priceUsd: 3499, // $34.99 USD
+      },
+      {
+        id: 'swiss-navy-silicone-32oz',
+        name: 'Swiss Navy Silicone Lubricant (32 oz)',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/swiss-navy-silicone-32oz.jpg',
+        description:
+          'Uncoupling friction from focus. Premium-grade insulation for deep somatic exploration. Dramatically reduces baseline sensory drag, turning intense physical impact into a seamless, controlled flow state for the brain that craves high-stimulation input.',
+        tag: 'Lubrication',
+        priceUsd: 7999, // $79.99 USD
+      },
+      {
+        id: 'boy-butter-gold-16oz',
+        name: 'Boy Butter Gold (16 oz Tub)',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/boy-butter-gold-16oz.jpg',
+        description:
+          'High-end mitigation for high-intensity needs. When your physical armor requires premium-grade protection for deep somatic exploration, Boy Butter Gold delivers — eliminating sensory drag so you can maintain complete focus on the architecture of your experience.',
+        tag: 'Lubrication',
+        priceUsd: 4499, // $44.99 USD
+      },
+    ],
+  },
+  {
+    category: 'Category V — The Somatic Toolkit: Structural Rigor',
+    tagline: 'The architecture of containment — unyielding precision that drops the analytical mind into the present.',
+    products: [
+      {
+        id: 'spartacus-glass-medium-clear',
+        name: 'Blown Realistic Glass — Medium Clear',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/spartacus-glass-medium-clear.jpg',
+        description:
+          'The heavy gravity of unyielding truth. Unlike materials that warp or adjust, blown glass offers a frozen geometry of absolute precision. It does not perform, code-switch, or compromise — it provides a cold, dense somatic weight that forces an interest-based nervous system to drop out of analytical circles and land hard into present tissue.',
+        tag: 'Glass',
+        priceUsd: 8499, // $84.99 USD
+      },
+      {
+        id: 'spartacus-glass-large-clear',
+        name: 'Blown Realistic Glass — Large Clear',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/spartacus-glass-large-clear.jpg',
+        description:
+          'Expanded geometry of absolute precision. The same cold, dense somatic weight as the medium format, scaled for those whose nervous system demands a more emphatic landing. The glass does not negotiate or compromise — it simply is.',
+        tag: 'Glass',
+        priceUsd: 9499, // $94.99 USD
+      },
+      {
+        id: 'pivot-positioner-ss360',
+        name: 'Pivot Positioner SS360 / Plus Black',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/pivot-positioner-ss360-black.jpg',
+        description:
+          'The secure base of suspension. For the high-achieving professional accustomed to holding up the sky, true relief comes when you are completely forbidden from holding your own weight. A prosthetic environment in structural form — dismantling the hyper-vigilant posture of survival so you can surrender volition entirely.',
+        tag: 'Positional',
+        priceUsd: 11500, // $115.00 USD
+      },
+      {
+        id: 'sportsheets-everlaster-stud-white',
+        name: 'Sportsheets Everlaster-Stud (White)',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/sportsheets-everlaster-stud-white.jpg',
+        description:
+          'A hollow strap-on harness engineered for the body you actually have. The prosthetic architecture of sovereign intimacy — precision-adjustable strapping eliminates the cognitive overhead of improvisation, freeing your full attention for the architecture of the experience itself.',
+        tag: 'Harness',
+        priceUsd: 0, // TODO: confirm price from BigCommerce catalogue
+      },
+    ],
+  },
+  {
+    category: 'Category VI — The Somatic Toolkit: Sensory Gating',
+    tagline: 'Dismantling the boardroom mask — an intentional, tactical sanctuary where the internal prosecutor is muted.',
+    products: [
+      {
+        id: 'mouth-hood-fetish',
+        name: 'Fetish Fashion Mouth Hood',
+        icon: <EyeOff className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/mouth-hood-fetish.jpg',
+        description:
+          'The Masking Visionary spends 80 hours a week code-switching, exhausted from performing normal. By explicitly reshaping your sensory horizon, this hood gives your overloaded processing system a total intermission — not hiding, but an intentional sanctuary where the labor of being observed is fully suspended.',
+        tag: 'Sensory Gate',
+        priceUsd: 4499, // $44.99 USD
+      },
+      {
+        id: 'fort-troff-black-ops-hood',
+        name: 'Fort Troff Black Ops Hood',
+        icon: <EyeOff className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/fort-troff-black-ops-hood.jpg',
+        description:
+          'Total blackout for the overloaded processing system. By eliminating your visual field completely, this hood gives the eyes permission to shut, silences the internal prosecutor, and removes the labor of being observed. Maximum sensory containment for maximum nervous system relief.',
+        tag: 'Sensory Gate',
+        priceUsd: 5999, // $59.99 USD
+      },
+      {
+        id: 'spandex-3-hole-hood',
+        name: 'Spandex 3-Hole Hood',
+        icon: <EyeOff className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/spandex-3-hole-hood.jpg',
+        description:
+          'Calibrated containment with maintained access. The spandex architecture compresses the field of awareness without total blackout — a precise middle register between full exposure and complete enclosure, for those who need the containment of the mask without full sensory withdrawal.',
+        tag: 'Sensory Gate',
+        priceUsd: 4499, // $44.99 USD
+      },
+      {
+        id: 'ouch-puppy-play-hood',
+        name: 'Shots Ouch Puppy Play Hood',
+        icon: <EyeOff className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/ouch-puppy-play-hood.jpg',
+        description:
+          'Persona as somatic technology. By assuming the puppy architecture, the neurotype that has spent years code-switching is granted explicit permission to abandon the human performance register entirely. The hood externalizes the permission slip the nervous system has been waiting for.',
+        tag: 'Persona Gate',
+        priceUsd: 6499, // $64.99 USD
+      },
+    ],
+  },
+  {
+    category: 'Category VII — The Somatic Toolkit: Impact, Edge & Everyday Friction',
+    tagline: 'Shock the vagus nerve back online — precision-engineered tools for bottom-up nervous system regulation.',
+    products: [
+      {
+        id: 'romantic-sting-crop',
+        name: 'Sex Mischief Romantic Sting Crop',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/romantic-sting-crop.jpg',
+        description:
+          'The sharp shock of bottom-up regulation. You cannot always think your way out of a deep emotional freeze — sometimes you have to shock the vagus nerve back online. This crop provides a clean, sharp sensory marker that punctures the gray fog of anhedonia, replacing obsessive rumination with sudden, beautiful clarity.',
+        tag: 'Impact',
+        priceUsd: 2999, // $29.99 USD
+      },
+      {
+        id: 'spartacus-donut-ring-blue',
+        name: 'Spartacus Wide Silicone Donut Ring',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/spartacus-donut-ring-blue.jpg',
+        description:
+          'The engine room of focus. Precision-engineered containment that tightens the steering wheel of physical arousal, grounding your energy exactly where it belongs — without the cognitive friction of cheap, uncalibrated alternatives.',
+        tag: 'Precision',
+        priceUsd: 2499, // $24.99 USD
+      },
+      {
+        id: 'perfect-fit-ergoflo-director',
+        name: 'Perfect Fit Ergoflo Director',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/perfect-fit-ergoflo-director.jpg',
+        description:
+          'Precision-engineered direction of somatic focus. Calibrated to eliminate the cognitive overhead of improvisation and deliver the kind of reliable, repeatable physical architecture that an interest-based nervous system can actually settle into.',
+        tag: 'Precision',
+        priceUsd: 4999, // $49.99 USD (updated from $74.99 — SKU EF-DIR-08)
+      },
+      {
+        id: 'wood-rocket-passive-aggressive-pens',
+        name: 'Wood Rocket Passive Aggressive Pens (3-Pack)',
+        icon: <PenLine className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/wood-rocket-passive-aggressive-pens.jpg',
+        description:
+          'A playful nod to boardroom friction. For the days you are stuck staring at a corporate analytics report feeling Too Professional for the Protest. A tiny, high-contrast tool to externalize the frustration of low-stimulation bureaucracy before you head home to your real sanctuary.',
+        tag: 'Everyday Friction',
+        priceUsd: 1999, // $19.99 USD
+      },
+      {
+        id: 'OW-BL-CLAMP',
+        name: 'Open Wide Blackline Clamps',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/open-wide-blackline-clamps.jpg',
+        description:
+          'Precision bite without the bureaucratic drag. Adjustable tension delivers a clean, sharp sensory signal that cuts through anhedonic fog — a calibrated interruption that pulls the overloaded processing system back into the body and out of the recursive loop.',
+        tag: 'Impact',
+        priceUsd: 2499, // $24.99 USD
+      },
+      {
+        id: 'ES-2B-IND',
+        name: 'E-Stim 2B — Individual',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/estim-2b-individual.jpg',
+        description:
+          'Electrostimulation as somatic precision engineering. The nervous system that resists conventional input responds to electrical signal where friction has failed. Individual configuration — calibrated intensity, repeatable architecture, zero cognitive overhead once the session begins.',
+        tag: 'E-Stim',
+        priceUsd: 15000, // $150.00 USD
+      },
+      {
+        id: 'ES-2B-REL',
+        name: 'E-Stim 2B — Relational',
+        icon: <Zap className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/estim-2b-relational.jpg',
+        description:
+          'Electrostimulation configured for two-body architecture. The shared electrical field collapses the distance between nervous systems — a co-regulation technology for the double-outsider who experiences intimacy as a second full-time job requiring constant translation.',
+        tag: 'E-Stim',
+        priceUsd: 20000, // $200.00 USD
+      },
+    ],
+  },
+  {
+    category: 'Category VIII — The Sovereign Maintenance Kit',
+    tagline: 'The complete somatic infrastructure — one curated bundle, zero decision fatigue.',
+    products: [
+      {
+        id: 'SM-KIT-01',
+        name: 'Sovereign Maintenance Kit',
+        icon: <Box className="text-amber-400" size={22} />,
+        image: '/Images/somatic-toolkit/sovereign-maintenance-kit.jpg',
+        description:
+          'The full infrastructure of the Sovereign Body, pre-assembled. Every component has been selected because it eliminates a category of cognitive friction — the lubricants, the cleanse protocol, the precision tools. Order once. Stop managing the supply chain of your own nervous system.',
+        tag: 'Bundle',
+        priceUsd: 22500, // $225.00 USD — bundle of Swiss Navy 32oz + Boy Butter 16oz + Cleanstream Bulb + wipes
+      },
+    ],
+  },
 ];
 
 export default function ShopPage() {
@@ -95,7 +329,7 @@ export default function ShopPage() {
   // Track recently added items for visual feedback
   const [addedIds, setAddedIds] = React.useState<Set<string>>(new Set());
 
-  function handleAddToCart(product: typeof CATALOGUE[0]['products'][0]) {
+  function handleAddToCart(product: Product) {
     addItem({
       id: product.id,
       name: product.name,
@@ -257,6 +491,18 @@ export default function ShopPage() {
                     key={product.id}
                     className="border border-emerald-800/40 rounded-2xl p-8 space-y-5 bg-emerald-950/20 hover:bg-emerald-950/40 transition-all flex flex-col"
                   >
+                    {/* Product image — shown when image path is provided and file resolves */}
+                    {product.image && (
+                      <div className="rounded-xl overflow-hidden">
+                        <img
+                          src={product.image}
+                          alt=""
+                          aria-hidden="true"
+                          className="w-full h-44 object-cover"
+                          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+                        />
+                      </div>
+                    )}
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4">
                       <div className="flex items-center gap-3">
@@ -273,25 +519,39 @@ export default function ShopPage() {
 
                     {/* Price + Add to Cart */}
                     <div className="pt-2 space-y-3">
-                      <p className="text-base font-bold text-amber-300">{formatPrice(product.priceUsd)}</p>
-                      <button
-                        onClick={() => handleAddToCart(product)}
-                        className={`w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
-                          justAdded
-                            ? 'bg-emerald-600 text-white'
-                            : inCart
-                            ? 'bg-emerald-900/60 border border-emerald-600/50 text-emerald-300 hover:bg-emerald-800/60'
-                            : 'bg-amber-400 hover:bg-amber-300 text-emerald-950'
-                        }`}
-                      >
-                        {justAdded ? (
-                          <><Check size={13} /> Added to Cart</>
-                        ) : inCart ? (
-                          <><Plus size={13} /> Add Another</>
-                        ) : (
-                          <><ShoppingCart size={13} /> Add to Cart</>
-                        )}
-                      </button>
+                      {product.priceUsd === 0 ? (
+                        <>
+                          <p className="text-sm text-amber-100/40 italic">— Price loading from catalogue —</p>
+                          <button
+                            disabled
+                            className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest bg-emerald-900/30 border border-emerald-800/40 text-emerald-600/50 cursor-not-allowed"
+                          >
+                            <ShoppingCart size={13} /> Coming Soon
+                          </button>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-base font-bold text-amber-300">{formatPrice(product.priceUsd)}</p>
+                          <button
+                            onClick={() => handleAddToCart(product)}
+                            className={`w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
+                              justAdded
+                                ? 'bg-emerald-600 text-white'
+                                : inCart
+                                ? 'bg-emerald-900/60 border border-emerald-600/50 text-emerald-300 hover:bg-emerald-800/60'
+                                : 'bg-amber-400 hover:bg-amber-300 text-emerald-950'
+                            }`}
+                          >
+                            {justAdded ? (
+                              <><Check size={13} /> Added to Cart</>
+                            ) : inCart ? (
+                              <><Plus size={13} /> Add Another</>
+                            ) : (
+                              <><ShoppingCart size={13} /> Add to Cart</>
+                            )}
+                          </button>
+                        </>
+                      )}
                     </div>
                   </div>
                 );
