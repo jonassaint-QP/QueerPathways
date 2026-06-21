@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "prebuild": "node ./scripts/verify-env.mjs",
-    "build": "rm -rf dist && vite build && for d in modalities library pathways soundtrack images; do if [ -d \"$d\" ]; then cp -r \"$d\" dist/; fi; done",
+    "build": "rm -rf dist && vite build && for d in modalities library pathways images; do if [ -d \"$d\" ]; then cp -r \"$d\" dist/; fi; done",
     "preview": "vite preview",
     "clean": "rm -rf dist",
     "lint": "tsc -p ./tsconfig.json --noEmit"
@@ -14,8 +14,9 @@
   "dependencies": {
     "@google/genai": "^1.29.0",
     "@netlify/functions": "^3.0.0",
-    "@tailwindcss/vite": "^4.1.14",
+    "@tailwindcss/vite": "^4.3.1",
     "@vitejs/plugin-react": "^5.0.4",
+    "basic-ftp": "^6.0.1",
     "dotenv": "^17.2.3",
     "express": "^4.21.2",
     "framer-motion": "^12.38.0",
@@ -24,8 +25,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.14.0",
-    "stripe": "^17.0.0",
-    "vite": "^6.2.0"
+    "stripe": "^17.0.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.21",
@@ -33,9 +33,9 @@
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.21",
-    "tailwindcss": "^4.1.14",
+    "tailwindcss": "^4.3.1",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.0"
+    "vite": "^8.0.16"
   }
 }

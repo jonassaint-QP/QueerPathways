@@ -6,18 +6,22 @@
 	directory = "netlify/functions"
 	node_bundler = "esbuild"
 
-# Functions passthrough — must come BEFORE the SPA catch-all
-[[redirects]]
-	from = "/.netlify/functions/*"
-	to = "/.netlify/functions/:splat"
-	status = 200
-	force = true
-
 # Stripe success / cancel redirects
 [[redirects]]
 	from = "/order-confirmation"
 	to = "/index.html"
 	status = 200
+
+# Soundtrack page removed — redirect old URL to home
+[[redirects]]
+	from = "/soundtrack/"
+	to = "/"
+	status = 301
+
+[[redirects]]
+	from = "/soundtrack"
+	to = "/"
+	status = 301
 
 # SPA fallback
 [[redirects]]
