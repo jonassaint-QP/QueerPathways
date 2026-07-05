@@ -144,6 +144,24 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         tag: 'Lubrication',
         priceUsd: 4499, // $44.99 USD
       },
+      {
+        id: 'ergoflo-8-flex-sensory-kit',
+        name: 'Perfect Fit ErgoFlo 8 Flex Sensory Kit',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Cleansing that\'s actually comfortable. The ErgoFlo is a weighted sensory anchor with a flexible tip that makes prep feel less like a chore and more like, well, prep. Designed for bodies of all experience levels, with a bulb that gives you control over pressure and flow. Sold as a structural novelty — but it works.',
+        tag: 'Sensory Reset',
+        priceUsd: 2451, // $24.51 USD
+      },
+      {
+        id: 'intimate-earth-green-foaming-cleaner',
+        name: 'Intimate Earth Green Foaming Toy Cleaner 6.8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Toy cleaner that actually cleans without the chemical hangover. Green Foaming is plant-based, biodegradable, and free of the harsh stuff — because your tools deserve better than a spray full of mystery ingredients. A few pumps, a quick rinse, and you\'re good to go.',
+        tag: 'Tool Care',
+        priceUsd: 2652, // $26.52 USD
+      },
 
     ],
   },
@@ -200,6 +218,51 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
           'A hollow strap-on harness engineered for the body you actually have. The prosthetic architecture of sovereign intimacy — precision-adjustable strapping eliminates the cognitive overhead of improvisation, freeing your full attention for the architecture of the experience itself.',
         tag: 'Harness',
         priceUsd: 0, // TODO: confirm price from BigCommerce catalogue
+      },
+      {
+        id: 'glas-7in-curved-glass-stimulator',
+        name: 'Glas 7\" Curved Glass Stimulator',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        description:
+          'Hand-blown borosilicate glass that\'s as beautiful as it is functional. The curve is engineered for G-spot and P-spot targeting, with a smooth surface that works with any lube. Temperature-responsive — warm it up, cool it down, or let it find its own rhythm. Non-porous, hypoallergenic, and built to last.',
+        tag: 'Glass',
+        priceUsd: 2850, // $28.50 USD
+      },
+      {
+        id: 'glas-3-5in-bling-butt-plug',
+        name: 'Glas 3.5\" Bling Bling Glass Butt Plug',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        description:
+          'Small but mighty. This 3.5-inch glass plug is perfect for beginners or anyone who wants precision without the length. The tapered shape makes insertion gradual and comfortable, while the glass gives you that weight and temperature play that silicone just can\'t match.',
+        tag: 'Glass',
+        priceUsd: 3040, // $30.40 USD
+      },
+      {
+        id: 'colours-pleasures-7in-dildo',
+        name: 'Colours Pleasures 7\" Realistic Dildo',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        description:
+          '"Mr. Perfect" is a realistic dildo with SensaFeel texture that\'s remarkably lifelike — without the creepy factor. Flexible spine, suction cup base, and phthalate-free silicone make it ready for solo play, harness use, or wall-mounted adventures. The name\'s a joke, but the quality is serious.',
+        tag: 'Silicone',
+        priceUsd: 4180, // $41.80 USD
+      },
+      {
+        id: 'sport-sheets-pivot-plus-large',
+        name: 'Sport Sheets Pivot Positioner Plus (Large)',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        description:
+          'The Pivot Positioner Plus is a large ramp-style pillow that completely changes the geometry of play. Elevates hips, supports lower back, and opens up angles you didn\'t know you were missing. Whether you\'re into penetration, oral, or just want to be more comfortable, this wedge makes everything better.',
+        tag: 'Positional',
+        priceUsd: 20900, // $209.00 USD
+      },
+      {
+        id: 'sport-sheets-pivot-base',
+        name: 'Sport Sheets Pivot Positioner (Base)',
+        icon: <Crosshair className="text-amber-400" size={22} />,
+        description:
+          'The base model of the Pivot Positioner does the same job with a slightly lower profile. Perfect for smaller spaces, travel, or if you just want to elevate without going full wedge. Supports the lower back and opens up access — no assembly required, no awkward angles.',
+        tag: 'Positional',
+        priceUsd: 10524, // $105.24 USD
       },
     ],
   },
@@ -265,6 +328,15 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         tag: 'Persona Gate',
         priceUsd: 6499, // $64.99 USD
       },
+      {
+        id: 'sport-sheets-shadow-full-hood',
+        name: 'Sport Sheets Shadow Full Hood',
+        icon: <EyeOff className="text-amber-400" size={22} />,
+        description:
+          'Sensory deprivation that\'s built for safety. The Shadow Full Hood covers the eyes and limits sensory input, helping you sink deeper into touch, sound, and anticipation. Integrated safety features mean you can explore without worry. For scenes where less sight means more sensation.',
+        tag: 'Sensory Gate',
+        priceUsd: 2453, // $24.53 USD
+      },
     ],
   },
   {
@@ -273,7 +345,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
     products: [
       {
         id: 'romantic-sting-crop',
-        name: 'Sex Mischief Romantic Sting Crop',
+        name: 'Sex & Mischief Precision Sting Crop',
         icon: <Zap className="text-amber-400" size={22} />,
         images: ['/Images/somatic-toolkit/romantic-sting-crop.jpg'],
         description:
@@ -325,7 +397,211 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         tag: 'Impact',
         priceUsd: 2499, // $24.99 USD
       },
+      {
+        id: 'sei-mio-commanding-crop',
+        name: 'Sei Mio Commanding Crop',
+        icon: <Zap className="text-amber-400" size={22} />,
+        description:
+          'Precision meets intention. The Sei Mio Commanding Crop has a firm yet flexible tip that delivers exactly the sensation you\'re aiming for — whether that\'s a sharp reminder or a gentle tease. The handle feels solid in your hand, and the leather tip lands with authority. For scenes where communication happens through sensation.',
+        tag: 'Impact',
+        priceUsd: 3325, // $33.25 USD
+      },
 
+    ],
+  },
+  {
+    category: 'Category VIII — The Lubricant Library',
+    tagline: 'Premium-grade formulas for friction-free focus — every lube is curated for longevity, body-safety, and sensory clarity.',
+    products: [
+      {
+        id: 'wet-platinum-silicone-3oz',
+        name: 'Wet Platinum Silicone Lube 3.1 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Silicone that stays put, stays slick, and stays out of your head. Wet Platinum is the gold standard for long-haul sessions — waterproof, silicone-safe for toys, and one pump lasts longer than most conversations about lube. No sticky, no tacky, just glide that keeps going.',
+        tag: 'Silicone Lube',
+        priceUsd: 1330, // $13.30 USD
+      },
+      {
+        id: 'wet-platinum-silicone-6oz',
+        name: 'Wet Platinum Silicone Lube 6.1 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Same platinum-grade silicone, bigger bottle. If you\'re the type who likes to stock up so you never have to think about it mid-scene, this is your size. Great for bedside tables, toy bags, or keeping one at each location.',
+        tag: 'Silicone Lube',
+        priceUsd: 1898, // $18.98 USD
+      },
+      {
+        id: 'wet-original-water-3oz',
+        name: 'Wet Original Water-Based Lube 3.1 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'The one that started it all. Water-based, body-safe, and compatible with everything in your toy bag. Easy cleanup, no stains, no questions. A classic for a reason — sometimes the original really is the best.',
+        tag: 'Water-Based Lube',
+        priceUsd: 1330, // $13.30 USD
+      },
+      {
+        id: 'wet-original-water-6oz',
+        name: 'Wet Original Water-Based Lube 6.1 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'More of what works. The bigger bottle of Wet Original for when you know you\'re going to need it — marathon sessions, partner play, or just not wanting to run out mid-moment. The classic formula, just more of it.',
+        tag: 'Water-Based Lube',
+        priceUsd: 1898, // $18.98 USD
+      },
+      {
+        id: 'wet-original-water-16oz',
+        name: 'Wet Original Water-Based Lube 16 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'The big bottle. Wet Original in the 16 oz size is for people who know what they want and want plenty of it. Stock your play space, your gym bag, and your bedside table — one bottle handles it all. The classic formula that\'s been trusted for decades.',
+        tag: 'Water-Based Lube',
+        priceUsd: 6365, // $63.65 USD
+      },
+      {
+        id: 'wet-hybrid-3oz',
+        name: 'Wet Hybrid Premium Blend Lube 3.1 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Best of both worlds — the slick of silicone with the easy cleanup of water-based. Wet Hybrid is for when you want that long-lasting glide without committing to a full silicone situation. Works with most toys, plays nice with bodies, and doesn\'t leave you guessing.',
+        tag: 'Hybrid Lube',
+        priceUsd: 1330, // $13.30 USD
+      },
+      {
+        id: 'swiss-navy-silicone-2oz',
+        name: 'Swiss Navy Silicone Lube 2 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Swiss Navy doesn\'t mess around. This silicone lube is silky-smooth, long-lasting, and formulated for sensitive skin. Waterproof, fragrance-free, and ready for whatever you\'re bringing to the table. The 2 oz bottle is perfect for travel, play parties, or trying before you commit to the gallon.',
+        tag: 'Silicone Lube',
+        priceUsd: 2219, // $22.19 USD
+      },
+      {
+        id: 'swiss-navy-water-8oz',
+        name: 'Swiss Navy Water Based Lube 8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Clean, reliable, and ready for anything. Swiss Navy water-based is the everyday essential that works with every toy, every body, and every energy. No sticky residue, no weird ingredients — just a solid, no-drama glide that gets out of the way when you\'re done.',
+        tag: 'Water-Based Lube',
+        priceUsd: 2375, // $23.75 USD
+      },
+      {
+        id: 'swiss-navy-masturbation-cream-5oz',
+        name: 'Swiss Navy Masturbation Cream 5 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Not a lube — a cream. Thicker, warmer, and designed to make hand-play feel like a whole different experience. Swiss Navy Masturbation Cream has a velvety texture that doesn\'t run or drip, so you can take your time without the mess.',
+        tag: 'Specialty Lube',
+        priceUsd: 2470, // $24.70 USD
+      },
+      {
+        id: 'boy-butter-h2o-9oz',
+        name: 'Boy Butter H2O Formula 9 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'All the Boy Butter goodness, water-based edition. Same luxurious feel, same body-safe ingredients, but with the easy cleanup of a water-based formula. Perfect for toy play, shower scenes, or anyone who prefers their glide to go down the drain when they\'re done.',
+        tag: 'Hybrid Lube',
+        priceUsd: 3563, // $35.63 USD
+      },
+      {
+        id: 'fuck-water-silicone-4oz',
+        name: 'Fuck Water Silicone 4 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Unapologetic name, unapologetically good lube. Fuck Water Silicone is a premium silicone blend that stays put through anything — water, sweat, long sessions, and everything in between. One bottle goes a long way, so you can focus on the good stuff.',
+        tag: 'Silicone Lube',
+        priceUsd: 2818, // $28.18 USD
+      },
+      {
+        id: 'fuck-water-water-based-8oz',
+        name: 'Fuck Water Water Based 8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Water-based glide that doesn\'t quit. Fuck Water is built for bodies — compatible with all toys, easy to clean up, and formulated to feel natural, not sticky. The name might be bold, but the formula is smooth as hell.',
+        tag: 'Water-Based Lube',
+        priceUsd: 2565, // $25.65 USD
+      },
+      {
+        id: 'sliquid-satin-8-5oz',
+        name: 'Sliquid Satin 8.5 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Silkier than water, gentler than silicone. Sliquid Satin is a hybrid that hits that sweet spot between glide and body-feel. Made with natural ingredients, no glycerin, no parabens — just smooth, skin-friendly slide that lets you stay in the moment.',
+        tag: 'Hybrid Lube',
+        priceUsd: 2375, // $23.75 USD
+      },
+      {
+        id: 'pjur-original-silicone-8-5oz',
+        name: 'Pjur Original Silicone 8.5 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'The German engineering of lube. Pjur Original is medical-grade silicone that\'s so pure, so smooth, you\'ll forget you\'re using anything at all. Hypoallergenic, fragrance-free, and formulated for sensitive skin. If you\'ve never tried Pjur, you haven\'t tried silicone.',
+        tag: 'Silicone Lube',
+        priceUsd: 5938, // $59.38 USD
+      },
+      {
+        id: 'pjur-analyse-me-anal-8-5oz',
+        name: 'Pjur Analyse Me! Anal Silicone 8.5 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Purpose-built for anal play. Pjur Analyse Me! is a thicker silicone formula designed to stay where you put it, with extra cushion for comfort and glide. If you\'re exploring back there — or you\'re a seasoned pro — this is the lube that makes the experience better.',
+        tag: 'Anal Lube',
+        priceUsd: 6840, // $68.40 USD
+      },
+      {
+        id: 'slippery-stuff-gel-16oz',
+        name: 'Slippery Stuff Gel 16 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'The name is literal. Slippery Stuff is a water-based gel that doesn\'t run, doesn\'t drip, and doesn\'t quit. It\'s thick enough to stay put, gentle enough for sensitive skin, and cheap enough to use liberally. A solid everyday workhorse.',
+        tag: 'Water-Based Lube',
+        priceUsd: 2407, // $24.07 USD
+      },
+      {
+        id: 'intimate-earth-hydra-glide-8oz',
+        name: 'Intimate Earth Hydra Glide 8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Hydra Glide is water-based lubrication that actually feels like hydration — not a film, not a coating, just smooth, natural-feeling slip. Made with organic aloe and green tea, it\'s as good for your skin as it is for your play. Earth-friendly, body-friendly, vibe-friendly.',
+        tag: 'Water-Based Lube',
+        priceUsd: 2470, // $24.70 USD
+      },
+      {
+        id: 'intimate-earth-moonbloom-hybrid-8oz',
+        name: 'Intimate Earth Moonbloom Hybrid 8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Moonbloom is what happens when you take a premium hybrid formula and make it sexier. Silicone-level glide, water-based cleanup, and a botanical blend that smells like a garden, not a pharmacy. If you want your lube to smell as good as it feels, this is it.',
+        tag: 'Hybrid Lube',
+        priceUsd: 3034, // $30.34 USD
+      },
+      {
+        id: 'jo-h2o-personal-lube-8oz',
+        name: 'Jo H2O Personal Lube 8 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Jo H2O is the workhorse of the water-based world. Consistent, reliable, and compatible with everything in your collection. No sticky residue, no funky ingredients — just clean, dependable glide that\'s there when you need it and gone when you don\'t.',
+        tag: 'Water-Based Lube',
+        priceUsd: 2662, // $26.62 USD
+      },
+      {
+        id: 'jo-premium-silicone-4oz',
+        name: 'Jo Premium Silicone Lube 4 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Silicone that doesn\'t compromise. Jo Premium is a high-performance silicone lube designed for long sessions, with a silky feel that doesn\'t get tacky. A little goes a long way, so this 4 oz bottle will surprise you with how far it stretches.',
+        tag: 'Silicone Lube',
+        priceUsd: 3452, // $34.52 USD
+      },
+      {
+        id: 'spunk-lube-natural-4oz',
+        name: 'Spunk Lube Natural 4 oz',
+        icon: <Droplets className="text-amber-400" size={22} />,
+        description:
+          'Spunk Lube is the water-based formula that looks, feels, and acts like the real thing — without the mess or the mystery ingredients. Body-safe, paraben-free, and designed for moments when realism matters. The 4 oz size is perfect for travel or trying it out.',
+        tag: 'Specialty Lube',
+        priceUsd: 2375, // $23.75 USD
+      },
     ],
   },
 ];
@@ -367,7 +643,7 @@ export default function ShopPage() {
           ← Queer Pathways
         </Link>
         <span className="text-xs uppercase tracking-[0.25em] text-amber-400 font-semibold">
-          The Centaur's Apothecary
+          The Sanctuary
         </span>
         <div className="flex items-center gap-3">
           {/* Cart icon */}
@@ -409,7 +685,7 @@ export default function ShopPage() {
         </div>
       </nav>
 
-      {/* Hero */}
+      {/* Hero — Sanctuary Landing */}
       <section className="pt-40 pb-20 px-6 text-center max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
@@ -418,22 +694,41 @@ export default function ShopPage() {
           className="space-y-6"
         >
           <p className="text-xs uppercase tracking-[0.3em] text-amber-400">
-            The Centaur's Apothecary & Double-Outsider Supply Co.
+            The Sanctuary
           </p>
           <h1 className="text-5xl md:text-6xl font-bold font-serif leading-tight">
-            Heritage-Grade Scaffolding<br />for the ADHD Engine.
+            The Courtroom Adjourned.<br />The Body Remains.
           </h1>
           <p className="text-lg text-amber-100/80 max-w-2xl mx-auto leading-relaxed">
-            You were never broken. You were running high-performance hardware in environments built for
-            standard issue. These objects don't fix you — they externalize your executive function so
-            you stop burning bandwidth on maintenance and start reclaiming territory.
+            Every product in this shop is a piece of scaffolding — something to hold, wear, or weigh you down into your actual body. The Internal Courtroom lives in the mind. The Sanctuary lives in the skin.
           </p>
           <div className="flex items-center justify-center gap-3 pt-2">
             <span className="block h-px w-16 bg-amber-400/40" />
-            <span className="text-amber-400 text-sm">The court is adjourned here.</span>
+            <span className="text-amber-400 text-sm italic">This is the Leather-to-Skin protocol. This is Animal Truth.</span>
             <span className="block h-px w-16 bg-amber-400/40" />
           </div>
         </motion.div>
+      </section>
+
+      {/* The Thesis */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <div className="bg-emerald-900/30 border border-emerald-800/40 rounded-3xl p-8 md:p-10 space-y-4">
+          <p className="text-xs uppercase tracking-widest text-amber-400 font-bold">The Thesis: Somatic Scaffolding</p>
+          <p className="text-amber-100 qp-leading-175">
+            You've spent years building architectural arguments in your head. We're inviting you to build something in your body instead.
+          </p>
+          <p className="text-amber-100 qp-leading-175">
+            These aren't "wellness products." They're hardware for sovereignty — objects engineered for one purpose: to interrupt the cognitive loop and return you to sensory reality. Each item is curated for thermal response, weight distribution, texture fidelity, and structural integrity. No plastic. No gimmicks. No performative self-care.
+          </p>
+        </div>
+      </section>
+
+      {/* Safety note */}
+      <section className="max-w-4xl mx-auto px-6 pb-12">
+        <div className="bg-amber-400/5 border border-amber-400/20 rounded-2xl p-6 text-sm text-amber-100/70 qp-leading-175">
+          <p className="font-semibold text-amber-300 mb-2">Your Safety Is Your Sovereignty</p>
+          <p>Every product in the Sanctuary is designed for sensory grounding, personal exploration, and adult recreational use. These are not medical devices and have not been evaluated by the FDA or Health Canada for any therapeutic purpose. Consult a physician if you have pre-existing health conditions. Use only with informed, ongoing consent.</p>
+        </div>
       </section>
 
       {/* Cart CTA strip — visible when cart has items */}
@@ -457,7 +752,7 @@ export default function ShopPage() {
           <div className="space-y-1 text-center sm:text-left">
             <p className="text-sm font-bold text-amber-300 uppercase tracking-widest">Catalogue Live</p>
             <p className="text-sm text-amber-100/70 leading-relaxed">
-              Add items to your cart and check out securely with Stripe.
+              Add items to your cart and check out securely.
             </p>
           </div>
           <a

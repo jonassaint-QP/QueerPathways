@@ -16,6 +16,9 @@ import IntakeTerminalPage from './IntakeTerminalPage';
 import ShopPage from './ShopPage';
 import CartPage from './CartPage';
 import OrderConfirmationPage from './OrderConfirmationPage';
+import PhilosophyPage from './PhilosophyPage';
+import TeamPage from './TeamPage';
+import ServicesPage from './ServicesPage';
 import { CartProvider } from './CartContext';
 import './index.css';
 
@@ -29,6 +32,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <CartProvider>
         <Routes>
           <Route path="/" element={<App />} />
+          <Route path="/philosophy" element={<PhilosophyPage />} />
+          <Route path="/team" element={<TeamPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route path="/resources/internal-auditor-guide" element={<InternalAuditorGuide />} />
           <Route path="/referral" element={<ReferralFactSheet />} />
           <Route path="/ica" element={<ICAPage />} />

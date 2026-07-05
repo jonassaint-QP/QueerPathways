@@ -52,7 +52,7 @@ export default function OrderConfirmationPage() {
             Payment Confirmed
           </h1>
           <p className="text-amber-100/70 text-sm leading-relaxed max-w-sm mx-auto">
-            Your order has been placed successfully. A receipt has been sent to your email by Stripe.
+            Your order has been placed successfully. A receipt has been sent to your email.
           </p>
           {sessionId && (
             <p className="text-xs text-amber-100/30 font-mono break-all">
@@ -87,7 +87,7 @@ export default function OrderConfirmationPage() {
                 <span>Subtotal Charged ({order.currency})</span>
                 <span>{formatPriceFn(order.subtotalUsd, order.currency)}</span>
               </div>
-              <p className="text-xs text-amber-100/30 mt-1">Tax and shipping confirmed at Stripe checkout.</p>
+              <p className="text-xs text-amber-100/30 mt-1">Tax and shipping confirmed at checkout.</p>
             </div>
           </div>
         )}
@@ -101,7 +101,7 @@ export default function OrderConfirmationPage() {
             <li className="flex gap-3">
               <Mail size={15} className="shrink-0 mt-0.5 text-emerald-400" />
               <span>
-                Check your inbox — Stripe will send a payment receipt shortly.
+                Check your inbox — a payment receipt will arrive shortly.
               </span>
             </li>
             <li className="flex gap-3">

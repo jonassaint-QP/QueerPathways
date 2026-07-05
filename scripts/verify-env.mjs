@@ -1,11 +1,11 @@
 const isCiLike = process.env.NETLIFY === "true" || process.env.CI === "true";
 
-// ── Stripe key check ────────────────────────────────────────
-if (isCiLike && !process.env.STRIPE_SECRET_KEY) {
+// ── Authorize.Net credentials check ────────────────────────
+if (isCiLike && (!process.env.AUTHORIZENET_API_LOGIN_ID || !process.env.AUTHORIZENET_TRANSACTION_KEY)) {
   console.error(
-    "[verify-env] Missing STRIPE_SECRET_KEY. " +
-    "Set this in Netlify → Site configuration → Environment variables. " +
-    "The /.netlify/functions/create-checkout endpoint will return 503 without it."
+    "[verify-env] Missing AUTHORIZENET_API_LOGIN_ID and/or AUTHORIZENET_TRANSACTION_KEY. " +
+    "Set both in Netlify \u2192 Site configuration \u2192 Environment variables. " +
+    "The /.netlify/functions/create-checkout endpoint will return 503 without them."
   );
   process.exit(1);
 }

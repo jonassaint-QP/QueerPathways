@@ -6,7 +6,7 @@
 	directory = "netlify/functions"
 	node_bundler = "esbuild"
 
-# Stripe success / cancel redirects
+# Order confirmation SPA route
 [[redirects]]
 	from = "/order-confirmation"
 	to = "/index.html"

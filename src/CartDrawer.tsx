@@ -152,7 +152,7 @@ export default function CartDrawer() {
                 {/* Trust badge */}
                 <div className="flex items-center gap-2 text-xs text-emerald-400/70">
                   <ShieldCheck size={13} />
-                  <span>Secured by Stripe — your card data never touches our servers.</span>
+                  <span>Secured by Authorize.Net — your card data never touches our servers.</span>
                 </div>
 
                 {/* CTA */}

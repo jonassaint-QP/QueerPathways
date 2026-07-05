@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';  
 import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';  
+import { motion } from 'framer-motion';  
 import {   
-  Shield, Sparkles, Brain, Scale, Compass, ArrowRight, Menu, X,   
-  Heart, Gem, CheckCircle2, Zap, Quote, ExternalLink, Mail, BookOpen, Users, Lightbulb,
-  ChevronDown
+  Shield, Brain, Scale, ArrowRight, Menu, X,   
+  CheckCircle2, Quote,
 } from 'lucide-react';
 
 const NavLink = ({ href, children, external = false }: any) => {
@@ -31,44 +30,17 @@ const NavLink = ({ href, children, external = false }: any) => {
   );
 };
 
-const PROGRAMS = [
-  { href: '/ica', label: 'Ideal Client (Alex)', external: false },
-  { href: '/acoustic-ecology', label: 'Acoustic Ecology', external: false },
-  { href: '/kink-affirming', label: 'Kink-Affirming Care', external: false },
-  { href: '/presence', label: 'Pathways to Presence', external: false },
-  { href: '/shop', label: "The Centaur's Apothecary", external: false },
-  {
-    href: 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094',
-    label: 'Queer Connections Podcast',
-    external: true,
-  },
-];
-
 const APPLE_PODCAST_URL = 'https://podcasts.apple.com/us/podcast/queer-connections/id1896794094';
-
-const isExternalHref = (href: string) => href.startsWith('http');
 
 export default function App() {  
   const [scrolled, setScrolled] = useState(false);  
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isProgramsOpen, setIsProgramsOpen] = useState(false);
-  const programsRef = useRef<HTMLDivElement>(null);
   const thrizerEmbedRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {  
     const handleScroll = () => setScrolled(window.scrollY > 50);  
     window.addEventListener('scroll', handleScroll);  
     return () => window.removeEventListener('scroll', handleScroll);  
-  }, []);
-
-  useEffect(() => {
-    const handleClickOutside = (e: MouseEvent) => {
-      if (programsRef.current && !programsRef.current.contains(e.target as Node)) {
-        setIsProgramsOpen(false);
-      }
-    };
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   useEffect(() => {
@@ -104,67 +76,14 @@ export default function App() {
           </div>  
             
           <div className="hidden lg:flex gap-8 items-center">  
-            <NavLink href="#philosophy">Philosophy</NavLink>  
-            <NavLink href="#specialists">Specialists</NavLink>  
-            <NavLink href="#referrals">Referrals</NavLink>  
-            <NavLink href="#sanctuary">Sanctuary</NavLink>
-
-            {/* Programs Dropdown */}
-            <div className="relative" ref={programsRef}>
-              <button
-                onClick={() => setIsProgramsOpen((v) => !v)}
-                className="flex items-center gap-1 text-xs uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors"
-              >
-                Programs
-                <ChevronDown
-                  size={12}
-                  className={`transition-transform duration-200 ${isProgramsOpen ? 'rotate-180' : ''}`}
-                />
-              </button>
-              <AnimatePresence>
-                {isProgramsOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.18 }}
-                    className="absolute top-full left-0 mt-3 w-52 bg-emerald-950/95 border border-emerald-800/70 rounded-xl shadow-xl backdrop-blur-md py-2 z-50"
-                  >
-                    {PROGRAMS.map((p) => (
-                      isExternalHref(p.href) || p.external ? (
-                        <a
-                          key={p.href}
-                          href={p.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => setIsProgramsOpen(false)}
-                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
-                        >
-                          {p.label}
-                        </a>
-                      ) : (
-                        <Link
-                          key={p.href}
-                          to={p.href}
-                          onClick={() => setIsProgramsOpen(false)}
-                          className="block px-4 py-2.5 text-xs text-amber-100/70 hover:text-amber-50 hover:bg-emerald-900/40 transition-colors"
-                        >
-                          {p.label}
-                        </Link>
-                      )
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            <Link
-              to="/resources/internal-auditor-guide"
-              className="text-xs text-amber-100/80 hover:text-amber-50 transition-colors px-3 py-2 rounded-md border border-amber-300/30 hover:border-amber-200/50 qp-font-roboto qp-tracking-carepatron"
-            >
-              Dignity Investment
-            </Link>
+            <NavLink href="/">Home</NavLink>
+            <NavLink href="/philosophy">Philosophy</NavLink>
+            <NavLink href="/team">Our Team</NavLink>
+            <NavLink href="/services">Services</NavLink>
+            <NavLink href="/shop">Sanctuary</NavLink>
+            <NavLink href="/shop">Store</NavLink>
             <NavLink href="https://blog.queerpathways.org" external>Newsletter</NavLink>
+            <NavLink href="/fee-disclosure">Fees</NavLink>
             <a   
               href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"   
               target="_blank"
@@ -185,103 +104,32 @@ export default function App() {
         </div>
 
         {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="lg:hidden overflow-hidden"
-            >
-              <div className="px-6 py-6 space-y-4 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-900/50">
-                <div className="flex flex-col gap-4">
-                  <a
-                    href="#philosophy"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
-                  >
-                    Philosophy
-                  </a>
-                  <a
-                    href="#specialists"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
-                  >
-                    Specialists
-                  </a>
-                  <a
-                    href="#referrals"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
-                  >
-                    Referrals
-                  </a>
-                  <a
-                    href="#sanctuary"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
-                  >
-                    Sanctuary
-                  </a>
-                  <a
-                    href="https://blog.queerpathways.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2"
-                  >
-                    Newsletter
-                  </a>
-                  <Link
-                    to="/resources/internal-auditor-guide"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-sm text-amber-100 hover:text-amber-50 transition-colors py-2 px-3 rounded border border-amber-300/30 qp-font-roboto"
-                  >
-                    Dignity Investment
-                  </Link>
-                  <div className="pt-2 pb-1">
-                    <p className="text-xs uppercase tracking-widest text-amber-400/60 font-semibold px-1 pb-2">Programs</p>
-                    {PROGRAMS.map((p) => (
-                      isExternalHref(p.href) || p.external ? (
-                        <a
-                          key={p.href}
-                          href={p.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => setIsMenuOpen(false)}
-                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
-                        >
-                          {p.label}
-                        </a>
-                      ) : (
-                        <Link
-                          key={p.href}
-                          to={p.href}
-                          onClick={() => setIsMenuOpen(false)}
-                          className="block text-sm text-amber-100/60 hover:text-amber-50 transition-colors py-2 pl-3"
-                        >
-                          {p.label}
-                        </Link>
-                      )
-                    ))}
-                  </div>
-                </div>
-                <div className="pt-4 border-t border-emerald-900/50">
-                  <a
-                    href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsMenuOpen(false)}
-                    className="block w-full bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-xs font-bold hover:bg-amber-100 transition-all duration-300 text-center"
-                  >
-                    BOOK NOW
-                  </a>
-                </div>
+        {isMenuOpen && (
+          <div className="lg:hidden overflow-hidden">
+            <div className="px-6 py-6 space-y-4 bg-emerald-950/90 backdrop-blur-md border-b border-emerald-900/50">
+              <div className="flex flex-col gap-4">
+                <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Home</Link>
+                <Link to="/philosophy" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Philosophy</Link>
+                <Link to="/team" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Our Team</Link>
+                <Link to="/services" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Services</Link>
+                <Link to="/shop" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Sanctuary / Store</Link>
+                <a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Newsletter</a>
+                <Link to="/fee-disclosure" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Fees</Link>
               </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              <div className="pt-4 border-t border-emerald-900/50">
+                <a
+                  href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-xs font-bold hover:bg-amber-100 transition-all duration-300 text-center"
+                >
+                  BOOK NOW
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}  
@@ -295,284 +143,196 @@ export default function App() {
             className="space-y-8"
           >  
             <h1 className="text-5xl md:text-6xl font-bold leading-tight tracking-tight font-serif">  
-              This is no broken here. Only unmapped. <br />
-              <span className="block mt-3 text-base font-medium tracking-normal font-sans">
-                Serving Ontario residents tired of answering the 3am subpoena of the Internal Court.
-              </span>
-            </h1>  
-            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175 qp-pb-6pt">  
-              Professional telehealth for the Double-Outsider. We don't just "affirm" your identity; we dismantle the Internal Legal System that tells you that your neurodivergent brilliance is a character flaw.
+              You're Not Broken. You're Just Tired of Litigating Your Existence.
+            </h1>
+            <p className="text-lg md:text-xl text-amber-100 max-w-3xl mx-auto qp-leading-175">  
+              For queer and neurodivergent visionaries who've spent years running an Internal Courtroom — decoding social scripts, masking brilliance, tracking an Ambiguity Tax that never stops billing.
             </p>  
+            <p className="text-xl md:text-2xl font-semibold text-amber-300">We help you adjourn the court.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">  
               <a   
                 href="#book"   
                 className="bg-amber-50 text-emerald-950 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"  
               >  
-                Adjourn the Court: Book Your Intake
+                Adjourn the Court → Book Your Consultation
               </a>  
-              <a 
-                href="https://blog.queerpathways.org"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/philosophy"
                 className="border-2 border-amber-50 text-amber-50 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-50/10 transition-all"  
               >  
-                Read the Manifesto  
-              </a>  
+                Read Our Philosophy
+              </Link>  
             </div>  
           </motion.div>  
         </div>  
       </section>
 
-      {/* The Framework Section */}  
-      <section id="philosophy" className="py-32 px-6">  
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-16 items-center">  
-          <motion.div 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+      {/* Section 1: The Problem */}
+      <section id="problem" className="py-32 px-6">
+        <div className="max-w-5xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >  
-            <div className="space-y-2">
-              <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">The Internal Legal System</span>
-              <h2 className="text-5xl md:text-6xl font-bold font-serif leading-tight">The Courtroom You Never Agreed to Enter.</h2>
-            </div>
-            <div className="space-y-6 text-amber-100 text-lg border-l-2 border-amber-400 pl-6 qp-leading-175">  
-              <p>Many queer and neurodivergent visionaries arrive carrying <strong>Systemic Exhaustion</strong>—the psychological mechanism that tracks the <strong>Ambiguity Tax</strong>: the exhausting mental cost of decoding how to act "normal" in corporate or social spaces while your actual genius is being mis-filed as a character flaw.</p>  
-              <p className="qp-pt-6pt">Trauma isn't just a memory. It is an <strong>Exhibit in a trial that never ends</strong>—stored in an Evidence Locker your nervous system keeps sealed shut. We help you open that locker without being buried by it.</p>
-              <p className="qp-pt-6pt">We dismantle the "garbage coat" of shame. <strong>Somatic Sovereignty</strong> is not a coping strategy. It is the moment you stop litigating your right to exist and start owning your Nervous System Machine.</p>
-            </div>  
-          </motion.div>  
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            className="space-y-6"
-          >  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
-              <h4 className="text-xl font-bold flex items-center gap-2">
-                <Lightbulb className="text-amber-400" size={24} />
-                Systemic Exhaustion
-              </h4>  
-              <p className="text-amber-100 text-base qp-leading-175">The mechanism that runs the Ambiguity Tax ledger. Every social interaction, every corporate meeting, every moment of masking—it keeps score. We shut the ledger.</p>  
-            </div>  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
-              <h4 className="text-xl font-bold flex items-center gap-2">
-                <Scale className="text-amber-400" size={24} />
-                The Evidence Locker
-              </h4>  
-              <p className="text-amber-100 text-base qp-leading-175">Your trauma is not a character witness against you. It is an Exhibit in a trial that never rested. We help you sort the evidence—and finally close the case.</p>  
-            </div>  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3">  
-              <h4 className="text-xl font-bold flex items-center gap-2">
-                <Compass className="text-amber-400" size={24} />
-                Somatic Sovereignty
-              </h4>  
-              <p className="text-amber-100 text-base qp-leading-175">Not "coping." Not management. The moment you stop litigating your right to exist and start running your own Nervous System Machine on your own terms.</p>  
-            </div>  
-          </motion.div>  
-        </div>  
-      </section>
+            className="space-y-4"
+          >
+            <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">Why You're Here at Midnight</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif leading-tight">The Problem.</h2>
+          </motion.div>
 
-      {/* Specialist Triptych Section */}  
-      <section id="specialists" className="py-32 px-6">  
-        <div className="max-w-6xl mx-auto">  
-          <div className="text-center mb-20 space-y-4">  
-            <h2 className="text-5xl font-bold font-serif">How We Specialize.</h2>  
-            <p className="text-amber-100 max-w-2xl mx-auto text-lg qp-leading-175">Three strategic partnerships. One sanctuary. Each designed for the visionary who is too professional for the protest and too queer for the boardroom.</p>  
-          </div>  
-            
-          <div className="grid lg:grid-cols-3 gap-10">  
-            {/* Card 1: Specialist Scaffolding */}  
-            <motion.div 
-              whileHover={{ y: -8 }} 
-              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
-            >  
-              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
-                <Brain className="text-amber-400" size={24} />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold font-serif">Specialist Scaffolding</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">Performance Advocacy for the Visionary</p>
-              </div>
-              <p className="text-amber-100 qp-leading-175">For the neurodivergent queer staring at an email draft for 45 minutes—the Cognitive Friction that makes the Email Stare feel like a character flaw when it is actually a systems mismatch. We build scaffolding around your brilliance, not around your deficits.</p>  
-              <div className="space-y-3 text-sm text-amber-100 pt-4">  
-                <p><strong>1. Shame Cycle Interruption</strong></p>
-                <p className="qp-pb-6pt">Dismantling the garbage coat, layer by layer.</p>
-                <p><strong>2. Masking Recovery</strong></p>
-                <p className="qp-pb-6pt">Rebuilding the self beneath the performance.</p>
-                <p><strong>3. Executive Function Advocacy</strong></p>
-                <p>Strategic scaffolding for the ADHD and RSD nervous system.</p>
-              </div>  
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-6 text-amber-100 text-lg qp-leading-175"
+            >
+              <p>You're a high-performer by day. By night, your nervous system is still cross-examining every conversation, every email draft, every moment of being "too much" or "not enough."</p>
+              <p>That's not a character flaw. That's <strong className="text-amber-50">Systemic Exhaustion</strong> — and it has a treatment plan.</p>
             </motion.div>
 
-            {/* Card 2: Relational Sovereignty */}  
-            <motion.div 
-              whileHover={{ y: -8 }} 
-              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
-            >  
-              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
-                <Heart className="text-amber-400" size={24} />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold font-serif">Relational Sovereignty</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">Negotiation as Love Language</p>
-              </div>
-              <p className="text-amber-100 qp-leading-175">For those building love on your own terms. We move past "non-judgment" into the active, somatic exploration of desire. Kink and Polyamory are not edge cases here. They are fully integrated into how we understand attachment, consent, and the architecture of radical relational freedom.</p>  
-              <div className="space-y-3 text-sm text-amber-100 pt-4">  
-                <p><strong>1. Attachment Pattern Work</strong></p>
-                <p className="qp-pb-6pt">Understanding the map before you re-draw it.</p>
-                <p><strong>2. Polyam Communication</strong></p>
-                <p className="qp-pb-6pt">Negotiation frameworks for multi-partner structures.</p>
-                <p><strong>3. Kink-Affirming Somatic Exploration</strong></p>
-                <p>Active, embodied work with desire and consent—no gatekeeping.</p>
-              </div>  
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-4"
+            >
+              <p className="text-amber-400 text-sm font-semibold uppercase tracking-widest">We specialize in the mechanics of the Double-Outsider:</p>
+              <ul className="space-y-4">
+                {[
+                  'Queer in spaces built for straight neurotypicals',
+                  'Neurodivergent in spaces that penalize your actual wiring',
+                  'Brilliant in a culture that calls your processing speed a "deficit"',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-amber-100">
+                    <CheckCircle2 className="text-amber-400 shrink-0 mt-0.5" size={18} />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
             </motion.div>
-
-            {/* Card 3: Gender Story Prep */}  
-            <motion.div 
-              whileHover={{ y: -8 }} 
-              className="bg-emerald-900/20 border border-emerald-800/50 p-10 rounded-2xl space-y-6 hover:border-amber-400/50 transition-colors"
-            >  
-              <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
-                <Shield className="text-amber-400" size={24} />
-              </div>
-              <div className="space-y-2">
-                <h3 className="text-2xl font-bold font-serif">Gender Story Prep</h3>  
-                <p className="text-amber-400 text-sm uppercase tracking-widest">Pre-op Advocacy Without Gatekeeping</p>
-              </div>
-              <p className="text-amber-100 qp-leading-175">For trans and gender-expansive clients on any pathway. We explore your gender story without imposed timelines or required regrets. Your narrative is not evidence to be evaluated. It is a map you already hold.</p>  
-              <div className="space-y-3 text-sm text-amber-100 pt-4">  
-                <p><strong>1. Gender Identity Exploration</strong></p>
-                <p className="qp-pb-6pt">Your story, your terms, your timeline.</p>
-                <p><strong>2. Somatic Dysphoria Work</strong></p>
-                <p className="qp-pb-6pt">Embodied tools for navigating body-based distress.</p>
-                <p><strong>3. Non-Gatekeeping Letters</strong></p>
-                <p>Advocacy documentation written for your care, not the system's comfort.</p>
-              </div>  
-            </motion.div>  
-          </div>  
-        </div>  
-      </section>
-
-      {/* Surgical Advocacy Checklist Section */}
-      <section id="surgical-advocacy" className="py-24 px-6">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-emerald-950/60 border border-emerald-800/60 rounded-3xl p-8 md:p-12 space-y-8">
-            <div className="space-y-4">
-              <p className="text-amber-400 uppercase tracking-widest text-xs font-bold">Before You Schedule</p>
-              <h2 className="text-4xl md:text-5xl font-bold font-serif">Your Surgical Advocacy Checklist</h2>
-              <p className="text-amber-100 leading-relaxed text-lg">
-                We believe in a non-gatekeeper approach. My job isn't to "assess" your gender - it's to advocate for your care and help you navigate the medical system's requirements with dignity.
-              </p>
-              <p className="text-amber-100 leading-relaxed">
-                To ensure we can get your letter signed and sent as quickly as possible, please have the following ready before booking your session:
-              </p>
-            </div>
-
-            <ul className="space-y-4 text-amber-100">
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
-                <span><strong>The Specific Procedure:</strong> Are we prepping for Top Surgery, HRT, or a Gender-Affirming Genital procedure?</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
-                <span><strong>Your Surgeon's Details:</strong> I will need the surgeon's name, clinic name, and their fax number or secure email address to send the final letter.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
-                <span><strong>Insurance Requirements:</strong> Check with your insurance provider. Do they require one letter (usually for Top/Hormones) or two letters (usually for genital/sterilization procedures)?</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
-                <span><strong>The "Magic Words":</strong> Does your insurance or surgeon require a specific template or specific clinical buzzwords to ensure coverage? If you're not sure, bring your policy's Gender Reassignment Surgery criteria document.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-5 w-5 border border-amber-300/70 rounded-sm shrink-0" aria-hidden="true" />
-                <span><strong>Your Timeline:</strong> When is your surgery date or your deadline for submitting paperwork?</span>
-              </li>
-            </ul>
-
-            <div className="space-y-6 border-t border-emerald-800/60 pt-6">
-              <h3 className="text-2xl font-bold font-serif">Note on the Session</h3>
-              <div className="space-y-2">
-                <p className="font-semibold text-amber-200">The Session:</p>
-                <p className="text-amber-100 leading-relaxed">
-                  This is a 60–90 minute collaborative session. We will map out your Gender Story and discuss your support plan for post-op recovery. This is about making sure you are somatically and practically ready for major surgery—not proving who you are.
-                </p>
-              </div>
-              <div className="space-y-2">
-                <p className="font-semibold text-amber-200">The Timeline:</p>
-                <p className="text-amber-100 leading-relaxed">
-                  90% of the time, we wrap this up in one or two sessions. On rare occasions, a third might be necessary to get the details right. At Queer Pathways, we strive to eliminate unnecessary hurdles to your care. Our goal is to get you your letter and get you on your way.
-                </p>
-              </div>
-            </div>
-
-            <div className="pt-2">
-              <a
-                href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"
-              >
-                Book Your Advocacy Session
-              </a>
-            </div>
-
           </div>
         </div>
       </section>
 
-      {/* Referrals Section */}  
-      <section id="referrals" className="py-32 px-6">  
-        <div className="max-w-4xl mx-auto text-center space-y-8">  
-          <Shield className="w-16 h-16 text-amber-400 mx-auto" />  
-          <h2 className="text-5xl font-bold font-serif">Strictly 7: The Fast-Track Referral.</h2>
-          <div className="bg-amber-400/10 border-2 border-amber-400/40 rounded-2xl p-8 text-left space-y-4">
-            <p className="text-xl font-bold text-amber-300 font-serif">The 7-Day Safety Net</p>
-            <p className="text-lg text-amber-100 qp-leading-175">
-              For queer and neurodivergent professionals, those hard times are often the exhausting weight of waiting for a space to put their armor down.
-            </p>
+      {/* Section 2: How We Work */}
+      <section id="services" className="py-32 px-6 border-t border-emerald-900/30">
+        <div className="max-w-6xl mx-auto space-y-16">
+          <div className="text-center space-y-4">
+            <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">How We Work</span>
+            <h2 className="text-4xl md:text-5xl font-bold font-serif">Three Pathways. One Radical Premise.</h2>
+            <p className="text-amber-100 max-w-2xl mx-auto text-lg">Your identity is not a problem to be managed.</p>
           </div>
-          <div className="space-y-4 text-left">
-            <p className="text-xl text-amber-100 qp-leading-175">
-              Taking the first step to seek specialized care is an act of profound vulnerability. When you finally reach out, you shouldn't have to watch your momentum leak away on a ninety-day waitlist, left alone with an internal courtroom that claims you are "too much" to handle.
-            </p>
-            <p className="text-xl text-amber-100 qp-leading-175">
-              At Queer Pathways, we guarantee an initial consultation within seven days of your inquiry. We don't believe in leaving a dysregulated nervous system on ice.
-            </p>
-            <p className="text-xl text-amber-100 qp-leading-175">
-              If you are tired of litigating your worth while waiting for traditional systems to catch up, let's change the timeline. Connect with Joshua Jonassaint, LCSW, at QueerPathways.org to book your consultation within the week and rewrite your internal law.
-            </p>
+
+          <div className="grid lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <Brain className="text-amber-400" size={24} />,
+                title: 'Specialist Scaffolding',
+                subtitle: 'For the ADHD/autistic brain running on cognitive friction.',
+                body: "We don't fix your executive function — we build scaffolding around your genius.",
+              },
+              {
+                icon: <Scale className="text-amber-400" size={24} />,
+                title: 'Relational Sovereignty',
+                subtitle: 'Kink, polyamory, attachment repair.',
+                body: "Desire is not an edge case here. It's the curriculum.",
+              },
+              {
+                icon: <Shield className="text-amber-400" size={24} />,
+                title: 'Gender Story Prep',
+                subtitle: 'Transition support with zero gatekeeping.',
+                body: 'Your timeline. Your terms. No required regrets.',
+              },
+            ].map((service) => (
+              <motion.div
+                key={service.title}
+                whileHover={{ y: -6 }}
+                className="bg-emerald-900/30 border border-emerald-800/50 p-8 rounded-2xl space-y-5 hover:border-amber-400/50 transition-colors"
+              >
+                <div className="w-12 h-12 bg-amber-400/20 rounded-lg flex items-center justify-center">
+                  {service.icon}
+                </div>
+                <div className="space-y-2">
+                  <h3 className="text-xl font-bold font-serif">{service.title}</h3>
+                  <p className="text-amber-400 text-xs uppercase tracking-widest">{service.subtitle}</p>
+                </div>
+                <p className="text-amber-100 qp-leading-175">{service.body}</p>
+              </motion.div>
+            ))}
           </div>
-          <div className="grid md:grid-cols-2 gap-6 text-left pt-10">  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
-              <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
-              <div>  
-                <p className="font-bold">Direct Integration - ON (Telehealth)</p>  
-                <p className="text-sm text-amber-100">Receipt-ready for Sun Life, Manulife, Canada Life, and Desjardins claims.</p>  
-              </div>  
-            </div>  
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-6 rounded-2xl flex items-start gap-4">  
-              <CheckCircle2 className="text-amber-400 shrink-0" size={20} />  
-              <div>  
-                <p className="font-bold">Telehealth-First</p>  
-                <p className="text-sm text-amber-100">Serving Toronto and the entirety of Ontario.</p>  
-              </div>  
-            </div>  
-          </div>  
-        </div>  
+
+          <div className="text-center">
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"
+            >
+              Find Your Path
+              <ArrowRight size={18} />
+            </Link>
+          </div>
+        </div>
       </section>
 
-      {/* Booking Section */}
+      {/* Section 3: Why We're Different */}
+      <section id="why-different" className="py-32 px-6 border-t border-emerald-900/30">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="space-y-6"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold font-serif">Why We're Different.</h2>
+            <p className="text-lg text-amber-100 qp-leading-175">
+              We don't do "coping strategies." We dismantle the garbage coat of shame — the internalized narrative that your neurodivergence is a liability and your queerness needs explaining.
+            </p>
+            <p className="text-lg text-amber-100 qp-leading-175">
+              Every session is trauma-informed, neuro-affirming, and kink-fluent. No explaining the glossary. No performing wellness.
+            </p>
+          </motion.div>
+
+          <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-3xl">
+            <Quote className="text-amber-400 mb-6" size={28} />
+            <blockquote className="text-xl italic text-amber-50 qp-leading-175">
+              "We don't help you win the case. We help you adjourn the court."
+            </blockquote>
+            <p className="mt-4 text-sm text-amber-300 font-semibold">— Queer Pathways</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Quick Facts */}
+      <section id="quick-facts" className="py-24 px-6 border-t border-emerald-900/30">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-bold font-serif">Quick Facts.</h2>
+            <p className="text-amber-100/60 text-sm">(For the burned-out brain.)</p>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-4">
+            {[
+              'Ontario: Direct billing for Sun Life, Manulife, Canada Life, Desjardins',
+              'Pennsylvania: In-network with Aetna, BCBS, CIGNA',
+              'First appointment within 7 days — no 90-day waitlists',
+              'Telehealth across Ontario & PA',
+            ].map((fact) => (
+              <div key={fact} className="flex items-start gap-3 bg-emerald-900/30 border border-emerald-800/40 rounded-xl p-5">
+                <span className="text-lg shrink-0" aria-hidden="true">🟢</span>
+                <p className="text-amber-100 text-sm qp-leading-175">{fact}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Booking / CTA Section */}
       <div id="probe" className="relative -top-24" aria-hidden="true" />
-      <section id="book" className="py-32 px-6">
+      <section id="book" className="py-32 px-6 border-t border-emerald-900/30">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <div className="space-y-6">
-            <h2 className="text-5xl md:text-6xl font-bold font-serif">Dignity Investment.</h2>
+            <h2 className="text-5xl md:text-6xl font-bold font-serif">Adjourn the Court.</h2>
             <p className="text-xl text-amber-100 max-w-2xl mx-auto qp-leading-175">
-              We don't charge an "Ambiguity Tax." You are paying for a specialist who understands the mechanics of a neuro-atypical heart without you having to explain the glossary.
+              We don't charge an Ambiguity Tax. You pay for a specialist who understands the mechanics of a neuro-atypical heart without you having to explain the glossary.
             </p>
           </div>
 
@@ -699,117 +459,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* Sanctuary Section */}
-      <section id="sanctuary" className="py-32 px-6">
-        <div className="max-w-5xl mx-auto space-y-16">
-          <div className="text-center space-y-4">
-            <h2 className="text-5xl md:text-6xl font-bold font-serif">The Sanctuary.</h2>
-            <p className="text-xl text-amber-100 qp-leading-175">A space designed for the visionary who is exhausted from being brilliant by day and a ghost in burnout-recovery by night.</p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8">
-              <div className="space-y-3">
-                <h3 className="text-2xl font-bold flex items-center gap-3">
-                  <Compass className="text-amber-400" size={24} />
-                  Somatic Navigation
-                </h3>
-                <p className="text-amber-100 qp-leading-175">
-                  We slow down and track your nervous system. Healing isn't just cognitive—it's embodied. We use somatic experiencing, sensory mapping, and trauma-informed techniques to help you reclaim your body as a sanctuary.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-2xl font-bold flex items-center gap-3">
-                  <Heart className="text-amber-400" size={24} />
-                  Relational Safety
-                </h3>
-                <p className="text-amber-100 qp-leading-175">
-                  Authentic connection is the medicine. We meet you with curiosity, not judgment. Your identity, your pronouns, your story—all held with genuine care and clinical expertise.
-                </p>
-              </div>
-
-              <div className="space-y-3">
-                <h3 className="text-2xl font-bold flex items-center gap-3">
-                  <Sparkles className="text-amber-400" size={24} />
-                  Neurodivergent-Affirming Care
-                </h3>
-                <p className="text-amber-100 qp-leading-175">
-                  We understand masking, sensory overwhelm, and the unique intersections of queerness and neurodivergence. Your neurotype is not a problem to fix. It is part of your design.
-                </p>
-              </div>
-            </div>
-
-            <div className="bg-emerald-900/40 border border-emerald-800/50 p-10 rounded-3xl space-y-6">
-              <Quote className="text-amber-400" size={32} />
-              <blockquote className="text-lg italic text-amber-50 qp-leading-175">
-                "Therapy isn't about becoming someone else. It's about dismantling the voices that told you who you couldn't be, and remembering who you always were."
-              </blockquote>
-              <p className="text-sm text-amber-300 font-semibold">— Joshua, LCSW</p>
-              <div className="pt-4 border-t border-emerald-800/50 space-y-3">
-                <p className="text-sm text-amber-100"><strong>Specializations:</strong></p>
-                <p className="text-sm text-amber-100 qp-leading-175">
-                  2SLGBTQI+ identity exploration and affirmation. Complex trauma and PTSD. Anxiety and depression in queer and BIPOC communities. Relationship and attachment patterns. Neurodivergence and sensory experiences.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Bespoke Anchor: Lyrical Closing */}
-          <div className="text-center pt-8 space-y-4 border-t border-emerald-800/40">
-            <p className="text-2xl md:text-3xl font-serif italic text-amber-100 qp-leading-175">
-              Like Zach Bryan said, you're just a "man who's tryin' to find a way back home."
-            </p>
-            <p className="text-xl text-amber-300 font-semibold">We're the map for the home you haven't built yet.</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Podcast Section */}
-      <section id="podcast" className="py-28 px-6 border-t border-emerald-900/50">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
-          <div className="space-y-6">
-            <p className="text-xs uppercase tracking-[0.3em] text-amber-400 font-semibold">Queer Connections</p>
-            <h2 className="text-4xl md:text-5xl font-bold font-serif leading-tight">Dedicated Podcast Archive</h2>
-            <p className="text-amber-100 text-lg qp-leading-175 max-w-3xl">
-              Clinical depth, noir honesty, and practical somatic frameworks for queer and neurodivergent high performers.
-              Stream Queer Connections: Unmapped on Apple Podcasts.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-2">
-              <a
-                href={APPLE_PODCAST_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-amber-50 text-emerald-950 px-8 py-3 rounded-full text-sm font-bold hover:bg-amber-100 transition"
-              >
-                Listen on Apple Podcasts
-                <ExternalLink size={16} />
-              </a>
-              <a
-                href={APPLE_PODCAST_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 border border-amber-100/70 text-amber-100 px-8 py-3 rounded-full text-sm font-semibold hover:bg-amber-100/10 transition"
-              >
-                Open Show Page
-              </a>
-            </div>
-          </div>
-
-          <div className="bg-emerald-900/40 border border-emerald-800/60 rounded-3xl p-8 space-y-4">
-            <h3 className="text-xl font-bold flex items-center gap-2">
-              <BookOpen className="text-amber-400" size={22} />
-              What You Will Hear
-            </h3>
-            <ul className="space-y-3 text-amber-100/90 text-sm qp-leading-175">
-              <li>Attachment trauma, relational pacing, and minority stress analysis.</li>
-              <li>Somatic tools for performance paradox and executive shutdown cycles.</li>
-              <li>Practical, trauma-informed pathways to embodied sovereignty.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}  
       <footer className="py-20 border-t border-emerald-900/50 px-6 bg-emerald-950/50">  
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-12">  
@@ -825,11 +474,11 @@ export default function App() {
             <div className="space-y-4">  
               <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Navigate</h5>  
               <ul className="space-y-2 text-sm text-amber-100/70">  
-                <li><a href="#philosophy" className="hover:text-amber-50 transition">Philosophy</a></li>  
-                <li><a href="#specialists" className="hover:text-amber-50 transition">Specialists</a></li>  
-                <li><a href="#book" className="hover:text-amber-50 transition">Booking</a></li>  
-                <li><Link to="/shop" className="hover:text-amber-50 transition">Shop</Link></li>
-                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fee Disclosure</Link></li>
+                <li><Link to="/philosophy" className="hover:text-amber-50 transition">Philosophy</Link></li>
+                <li><Link to="/team" className="hover:text-amber-50 transition">Our Team</Link></li>
+                <li><Link to="/services" className="hover:text-amber-50 transition">Services</Link></li>
+                <li><Link to="/shop" className="hover:text-amber-50 transition">Sanctuary / Store</Link></li>
+                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fees</Link></li>
                 <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy</Link></li>
               </ul>  
             </div>  
@@ -837,15 +486,23 @@ export default function App() {
               <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Connect</h5>  
               <ul className="space-y-2 text-sm text-amber-100/70">  
                 <li><a href={APPLE_PODCAST_URL} target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Apple Podcasts</a></li>
-                <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Substack</a></li>  
+                <li><a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Newsletter</a></li>  
                 <li><a href="mailto:hello@queerpathways.org" className="hover:text-amber-50 transition">Email</a></li>  
                 <li><a href="tel:+13655999002" className="hover:text-amber-50 transition">365-599-9002</a></li>  
               </ul>  
-            </div>  
+            </div>
+            <div className="space-y-4">
+              <h5 className="text-xs font-bold uppercase tracking-widest text-amber-400">Legal</h5>
+              <ul className="space-y-2 text-sm text-amber-100/70">
+                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Terms of Service</Link></li>
+                <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy Policy</Link></li>
+                <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fee Disclosure</Link></li>
+              </ul>
+            </div>
           </div>  
         </div>  
         <div className="max-w-7xl mx-auto pt-12 mt-12 border-t border-emerald-900/50 text-center text-xs text-amber-100/50">  
-          © 2026 Samuel Jonassaint, LCSW. All rights reserved.  
+          © 2026 Joshua Jonassaint, LCSW · RSW. All rights reserved.  
         </div>  
       </footer>  
     </div>  

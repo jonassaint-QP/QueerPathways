@@ -104,7 +104,7 @@ export default function CartPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  async function handleStripeCheckout() {
+  async function handleCheckout() {
     if (!termsAccepted) {
       setError('Please accept the Terms of Sale and Refund Policy to continue.');
       return;
@@ -125,7 +125,7 @@ export default function CartPage() {
             quantity: i.quantity,
           })),
           currency: currency.toLowerCase(),
-          successUrl: `${origin}/order-confirmation?session_id={CHECKOUT_SESSION_ID}`,
+          successUrl: `${origin}/order-confirmation`,
           cancelUrl: `${origin}/cart`,
         }),
       });
@@ -285,7 +285,7 @@ export default function CartPage() {
 
               {currency === 'CAD' && (
                 <p className="text-xs text-amber-100/30 leading-relaxed">
-                  CAD amounts are approximate (rate: 1 USD = {USD_TO_CAD} CAD). Final charge is confirmed in {currency} at Stripe checkout.
+                  CAD amounts are approximate (rate: 1 USD = {USD_TO_CAD} CAD). Final charge is confirmed in {currency} at checkout.
                 </p>
               )}
 
@@ -307,7 +307,7 @@ export default function CartPage() {
               </label>
 
               <p className="text-xs text-amber-100/40 leading-relaxed">
-                Billing processed securely by Stripe. See our{' '}
+                Billing processed securely. See our{' '}
                 <Link to="/privacy" className="text-amber-400/70 underline hover:text-amber-300">Privacy Policy</Link>.
               </p>
 
@@ -319,12 +319,12 @@ export default function CartPage() {
               )}
 
               <button
-                onClick={handleStripeCheckout}
+                onClick={handleCheckout}
                 disabled={loading || !termsAccepted}
-                className="flex items-center justify-center gap-2 w-full bg-[#635bff] hover:bg-[#7a74ff] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm uppercase tracking-widest py-4 rounded-full transition-all"
+                className="flex items-center justify-center gap-2 w-full bg-emerald-700 hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm uppercase tracking-widest py-4 rounded-full transition-all"
               >
                 {loading ? (
-                  <><Loader2 size={16} className="animate-spin" /> Redirecting to Stripe…</>
+                  <><Loader2 size={16} className="animate-spin" /> Processing payment…</>
                 ) : (
                   <><Lock size={15} /> Secure Checkout — {formatPrice(subtotalUsd)}</>
                 )}
@@ -333,7 +333,7 @@ export default function CartPage() {
               <div className="flex flex-col gap-2 pt-1">
                 <div className="flex items-center gap-2 text-xs text-emerald-400/70">
                   <ShieldCheck size={13} />
-                  <span>256-bit SSL · PCI DSS compliant via Stripe</span>
+                  <span>256-bit SSL · PCI DSS compliant via Authorize.Net</span>
                 </div>
                 <div className="flex items-center gap-2 text-xs text-emerald-400/70">
                   <FileText size={13} />
@@ -342,8 +342,8 @@ export default function CartPage() {
               </div>
 
               <div className="flex items-center justify-center pt-1">
-                <a href="https://stripe.com" target="_blank" rel="noopener noreferrer" className="text-xs text-amber-100/30 hover:text-amber-100/50 transition">
-                  Powered by <span className="font-bold">Stripe</span>
+                <a href="https://www.authorize.net" target="_blank" rel="noopener noreferrer" className="text-xs text-amber-100/30 hover:text-amber-100/50 transition">
+                  Powered by <span className="font-bold">Authorize.Net</span>
                 </a>
               </div>
             </div>
