@@ -78,6 +78,7 @@ interface Product {
   tag: string;
   priceUsd: number; // USD cents; 0 = price not yet set
   images?: string[]; // paths relative to /public; carousel when >1
+  outOfStock?: boolean;
 }
 
 /* ── Product Catalogue (Site Bible SB-MASTER-01) ─────────── */
@@ -97,6 +98,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
           'Distressed cowhide sleeve. The functional balance of raw somatic instinct and high-fidelity executive presentation — because the Double-Outsider should not have to choose between being authentic and being taken seriously.',
         tag: 'Presence Object',
         priceUsd: 10500,         // $105.00 USD
+        outOfStock: true,
       },
     ],
   },
@@ -813,7 +815,17 @@ export default function ShopPage() {
 
                     {/* Price + Add to Cart */}
                     <div className="pt-2 space-y-3">
-                      {product.priceUsd === 0 ? (
+                      {product.outOfStock ? (
+                        <>
+                          <p className="text-base font-bold text-amber-300/50 line-through">{formatPrice(product.priceUsd)}</p>
+                          <button
+                            disabled
+                            className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest bg-emerald-900/30 border border-emerald-800/40 text-emerald-600/50 cursor-not-allowed"
+                          >
+                            Out of Stock
+                          </button>
+                        </>
+                      ) : product.priceUsd === 0 ? (
                         <>
                           <p className="text-sm text-amber-100/40 italic">— Price loading from catalogue —</p>
                           <button
