@@ -116,12 +116,14 @@ export default function OrderConfirmationPage() {
 
         {/* Actions */}
         <div className="flex flex-col sm:flex-row gap-3">
-          <Link
-            to="/shop"
+          <a
+            href="https://queerpathways.com"
+            target="_blank"
+            rel="noopener noreferrer"
             className="flex-1 text-center text-xs uppercase tracking-widest border border-amber-400/40 text-amber-300 px-6 py-3.5 rounded-full hover:bg-amber-400/10 transition"
           >
             Back to Shop
-          </Link>
+          </a>
           <Link
             to="/"
             className="flex-1 flex items-center justify-center gap-2 text-xs uppercase tracking-widest border border-emerald-800/50 text-amber-100/50 hover:text-amber-100 px-6 py-3.5 rounded-full transition"

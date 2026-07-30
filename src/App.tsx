@@ -80,8 +80,8 @@ export default function App() {
             <NavLink href="/philosophy">Philosophy</NavLink>
             <NavLink href="/team">Our Team</NavLink>
             <NavLink href="/services">Services</NavLink>
-            <NavLink href="/shop">Sanctuary</NavLink>
-            <NavLink href="/shop">Store</NavLink>
+            <NavLink href="https://queerpathways.com" external>Sanctuary</NavLink>
+            <NavLink href="https://queerpathways.com" external>Store</NavLink>
             <NavLink href="https://blog.queerpathways.org" external>Newsletter</NavLink>
             <NavLink href="/fee-disclosure">Fees</NavLink>
             <a   
@@ -112,7 +112,7 @@ export default function App() {
                 <Link to="/philosophy" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Philosophy</Link>
                 <Link to="/team" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Our Team</Link>
                 <Link to="/services" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Services</Link>
-                <Link to="/shop" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Sanctuary / Store</Link>
+                <a href="https://queerpathways.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Sanctuary / Store</a>
                 <a href="https://blog.queerpathways.org" target="_blank" rel="noopener noreferrer" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Newsletter</a>
                 <Link to="/fee-disclosure" onClick={() => setIsMenuOpen(false)} className="text-sm uppercase tracking-[0.2em] font-medium text-amber-100/60 hover:text-amber-50 transition-colors py-2">Fees</Link>
               </div>
@@ -477,7 +477,7 @@ export default function App() {
                 <li><Link to="/philosophy" className="hover:text-amber-50 transition">Philosophy</Link></li>
                 <li><Link to="/team" className="hover:text-amber-50 transition">Our Team</Link></li>
                 <li><Link to="/services" className="hover:text-amber-50 transition">Services</Link></li>
-                <li><Link to="/shop" className="hover:text-amber-50 transition">Sanctuary / Store</Link></li>
+                <li><a href="https://queerpathways.com" target="_blank" rel="noopener noreferrer" className="hover:text-amber-50 transition">Sanctuary / Store</a></li>
                 <li><Link to="/fee-disclosure" className="hover:text-amber-50 transition">Fees</Link></li>
                 <li><Link to="/privacy" className="hover:text-amber-50 transition">Privacy</Link></li>
               </ul>  

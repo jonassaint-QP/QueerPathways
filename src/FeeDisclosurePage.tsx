@@ -138,13 +138,15 @@ export default function FeeDisclosurePage() {
               The store is the side door. Browse at 2am. Buy the lube that's priced like we're not trying to fund a second office. Wear the gear that says <em>I'm figuring it out</em> without having to say a damn thing.
             </p>
             <p className="text-amber-100/70 text-sm">No intake. No waitlist. No insurance battle. Just well-priced, carefully sourced items for your actual life.</p>
-            <Link
-              to="/shop"
+            <a
+              href="https://queerpathways.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-200 font-semibold transition text-sm"
             >
               Visit the Store
               <ArrowRight size={16} />
-            </Link>
+            </a>
           </div>
         </section>
 
@@ -176,7 +178,7 @@ export default function FeeDisclosurePage() {
           <ul className="space-y-2 text-sm text-amber-100/70">
             <li><Link to="/fee-disclosure" className="text-amber-300 hover:text-amber-200 transition">Terms of Service</Link></li>
             <li><Link to="/privacy" className="text-amber-300 hover:text-amber-200 transition">Privacy Policy</Link></li>
-            <li><Link to="/shop" className="text-amber-300 hover:text-amber-200 transition">Return & Refund Policy</Link></li>
+            <li><a href="https://queerpathways.com" target="_blank" rel="noopener noreferrer" className="text-amber-300 hover:text-amber-200 transition">Return &amp; Refund Policy</a></li>
             <li><span className="text-amber-300">Full Fee Disclosure & Insurance Policy (Ontario)</span> — this page</li>
           </ul>
         </section>

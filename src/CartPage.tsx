@@ -152,12 +152,14 @@ export default function CartPage() {
     return (
       <div className="min-h-screen bg-[#001807] text-amber-50 flex flex-col items-center justify-center gap-6 px-6">
         <p className="text-amber-100/50 text-lg">Your cart is empty.</p>
-        <Link
-          to="/shop"
+        <a
+          href="https://queerpathways.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-xs uppercase tracking-widest border border-amber-400/40 text-amber-300 px-6 py-3 rounded-full hover:bg-amber-400/10 transition"
         >
           Back to The Centaur's Apothecary
-        </Link>
+        </a>
       </div>
     );
   }
@@ -166,13 +168,15 @@ export default function CartPage() {
     <div className="min-h-screen bg-[#001807] text-amber-50">
       {/* Nav */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-[#001807] border-b border-emerald-900/40 px-6 py-4 flex items-center justify-between">
-        <Link
-          to="/shop"
+        <a
+          href="https://queerpathways.com"
+          target="_blank"
+          rel="noopener noreferrer"
           className="flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-amber-100/60 hover:text-amber-50 transition-colors"
         >
           <ArrowLeft size={14} />
           Back to Shop
-        </Link>
+        </a>
         <span className="text-xs uppercase tracking-[0.25em] text-amber-400 font-semibold">
           Review Your Order
         </span>
@@ -348,10 +352,10 @@ export default function CartPage() {
               </div>
             </div>
 
-            <Link to="/shop" className="flex items-center justify-center gap-2 w-full text-xs uppercase tracking-widest border border-emerald-800/50 text-amber-100/50 hover:text-amber-100 hover:border-emerald-700 px-6 py-3 rounded-full transition">
+            <a href="https://queerpathways.com" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 w-full text-xs uppercase tracking-widest border border-emerald-800/50 text-amber-100/50 hover:text-amber-100 hover:border-emerald-700 px-6 py-3 rounded-full transition">
               <ArrowLeft size={12} />
               Continue Shopping
-            </Link>
+            </a>
           </aside>
         </motion.div>
       </main>
