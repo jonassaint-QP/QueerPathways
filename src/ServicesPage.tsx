@@ -27,25 +27,25 @@ const GENDER_STORY_ITEMS = [
 
 export default function ServicesPage() {
   return (
-    <div className="min-h-screen bg-[#001807] text-amber-50">
+    <div className="min-h-screen bg-obsidian-deep text-text-primary">
       {/* Top bar */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-[#001807] border-b border-emerald-900/70 px-6 py-4">
+      <div className="fixed top-0 left-0 right-0 z-50 bg-obsidian-deep border-b border-obsidian-border/70 px-6 py-4">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-amber-300 hover:text-amber-100 transition text-sm"
+            className="inline-flex items-center gap-2 text-cyan-cyber hover:text-text-secondary transition text-sm"
           >
             <ArrowLeft size={16} />
             Queer Pathways
           </Link>
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-amber-50 text-emerald-950 px-6 py-2 rounded-full text-xs font-bold hover:bg-amber-100 transition"
+            className="bg-cyan-cyber text-obsidian-deep px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-cyber/80 transition"
           >
-            Book Now
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
         </div>
       </div>
 
@@ -59,38 +59,38 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <span className="text-amber-400 uppercase tracking-widest text-xs font-bold">Services</span>
+            <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">Services</span>
             <h1 className="text-5xl md:text-6xl font-bold font-serif leading-tight">
               Three Pathways. One Radical Premise.
             </h1>
-            <p className="text-2xl text-amber-300 font-semibold">
+            <p className="text-2xl text-cyan-cyber font-semibold">
               Your identity is not a problem to be managed.
             </p>
-            <p className="text-lg text-amber-100 qp-leading-175 max-w-3xl">
+            <p className="text-lg text-text-secondary qp-leading-175 max-w-3xl">
               We don't do "treatment plans" that treat your queerness or neurodivergence as a complication. We do scaffolding — clinical care built around the architecture you already have.
             </p>
           </motion.div>
 
           {/* Service 1: Specialist Scaffolding */}
-          <section className="space-y-10 border-t border-emerald-900/40 pt-16">
+          <section className="space-y-10 border-t border-obsidian-border/40 pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-amber-400/20 rounded-xl flex items-center justify-center shrink-0">
-                <Brain className="text-amber-400" size={28} />
+              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                <Brain className="text-magenta-neon" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-amber-400/70 text-sm font-mono">01</span>
+                <span className="text-magenta-neon/70 text-sm font-mono">01</span>
                 <h2 className="text-4xl font-bold font-serif">Specialist Scaffolding</h2>
-                <p className="text-amber-300 text-lg">
+                <p className="text-cyan-cyber text-lg">
                   For the ADHD/autistic brain running on cognitive friction.
                 </p>
               </div>
             </motion.div>
-            <div className="pl-20 space-y-5 text-amber-100 text-lg qp-leading-175">
+            <div className="pl-20 space-y-5 text-text-secondary text-lg qp-leading-175">
               <p>
                 You've got the intelligence. You've got the drive. What you don't have is a system that actually fits how your brain processes.
               </p>
@@ -99,11 +99,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-amber-400">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
               <ul className="space-y-3">
                 {SPECIALIST_SCAFFOLDING_ITEMS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-amber-100">
-                    <CheckCircle2 className="text-amber-400 shrink-0 mt-0.5" size={18} />
+                  <li key={item} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -112,36 +112,36 @@ export default function ServicesPage() {
           </section>
 
           {/* Service 2: Relational Sovereignty */}
-          <section className="space-y-10 border-t border-emerald-900/40 pt-16">
+          <section className="space-y-10 border-t border-obsidian-border/40 pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-amber-400/20 rounded-xl flex items-center justify-center shrink-0">
-                <Scale className="text-amber-400" size={28} />
+              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                <Scale className="text-magenta-neon" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-amber-400/70 text-sm font-mono">02</span>
+                <span className="text-magenta-neon/70 text-sm font-mono">02</span>
                 <h2 className="text-4xl font-bold font-serif">Relational Sovereignty</h2>
-                <p className="text-amber-300 text-lg">
+                <p className="text-cyan-cyber text-lg">
                   Kink, polyamory, attachment repair, desire exploration.
                 </p>
               </div>
             </motion.div>
-            <div className="pl-20 space-y-5 text-amber-100 text-lg qp-leading-175">
+            <div className="pl-20 space-y-5 text-text-secondary text-lg qp-leading-175">
               <p>This is not an edge case here. It's the curriculum.</p>
               <p>
                 Most therapy treats non-monogamy and kink as disclosures to make. We treat them as data — information about how you're wired for connection, intimacy, and pleasure.
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-amber-400">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
               <ul className="space-y-3">
                 {RELATIONAL_SOVEREIGNTY_ITEMS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-amber-100">
-                    <CheckCircle2 className="text-amber-400 shrink-0 mt-0.5" size={18} />
+                  <li key={item} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -150,35 +150,35 @@ export default function ServicesPage() {
           </section>
 
           {/* Service 3: Gender Story Prep */}
-          <section className="space-y-10 border-t border-emerald-900/40 pt-16">
+          <section className="space-y-10 border-t border-obsidian-border/40 pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-amber-400/20 rounded-xl flex items-center justify-center shrink-0">
-                <Shield className="text-amber-400" size={28} />
+              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                <Shield className="text-magenta-neon" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-amber-400/70 text-sm font-mono">03</span>
+                <span className="text-magenta-neon/70 text-sm font-mono">03</span>
                 <h2 className="text-4xl font-bold font-serif">Gender Story Prep</h2>
-                <p className="text-amber-300 text-lg">
+                <p className="text-cyan-cyber text-lg">
                   Transition support with zero gatekeeping. Your timeline. Your terms.
                 </p>
               </div>
             </motion.div>
-            <div className="pl-20 space-y-5 text-amber-100 text-lg qp-leading-175">
+            <div className="pl-20 space-y-5 text-text-secondary text-lg qp-leading-175">
               <p>
                 We don't require a "regret waiting period." We don't make you prove you're trans enough. We help you articulate your gender story — whatever it is, wherever it's going — and build the internal scaffolding to live it.
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-amber-400">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
               <ul className="space-y-3">
                 {GENDER_STORY_ITEMS.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-amber-100">
-                    <CheckCircle2 className="text-amber-400 shrink-0 mt-0.5" size={18} />
+                  <li key={item} className="flex items-start gap-3 text-text-secondary">
+                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -187,23 +187,23 @@ export default function ServicesPage() {
           </section>
 
           {/* DBT Consultation Group */}
-          <section className="border-t border-emerald-900/40 pt-16">
+          <section className="border-t border-obsidian-border/40 pt-16">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7 }}
-              className="bg-emerald-900/30 border border-emerald-800/50 rounded-3xl p-8 md:p-12 space-y-6"
+              className="bg-obsidian-card/30 border border-obsidian-border/50 rounded-3xl p-8 md:p-12 space-y-6"
             >
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-amber-400/20 rounded-xl flex items-center justify-center shrink-0">
-                  <Users className="text-amber-400" size={28} />
+                <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
+                  <Users className="text-magenta-neon" size={28} />
                 </div>
                 <div>
                   <h2 className="text-3xl font-bold font-serif">The DBT Consultation Group</h2>
-                  <p className="text-amber-400 text-sm uppercase tracking-widest mt-2">For Licensed Therapists</p>
+                  <p className="text-magenta-neon text-sm uppercase tracking-widest mt-2">For Licensed Therapists</p>
                 </div>
               </div>
-              <div className="space-y-4 text-amber-100 text-lg qp-leading-175">
+              <div className="space-y-4 text-text-secondary text-lg qp-leading-175">
                 <p>
                   For licensed therapists who want to deepen their DBT practice in a space that actually gets queer and neurodivergent adults.
                 </p>
@@ -211,20 +211,20 @@ export default function ServicesPage() {
                   This is not a beginner's training. It's a consultation group for clinicians who want to refine their skills, sharpen their case conceptualization, and work with clients who've been failed by cookie-cutter DBT.
                 </p>
               </div>
-              <p className="text-sm text-amber-100/60">Per session: $75 USD / $100 CAD</p>
+              <p className="text-sm text-text-secondary/60">Per session: $75 USD / $100 CAD</p>
             </motion.div>
           </section>
 
           {/* Footer note + CTA */}
-          <div className="text-center space-y-6 pt-8 border-t border-emerald-900/40">
-            <p className="text-amber-100 qp-leading-175 max-w-2xl mx-auto">
+          <div className="text-center space-y-6 pt-8 border-t border-obsidian-border/40">
+            <p className="text-text-secondary qp-leading-175 max-w-2xl mx-auto">
               All services are trauma-informed, neuro-affirming, and kink-fluent by default. No explaining the glossary. No performing wellness.
             </p>
             <a
-              href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+              href="https://www.therapyportal.com/p/queercharts/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition shadow-lg"
+              className="inline-flex items-center gap-2 bg-cyan-cyber text-obsidian-deep px-10 py-4 rounded-full font-bold text-base hover:bg-cyan-cyber/80 transition shadow-lg"
             >
               Find Your Path
               <ArrowRight size={18} />

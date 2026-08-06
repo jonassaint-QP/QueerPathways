@@ -32,14 +32,14 @@ function ProductCarousel({ images }: { images: string[] }) {
           <button
             onClick={prev}
             aria-label="Previous image"
-            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-[#E2E8F0] rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
           >
             <ChevronLeft size={18} />
           </button>
           <button
             onClick={next}
             aria-label="Next image"
-            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+            className="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/75 text-[#E2E8F0] rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
           >
             <ChevronRight size={18} />
           </button>
@@ -50,7 +50,7 @@ function ProductCarousel({ images }: { images: string[] }) {
                 onClick={() => setIdx(i)}
                 aria-label={`Image ${i + 1}`}
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
-                  i === idx ? 'bg-amber-400' : 'bg-white/40 hover:bg-white/70'
+                  i === idx ? 'bg-amber-400' : 'bg-[#E2E8F0]/40 hover:bg-[#E2E8F0]/70'
                 }`}
               />
             ))}
@@ -677,13 +677,13 @@ export default function ShopPage() {
             </button>
           </div>
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs bg-amber-50 text-emerald-950 px-5 py-2 rounded-full font-bold hover:bg-amber-100 transition-all"
           >
-            Book Now
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
         </div>
       </nav>
 
@@ -842,7 +842,7 @@ export default function ShopPage() {
                             onClick={() => handleAddToCart(product)}
                             className={`w-full flex items-center justify-center gap-2 py-3 px-5 rounded-full text-xs font-bold uppercase tracking-widest transition-all ${
                               justAdded
-                                ? 'bg-emerald-600 text-white'
+                                ? 'bg-emerald-600 text-[#E2E8F0]'
                                 : inCart
                                 ? 'bg-emerald-900/60 border border-emerald-600/50 text-emerald-300 hover:bg-emerald-800/60'
                                 : 'bg-amber-400 hover:bg-amber-300 text-emerald-950'
@@ -915,13 +915,13 @@ export default function ShopPage() {
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-2">
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-amber-50 text-emerald-950 px-10 py-3 rounded-full font-bold text-sm hover:bg-amber-100 transition-all"
           >
-            Book Clinical Intake
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
           <Link
             to="/"
             className="border border-amber-50/30 text-amber-50 px-10 py-3 rounded-full font-bold text-sm hover:bg-amber-50/10 transition-all"

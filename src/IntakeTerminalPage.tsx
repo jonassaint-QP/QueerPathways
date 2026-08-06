@@ -6,7 +6,7 @@ import { useSearchParams } from "react-router-dom";
 const INTAKE_PORTAL_URL =
   import.meta.env.VITE_SECURE_INTAKE_URL ||
   import.meta.env.VITE_JANE_APP_INTAKE_URL ||
-  "https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b";
+  "https://www.therapyportal.com/p/queercharts/";
 
 function ContactForm() {
   const [searchParams] = useSearchParams();

@@ -142,13 +142,13 @@ export default function AcousticEcologyPage() {
 
         <div className="text-center pt-4">
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-amber-50 text-emerald-950 px-12 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition-all shadow-lg"
           >
-            Book a Session
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
         </div>
       </div>
     </div>

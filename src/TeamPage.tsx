@@ -59,13 +59,13 @@ export default function TeamPage() {
             Queer Pathways
           </Link>
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
             className="bg-amber-50 text-emerald-950 px-6 py-2 rounded-full text-xs font-bold hover:bg-amber-100 transition"
           >
-            Book Now
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
         </div>
       </div>
 
@@ -138,12 +138,12 @@ export default function TeamPage() {
           <div className="text-center pt-8 space-y-6 border-t border-emerald-900/40">
             <p className="text-xl text-amber-100">Ready to work with us?</p>
             <a
-              href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+              href="https://www.therapyportal.com/p/queercharts/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition shadow-lg"
             >
-              Book Your Consultation
+              Adjourn the Courtroom — Book Your Intake Assessment
             </a>
           </div>
 

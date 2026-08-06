@@ -186,13 +186,13 @@ export default function FeeDisclosurePage() {
         {/* CTA */}
         <div className="border-t border-emerald-900/40 pt-10 text-center space-y-6">
           <a
-            href="https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b"
+            href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-amber-50 text-emerald-950 px-10 py-4 rounded-full font-bold text-base hover:bg-amber-100 transition shadow-lg"
           >
-            Book a Free Consultation
-          </a>
+              Adjourn the Courtroom — Book Your Intake Assessment
+            </a>
           <p className="text-xs text-amber-100/60">
             Questions?{' '}
             <a href="mailto:joshua@queerpathways.org" className="text-amber-300 hover:text-amber-200 transition">

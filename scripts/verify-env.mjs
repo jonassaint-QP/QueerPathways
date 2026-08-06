@@ -14,15 +14,15 @@ const janeUrl = process.env.VITE_JANE_APP_INTAKE_URL;
 const secureUrl = process.env.VITE_SECURE_INTAKE_URL;
 const intakeUrl = secureUrl || janeUrl;
 const placeholder = "https://jane.app";
-const defaultCarepatronUrl =
+const defaultTherapyNotesUrl =
   "https://book.carepatron.com/Queer-Pathways/Joshua?p=1achg8U5QhGVWM9fIz.Kig&s=VI4IFsMw&e=b";
-const productionUrl = intakeUrl || defaultCarepatronUrl;
+const productionUrl = intakeUrl || defaultTherapyNotesUrl;
 
 if (!isCiLike) {
   if (!intakeUrl || intakeUrl.trim() === "" || intakeUrl === placeholder) {
     console.warn(
       "[verify-env] Warning: secure intake URL is not configured. " +
-      "Local build will continue and production will use the built-in Carepatron fallback unless you set a custom portal URL."
+      "Local build will continue and production will use the built-in TherapyNotes fallback unless you set a custom portal URL."
     );
   }
   process.exit(0);

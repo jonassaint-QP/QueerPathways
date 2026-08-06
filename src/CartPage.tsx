@@ -325,7 +325,7 @@ export default function CartPage() {
               <button
                 onClick={handleCheckout}
                 disabled={loading || !termsAccepted}
-                className="flex items-center justify-center gap-2 w-full bg-emerald-700 hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold text-sm uppercase tracking-widest py-4 rounded-full transition-all"
+                className="flex items-center justify-center gap-2 w-full bg-emerald-700 hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-[#E2E8F0] font-bold text-sm uppercase tracking-widest py-4 rounded-full transition-all"
               >
                 {loading ? (
                   <><Loader2 size={16} className="animate-spin" /> Processing payment…</>
