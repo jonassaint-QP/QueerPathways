@@ -67,6 +67,26 @@ export const App: React.FC = () => {
               Sovereignty Store
             </a>
             <a
+              href="/events"
+              className="text-text-secondary hover:text-cyan-cyber transition-colors"
+            >
+              Events
+            </a>
+            <div className="relative group">
+              <button className="text-text-secondary hover:text-cyan-cyber transition-colors">
+                Blog ▾
+              </button>
+              <div className="absolute top-full right-0 mt-2 w-52 bg-obsidian-card border border-obsidian-border rounded-xl py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-xl">
+                <a href="/blog" className="block px-4 py-2 text-xs text-text-secondary hover:text-amber-300 hover:bg-obsidian-border/20 transition-colors">Master Map</a>
+                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-cyan-cyber hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
+                <a href="/blog/advocacy" className="block px-4 py-2 text-xs text-text-secondary hover:text-violet-400 hover:bg-obsidian-border/20 transition-colors">Clinical Advocacy</a>
+                <a href="/blog/sovereignty" className="block px-4 py-2 text-xs text-text-secondary hover:text-rose-400 hover:bg-obsidian-border/20 transition-colors">Somatic Sovereignty</a>
+                <div className="border-t border-obsidian-border my-1" />
+                <a href="/substack" className="block px-4 py-2 text-xs text-text-secondary hover:text-orange-400 hover:bg-obsidian-border/20 transition-colors">Substack</a>
+                <a href="/linkedin" className="block px-4 py-2 text-xs text-text-secondary hover:text-blue-400 hover:bg-obsidian-border/20 transition-colors">LinkedIn</a>
+              </div>
+            </div>
+            <a
               href={PRACTICE_CONFIG.portals.therapyNotes}
               target="_blank"
               rel="noopener noreferrer"
@@ -115,6 +135,41 @@ export const App: React.FC = () => {
             >
               Sovereignty Store
             </a>
+            <a
+              href="/events"
+              className="text-text-secondary hover:text-cyan-cyber transition-colors"
+            >
+              Events
+            </a>
+            <div className="relative group">
+              <button className="text-text-secondary hover:text-cyan-cyber transition-colors">
+                Blog ▾
+              </button>
+              <div className="absolute top-full right-0 mt-2 w-52 bg-obsidian-card border border-obsidian-border rounded-xl py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-xl">
+                <a href="/blog" className="block px-4 py-2 text-xs text-text-secondary hover:text-amber-300 hover:bg-obsidian-border/20 transition-colors">Master Map</a>
+                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-cyan-cyber hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
+                <a href="/blog/advocacy" className="block px-4 py-2 text-xs text-text-secondary hover:text-violet-400 hover:bg-obsidian-border/20 transition-colors">Clinical Advocacy</a>
+                <a href="/blog/sovereignty" className="block px-4 py-2 text-xs text-text-secondary hover:text-rose-400 hover:bg-obsidian-border/20 transition-colors">Somatic Sovereignty</a>
+                <div className="border-t border-obsidian-border my-1" />
+                <a href="/substack" className="block px-4 py-2 text-xs text-text-secondary hover:text-orange-400 hover:bg-obsidian-border/20 transition-colors">Substack</a>
+                <a href="/linkedin" className="block px-4 py-2 text-xs text-text-secondary hover:text-blue-400 hover:bg-obsidian-border/20 transition-colors">LinkedIn</a>
+              </div>
+            </div>
+            <a
+              href="/events"
+              className="block w-full text-left py-2 text-text-primary hover:text-cyan-cyber"
+            >
+              Events
+            </a>
+            <div className="border-t border-obsidian-border pt-2 space-y-1">
+              <p className="text-[10px] font-mono uppercase tracking-widest text-text-disabled pb-1">Blog</p>
+              <a href="/blog" className="block py-1.5 text-text-secondary hover:text-amber-300 transition-colors">Master Map</a>
+              <a href="/blog/architecture" className="block py-1.5 text-text-secondary hover:text-cyan-cyber transition-colors">Relational Architecture</a>
+              <a href="/blog/advocacy" className="block py-1.5 text-text-secondary hover:text-violet-400 transition-colors">Clinical Advocacy</a>
+              <a href="/blog/sovereignty" className="block py-1.5 text-text-secondary hover:text-rose-400 transition-colors">Somatic Sovereignty</a>
+              <a href="/substack" className="block py-1.5 text-text-secondary hover:text-orange-400 transition-colors">Substack</a>
+              <a href="/linkedin" className="block py-1.5 text-text-secondary hover:text-blue-400 transition-colors">LinkedIn</a>
+            </div>
             <a
               href={PRACTICE_CONFIG.portals.therapyNotes}
               target="_blank"

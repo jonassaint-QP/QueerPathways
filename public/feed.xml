@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Queer Pathways Blog</title>
+    <link>https://queerpathways.org/blog</link>
+    <description>Pathways to Presence — clinical writing for the Double-Outsider.</description>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 06 Aug 2026 07:52:24 GMT</lastBuildDate>
+    <atom:link href="https://queerpathways.org/feed.xml" rel="self" type="application/rss+xml" />
+    
+  <item>
+    <title>The Vulnerability Hangover: Your Nervous System Is Not Broken</title>
+    <link>https://queerpathways.org/blog/sovereignty</link>
+    <description>The post-disclosure crash is real, it has a name, and it has a neurobiological explanation that has nothing to do with weakness.</description>
+    <pubDate>Mon, 05 Feb 2024 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://queerpathways.org/blog/sovereignty</guid>
+    <category>sovereignty</category>
+  </item>
+  <item>
+    <title>The 7-Day Safety Net: What Happens When I Refer You Out</title>
+    <link>https://queerpathways.org/blog/advocacy</link>
+    <description>A transparent breakdown of the PA referral protocol and why continuity of care is a clinical and ethical imperative.</description>
+    <pubDate>Mon, 29 Jan 2024 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://queerpathways.org/blog/advocacy</guid>
+    <category>advocacy</category>
+  </item>
+  <item>
+    <title>The Anxious Auditor: When Hypervigilance Becomes a Love Language</title>
+    <link>https://queerpathways.org/blog/architecture</link>
+    <description>How the Internal Legal System hijacks attachment and turns relationship monitoring into an exhausting full-time job.</description>
+    <pubDate>Mon, 22 Jan 2024 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://queerpathways.org/blog/architecture</guid>
+    <category>architecture</category>
+  </item>
+  <item>
+    <title>Welcome to the Master Map: What Pathways to Presence Really Means</title>
+    <link>https://queerpathways.org/blog</link>
+    <description>An introduction to the framework that maps the distance between who you perform yourself to be and who you actually are.</description>
+    <pubDate>Mon, 15 Jan 2024 12:00:00 GMT</pubDate>
+    <guid isPermaLink="true">https://queerpathways.org/blog</guid>
+    <category>presence</category>
+  </item>
+  </channel>
+</rss>

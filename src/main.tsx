@@ -20,6 +20,14 @@ import PhilosophyPage from './PhilosophyPage';
 import TeamPage from './TeamPage';
 import ServicesPage from './ServicesPage';
 import { CartProvider } from './CartContext';
+import EventsPage from './EventsPage';
+import BlogPage from './BlogPage';
+import ArchitecturePage from './blog/ArchitecturePage';
+import AdvocacyPage from './blog/AdvocacyPage';
+import SovereigntyPage from './blog/SovereigntyPage';
+import SubstackPage from './SubstackPage';
+import LinkedInPage from './LinkedInPage';
+import DistributionSetupPage from './DistributionSetupPage';
 import './index.css';
 
 /**  
@@ -49,6 +57,14 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/shop" element={<ShopPage />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
+          <Route path="/events" element={<EventsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/architecture" element={<ArchitecturePage />} />
+          <Route path="/blog/advocacy" element={<AdvocacyPage />} />
+          <Route path="/blog/sovereignty" element={<SovereigntyPage />} />
+          <Route path="/substack" element={<SubstackPage />} />
+          <Route path="/linkedin" element={<LinkedInPage />} />
+          <Route path="/distribution" element={<DistributionSetupPage />} />
           <Route path="/queertimes" element={<Navigate to="https://mediumseagreen-gnu-447320.hostingersite.com/" replace />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>

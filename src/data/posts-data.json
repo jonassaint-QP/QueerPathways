@@ -1,0 +1,38 @@
+[
+  {
+    "id": "welcome-to-the-map",
+    "title": "Welcome to the Master Map: What Pathways to Presence Really Means",
+    "description": "An introduction to the framework that maps the distance between who you perform yourself to be and who you actually are.",
+    "url": "https://queerpathways.org/blog",
+    "pillar": "presence",
+    "pubDate": "2024-01-15T12:00:00Z",
+    "tags": ["framework", "intro", "presence"]
+  },
+  {
+    "id": "anxious-auditor-love-language",
+    "title": "The Anxious Auditor: When Hypervigilance Becomes a Love Language",
+    "description": "How the Internal Legal System hijacks attachment and turns relationship monitoring into an exhausting full-time job.",
+    "url": "https://queerpathways.org/blog/architecture",
+    "pillar": "architecture",
+    "pubDate": "2024-01-22T12:00:00Z",
+    "tags": ["attachment", "ILS", "neurodivergent", "relationships"]
+  },
+  {
+    "id": "seven-day-safety-net",
+    "title": "The 7-Day Safety Net: What Happens When I Refer You Out",
+    "description": "A transparent breakdown of the PA referral protocol and why continuity of care is a clinical and ethical imperative.",
+    "url": "https://queerpathways.org/blog/advocacy",
+    "pillar": "advocacy",
+    "pubDate": "2024-01-29T12:00:00Z",
+    "tags": ["referral", "PA", "clinical", "safety"]
+  },
+  {
+    "id": "vulnerability-hangover",
+    "title": "The Vulnerability Hangover: Your Nervous System Is Not Broken",
+    "description": "The post-disclosure crash is real, it has a name, and it has a neurobiological explanation that has nothing to do with weakness.",
+    "url": "https://queerpathways.org/blog/sovereignty",
+    "pillar": "sovereignty",
+    "pubDate": "2024-02-05T12:00:00Z",
+    "tags": ["nervous-system", "vulnerability", "somatic", "neurodivergent"]
+  }
+]

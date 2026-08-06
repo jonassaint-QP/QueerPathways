@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
     "prebuild": "node ./scripts/verify-env.mjs",
-    "build": "rm -rf dist && vite build && for d in modalities library pathways images; do if [ -d \"$d\" ]; then cp -r \"$d\" dist/; fi; done",
+    "build": "npm run feed && rm -rf dist && vite build && for d in modalities library pathways images; do if [ -d \"$d\" ]; then cp -r \"$d\" dist/; fi; done",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "lint": "tsc -p ./tsconfig.json --noEmit"
+    "lint": "tsc -p ./tsconfig.json --noEmit",
+    "feed": "node scripts/generate-feed.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
