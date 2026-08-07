@@ -143,7 +143,7 @@ export const ClinicalOfferingsPage: React.FC = () => {
                 </li>
                 <li className="flex items-center space-x-2">
                   <span className="text-cyan-cyber">✓</span>
-                  <span>Headway PA coverage eligible</span>
+                  <span>Direct TherapyNotes booking available</span>
                 </li>
               </ul>
             </div>
@@ -222,16 +222,16 @@ export const ClinicalOfferingsPage: React.FC = () => {
               <span className="text-cyan-cyber">CW023073</span>
             </div>
             <p className="text-text-secondary leading-relaxed font-sans">
-              In-network billing for eligible Pennsylvania residents is processed seamlessly through our partnership with Headway PA.
+              In-network billing for eligible Pennsylvania residents is processed seamlessly through our CardPointe integration.
             </p>
             <div className="pt-2">
               <a 
-                href="https://care.headway.co" 
+                href="https://www.therapyportal.com/p/queercharts/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center space-x-2 text-cyan-cyber hover:underline"
               >
-                <span>Verify Headway PA Coverage</span>
+                <span>Book Your Intake Assessment</span>
                 <span>→</span>
               </a>
             </div>

@@ -16,7 +16,6 @@ export const PRACTICE_CONFIG = {
   },
   portals: {
     therapyNotes: "https://www.therapyportal.com/p/queercharts/",
-    headwayPA: "https://care.headway.co",
   },
   vocabularyRules: {
     id: "QP-ICP-LANG-001",

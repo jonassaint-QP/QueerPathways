@@ -1,30 +1,10 @@
 import { motion } from "framer-motion";
 
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Brain, Scale, ArrowRight, CheckCircle2, Quote } from 'lucide-react';
 
 export const HeroManifesto: React.FC = () => {
-  const thrizerEmbedRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const container = thrizerEmbedRef.current;
-    if (!container) return;
-
-    container.innerHTML = '';
-    const script = document.createElement('script');
-    script.src = 'https://eligibility.thrizer.com/embed.js';
-    script.async = true;
-    script.crossOrigin = 'anonymous';
-    script.dataset.src = 'https://eligibility.thrizer.com/facility/thrizer7t1oh?type=iframe';
-    script.dataset.title = 'Check Your Insurance Benefits';
-    script.setAttribute('data-qp-thrizer', 'true');
-    container.appendChild(script);
-
-    return () => {
-      container.innerHTML = '';
-    };
-  }, []);
 
   return (
     <>
@@ -232,11 +212,6 @@ export const HeroManifesto: React.FC = () => {
             </p>
           </div>
 
-          {/* Thrizer OON Benefits */}
-          <div className="text-center">
-            <div ref={thrizerEmbedRef} />
-          </div>
-
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             <div className="bg-emerald-900/40 border border-emerald-800/50 p-8 rounded-2xl space-y-3 text-left">
               <h4 className="font-bold text-lg flex items-center gap-2">
@@ -263,7 +238,7 @@ export const HeroManifesto: React.FC = () => {
                 <p className="font-semibold text-amber-50 pt-2">Pennsylvania (In-Network):</p>
                 <p className="qp-leading-175">Aetna, Blue Cross Blue Shield, and CIGNA. Direct billing — no superbill required.</p>
                 <p className="font-semibold text-amber-50 pt-2">All Other Providers:</p>
-                <p className="qp-leading-175">We use Thrizer to remove the financial friction. You only pay your co-insurance upfront. Thrizer handles the rest so you aren't waiting months for reimbursements or chasing superbills.</p>
+                <p className="qp-leading-175">Superbills are provided at every session for out-of-network reimbursement. We handle the paperwork — you handle the healing.</p>
               </div>
             </div>
           </div>

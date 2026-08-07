@@ -116,7 +116,7 @@ export default function FeeDisclosurePage() {
             {[
               'First appointment within 7 days — your motivation shouldn\'t have to survive a quarter',
               'Transparent pricing — what you see is what you pay, no admin fees, no cancellation penalties for illness',
-              'Thrizer-powered billing — we use Thrizer to handle the insurance paperwork so you don\'t pay the ADHD tax just to get reimbursed',
+              'Transparent billing — superbills provided at every session so you aren\'t chasing reimbursements or paying the Ambiguity Tax',
             ].map((item) => (
               <div key={item} className="flex items-start gap-3 text-amber-100">
                 <span className="text-lg shrink-0" aria-hidden="true">🟢</span>
