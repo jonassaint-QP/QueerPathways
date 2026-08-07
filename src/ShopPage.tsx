@@ -288,7 +288,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'pleasure-throne-oral-chair',
         name: 'Pleasure Throne | Adjustable Oral Sex Chair',
         icon: <Crosshair className="text-amber-400" size={22} />,
-        images: [] // TODO: add local images when available,
+        images: [], // TODO: add local images when available
         description: 'An adjustable oral sex chair built on an iron frame with a 265-pound weight capacity. Features a plush vegan leather seat that adjusts in height through four ABS plastic knobs, an independently adjustable backrest, and a padded headrest with adjustable cushions that lock the receiving partner\'s head in place. Includes five integrated frame attachment points with cuffs and carabiners. Gear, Not Medicine: This item is intended for personal somatic exploration and sensory scaffolding, not medical or therapeutic treatment.',
         tag: 'Positional Scaffolding',
         priceUsd: 49000,
@@ -385,7 +385,7 @@ const CATALOGUE: { category: string; tagline: string; products: Product[] }[] = 
         id: 'the-super-milker',
         name: 'The Super Milker | Automatic Deluxe Stroker Machine',
         icon: <Zap className="text-amber-400" size={22} />,
-        images: [] // TODO: add local images when available,
+        images: [], // TODO: add local images when available
         description: 'The Super Milker is a mechanical release valve for the nervous system that has spent the entire day running at high torque with nowhere to land. Designed for the man who needs the friction to stop happening inside his head and start happening somewhere he can actually feel, this machine delivers automatic stroking and suction through a four-cylinder sensory suite that lets you dial in exactly how much input your body requires. Three cylinders ride your shaft with supple rubber and textured nubs, while a fourth targets more concentrated zones. The multi-speed dial gives you granular control over pace. When the session is done, everything locks into the top compartment with two included keys. Gear, Not Medicine: This item is intended for personal somatic exploration and sensory scaffolding, not medical or therapeutic treatment.',
         tag: 'Mechanical Sensory Suite',
         priceUsd: 28900,
