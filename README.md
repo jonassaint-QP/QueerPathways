@@ -12,6 +12,7 @@ This repository contains the source code for QueerPathways, including web pages,
 - `public/` - Static assets, headers, redirects, and feed output
 - `scripts/` - Utility scripts (`generate-feed.mjs`, `verify-env.mjs`)
 - `Core 300.csv` - Combined source catalog for the Core 300 product collection
+- `Starting 300.csv` - Normalized current product list with pricing and image paths
 - `Lube.csv` - Lubricant product inventory and pricing catalog
 - `six flagship STD.com listings.csv` - Flagship product catalog CSV data import file
 - `pathways/`, `modalities/`, `library/`, `soundtrack/` - Content directories
@@ -45,6 +46,23 @@ npm run build
 
 `Core 300.csv` preserves the supplied Core 300 source data. It is a combined working file rather than a single import-ready CSV: the first section uses a 25-column Shopify product schema, while later sections use an eight-column catalog schema (`SKU`, `Name`, `Wholesale`, `Retail`, `Category`, `Persona`, `Vendor`, and `Description`). Normalize the sections into separate, consistently quoted files before importing them into Shopify or another catalog system.
 
+### Starting 300 Catalog
+
+`Starting 300.csv` is the normalized current product list. It contains 65 unique products and uses nine consistently quoted columns: `SKU`, `Name`, `Wholesale`, `Retail`, `Category`, `Persona`, `Vendor`, `Image Src`, and `Description`. The normalized file removes wrapper text and export marker characters from the supplied source while preserving the product data.
+
+#### Catalog Update: August 7, 2026
+
+- Added 65 products from the supplied `Starting 300.CSV` export.
+- Removed the export title, private-use marker characters, trailing spaces, and inconsistent line endings.
+- Repaired CSV quoting around descriptions containing commas and names containing inch marks.
+- Preserved source order, SKUs, names, prices, categories, personas, vendors, image paths, and descriptions.
+- Validated nine columns per row, unique SKUs, non-negative two-decimal prices, normalized `/images/products/` paths, and canonical UTF-8/LF encoding.
+
+Two same-name pairs remain intentionally separate because their SKUs, pricing, personas, and images differ:
+
+- `BC-FDA8` and `BC-FDA8-2`
+- `IDDXTM-04` and `IDDXTM-04-2`
+
 ### Lube Catalog
 
 `Lube.csv` contains 20 product records. Each row has eight columns:
@@ -76,6 +94,7 @@ import csv
 from pathlib import Path
 
 expected_widths = {
+	Path("Starting 300.csv"): 9,
 	Path("Lube.csv"): 8,
 	Path("six flagship STD.com listings.csv"): 33,
 }
