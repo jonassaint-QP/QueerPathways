@@ -11,6 +11,7 @@ This repository contains the source code for QueerPathways, including web pages,
 - `src/` - React frontend application files and components
 - `public/` - Static assets, headers, redirects, and feed output
 - `scripts/` - Utility scripts (`generate-feed.mjs`, `verify-env.mjs`)
+- `Core 300.csv` - Combined source catalog for the Core 300 product collection
 - `Lube.csv` - Lubricant product inventory and pricing catalog
 - `six flagship STD.com listings.csv` - Flagship product catalog CSV data import file
 - `pathways/`, `modalities/`, `library/`, `soundtrack/` - Content directories
@@ -39,6 +40,10 @@ npm run build
 ```
 
 ## Data Files
+
+### Core 300 Catalog
+
+`Core 300.csv` preserves the supplied Core 300 source data. It is a combined working file rather than a single import-ready CSV: the first section uses a 25-column Shopify product schema, while later sections use an eight-column catalog schema (`SKU`, `Name`, `Wholesale`, `Retail`, `Category`, `Persona`, `Vendor`, and `Description`). Normalize the sections into separate, consistently quoted files before importing them into Shopify or another catalog system.
 
 ### Lube Catalog
 
