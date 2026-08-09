@@ -20,11 +20,11 @@ const variantStyles = {
     dot: 'bg-amber-400',
   },
   architecture: {
-    border: 'border-cyan-cyber/30 hover:border-cyan-cyber/70',
-    glow: 'hover:shadow-[0_0_30px_rgba(0,240,255,0.15)]',
-    badge: 'bg-cyan-cyber/10 text-cyan-cyber',
-    arrow: 'text-cyan-cyber',
-    dot: 'bg-cyan-cyber',
+    border: 'border-somatic-warmth/30 hover:border-somatic-warmth/70',
+    glow: 'hover:shadow-[0_0_30px_rgba(163, 177, 138,0.15)]',
+    badge: 'bg-somatic-warmth/10 text-somatic-warmth',
+    arrow: 'text-somatic-warmth',
+    dot: 'bg-somatic-warmth',
   },
   advocacy: {
     border: 'border-violet-400/30 hover:border-violet-400/70',

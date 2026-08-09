@@ -6,7 +6,7 @@ import { InternalLegalSystem } from '../components/blog/InternalLegalSystem';
 const SAFETY_NET = [
   { day: 'Day 0', label: 'Notice', color: 'text-rose-400', desc: 'I identify that my scope, capacity, or specialization does not fully serve your needs. I name this directly — with care, not as rejection.' },
   { day: 'Days 1–2', label: 'Active Search', color: 'text-amber-400', desc: 'I begin actively identifying referral options: trusted colleagues, specialized practices, and sliding-scale resources within your jurisdiction.' },
-  { day: 'Days 3–5', label: 'Warm Handoff', color: 'text-cyan-cyber', desc: 'I make direct contact with the receiving clinician (with your consent). You are never handed a list and left to navigate alone.' },
+  { day: 'Days 3–5', label: 'Warm Handoff', color: 'text-somatic-warmth', desc: 'I make direct contact with the receiving clinician (with your consent). You are never handed a list and left to navigate alone.' },
   { day: 'Day 7', label: 'Follow-Up', color: 'text-somatic-warmth', desc: 'I check in to confirm the transition is working, answer questions, and close the loop. Continuity of care does not end when the session does.' },
 ];
 
@@ -72,7 +72,7 @@ export default function AdvocacyPage() {
             </motion.section>
 
             <div className="flex items-center justify-between pt-6 border-t border-obsidian-border">
-              <a href="/blog/architecture" className="text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors inline-flex items-center gap-1">
+              <a href="/blog/architecture" className="text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors inline-flex items-center gap-1">
                 <ArrowLeft size={11} /> Relational Architecture
               </a>
               <a href="/blog/sovereignty" className="text-xs font-mono text-violet-400 hover:text-text-primary transition-colors inline-flex items-center gap-1">

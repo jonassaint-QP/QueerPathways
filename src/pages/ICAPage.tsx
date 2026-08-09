@@ -7,7 +7,7 @@ export const ICAPage: React.FC = () => {
   return (
     <div className="space-y-8 py-6 max-w-4xl mx-auto">
       <div className="border-b border-obsidian-border pb-4">
-        <span className="font-mono text-xs text-magenta-neon uppercase tracking-widest">Governance & Practice Structure</span>
+        <span className="font-mono text-xs text-somatic-skin uppercase tracking-widest">Governance & Practice Structure</span>
         <h1 className="font-display text-3xl font-bold text-text-primary mt-1">
           Independent Clinical Agreement (ICA)
         </h1>
@@ -18,14 +18,14 @@ export const ICAPage: React.FC = () => {
           This document outlines the independent clinical operating structure of QueerPathways under dual-jurisdictional practice regulations (Pennsylvania LCSW CW023073 and Ontario RSW 842649).
         </p>
 
-        <div className="space-y-2 border-l-2 border-cyan-cyber pl-4">
+        <div className="space-y-2 border-l-2 border-somatic-warmth pl-4">
           <h2 className="text-text-primary font-bold text-sm">1. Dual-Lane Financial Segregation (Policy QP-POL-002)</h2>
           <p>
             Clinical processing is managed strictly via CardPointe / CardConnect (MID: 496649211885) and TherapyNotes, settling exclusively into Found Bank Clinical Sub-Account. Retail transactions are firewalled via NMI Gateway.
           </p>
         </div>
 
-        <div className="space-y-2 border-l-2 border-magenta-neon pl-4">
+        <div className="space-y-2 border-l-2 border-somatic-skin pl-4">
           <h2 className="text-text-primary font-bold text-sm">2. Capacity & Intake Governance</h2>
           <p>
             Direct consultation is guaranteed within 7 business days under the 7-Day Safety Net protocol, subject to the strict 7-slot operational ceiling per jurisdiction.

@@ -15,17 +15,17 @@ export const AboutPage: React.FC = () => {
          ========================================== */}
       <section className="relative bg-obsidian-card border border-obsidian-border rounded-2xl p-8 md:p-12 overflow-hidden">
         {/* Ambient Glow Effects */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-magenta-neon/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-cyan-cyber/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-somatic-skin/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-somatic-warmth/10 rounded-full blur-3xl pointer-events-none"></div>
         
         <div className="relative z-10 max-w-4xl space-y-6">
           
           {/* Dual License Badge Header */}
           <div className="flex flex-wrap items-center gap-3">
-            <span className="font-mono text-xs text-cyan-cyber uppercase tracking-widest bg-obsidian-deep border border-obsidian-border px-3.5 py-1.5 rounded-full">
+            <span className="font-mono text-xs text-somatic-warmth uppercase tracking-widest bg-obsidian-deep border border-obsidian-border px-3.5 py-1.5 rounded-full">
               PA LCSW CW023073
             </span>
-            <span className="font-mono text-xs text-magenta-neon uppercase tracking-widest bg-obsidian-deep border border-obsidian-border px-3.5 py-1.5 rounded-full">
+            <span className="font-mono text-xs text-somatic-skin uppercase tracking-widest bg-obsidian-deep border border-obsidian-border px-3.5 py-1.5 rounded-full">
               ONTARIO RSW 842649
             </span>
             <span className="font-mono text-xs text-somatic-warmth border border-somatic-warmth/30 px-3 py-1.5 rounded-full">
@@ -35,7 +35,7 @@ export const AboutPage: React.FC = () => {
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-text-primary tracking-tight leading-[1.1]">
             Joshua Jonassaint <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-cyber via-text-primary to-magenta-neon">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-somatic-warmth via-text-primary to-somatic-skin">
               The Outlaw Therapist
             </span>
           </h1>
@@ -46,11 +46,11 @@ export const AboutPage: React.FC = () => {
 
           <div className="pt-2 flex flex-wrap gap-4 text-xs font-mono text-text-secondary">
             <div className="flex items-center space-x-2 border border-obsidian-border bg-obsidian-deep px-3 py-1.5 rounded">
-              <span className="text-cyan-cyber">✓</span>
+              <span className="text-somatic-warmth">✓</span>
               <span>7-Day Safety Net Protocol</span>
             </div>
             <div className="flex items-center space-x-2 border border-obsidian-border bg-obsidian-deep px-3 py-1.5 rounded">
-              <span className="text-magenta-neon">✓</span>
+              <span className="text-somatic-skin">✓</span>
               <span>7-Slot Capacity Ceiling Per Region</span>
             </div>
           </div>
@@ -65,14 +65,14 @@ export const AboutPage: React.FC = () => {
         {/* Left Column: Narrative Philosophy */}
         <div className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 md:p-8 space-y-4 flex flex-col justify-between">
           <div className="space-y-4">
-            <span className="font-mono text-xs text-cyan-cyber uppercase tracking-widest">Clinical Stance</span>
+            <span className="font-mono text-xs text-somatic-warmth uppercase tracking-widest">Clinical Stance</span>
             <h2 className="font-display text-2xl font-bold text-text-primary">
               Why "Outlaw"?
             </h2>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
               Traditional therapeutic models were designed around compliance—teaching marginal individuals how to adapt to, absorb, and tolerate oppressive, normative structures. They ask you to sit in a chair and politely analyze your suffering while the world continues to extract your bandwidth.
             </p>
-            <p className="text-xs sm:text-sm text-text-primary font-medium leading-relaxed border-l-2 border-cyan-cyber pl-4">
+            <p className="text-xs sm:text-sm text-text-primary font-medium leading-relaxed border-l-2 border-somatic-warmth pl-4">
               The <em>Outlaw Therapist</em> framework refuses to act as an agent of institutional compliance. We do not nod passively while you exhaust yourself translating your trauma into palatable terms.
             </p>
             <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
@@ -87,16 +87,16 @@ export const AboutPage: React.FC = () => {
         {/* Right Column: Key Principles */}
         <div className="space-y-4 flex flex-col justify-between">
           
-          <div className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 hover:border-cyan-cyber/40 transition-all">
-            <div className="font-mono text-xs text-cyan-cyber mb-1">01 / INTEGRITY</div>
+          <div className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 hover:border-somatic-warmth/40 transition-all">
+            <div className="font-mono text-xs text-somatic-warmth mb-1">01 / INTEGRITY</div>
             <h3 className="font-display text-lg font-bold text-text-primary">Zero-Explanation Baseline</h3>
             <p className="text-xs text-text-secondary mt-1 leading-relaxed">
               You never have to educate your clinician on neurodivergent burnout, trans survival, polyamory, or the exhaustion of living outside normative boxes. We start at Step 10 on Day One.
             </p>
           </div>
 
-          <div className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 hover:border-magenta-neon/40 transition-all">
-            <div className="font-mono text-xs text-magenta-neon mb-1">02 / PHYSIOLOGY</div>
+          <div className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 hover:border-somatic-skin/40 transition-all">
+            <div className="font-mono text-xs text-somatic-skin mb-1">02 / PHYSIOLOGY</div>
             <h3 className="font-display text-lg font-bold text-text-primary">Somatic Precision</h3>
             <p className="text-xs text-text-secondary mt-1 leading-relaxed">
               Trauma and chronic masking are stored in muscular holding patterns and autonomic dysregulation. We integrate somatic experiencing to discharge survival energy directly from the tissue.
@@ -120,7 +120,7 @@ export const AboutPage: React.FC = () => {
       <section className="bg-obsidian-card border border-obsidian-border rounded-xl p-6 md:p-8 space-y-6">
         <div className="border-b border-obsidian-border pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
           <div>
-            <span className="font-mono text-xs text-magenta-neon uppercase tracking-widest">Cross-Border Authority</span>
+            <span className="font-mono text-xs text-somatic-skin uppercase tracking-widest">Cross-Border Authority</span>
             <h2 className="font-display text-2xl font-bold text-text-primary mt-1">
               Dual-Jurisdiction Clinical Practice
             </h2>
@@ -136,7 +136,7 @@ export const AboutPage: React.FC = () => {
           <div className="bg-obsidian-deep border border-obsidian-border p-5 rounded-lg space-y-3">
             <div className="flex justify-between items-center text-text-primary font-bold text-sm">
               <span>COMMONWEALTH OF PENNSYLVANIA</span>
-              <span className="text-cyan-cyber">CW023073</span>
+              <span className="text-somatic-warmth">CW023073</span>
             </div>
             <p className="text-text-secondary font-sans leading-relaxed">
               Licensed Clinical Social Worker (LCSW) providing tele-health and clinical services across Pennsylvania. Fully HIPAA compliant with in-network insurance processing available via Headway PA.
@@ -150,7 +150,7 @@ export const AboutPage: React.FC = () => {
           <div className="bg-obsidian-deep border border-obsidian-border p-5 rounded-lg space-y-3">
             <div className="flex justify-between items-center text-text-primary font-bold text-sm">
               <span>PROVINCE OF ONTARIO</span>
-              <span className="text-magenta-neon">RSW 842649</span>
+              <span className="text-somatic-skin">RSW 842649</span>
             </div>
             <p className="text-text-secondary font-sans leading-relaxed">
               Registered Social Worker (RSW) with the Ontario College of Social Workers and Social Service Workers (OCSWSSW). Fully PHIPA compliant with services covered under extended health benefits.
@@ -167,12 +167,12 @@ export const AboutPage: React.FC = () => {
           SECTION 3: BASE BOOKING ANCHOR (THERAPYNOTES)
          ========================================== */}
       <section id="intake-portal" className="bg-obsidian-card border border-obsidian-border rounded-2xl p-6 md:p-8 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-cyan-cyber to-magenta-neon"></div>
+        <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-somatic-warmth to-somatic-skin"></div>
         
         <div className="mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
           <div>
-            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-cyan-cyber mb-1">
-              <span className="w-2 h-2 rounded-full bg-cyan-cyber animate-pulse"></span>
+            <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-somatic-warmth mb-1">
+              <span className="w-2 h-2 rounded-full bg-somatic-warmth animate-pulse"></span>
               Secure Your Ground
             </div>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-text-primary">

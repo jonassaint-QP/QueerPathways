@@ -39,13 +39,13 @@ export default function EventsPage() {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-12">
 
         <div className="flex items-center gap-3">
-          <a href="/" className="text-text-secondary hover:text-cyan-cyber transition-colors inline-flex items-center gap-1 text-xs font-mono">
+          <a href="/" className="text-text-secondary hover:text-somatic-warmth transition-colors inline-flex items-center gap-1 text-xs font-mono">
             <ArrowLeft size={12} /> Home
           </a>
         </div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-cyan-cyber mb-3">Community</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-somatic-warmth mb-3">Community</p>
           <h1 className="text-4xl sm:text-5xl font-display font-bold text-text-primary mb-4">Events &amp; Gatherings</h1>
           <p className="text-text-secondary max-w-xl leading-relaxed">
             Workshops, community sessions, and clinical education hosted by Queer Pathways. All affirming. All intentional.
@@ -54,7 +54,7 @@ export default function EventsPage() {
 
         {loading && (
           <div className="flex items-center gap-3 text-text-secondary text-sm font-mono py-16">
-            <div className="w-2 h-2 rounded-full bg-cyan-cyber animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-somatic-warmth animate-pulse" />
             Loading events...
           </div>
         )}
@@ -63,7 +63,7 @@ export default function EventsPage() {
           <div className="bg-obsidian-card border border-obsidian-border rounded-2xl p-8 text-center space-y-3">
             <p className="text-text-secondary">Could not load events right now.</p>
             <a href="https://lu.ma/queerpathways" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-cyan-cyber hover:underline text-sm">
+              className="inline-flex items-center gap-2 text-somatic-warmth hover:underline text-sm">
               View on Lu.ma <ExternalLink size={12} />
             </a>
           </div>
@@ -89,13 +89,13 @@ export default function EventsPage() {
                   initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: i * 0.08 }}
-                  className="bg-obsidian-card border border-obsidian-border hover:border-cyan-cyber/40 rounded-2xl overflow-hidden transition-all group"
+                  className="bg-obsidian-card border border-obsidian-border hover:border-somatic-warmth/40 rounded-2xl overflow-hidden transition-all group"
                 >
                   {ev.cover_url && (
                     <img src={ev.cover_url} alt={ev.name} className="w-full h-40 object-cover" />
                   )}
                   <div className="p-5 space-y-3">
-                    <div className="flex items-center gap-2 text-xs font-mono text-cyan-cyber">
+                    <div className="flex items-center gap-2 text-xs font-mono text-somatic-warmth">
                       <Calendar size={11} />
                       {formatDate(ev.start_at)}
                     </div>
@@ -110,7 +110,7 @@ export default function EventsPage() {
                       )}
                     </div>
                     <a href={ev.url} target="_blank" rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-cyber hover:text-text-primary transition-colors">
+                      className="inline-flex items-center gap-1.5 text-xs font-mono text-somatic-warmth hover:text-text-primary transition-colors">
                       View Event <ExternalLink size={11} />
                     </a>
                   </div>
@@ -133,7 +133,7 @@ export default function EventsPage() {
         <div className="flex items-center justify-between py-6 border-t border-obsidian-border">
           <p className="text-xs text-text-disabled font-mono">Powered by Lu.ma · lu.ma/queerpathways</p>
           <a href="https://lu.ma/queerpathways" target="_blank" rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-cyan-cyber/10 border border-cyan-cyber text-cyan-cyber hover:bg-cyan-cyber hover:text-obsidian-deep px-5 py-2 rounded-full text-xs font-bold font-mono uppercase tracking-widest transition-all">
+            className="inline-flex items-center gap-2 bg-somatic-warmth/10 border border-somatic-warmth text-somatic-warmth hover:bg-somatic-warmth hover:text-obsidian-deep px-5 py-2 rounded-full text-xs font-bold font-mono uppercase tracking-widest transition-all">
             <Calendar size={12} /> Full Calendar
           </a>
         </div>

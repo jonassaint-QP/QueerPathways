@@ -21,11 +21,11 @@ export const PresencePage: React.FC = () => {
         <h2 className="font-display text-xl font-bold text-text-primary">Somatic Regulation Protocol</h2>
         <div className="space-y-4 font-mono text-xs text-text-secondary">
           <div className="p-4 bg-obsidian-deep border border-obsidian-border rounded-lg space-y-1">
-            <span className="text-cyan-cyber font-bold">01 / DISCHARGE</span>
+            <span className="text-somatic-warmth font-bold">01 / DISCHARGE</span>
             <p className="font-sans text-text-primary text-xs">Unclench jaw, drop shoulders, and allow voluntary tremors or shaking to release truncated motor energy.</p>
           </div>
           <div className="p-4 bg-obsidian-deep border border-obsidian-border rounded-lg space-y-1">
-            <span className="text-magenta-neon font-bold">02 / ORIENTATION</span>
+            <span className="text-somatic-skin font-bold">02 / ORIENTATION</span>
             <p className="font-sans text-text-primary text-xs">Locate three physical contact points in your current environment to anchor present safety.</p>
           </div>
           <div className="p-4 bg-obsidian-deep border border-obsidian-border rounded-lg space-y-1">
@@ -39,7 +39,7 @@ export const PresencePage: React.FC = () => {
             href={PRACTICE_CONFIG.portals.therapyNotes}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block bg-cyan-cyber text-obsidian-deep px-6 py-3 rounded font-mono text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
+            className="inline-block bg-somatic-warmth text-obsidian-deep px-6 py-3 rounded font-mono text-xs font-bold uppercase tracking-wider hover:opacity-90 transition-opacity"
           >
             Adjourn the Courtroom — Book Intake
           </a>

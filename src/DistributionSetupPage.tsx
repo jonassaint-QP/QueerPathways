@@ -15,7 +15,7 @@ function FeedUrlCopy() {
   return (
     <div className="flex items-center gap-2 bg-obsidian-deep border border-obsidian-border rounded-xl px-4 py-3 font-mono text-sm">
       <Rss size={13} className="text-orange-400 shrink-0" />
-      <span className="flex-1 text-cyan-cyber truncate">{FEED_URL}</span>
+      <span className="flex-1 text-somatic-warmth truncate">{FEED_URL}</span>
       <button onClick={copy} className="shrink-0 flex items-center gap-1.5 text-xs text-text-secondary hover:text-text-primary transition-colors">
         {copied ? <><Check size={12} className="text-somatic-warmth" /> Copied</> : <><Copy size={12} /> Copy</>}
       </button>
@@ -25,7 +25,7 @@ function FeedUrlCopy() {
 
 const FLOW = [
   { label: 'Add post to posts-data.json', color: 'text-amber-400' },
-  { label: 'Push & deploy to Netlify', color: 'text-cyan-cyber' },
+  { label: 'Push & deploy to Netlify', color: 'text-somatic-warmth' },
   { label: 'RSS feed regenerates', color: 'text-somatic-warmth' },
   { label: 'Zapier polls feed (hourly)', color: 'text-violet-400' },
   { label: '48-hour delay trigger', color: 'text-orange-400' },
@@ -44,9 +44,9 @@ const STEPS = [
   {
     number: '02',
     title: 'Set Up the RSS Trigger',
-    color: 'border-cyan-cyber/30',
-    bg: 'bg-cyan-cyber/5',
-    label: 'text-cyan-cyber',
+    color: 'border-somatic-warmth/30',
+    bg: 'bg-somatic-warmth/5',
+    label: 'text-somatic-warmth',
     content: 'Create a new Zap. Choose "RSS by Zapier" as the trigger app, then "New Item in Feed" as the trigger event. Paste the feed URL above.',
   },
   {
@@ -113,12 +113,12 @@ export default function DistributionSetupPage() {
     <div className="min-h-screen bg-obsidian-deep text-text-primary">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-12">
 
-        <a href="/blog" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors">
+        <a href="/blog" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors">
           <ArrowLeft size={12} /> Master Map
         </a>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <p className="text-[10px] font-mono uppercase tracking-widest text-cyan-cyber mb-3">Automation</p>
+          <p className="text-[10px] font-mono uppercase tracking-widest text-somatic-warmth mb-3">Automation</p>
           <h1 className="text-4xl font-display font-bold text-text-primary mb-4">RSS Distribution Setup</h1>
           <p className="text-text-secondary leading-relaxed">
             Connect your site RSS feed to Zapier so posts auto-distribute to Substack and LinkedIn 48 hours after publishing.
@@ -162,7 +162,7 @@ export default function DistributionSetupPage() {
             <p className="text-xs text-text-secondary">Takes about 15 minutes to set up. Works on Zapier free tier (with limitations).</p>
           </div>
           <a href="https://zapier.com" target="_blank" rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 bg-cyan-cyber/10 border border-cyan-cyber text-cyan-cyber hover:bg-cyan-cyber hover:text-obsidian-deep px-5 py-2.5 rounded-full text-xs font-bold font-mono uppercase tracking-widest transition-all">
+            className="shrink-0 inline-flex items-center gap-2 bg-somatic-warmth/10 border border-somatic-warmth text-somatic-warmth hover:bg-somatic-warmth hover:text-obsidian-deep px-5 py-2.5 rounded-full text-xs font-bold font-mono uppercase tracking-widest transition-all">
             <Zap size={12} /> Open Zapier
           </a>
         </motion.div>

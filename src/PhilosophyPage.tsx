@@ -11,7 +11,7 @@ export default function PhilosophyPage() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-cyan-cyber hover:text-text-secondary transition text-sm"
+            className="inline-flex items-center gap-2 text-somatic-warmth hover:text-text-secondary transition text-sm"
           >
             <ArrowLeft size={16} />
             Queer Pathways
@@ -20,7 +20,7 @@ export default function PhilosophyPage() {
             href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-cyan-cyber text-obsidian-deep px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-cyber/80 transition"
+            className="bg-somatic-warmth text-obsidian-deep px-6 py-2 rounded-full text-xs font-bold hover:bg-somatic-warmth/80 transition"
           >
               Adjourn the Courtroom — Book Your Intake Assessment
             </a>
@@ -37,7 +37,7 @@ export default function PhilosophyPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">Philosophy</span>
+            <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">Philosophy</span>
             <h1 className="text-5xl md:text-6xl font-bold font-serif leading-tight">
               We Don't Believe in Broken.
             </h1>
@@ -47,7 +47,7 @@ export default function PhilosophyPage() {
             <p className="text-lg text-text-secondary qp-leading-175">
               The clinical industrial complex has spent decades telling queer and neurodivergent people that the problem is inside them. That their processing speed is a "deficit." That their gender is a "confusion." That their kink is a "behavioral issue" requiring correction.
             </p>
-            <p className="text-lg font-semibold text-cyan-cyber">We think that's backwards.</p>
+            <p className="text-lg font-semibold text-somatic-warmth">We think that's backwards.</p>
           </motion.div>
 
           {/* The Double-Outsider Framework */}
@@ -58,7 +58,7 @@ export default function PhilosophyPage() {
               transition={{ duration: 0.7 }}
               className="space-y-4"
             >
-              <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">The Framework</span>
+              <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">The Framework</span>
               <h2 className="text-4xl font-bold font-serif">The Double-Outsider Framework</h2>
             </motion.div>
             <div className="space-y-5 text-text-secondary text-lg qp-leading-175">
@@ -81,7 +81,7 @@ export default function PhilosophyPage() {
               transition={{ duration: 0.7 }}
               className="space-y-4"
             >
-              <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">The Mechanism</span>
+              <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">The Mechanism</span>
               <h2 className="text-4xl font-bold font-serif">The Internal Courtroom</h2>
               <p className="text-text-secondary/70 text-sm uppercase tracking-widest">
                 This is what we mean when we say "litigating your existence."
@@ -92,7 +92,7 @@ export default function PhilosophyPage() {
                 Every conversation becomes cross-examination. Every email draft gets re-litigated. Every moment of being "too much" or "not enough" plays on a loop with you as judge, jury, and defendant — all at once.
               </p>
             </div>
-            <div className="bg-magenta-neon/10 border-2 border-magenta-neon/30 rounded-2xl p-8">
+            <div className="bg-somatic-skin/10 border-2 border-somatic-skin/30 rounded-2xl p-8">
               <p className="text-xl font-semibold text-somatic-warmth">
                 We don't help you win the case. We help you adjourn the court.
               </p>
@@ -107,7 +107,7 @@ export default function PhilosophyPage() {
               transition={{ duration: 0.7 }}
               className="space-y-4"
             >
-              <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">The Cost</span>
+              <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">The Cost</span>
               <h2 className="text-4xl font-bold font-serif">The Ambiguity Tax</h2>
             </motion.div>
             <div className="space-y-5 text-text-secondary text-lg qp-leading-175">
@@ -131,28 +131,28 @@ export default function PhilosophyPage() {
               transition={{ duration: 0.7 }}
               className="space-y-4"
             >
-              <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">Our Approach</span>
+              <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">Our Approach</span>
               <h2 className="text-4xl font-bold font-serif">What We Offer Instead</h2>
             </motion.div>
             <div className="grid sm:grid-cols-2 gap-6">
               {[
                 {
-                  icon: <Brain className="text-magenta-neon" size={22} />,
+                  icon: <Brain className="text-somatic-skin" size={22} />,
                   title: 'Scaffolding, not fixing.',
                   body: "We don't believe your executive function needs \"correction.\" We build systems around your actual operating system.",
                 },
                 {
-                  icon: <Scale className="text-magenta-neon" size={22} />,
+                  icon: <Scale className="text-somatic-skin" size={22} />,
                   title: 'Relational sovereignty.',
                   body: 'Desire is not an edge case in this room. Kink, polyamory, non-monogamy, celibacy — your relational architecture is yours to design.',
                 },
                 {
-                  icon: <Shield className="text-magenta-neon" size={22} />,
+                  icon: <Shield className="text-somatic-skin" size={22} />,
                   title: 'Gender on your timeline.',
                   body: 'No required regrets. No gatekeeping. No proving you\'re "trans enough."',
                 },
                 {
-                  icon: <Heart className="text-magenta-neon" size={22} />,
+                  icon: <Heart className="text-somatic-skin" size={22} />,
                   title: 'Trauma-informed by default.',
                   body: "Not a checkbox. Not a certification on the wall. It's how we structure every session.",
                 },
@@ -182,13 +182,13 @@ export default function PhilosophyPage() {
                 href="https://www.therapyportal.com/p/queercharts/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-cyan-cyber text-obsidian-deep px-10 py-4 rounded-full font-bold text-base hover:bg-cyan-cyber/80 transition shadow-lg"
+                className="bg-somatic-warmth text-obsidian-deep px-10 py-4 rounded-full font-bold text-base hover:bg-somatic-warmth/80 transition shadow-lg"
               >
               Adjourn the Courtroom — Book Your Intake Assessment
             </a>
               <Link
                 to="/team"
-                className="border-2 border-text-primary text-text-primary px-10 py-4 rounded-full font-bold text-base hover:bg-cyan-cyber/10 transition"
+                className="border-2 border-text-primary text-text-primary px-10 py-4 rounded-full font-bold text-base hover:bg-somatic-warmth/10 transition"
               >
                 Meet the Team →
               </Link>

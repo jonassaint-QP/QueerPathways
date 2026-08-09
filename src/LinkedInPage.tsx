@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Linkedin, Rss, UserCheck, Shield } from 'lucide-react';
 
 const FOCUS_AREAS = [
-  { icon: <Shield size={14} />, label: 'Trauma-informed practice updates', color: 'text-cyan-cyber' },
+  { icon: <Shield size={14} />, label: 'Trauma-informed practice updates', color: 'text-somatic-warmth' },
   { icon: <UserCheck size={14} />, label: 'Kink-affirming care education', color: 'text-violet-400' },
   { icon: <UserCheck size={14} />, label: 'LGBTQ+ clinical competency', color: 'text-rose-400' },
   { icon: <Shield size={14} />, label: 'Neurodivergent-affirming approaches', color: 'text-amber-400' },

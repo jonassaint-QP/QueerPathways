@@ -83,7 +83,7 @@ export default function SubstackPage() {
 
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-text-secondary">
           <span>Read the pillars:</span>
-          <a href="/blog/architecture" className="text-cyan-cyber hover:text-text-primary transition-colors inline-flex items-center gap-1 text-xs">Architecture <ArrowRight size={11} /></a>
+          <a href="/blog/architecture" className="text-somatic-warmth hover:text-text-primary transition-colors inline-flex items-center gap-1 text-xs">Architecture <ArrowRight size={11} /></a>
           <a href="/blog/advocacy" className="text-violet-400 hover:text-text-primary transition-colors inline-flex items-center gap-1 text-xs">Advocacy <ArrowRight size={11} /></a>
           <a href="/blog/sovereignty" className="text-rose-400 hover:text-text-primary transition-colors inline-flex items-center gap-1 text-xs">Sovereignty <ArrowRight size={11} /></a>
         </div>

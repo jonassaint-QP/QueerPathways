@@ -33,7 +33,7 @@ export default function ServicesPage() {
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-cyan-cyber hover:text-text-secondary transition text-sm"
+            className="inline-flex items-center gap-2 text-somatic-warmth hover:text-text-secondary transition text-sm"
           >
             <ArrowLeft size={16} />
             Queer Pathways
@@ -42,7 +42,7 @@ export default function ServicesPage() {
             href="https://www.therapyportal.com/p/queercharts/"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-cyan-cyber text-obsidian-deep px-6 py-2 rounded-full text-xs font-bold hover:bg-cyan-cyber/80 transition"
+            className="bg-somatic-warmth text-obsidian-deep px-6 py-2 rounded-full text-xs font-bold hover:bg-somatic-warmth/80 transition"
           >
               Adjourn the Courtroom — Book Your Intake Assessment
             </a>
@@ -59,11 +59,11 @@ export default function ServicesPage() {
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <span className="text-magenta-neon uppercase tracking-widest text-xs font-bold">Services</span>
+            <span className="text-somatic-skin uppercase tracking-widest text-xs font-bold">Services</span>
             <h1 className="text-5xl md:text-6xl font-bold font-serif leading-tight">
               Three Pathways. One Radical Premise.
             </h1>
-            <p className="text-2xl text-cyan-cyber font-semibold">
+            <p className="text-2xl text-somatic-warmth font-semibold">
               Your identity is not a problem to be managed.
             </p>
             <p className="text-lg text-text-secondary qp-leading-175 max-w-3xl">
@@ -79,13 +79,13 @@ export default function ServicesPage() {
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
-                <Brain className="text-magenta-neon" size={28} />
+              <div className="w-14 h-14 bg-somatic-skin/20 rounded-xl flex items-center justify-center shrink-0">
+                <Brain className="text-somatic-skin" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-magenta-neon/70 text-sm font-mono">01</span>
+                <span className="text-somatic-skin/70 text-sm font-mono">01</span>
                 <h2 className="text-4xl font-bold font-serif">Specialist Scaffolding</h2>
-                <p className="text-cyan-cyber text-lg">
+                <p className="text-somatic-warmth text-lg">
                   For the ADHD/autistic brain running on cognitive friction.
                 </p>
               </div>
@@ -99,11 +99,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-somatic-skin">What this looks like:</p>
               <ul className="space-y-3">
                 {SPECIALIST_SCAFFOLDING_ITEMS.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-text-secondary">
-                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
+                    <CheckCircle2 className="text-somatic-skin shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -119,13 +119,13 @@ export default function ServicesPage() {
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
-                <Scale className="text-magenta-neon" size={28} />
+              <div className="w-14 h-14 bg-somatic-skin/20 rounded-xl flex items-center justify-center shrink-0">
+                <Scale className="text-somatic-skin" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-magenta-neon/70 text-sm font-mono">02</span>
+                <span className="text-somatic-skin/70 text-sm font-mono">02</span>
                 <h2 className="text-4xl font-bold font-serif">Relational Sovereignty</h2>
-                <p className="text-cyan-cyber text-lg">
+                <p className="text-somatic-warmth text-lg">
                   Kink, polyamory, attachment repair, desire exploration.
                 </p>
               </div>
@@ -137,11 +137,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-somatic-skin">What this looks like:</p>
               <ul className="space-y-3">
                 {RELATIONAL_SOVEREIGNTY_ITEMS.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-text-secondary">
-                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
+                    <CheckCircle2 className="text-somatic-skin shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -157,13 +157,13 @@ export default function ServicesPage() {
               transition={{ duration: 0.7 }}
               className="flex items-start gap-6"
             >
-              <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
-                <Shield className="text-magenta-neon" size={28} />
+              <div className="w-14 h-14 bg-somatic-skin/20 rounded-xl flex items-center justify-center shrink-0">
+                <Shield className="text-somatic-skin" size={28} />
               </div>
               <div className="space-y-2">
-                <span className="text-magenta-neon/70 text-sm font-mono">03</span>
+                <span className="text-somatic-skin/70 text-sm font-mono">03</span>
                 <h2 className="text-4xl font-bold font-serif">Gender Story Prep</h2>
-                <p className="text-cyan-cyber text-lg">
+                <p className="text-somatic-warmth text-lg">
                   Transition support with zero gatekeeping. Your timeline. Your terms.
                 </p>
               </div>
@@ -174,11 +174,11 @@ export default function ServicesPage() {
               </p>
             </div>
             <div className="pl-20 space-y-4">
-              <p className="text-sm font-bold uppercase tracking-widest text-magenta-neon">What this looks like:</p>
+              <p className="text-sm font-bold uppercase tracking-widest text-somatic-skin">What this looks like:</p>
               <ul className="space-y-3">
                 {GENDER_STORY_ITEMS.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-text-secondary">
-                    <CheckCircle2 className="text-magenta-neon shrink-0 mt-0.5" size={18} />
+                    <CheckCircle2 className="text-somatic-skin shrink-0 mt-0.5" size={18} />
                     <span>{item}</span>
                   </li>
                 ))}
@@ -195,12 +195,12 @@ export default function ServicesPage() {
               className="bg-obsidian-card/30 border border-obsidian-border/50 rounded-3xl p-8 md:p-12 space-y-6"
             >
               <div className="flex items-start gap-6">
-                <div className="w-14 h-14 bg-magenta-neon/20 rounded-xl flex items-center justify-center shrink-0">
-                  <Users className="text-magenta-neon" size={28} />
+                <div className="w-14 h-14 bg-somatic-skin/20 rounded-xl flex items-center justify-center shrink-0">
+                  <Users className="text-somatic-skin" size={28} />
                 </div>
                 <div>
                   <h2 className="text-3xl font-bold font-serif">The DBT Consultation Group</h2>
-                  <p className="text-magenta-neon text-sm uppercase tracking-widest mt-2">For Licensed Therapists</p>
+                  <p className="text-somatic-skin text-sm uppercase tracking-widest mt-2">For Licensed Therapists</p>
                 </div>
               </div>
               <div className="space-y-4 text-text-secondary text-lg qp-leading-175">
@@ -224,7 +224,7 @@ export default function ServicesPage() {
               href="https://www.therapyportal.com/p/queercharts/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-cyan-cyber text-obsidian-deep px-10 py-4 rounded-full font-bold text-base hover:bg-cyan-cyber/80 transition shadow-lg"
+              className="inline-flex items-center gap-2 bg-somatic-warmth text-obsidian-deep px-10 py-4 rounded-full font-bold text-base hover:bg-somatic-warmth/80 transition shadow-lg"
             >
               Find Your Path
               <ArrowRight size={18} />

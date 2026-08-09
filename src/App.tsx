@@ -14,7 +14,7 @@ export const App: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-obsidian-deep text-text-primary font-sans selection:bg-magenta-neon selection:text-obsidian-deep flex flex-col">
+    <div className="min-h-screen bg-obsidian-deep text-text-primary font-sans selection:bg-somatic-skin selection:text-obsidian-deep flex flex-col">
       
       {/* ==========================================
           GLOBAL NAVIGATION HEADER (AppShell)
@@ -28,7 +28,7 @@ export const App: React.FC = () => {
               onClick={() => setCurrentTab('home')}
               className="text-left font-display text-xl font-bold tracking-wider text-text-primary hover:opacity-90 focus:outline-none"
             >
-              QUEER<span className="text-cyan-cyber">PATHWAYS</span>
+              QUEER<span className="text-somatic-warmth">PATHWAYS</span>
             </button>
 
             <div className="hidden lg:flex items-center space-x-2 text-[10px] font-mono text-somatic-warmth border border-somatic-warmth/30 bg-obsidian-card px-2.5 py-1 rounded-full">
@@ -42,19 +42,19 @@ export const App: React.FC = () => {
           <nav className="hidden md:flex items-center space-x-6 text-xs font-mono">
             <button
               onClick={() => setCurrentTab('home')}
-              className={`transition-colors ${currentTab === 'home' ? 'text-cyan-cyber font-bold' : 'text-text-secondary hover:text-cyan-cyber'}`}
+              className={`transition-colors ${currentTab === 'home' ? 'text-somatic-warmth font-bold' : 'text-text-secondary hover:text-somatic-warmth'}`}
             >
               Manifesto
             </button>
             <button
               onClick={() => setCurrentTab('about')}
-              className={`transition-colors ${currentTab === 'about' ? 'text-cyan-cyber font-bold' : 'text-text-secondary hover:text-cyan-cyber'}`}
+              className={`transition-colors ${currentTab === 'about' ? 'text-somatic-warmth font-bold' : 'text-text-secondary hover:text-somatic-warmth'}`}
             >
               About / Bio
             </button>
             <button
               onClick={() => setCurrentTab('offerings')}
-              className={`transition-colors ${currentTab === 'offerings' ? 'text-cyan-cyber font-bold' : 'text-text-secondary hover:text-cyan-cyber'}`}
+              className={`transition-colors ${currentTab === 'offerings' ? 'text-somatic-warmth font-bold' : 'text-text-secondary hover:text-somatic-warmth'}`}
             >
               Clinical Offerings
             </button>
@@ -62,23 +62,23 @@ export const App: React.FC = () => {
               href="https://queerpathways.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-magenta-neon transition-colors"
+              className="text-text-secondary hover:text-somatic-skin transition-colors"
             >
               Sovereignty Store
             </a>
             <a
               href="/events"
-              className="text-text-secondary hover:text-cyan-cyber transition-colors"
+              className="text-text-secondary hover:text-somatic-warmth transition-colors"
             >
               Events
             </a>
             <div className="relative group">
-              <button className="text-text-secondary hover:text-cyan-cyber transition-colors">
+              <button className="text-text-secondary hover:text-somatic-warmth transition-colors">
                 Blog ▾
               </button>
               <div className="absolute top-full right-0 mt-2 w-52 bg-obsidian-card border border-obsidian-border rounded-xl py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-xl">
                 <a href="/blog" className="block px-4 py-2 text-xs text-text-secondary hover:text-amber-300 hover:bg-obsidian-border/20 transition-colors">Master Map</a>
-                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-cyan-cyber hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
+                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-somatic-warmth hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
                 <a href="/blog/advocacy" className="block px-4 py-2 text-xs text-text-secondary hover:text-violet-400 hover:bg-obsidian-border/20 transition-colors">Clinical Advocacy</a>
                 <a href="/blog/sovereignty" className="block px-4 py-2 text-xs text-text-secondary hover:text-rose-400 hover:bg-obsidian-border/20 transition-colors">Somatic Sovereignty</a>
                 <div className="border-t border-obsidian-border my-1" />
@@ -90,7 +90,7 @@ export const App: React.FC = () => {
               href={PRACTICE_CONFIG.portals.therapyNotes}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-cyan-cyber/10 border border-cyan-cyber text-cyan-cyber hover:bg-cyan-cyber hover:text-obsidian-deep px-4 py-2 rounded font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(0,240,255,0.15)]"
+              className="bg-somatic-warmth/10 border border-somatic-warmth text-somatic-warmth hover:bg-somatic-warmth hover:text-obsidian-deep px-4 py-2 rounded font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(163, 177, 138,0.15)]"
             >
               Step into the Foundry
             </a>
@@ -99,7 +99,7 @@ export const App: React.FC = () => {
           {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-text-secondary hover:text-cyan-cyber font-mono text-sm"
+            className="md:hidden p-2 text-text-secondary hover:text-somatic-warmth font-mono text-sm"
             aria-label="Toggle Navigation"
           >
             {mobileMenuOpen ? '✕ CLOSE' : '☰ MENU'}
@@ -111,19 +111,19 @@ export const App: React.FC = () => {
           <div className="md:hidden border-b border-obsidian-border bg-obsidian-card px-6 py-4 space-y-4 text-xs font-mono">
             <button
               onClick={() => { setCurrentTab('home'); setMobileMenuOpen(false); }}
-              className="block w-full text-left py-2 text-text-primary hover:text-cyan-cyber"
+              className="block w-full text-left py-2 text-text-primary hover:text-somatic-warmth"
             >
               Manifesto
             </button>
             <button
               onClick={() => { setCurrentTab('about'); setMobileMenuOpen(false); }}
-              className="block w-full text-left py-2 text-text-primary hover:text-cyan-cyber"
+              className="block w-full text-left py-2 text-text-primary hover:text-somatic-warmth"
             >
               About / Bio
             </button>
             <button
               onClick={() => { setCurrentTab('offerings'); setMobileMenuOpen(false); }}
-              className="block w-full text-left py-2 text-text-primary hover:text-cyan-cyber"
+              className="block w-full text-left py-2 text-text-primary hover:text-somatic-warmth"
             >
               Clinical Offerings
             </button>
@@ -131,23 +131,23 @@ export const App: React.FC = () => {
               href="https://queerpathways.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-left py-2 text-magenta-neon"
+              className="block w-full text-left py-2 text-somatic-skin"
             >
               Sovereignty Store
             </a>
             <a
               href="/events"
-              className="text-text-secondary hover:text-cyan-cyber transition-colors"
+              className="text-text-secondary hover:text-somatic-warmth transition-colors"
             >
               Events
             </a>
             <div className="relative group">
-              <button className="text-text-secondary hover:text-cyan-cyber transition-colors">
+              <button className="text-text-secondary hover:text-somatic-warmth transition-colors">
                 Blog ▾
               </button>
               <div className="absolute top-full right-0 mt-2 w-52 bg-obsidian-card border border-obsidian-border rounded-xl py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 shadow-xl">
                 <a href="/blog" className="block px-4 py-2 text-xs text-text-secondary hover:text-amber-300 hover:bg-obsidian-border/20 transition-colors">Master Map</a>
-                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-cyan-cyber hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
+                <a href="/blog/architecture" className="block px-4 py-2 text-xs text-text-secondary hover:text-somatic-warmth hover:bg-obsidian-border/20 transition-colors">Relational Architecture</a>
                 <a href="/blog/advocacy" className="block px-4 py-2 text-xs text-text-secondary hover:text-violet-400 hover:bg-obsidian-border/20 transition-colors">Clinical Advocacy</a>
                 <a href="/blog/sovereignty" className="block px-4 py-2 text-xs text-text-secondary hover:text-rose-400 hover:bg-obsidian-border/20 transition-colors">Somatic Sovereignty</a>
                 <div className="border-t border-obsidian-border my-1" />
@@ -157,14 +157,14 @@ export const App: React.FC = () => {
             </div>
             <a
               href="/events"
-              className="block w-full text-left py-2 text-text-primary hover:text-cyan-cyber"
+              className="block w-full text-left py-2 text-text-primary hover:text-somatic-warmth"
             >
               Events
             </a>
             <div className="border-t border-obsidian-border pt-2 space-y-1">
               <p className="text-[10px] font-mono uppercase tracking-widest text-text-disabled pb-1">Blog</p>
               <a href="/blog" className="block py-1.5 text-text-secondary hover:text-amber-300 transition-colors">Master Map</a>
-              <a href="/blog/architecture" className="block py-1.5 text-text-secondary hover:text-cyan-cyber transition-colors">Relational Architecture</a>
+              <a href="/blog/architecture" className="block py-1.5 text-text-secondary hover:text-somatic-warmth transition-colors">Relational Architecture</a>
               <a href="/blog/advocacy" className="block py-1.5 text-text-secondary hover:text-violet-400 transition-colors">Clinical Advocacy</a>
               <a href="/blog/sovereignty" className="block py-1.5 text-text-secondary hover:text-rose-400 transition-colors">Somatic Sovereignty</a>
               <a href="/substack" className="block py-1.5 text-text-secondary hover:text-orange-400 transition-colors">Substack</a>
@@ -174,7 +174,7 @@ export const App: React.FC = () => {
               href={PRACTICE_CONFIG.portals.therapyNotes}
               target="_blank"
               rel="noopener noreferrer"
-              className="block w-full text-center py-3 bg-cyan-cyber text-obsidian-deep font-bold uppercase tracking-widest rounded"
+              className="block w-full text-center py-3 bg-somatic-warmth text-obsidian-deep font-bold uppercase tracking-widest rounded"
             >
               Adjourn the Courtroom — Book Intake
             </a>
@@ -205,9 +205,9 @@ export const App: React.FC = () => {
             <span>•</span>
             <span>PHIPA Compliant (ON)</span>
             <span>•</span>
-            <span className="text-cyan-cyber">MID: 496649211885</span>
+            <span className="text-somatic-warmth">MID: 496649211885</span>
             <span>•</span>
-            <span className="text-magenta-neon">Policy QP-POL-002</span>
+            <span className="text-somatic-skin">Policy QP-POL-002</span>
           </div>
         </div>
       </footer>

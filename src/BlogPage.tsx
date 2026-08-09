@@ -39,7 +39,7 @@ export default function BlogPage() {
     <div className="min-h-screen bg-obsidian-deep text-text-primary">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12 space-y-16">
 
-        <a href="/" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors">
+        <a href="/" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors">
           <ArrowLeft size={12} /> Home
         </a>
 
@@ -105,7 +105,7 @@ export default function BlogPage() {
           <a href="/linkedin" className="inline-flex items-center gap-2 text-xs font-mono text-text-secondary hover:text-blue-400 transition-colors">
             <Linkedin size={12} /> LinkedIn Newsletter
           </a>
-          <a href="/distribution" className="inline-flex items-center gap-2 text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors">
+          <a href="/distribution" className="inline-flex items-center gap-2 text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors">
             <BookOpen size={12} /> Distribution Setup
           </a>
         </motion.div>

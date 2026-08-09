@@ -7,8 +7,8 @@ const CONCEPTS = [
   {
     term: 'RACK',
     full: 'Risk-Aware Consensual Kink',
-    color: 'border-cyan-cyber/30 text-cyan-cyber',
-    bg: 'bg-cyan-cyber/5',
+    color: 'border-somatic-warmth/30 text-somatic-warmth',
+    bg: 'bg-somatic-warmth/5',
     desc: 'A framework that centers informed awareness of risk as the foundation of consensual engagement. Not just consent, but consent with eyes fully open.',
   },
   {
@@ -56,7 +56,7 @@ export default function ArchitecturePage() {
     <div className="min-h-screen bg-obsidian-deep text-text-primary">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
 
-        <a href="/blog" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors mb-10 block">
+        <a href="/blog" className="inline-flex items-center gap-1 text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors mb-10 block">
           <ArrowLeft size={12} /> Master Map
         </a>
 
@@ -64,7 +64,7 @@ export default function ArchitecturePage() {
           <div className="space-y-12">
 
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <p className="text-[10px] font-mono uppercase tracking-widest text-cyan-cyber mb-3">Connection Pillar</p>
+              <p className="text-[10px] font-mono uppercase tracking-widest text-somatic-warmth mb-3">Connection Pillar</p>
               <h1 className="text-4xl sm:text-5xl font-display font-bold text-text-primary mb-4 leading-tight">Relational Architecture</h1>
               <p className="text-text-secondary max-w-xl leading-relaxed text-lg">
                 Dismantling the Internal Legal System within relationships. How we build safer, clearer, more honest connection.
@@ -98,10 +98,10 @@ export default function ArchitecturePage() {
             </motion.section>
 
             <div className="flex items-center justify-between pt-6 border-t border-obsidian-border">
-              <a href="/blog" className="text-xs font-mono text-text-secondary hover:text-cyan-cyber transition-colors inline-flex items-center gap-1">
+              <a href="/blog" className="text-xs font-mono text-text-secondary hover:text-somatic-warmth transition-colors inline-flex items-center gap-1">
                 <ArrowLeft size={11} /> Master Map
               </a>
-              <a href="/blog/advocacy" className="text-xs font-mono text-cyan-cyber hover:text-text-primary transition-colors inline-flex items-center gap-1">
+              <a href="/blog/advocacy" className="text-xs font-mono text-somatic-warmth hover:text-text-primary transition-colors inline-flex items-center gap-1">
                 Clinical Advocacy <ArrowRight size={11} />
               </a>
             </div>
