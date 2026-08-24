@@ -59,9 +59,7 @@ export const App: React.FC = () => {
               Clinical Offerings
             </button>
             <a
-              href="https://queerpathways.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/shop"
               className="text-text-secondary hover:text-somatic-skin transition-colors"
             >
               Sovereignty Store
@@ -128,9 +126,7 @@ export const App: React.FC = () => {
               Clinical Offerings
             </button>
             <a
-              href="https://queerpathways.com"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/shop"
               className="block w-full text-left py-2 text-somatic-skin"
             >
               Sovereignty Store

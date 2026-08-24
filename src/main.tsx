@@ -1,6 +1,6 @@
 import React from 'react';  
 import ReactDOM from 'react-dom/client';  
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import App from './App';  
 import { InternalAuditorGuide } from './pages/InternalAuditorGuide';
 import { ReferralFactSheet } from './pages/ReferralFactSheet';
@@ -28,7 +28,29 @@ import SovereigntyPage from './blog/SovereigntyPage';
 import SubstackPage from './SubstackPage';
 import LinkedInPage from './LinkedInPage';
 import DistributionSetupPage from './DistributionSetupPage';
+import { LeavesSiteModal } from './components/LeavesSiteModal';
 import './index.css';
+
+const RETAIL_HOSTS = new Set(['queerpathways.com', 'www.queerpathways.com']);
+const CLINICAL_HOSTS = new Set(['queerpathways.org', 'www.queerpathways.org']);
+
+function DomainHome() {
+  return RETAIL_HOSTS.has(window.location.hostname) ? <ShopPage /> : <App />;
+}
+
+function DomainShop() {
+  const navigate = useNavigate();
+
+  if (!CLINICAL_HOSTS.has(window.location.hostname)) return <ShopPage />;
+
+  return (
+    <LeavesSiteModal
+      isOpen
+      onClose={() => navigate('/')}
+      onConfirm={() => window.location.assign('https://queerpathways.com')}
+    />
+  );
+}
 
 /**  
  * Queer Pathways - Digital Sanctuary Entry Point  
@@ -39,7 +61,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <CartProvider>
         <Routes>
-          <Route path="/" element={<App />} />
+          <Route path="/" element={<DomainHome />} />
           <Route path="/philosophy" element={<PhilosophyPage />} />
           <Route path="/team" element={<TeamPage />} />
           <Route path="/services" element={<ServicesPage />} />
@@ -54,7 +76,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
           <Route path="/sovereign-harbor" element={<SovereignHarbor />} />
           <Route path="/contact" element={<IntakeTerminalPage />} />
           <Route path="/intake-terminal" element={<IntakeTerminalPage />} />
-          <Route path="/shop" element={<ShopPage />} />
+          <Route path="/shop" element={<DomainShop />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
           <Route path="/events" element={<EventsPage />} />

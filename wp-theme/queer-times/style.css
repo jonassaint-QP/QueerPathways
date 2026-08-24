@@ -4,7 +4,7 @@ Theme URI: https://queerpathways.com
 Author: QueerPathways
 Author URI: https://queerpathways.com
 Description: A vintage newspaper-inspired WordPress theme for QueerPathways, featuring the Pathways and Pillars taxonomies.
-Version: 1.0.0
+Version: 1.1.0
 Requires at least: 6.0
 Tested up to: 6.5
 Requires PHP: 8.0
@@ -54,4 +54,158 @@ img {
 
 [data-fraktur="true"] {
     font-family: 'UnifrakturMaguntia', serif;
+}
+
+/* Outlaw Gazette / Vintage Editorial Newspaper Theme Override */
+body.wordpress-blog,
+body.single-post,
+body.blog {
+    background-color: #020501 !important;
+    color: #c0bfbc !important;
+    font-family: Georgia, 'Times New Roman', serif !important;
+    line-height: 1.7 !important;
+}
+
+.newspaper-header {
+    border-bottom: 3px double #cbb26a;
+    text-align: center;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+}
+
+.newspaper-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 3.5rem;
+    color: #cbb26a;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0;
+}
+
+.newspaper-subtitle {
+    font-family: system-ui, sans-serif;
+    font-size: 0.875rem;
+    color: #ccdee0;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-top: 0.5rem;
+}
+
+.broadsheet-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1.5rem;
+    border-top: 1px solid #3e6830;
+    padding-top: 1.5rem;
+}
+
+.editorial-column-main {
+    grid-column: span 8;
+    border-right: 1px solid #3e6830;
+    padding-right: 1.5rem;
+}
+
+.editorial-column-side {
+    grid-column: span 4;
+}
+
+/* Drop Cap for Essays */
+.article-drop-cap::first-letter {
+    font-size: 3.5rem;
+    float: left;
+    line-height: 0.8;
+    padding-right: 0.5rem;
+    color: #d3b127;
+    font-family: Georgia, serif;
+}
+
+/* Low-Glare Links */
+body.wordpress-blog a,
+body.single-post a,
+body.blog a {
+    color: #ccdee0 !important;
+    text-decoration: underline;
+}
+
+body.wordpress-blog a:hover,
+body.single-post a:hover,
+body.blog a:hover {
+    color: #d3b127 !important;
+}
+
+/* Image Rules 1 to 4 */
+.single-post .entry-content img:nth-of-type(1) {
+    display: block !important;
+    float: none !important;
+    margin: 2rem auto !important;
+    border: 2px solid #cbb26a !important;
+    border-radius: 8px !important;
+}
+
+.single-post .entry-content img:nth-of-type(2) {
+    float: left !important;
+    margin: 0 1.5rem 1.5rem 0 !important;
+    border-left: 4px solid #d3b127 !important;
+}
+
+.single-post .entry-content img:nth-of-type(3) {
+    float: right !important;
+    margin: 0 0 1.5rem 1.5rem !important;
+    border-right: 4px solid #3e6830 !important;
+}
+
+.single-post .entry-content img:nth-of-type(4) {
+    display: block !important;
+    float: none !important;
+    width: 100% !important;
+    margin: 2.5rem auto !important;
+}
+
+/* Outlaw Gazette Heading Styles */
+.single-post .entry-content h1 {
+    font-size: 2.5rem !important;
+    color: #cbb26a !important;
+    border-bottom: 2px solid #3e6830 !important;
+    margin-top: 2rem !important;
+}
+
+.single-post .entry-content h2 {
+    font-size: 2rem !important;
+    color: #cbb26a !important;
+    margin-top: 1.75rem !important;
+}
+
+.single-post .entry-content h3 {
+    font-size: 1.5rem !important;
+    color: #ccdee0 !important;
+    margin-top: 1.5rem !important;
+}
+
+.single-post .entry-content h4 {
+    font-size: 1.25rem !important;
+    color: #c0bfbc !important;
+    font-style: italic !important;
+    margin-top: 1.25rem !important;
+}
+
+@media (max-width: 767px) {
+    .newspaper-title {
+        font-size: 2.25rem;
+    }
+
+    .editorial-column-main,
+    .editorial-column-side {
+        grid-column: 1 / -1;
+    }
+
+    .editorial-column-main {
+        border-right: 0;
+        padding-right: 0;
+    }
+
+    .single-post .entry-content img:nth-of-type(2),
+    .single-post .entry-content img:nth-of-type(3) {
+        float: none !important;
+        margin: 2rem auto !important;
+    }
 }

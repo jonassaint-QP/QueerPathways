@@ -25,7 +25,7 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           <nav className="flex items-center space-x-6 text-xs font-mono">
             <a href="/about" className="text-text-secondary hover:text-somatic-warmth transition-colors">Manifesto</a>
             <a href="/offerings" className="text-text-secondary hover:text-somatic-warmth transition-colors">Offerings</a>
-            <a href="https://queerpathways.com" className="text-text-secondary hover:text-somatic-skin transition-colors">Store</a>
+            <a href="/shop" className="text-text-secondary hover:text-somatic-skin transition-colors">Store</a>
             <a 
               href={PRACTICE_CONFIG.portals.therapyNotes}
               target="_blank"

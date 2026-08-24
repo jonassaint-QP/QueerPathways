@@ -8,7 +8,7 @@
 get_header();
 ?>
 
-<main id="main-content" class="max-w-4xl mx-auto px-4 py-10 bg-[#f4f1ea] text-[#1a1a1a]">
+<main id="main-content" class="max-w-4xl mx-auto px-4 py-10">
     <?php if ( have_posts() ) : ?>
         <?php while ( have_posts() ) : the_post(); ?>
             <article <?php post_class(); ?>>
@@ -35,7 +35,7 @@ get_header();
                     </figure>
                 <?php endif; ?>
 
-                <div class="prose prose-sm md:prose-base max-w-none font-serif leading-relaxed">
+                <div class="entry-content prose prose-sm md:prose-base max-w-none font-serif leading-relaxed">
                     <?php the_content(); ?>
                 </div>
 
