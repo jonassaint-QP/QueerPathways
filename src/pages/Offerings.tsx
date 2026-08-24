@@ -276,7 +276,7 @@ export const ClinicalOfferingsPage: React.FC = () => {
               Access Clinical Portal
             </h2>
             <p className="text-xs sm:text-sm text-text-secondary mt-1 max-w-xl">
-              Strict 7-slot capacity discipline per region. Direct consultation guaranteed within 7 business days of intake submission.
+              Strict 7-slot capacity discipline across both jurisdictions. Direct consultation guaranteed within 7 business days of intake submission.
             </p>
           </div>
           <div className="text-right font-mono text-[11px] text-text-secondary border-l md:border-l-0 md:border-t border-obsidian-border pt-2 md:pt-0 pl-3 md:pl-0">

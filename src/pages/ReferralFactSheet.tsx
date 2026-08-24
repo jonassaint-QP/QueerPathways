@@ -58,7 +58,7 @@ export const ReferralFactSheet: React.FC = () => {
           </li>
           <li className="flex items-start space-x-2">
             <span className="text-somatic-warmth">►</span>
-            <span><strong>7-Slot Capacity Ceiling:</strong> Active client capacity strictly capped per jurisdiction to ensure uncompromised clinical focus.</span>
+            <span><strong>7-Slot Capacity Ceiling:</strong> Active client capacity strictly capped at seven total across both jurisdictions to ensure uncompromised clinical focus.</span>
           </li>
           <li className="flex items-start space-x-2">
             <span className="text-somatic-skin">►</span>

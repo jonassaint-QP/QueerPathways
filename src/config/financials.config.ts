@@ -15,7 +15,7 @@ export const FINANCIAL_ARCHITECTURE = {
       individual: 150,
       relationship: 200,
     },
-    capacityLimitPerRegion: 7, // PA & Ontario
+    capacityLimitTotal: 7,
   },
 
   RETAIL_LANE: {

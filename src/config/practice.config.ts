@@ -6,7 +6,7 @@ export const PRACTICE_CONFIG = {
   },
   protocol: {
     safetyNetDays: 7,
-    maxSlotsPerJurisdiction: 7,
+    maxActiveSlotsTotal: 7,
   },
   pricing: {
     intake: 225,

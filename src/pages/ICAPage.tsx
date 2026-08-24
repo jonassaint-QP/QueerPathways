@@ -28,7 +28,7 @@ export const ICAPage: React.FC = () => {
         <div className="space-y-2 border-l-2 border-somatic-skin pl-4">
           <h2 className="text-text-primary font-bold text-sm">2. Capacity & Intake Governance</h2>
           <p>
-            Direct consultation is guaranteed within 7 business days under the 7-Day Safety Net protocol, subject to the strict 7-slot operational ceiling per jurisdiction.
+            Direct consultation is guaranteed within 7 business days under the 7-Day Safety Net protocol, subject to a strict 7-slot operational ceiling across both jurisdictions.
           </p>
         </div>
 
