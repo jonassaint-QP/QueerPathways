@@ -1,27 +1,12 @@
-# AI crawler and LLM scraping guardrails
-User-agent: GPTBot
-Disallow: /
+# queerpathways.org — robots.txt
+#
+# AI crawlers are intentionally ALLOWED on the clinical domain.
+# AI assistants are a growing referral channel for niche identity-fluent
+# care; visibility in AI answers is deliberate. No PHI exists in this
+# repository (GitHub is not HIPAA-compliant; clinical records live only
+# in TherapyNotes/portal systems).
 
-User-agent: ClaudeBot
-Disallow: /
-
-User-agent: Amazonbot
-Disallow: /
-
-User-agent: Bytespider
-Disallow: /
-
-User-agent: CCBot
-Disallow: /
-
-User-agent: Diffbot
-Disallow: /
-
-User-agent: FacebookBot
-Disallow: /
-
-# General search engine crawler rules
 User-agent: *
 Allow: /
 
-Sitemap: https://queerpathways.com/sitemap.xml
+Sitemap: https://queerpathways.org/sitemap.xml
