@@ -1,12 +1,25 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 /* ── Currency ────────────────────────────────────────────── */
-// USD only. The CAD lane was removed 2026-09-16: the Ontario registration is
+// USD only. The CAD lane was neutered 2026-09-16: the Ontario registration is
 // closed, the refund policy ships to United States addresses only, and a
 // hardcoded USD_TO_CAD = 1.38 had no business pricing a Pennsylvania practice.
-// Do not reinstate a currency union here without a stored-rate source and a
-// settlement decision to match.
+//
+// ⚠ The two exports below are SHAPE-ONLY. They survive because three files
+// still import them and one of those, src/ShopPage.tsx (~57KB), has not been
+// read in full — removing a module's public surface while an unread consumer
+// imports it is how a broken build ships. Do not treat either as functional:
+//
+//   USD_TO_CAD   not a rate. Pinned to 1 so any surviving arithmetic is a
+//                no-op rather than a silent conversion.
+//   setCurrency  accepts any argument and always yields USD. A stale toggle
+//                renders and does nothing instead of crashing.
+//
+// Both should be deleted when the retail cart surfaces come off the clinical
+// domain (QP-POL-002), together with CartPage, CartDrawer and ShopPage.
 export type Currency = 'USD';
+
+export const USD_TO_CAD = 1;
 
 export function formatPriceFn(usdCents: number, _currency: Currency = 'USD'): string {
   return new Intl.NumberFormat('en-US', {
@@ -49,7 +62,11 @@ interface CartContextValue {
   clearCart: () => void;
   openCart: () => void;
   closeCart: () => void;
-  setCurrency: (c: Currency) => void;
+  /**
+   * Accepted and ignored. Kept permissive so existing callers that pass 'CAD'
+   * still compile; the reducer always resolves to USD.
+   */
+  setCurrency: (c: string) => void;
   formatPrice: (usdCents: number) => string;
   subtotalUsd: number;
   itemCount: number;
@@ -94,6 +111,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case 'CLOSE_CART':
       return { ...state, isOpen: false };
     case 'SET_CURRENCY':
+      // No-op. USD is the only currency in the architecture.
       return state;
     default:
       return state;
@@ -115,7 +133,7 @@ function loadCart(): CartItem[] {
 
 /**
  * Always returns 'USD'. A visitor may still hold a stored 'CAD' value from
- * before the CAD lane was removed; it is coerced rather than trusted so no
+ * before the CAD lane was neutered; it is cleared rather than trusted so no
  * stale preference can re-enable Canadian formatting.
  */
 function loadCurrency(): Currency {
