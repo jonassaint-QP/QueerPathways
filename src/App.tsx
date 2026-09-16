@@ -22,7 +22,8 @@ export const App: React.FC = () => {
       <header className="sticky top-0 z-50 bg-obsidian-deep/90 backdrop-blur-md border-b border-obsidian-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
           
-          {/* Brand & Dual License Badge */}
+          {/* Brand & License Badge */}
+          {/* Ontario badge removed 2026-09-16 — practice operates in PA only. */}
           <div className="flex items-center space-x-4">
             <button 
               onClick={() => setCurrentTab('home')}
@@ -33,8 +34,6 @@ export const App: React.FC = () => {
 
             <div className="hidden lg:flex items-center space-x-2 text-[10px] font-mono text-somatic-warmth border border-somatic-warmth/30 bg-obsidian-card px-2.5 py-1 rounded-full">
               <span>PA {PRACTICE_CONFIG.licenses.PA}</span>
-              <span className="text-obsidian-border">•</span>
-              <span>ON {PRACTICE_CONFIG.licenses.ONTARIO}</span>
             </div>
           </div>
 
@@ -190,16 +189,16 @@ export const App: React.FC = () => {
       {/* ==========================================
           COMPLIANCE FOOTER
          ========================================== */}
+      {/* Single-jurisdiction footer 2026-09-16. The dual-jurisdiction line and
+          the PHIPA (ON) claim were removed with the Ontario registration. */}
       <footer className="border-t border-obsidian-border bg-obsidian-deep py-10 text-xs font-mono text-text-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <p>© {new Date().getFullYear()} QueerPathways. Sovereign Clinical Practice.</p>
-            <p className="text-[10px] text-text-disabled mt-1">Dual-Jurisdiction: Pennsylvania (CW023073) & Ontario (RSW 842649)</p>
+            <p className="text-[10px] text-text-disabled mt-1">Licensed in Pennsylvania (LCSW CW023073)</p>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-4 text-[11px]">
-            <span>HIPAA Compliant (US)</span>
-            <span>•</span>
-            <span>PHIPA Compliant (ON)</span>
+            <span>HIPAA Compliant</span>
             <span>•</span>
             <span className="text-somatic-warmth">MID: 496649211885</span>
             <span>•</span>
