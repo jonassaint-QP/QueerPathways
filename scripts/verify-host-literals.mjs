@@ -17,14 +17,24 @@
  * of derived from one canonical source, with no build gate.
  *
  * WHAT IT BLOCKS
- *   - any http:// URL literal            (non-TLS target)
- *   - any URL literal whose host begins with www.
+ *   1. any http:// URL literal            (non-TLS target)
+ *   2. any URL literal whose host begins with www.
+ *   3. any BARE hostname literal beginning with www. — a quoted string such as
+ *      'www.queerpathways.org' with no protocol. Check 3 exists because the
+ *      first version of this guard missed the actual offending literal: the
+ *      hostnames in src/main.tsx are bare strings inside a Set, so a URL regex
+ *      never saw them.
+ *
+ * MIGRATION_PENDING
+ * A blocking check shipped mid-migration would fail the build on day one and
+ * get ripped out. Instead, the known current offenders are listed explicitly.
+ * They warn today; anything NEW fails. Empty this list as each literal is
+ * replaced by a derived canonical constant, then delete the list entirely.
  *
  * WHAT IT DOES NOT BLOCK
- * Third-party service endpoints are legitimate and are allowlisted below.
- * Anything else that reads like a link or asset target but is neither of the
- * two blocked shapes is reported as a warning so it can be reviewed without
- * breaking the build.
+ * Apex first-party hostnames and third-party service endpoints are legitimate.
+ * They are reported as warnings so they stay reviewable without breaking build
+ * runs. Third-party endpoints are allowlisted.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -64,7 +74,19 @@ const ALLOWED_HOSTS = new Set([
   'www.w3.org',
 ]);
 
+/**
+ * Known bare www. hostname literals awaiting migration. These WARN, not fail.
+ * Remove each entry as its literal is replaced, then delete this list.
+ *
+ * Currently expected: the RETAIL_HOSTS / CLINICAL_HOSTS sets in src/main.tsx.
+ * Tracked as B10 in the Website Defect Register.
+ */
+const MIGRATION_PENDING = new Set(['www.queerpathways.org', 'www.queerpathways.com']);
+
 const URL_PATTERN = /https?:\/\/[^\s"'`)\]}<>\\]+/g;
+
+// A quoted string that is itself a bare hostname: 'www.example.com'
+const BARE_HOST_PATTERN = /['"`]([a-z0-9-]+(?:\.[a-z0-9-]+)+)['"`]/gi;
 
 /** @type {string[]} */
 const errors = [];
@@ -105,42 +127,78 @@ const files = [
 ].filter((file) => SCAN_EXTENSIONS.has(path.extname(file)));
 
 let literalsScanned = 0;
+let bareHostsScanned = 0;
 
 for (const file of files) {
   const contents = fs.readFileSync(file, 'utf8');
   const lines = contents.split(/\r?\n/);
 
   lines.forEach((line, index) => {
-    const matches = line.match(URL_PATTERN);
-    if (!matches) return;
-
     const where = `${relative(file)}:${index + 1}`;
 
-    for (const url of matches) {
-      literalsScanned += 1;
-      const host = hostOf(url);
+    // ── Check 1 & 2: absolute URL literals ──────────────────────────────
+    const urls = line.match(URL_PATTERN);
+    if (urls) {
+      for (const url of urls) {
+        literalsScanned += 1;
+        const host = hostOf(url);
 
-      if (!host || ALLOWED_HOSTS.has(host)) continue;
+        if (!host || ALLOWED_HOSTS.has(host)) continue;
 
-      if (url.startsWith('http://')) {
-        errors.push(`${where}: non-TLS URL literal — ${url}`);
+        if (url.startsWith('http://')) {
+          errors.push(`${where}: non-TLS URL literal — ${url}`);
+          continue;
+        }
+
+        if (host.startsWith('www.')) {
+          errors.push(
+            `${where}: non-canonical www host literal — ${url}\n` +
+              `    use the apex host for first-party URLs, or derive the target from the canonical site constant`
+          );
+          continue;
+        }
+
+        warnings.push(`${where}: absolute URL literal — ${url}`);
+      }
+    }
+
+    // ── Check 3: bare www. hostname literals (no protocol) ──────────────
+    const bare = line.match(BARE_HOST_PATTERN);
+    if (!bare) return;
+
+    for (const raw of bare) {
+      const host = raw.slice(1, -1).toLowerCase();
+
+      // Only bare hosts matter here; a URL literal was caught above.
+      if (!host.includes('.')) continue;
+      bareHostsScanned += 1;
+
+      if (ALLOWED_HOSTS.has(host)) continue;
+
+      if (!host.startsWith('www.')) {
+        warnings.push(`${where}: bare hostname literal — ${host}`);
         continue;
       }
 
-      if (host.startsWith('www.')) {
-        errors.push(
-          `${where}: non-canonical www host literal — ${url}\n` +
-            `    use the apex host for first-party URLs, or derive the target from the canonical site constant`
+      if (MIGRATION_PENDING.has(host)) {
+        warnings.push(
+          `${where}: bare www hostname literal pending migration — ${host}\n` +
+            `    known offender; replace with the derived canonical site constant and remove it from MIGRATION_PENDING`
         );
         continue;
       }
 
-      warnings.push(`${where}: absolute URL literal — ${url}`);
+      errors.push(
+        `${where}: bare www hostname literal — ${host}\n` +
+          `    use the apex host, or derive the target from the canonical site constant`
+      );
     }
   });
 }
 
-console.log(`Host-literal scan: ${files.length} files, ${literalsScanned} URL literals`);
+console.log(
+  `Host-literal scan: ${files.length} files, ${literalsScanned} URL literals, ${bareHostsScanned} bare hostnames`
+);
 
 if (errors.length) {
   console.error('\nBlocking host-literal errors:');
@@ -148,7 +206,7 @@ if (errors.length) {
 }
 
 if (warnings.length) {
-  console.warn('\nNon-blocking absolute URLs found (review only):');
+  console.warn('\nNon-blocking host literals found (review only):');
   for (const warning of warnings) console.warn(`- ${warning}`);
 }
 
@@ -158,5 +216,5 @@ if (errors.length) {
   );
   process.exitCode = 1;
 } else {
-  console.log('\nNo non-TLS or www host literals found.');
+  console.log('\nNo blocking host literals found.');
 }
