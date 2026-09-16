@@ -2,9 +2,10 @@
 	command = "npm run build"
 	publish = "dist"
 
-[functions]
-	directory = "netlify/functions"
-	node_bundler = "esbuild"
+# [functions] block removed 2026-09-16 with netlify/functions/create-checkout.ts.
+# Netlify's default functions directory is netlify/functions and esbuild is the
+# current default bundler, so remaining functions need no configuration here.
+# Re-add an explicit block only if a non-default bundler is required.
 
 # Order confirmation SPA route
 [[redirects]]

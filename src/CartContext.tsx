@@ -1,17 +1,19 @@
 import React, { createContext, useContext, useReducer, useEffect } from 'react';
 
 /* ── Currency ────────────────────────────────────────────── */
-export type Currency = 'USD' | 'CAD';
-/** Static exchange rate — update periodically or replace with a live API */
-export const USD_TO_CAD = 1.38;
+// USD only. The CAD lane was removed 2026-09-16: the Ontario registration is
+// closed, the refund policy ships to United States addresses only, and a
+// hardcoded USD_TO_CAD = 1.38 had no business pricing a Pennsylvania practice.
+// Do not reinstate a currency union here without a stored-rate source and a
+// settlement decision to match.
+export type Currency = 'USD';
 
-export function formatPriceFn(usdCents: number, currency: Currency): string {
-  const amount = currency === 'CAD' ? usdCents * USD_TO_CAD : usdCents;
-  return new Intl.NumberFormat(currency === 'CAD' ? 'en-CA' : 'en-US', {
+export function formatPriceFn(usdCents: number, _currency: Currency = 'USD'): string {
+  return new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency,
+    currency: 'USD',
     minimumFractionDigits: 2,
-  }).format(amount / 100);
+  }).format(usdCents / 100);
 }
 
 /* ── Types ───────────────────────────────────────────────── */
@@ -92,7 +94,7 @@ function cartReducer(state: CartState, action: CartAction): CartState {
     case 'CLOSE_CART':
       return { ...state, isOpen: false };
     case 'SET_CURRENCY':
-      return { ...state, currency: action.payload };
+      return state;
     default:
       return state;
   }
@@ -111,25 +113,26 @@ function loadCart(): CartItem[] {
   }
 }
 
+/**
+ * Always returns 'USD'. A visitor may still hold a stored 'CAD' value from
+ * before the CAD lane was removed; it is coerced rather than trusted so no
+ * stale preference can re-enable Canadian formatting.
+ */
 function loadCurrency(): Currency {
   try {
-    const raw = localStorage.getItem(CURRENCY_KEY);
-    return raw === 'CAD' ? 'CAD' : 'USD';
+    localStorage.removeItem(CURRENCY_KEY);
   } catch {
-    return 'USD';
+    /* private mode — nothing to clean up */
   }
+  return 'USD';
 }
 
 function saveCart(items: CartItem[]) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-  } catch { /* private mode — fail silently */ }
-}
-
-function saveCurrency(c: Currency) {
-  try {
-    localStorage.setItem(CURRENCY_KEY, c);
-  } catch { /* ignore */ }
+  } catch {
+    /* private mode — fail silently */
+  }
 }
 
 /* ── Context ─────────────────────────────────────────────── */
@@ -142,8 +145,9 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     currency: loadCurrency(),
   });
 
-  useEffect(() => { saveCart(state.items); }, [state.items]);
-  useEffect(() => { saveCurrency(state.currency); }, [state.currency]);
+  useEffect(() => {
+    saveCart(state.items);
+  }, [state.items]);
 
   const subtotalUsd = state.items.reduce((s, i) => s + i.priceUsd * i.quantity, 0);
   const itemCount = state.items.reduce((n, i) => n + i.quantity, 0);
@@ -156,8 +160,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     clearCart: () => dispatch({ type: 'CLEAR_CART' }),
     openCart: () => dispatch({ type: 'OPEN_CART' }),
     closeCart: () => dispatch({ type: 'CLOSE_CART' }),
-    setCurrency: (c) => dispatch({ type: 'SET_CURRENCY', payload: c }),
-    formatPrice: (usdCents) => formatPriceFn(usdCents, state.currency),
+    setCurrency: () => dispatch({ type: 'SET_CURRENCY', payload: 'USD' }),
+    formatPrice: (usdCents) => formatPriceFn(usdCents, 'USD'),
     subtotalUsd,
     itemCount,
   };
